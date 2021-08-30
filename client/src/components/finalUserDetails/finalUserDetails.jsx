@@ -6,7 +6,7 @@ export default function finalUserDetails(props) {
 
   return (
     <div>
-      <h1>S</h1>
+      <h1>Saas</h1>
     </div>
   );
 }
