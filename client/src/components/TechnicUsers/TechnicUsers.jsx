@@ -1,6 +1,5 @@
 import React from 'react';
 import TechnicUser from '../TechnicUser/TechnicUser';
-import { useSelector } from 'react-redux';
 
 const TechnicUsers = () => {
     const {techUsers} = useSelector(state => state)
