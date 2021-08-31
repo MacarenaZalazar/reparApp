@@ -22,7 +22,7 @@ const Searchbar = () => {
     return (
         <div>
             <label>¿Qué necesitas?</label>
-            <select name="oficios" handleChange={handleSelect}>
+            <select className='form-select form-select-sm' name="oficios" handleChange={handleSelect}>
                 <option value=""></option>
             </select>
             <label>¿Dónde?</label>
