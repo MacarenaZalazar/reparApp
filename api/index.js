@@ -32,6 +32,6 @@ const { HOST_BACK } = process.env;
 }); */
 
 server.listen( HOST_BACK, () => {
-   connectDB();
+    connectDB();
     console.log(`Server on port ${HOST_BACK}`);
 })
