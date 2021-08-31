@@ -1,5 +1,6 @@
 import React from 'react';
 import { useState } from 'react';
+import { StyledDiv } from './Styles';
 
 const FilterTechnicUserByStars = () => {
     const [select, setSelect] = useState('')
@@ -10,7 +11,7 @@ const FilterTechnicUserByStars = () => {
 
     const filterDisplay = ['', 'mayor puntuación', 'menor puntuación']
     return (
-            <div>
+            <StyledDiv>
                 <label>Ordenar por</label>
                 <select className='form-select form-select-sm' name="puntuación" onChange={onChange}>
                     { filterDisplay.map(e => {
@@ -18,7 +19,7 @@ const FilterTechnicUserByStars = () => {
                     })
                 }
                 </select>            
-            </div>
+            </StyledDiv>
     );
 };
 
