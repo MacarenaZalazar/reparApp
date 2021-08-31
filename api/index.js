@@ -17,10 +17,11 @@
 //     =====`-.____`.___ \_____/___.-`___.-'=====
 //                       `=---='
 //     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 const server = require('./src/app.js');
 const connectDB = require('./src/db.js');
-require('dotenv').config();
 const { HOST_BACK } = process.env;
+
 
 
 // Syncing all the models at once.
@@ -31,6 +32,6 @@ const { HOST_BACK } = process.env;
 }); */
 
 server.listen( HOST_BACK, () => {
-   connectDB(process.env);
+   connectDB();
     console.log(`Server on port ${HOST_BACK}`);
 })
