@@ -12,8 +12,10 @@ const Searchbar = () => {
         setSelect(e.target.value)
         console.log('select on change')
     }
-    const onClick = () => {
+    const onClick = (e) => {
+        e.preventDefault()
         const filter = [select, input]
+        setInput('')
     }
 
 
