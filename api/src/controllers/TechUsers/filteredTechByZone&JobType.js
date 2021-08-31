@@ -1,7 +1,7 @@
 const filteredTechByZoneAndJobType = async (req, res, next) => {
     const {jobType, zone} = req.query
     try {
-        res.send('estoy en /techUsers')
+        res.send('estoy en GET /techUsers')
     } catch (error) {
         next(error)
     }
