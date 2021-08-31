@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import { StyledDiv } from './SearchbarStyles'
 
 const Searchbar = () => {
     const [input, setInput] = useState('')
@@ -20,7 +21,7 @@ const Searchbar = () => {
 
 
     return (
-        <div>
+        <StyledDiv>
             <label>¿Qué necesitas?</label>
             <select className='form-select form-select-sm' name="oficios" handleChange={handleSelect}>
                 <option value=""></option>
@@ -28,7 +29,7 @@ const Searchbar = () => {
             <label>¿Dónde?</label>
             <input type="text" value={input} onChange={handleChange} />
             <button className='btn btn-outline-dark'onClick={onClick}>Buscá!</button>
-        </div>
+        </StyledDiv>
     );
 };
 
