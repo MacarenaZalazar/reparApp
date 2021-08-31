@@ -1,10 +1,10 @@
+require('dotenv').config();
 const express = require('express');
 const cookieParser = require('cookie-parser');
 const morgan = require('morgan');
 const routes = require('./routes/index.js');
 const { HOST_FRONT } = process.env;
 
-require('./db.js');
 
 const server = express();
 
