@@ -1,14 +1,15 @@
-require('dotenv').config();
+// require('dotenv').config();
 const mongoose = require('mongoose');
-const {
-    DB_USER,
-    DB_PASSWORD,
-    DB_HOST,
-    DB_NAME
-  } = process.env;
 
-const connectDB = async () => {
+
+const connectDB = async (env) => {
     try {
+        const {
+            DB_USER,
+            DB_PASSWORD,
+            DB_HOST,
+            DB_NAME
+          } = env;
         const conn = await mongoose.connect(`mongodb+srv://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/${DB_NAME}?retryWrites=true&w=majority`, {
             useNewUrlParser: true,
             // useCreateIndex: true,
