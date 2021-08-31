@@ -1,27 +1,9 @@
 const {Schema, model} = require('mongoose');
-
+const User = mongoose.model('User');
 const tecnicosSchema = new Schema({
-    name: {
-        type: String,
-        required: true,
-    },
-    lastName: {
-        type: String,
-        required: true,
-    },
-    userName: {
-        type: String,
-        required: true,
-    },
-    image: {
-        type: String,
-    },
-    phone: {
-        type: String,
-    },
-    mail: {
-        type: String,
-        required: true
+    user:{
+        type: Schema.ObjectId,
+        ref: User
     },
     workZones: {
         type: [],

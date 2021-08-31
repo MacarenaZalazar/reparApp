@@ -1,29 +1,15 @@
 const {Schema, model} = require('mongoose');
-
+var User = mongoose.model('User');
 const UsuarioFinalSchema = new Schema({
-    name: {
-        type: String,
-        required: true,
+    user:{
+        type:Schema.ObjectId,
+        ref: User
     },
-    lastName: {
-        type: String,
-        required: true,
-    },
-    userName: {
-        type: String,
-        required: true,
-    },
-    image: {
-        type: String,
-    },
-    phone: {
-        type: String,
-    },
-    mail: {
+    zone: {
         type: String,
         required: true
     },
-    zone: {
+    score: {
         type: String,
         required: true
     }
