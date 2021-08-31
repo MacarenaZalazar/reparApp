@@ -5,6 +5,8 @@ import technicUserDetails from "./components/technicUserDetails/technicUserDetai
 import Searchbar from "./components/Searchbar/Searchbar";
 import finalUserDetails from "./components/finalUserDetails/finalUserDetails";
 import DisplayFilters from './components/DisplayFilters/DisplayFilters';
+import FormTechnicUser from "./components/FormTechnicalUser/FormTechnicUser";
+import FormUser from "./components/FormUser/FormUser";
 
 
 function App() {
@@ -22,6 +24,12 @@ function App() {
         path="/technicUserDetails:Id"
         component={technicUserDetails}
       />
+      <Route exact path='/userForm'>
+        <FormUser/>
+      </Route>
+      <Route exact path='/technicForm'>
+        <FormTechnicUser/>
+      </Route>
     </div>
   );
 }
