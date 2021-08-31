@@ -27,7 +27,7 @@ const Searchbar = () => {
             </select>
             <label>¿Dónde?</label>
             <input type="text" value={input} onChange={handleChange} />
-            <button onClick={onClick}>Buscá!</button>
+            <button className='btn btn-outline-dark'onClick={onClick}>Buscá!</button>
         </div>
     );
 };
