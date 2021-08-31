@@ -12,8 +12,10 @@ const Searchbar = () => {
         setSelect(e.target.value)
         console.log('select on change')
     }
-    const onClick = () => {
+    const onClick = (e) => {
+        e.preventDefault()
         const filter = [select, input]
+        setInput('')
     }
 
 
@@ -25,7 +27,7 @@ const Searchbar = () => {
             </select>
             <label>¿Dónde?</label>
             <input type="text" value={input} onChange={handleChange} />
-            <button onClick={onClick}>Buscá!</button>
+            <button className='btn btn-outline-dark'onClick={onClick}>Buscá!</button>
         </div>
     );
 };
