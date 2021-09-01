@@ -2,7 +2,7 @@ import React from 'react';
 import { useState } from 'react';
 import { StyledDiv } from './Styles';
 
-const FilterTechnicUserByStars = () => {
+const FilterTechnicUserByScore = () => {
     const [select, setSelect] = useState('')
 
     const onChange = (e) => {
@@ -23,4 +23,4 @@ const FilterTechnicUserByStars = () => {
     );
 };
 
-export default FilterTechnicUserByStars;
+export default FilterTechnicUserByScore;

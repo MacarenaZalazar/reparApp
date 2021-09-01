@@ -1,9 +1,16 @@
 import React from 'react';
-import FilterTechnicUserByStars from '../FilterTechnicUserByStars/FilterTechnicUserByStars';
+import FilterTechnicUserByScore from '../FilterTechnicUserByScore/FilterTechnicUserByScore';
+import FilterByScore from '../FilterByScore/FilterByScore';
+import FilterByZoneAndJob from '../FilterByZoneAndJob/FilterByZoneAndJob';
+
 
 const DisplayFilters = () => {
     return ( 
-            <FilterTechnicUserByStars/>
+        <>
+            <FilterTechnicUserByScore/>
+            <FilterByScore/>
+            <FilterByZoneAndJob/>
+        </>
     );
 };
 

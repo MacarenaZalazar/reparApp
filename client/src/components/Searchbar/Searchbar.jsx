@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import { StyledDiv } from './SearchbarStyles'
+import { Link } from 'react-router-dom';
 
 const Searchbar = () => {
     const [input, setInput] = useState('')
@@ -13,8 +14,7 @@ const Searchbar = () => {
         setSelect(e.target.value)
         console.log('select on change')
     }
-    const onClick = (e) => {
-        e.preventDefault()
+    const handleClick = (e) => {
         const filter = [select, input]
         setInput('')
     }
@@ -28,7 +28,9 @@ const Searchbar = () => {
             </select>
             <label>¿Dónde?</label>
             <input type="text" value={input} onChange={handleChange} />
-            <button className='btn btn-outline-dark'onClick={onClick}>Buscá!</button>
+            <Link to='/home'>
+                <h1 className='btn btn-outline-dark' onClick={handleClick}>Buscá!</h1>
+            </Link>
         </StyledDiv>
     );
 };

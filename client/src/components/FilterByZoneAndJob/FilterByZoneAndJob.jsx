@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 export default function FilterByZoneAndJob() {
 
-	const dispatch = useDispatch();
+	//const dispatch = useDispatch();
 /*
 	useEffect(() => {
        dispatch(getZone());
@@ -25,34 +25,34 @@ export default function FilterByZoneAndJob() {
 
 
   	return(
-
-  		<h4>Zonas</h4>
-          <div>
-            <select onChange={e => handleFilterZone(e)}> 
-              <option value="all">Todos</option>        
-              {allZones.map((el) => { 
-                    return (
-                          <option value={el}>{el}</option>                
-                   );
-              })}
-            </select>
-          </div>
+      <>
+        <h4>Zonas</h4>
+            <div>
+              <select onChange={e => handleFilterZone(e)}> 
+                <option value="all">Todos</option>        
+                {/* {allZones.map((el) => { 
+                      return (
+                            <option value={el}>{el}</option>                
+                    );
+                })} */}
+              </select>
+            </div>
 
 {/*---------------------------------------------------*/}
 
-		<h4>Trabajo</h4>
-          <div>
-            <select onChange={e => handleFilterJob(e)}> 
-              <option value="all">Todos</option>        
-              {allJobs.map((el) => { 
-                    return (
-                          <option value={el}>{el}</option>                
-                   );
-              })}
-            </select>
-          </div>
+      <h4>Trabajo</h4>
+              <div>
+                <select onChange={e => handleFilterJob(e)}> 
+                  {/* <option value="all">Todos</option>        
+                  {allJobs.map((el) => { 
+                        return (
+                              <option value={el}>{el}</option>                
+                      );
+                  })} */}
+                </select>
+              </div>
 
-
+    </>
 
   		);
 }

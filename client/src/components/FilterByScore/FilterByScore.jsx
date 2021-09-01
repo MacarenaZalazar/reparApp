@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 export default function FilterByScore() {
 
-  const dispatch = useDispatch();
+  //const dispatch = useDispatch();
 /*
   useEffect(() => {
        dispatch(getScore());
@@ -19,18 +19,18 @@ export default function FilterByScore() {
  
 
     return(
-
+      <>
       <h4>Puntaje</h4>
           <div>
             <select onChange={e => handleFilterScore(e)}> 
               <option value="all">Todos</option>        
-              {allScores.map((el) => { 
+              {/* {allScores.map((el) => { 
                     return (
                           <option value={el}>{el}</option>                
                    );
-              })}
+              })} */}
             </select>
           </div>
-
+      </>
       );
 }
