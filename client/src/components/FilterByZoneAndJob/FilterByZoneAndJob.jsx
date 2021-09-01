@@ -2,6 +2,8 @@ import React from "react";
 import {useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 //import { getZone,getJob,filterByZone,filterByJob} from "../../actions/index";
+import { StyledDiv } from './Styles';
+
 
 export default function FilterByZoneAndJob() {
 
@@ -26,7 +28,9 @@ export default function FilterByZoneAndJob() {
 
   	return(
       <>
-        <h4>Zonas</h4>
+      
+      <StyledDiv>
+        <label>Zonas</label>
             <div>
               <select onChange={e => handleFilterZone(e)}> 
                 <option value="all">Todos</option>        
@@ -37,22 +41,22 @@ export default function FilterByZoneAndJob() {
                 })} */}
               </select>
             </div>
-
+        </StyledDiv>
 {/*---------------------------------------------------*/}
-
-      <h4>Trabajo</h4>
+      <StyledDiv>
+      <label>Trabajo</label>
               <div>
-                <select onChange={e => handleFilterJob(e)}> 
-                  {/* <option value="all">Todos</option>        
-                  {allJobs.map((el) => { 
+                <select className='form-select form-select-sm' onChange={e => handleFilterJob(e)}> 
+                  <option value="all">Todos</option>        
+                  {/* {allJobs.map((el) => { 
                         return (
                               <option value={el}>{el}</option>                
                       );
-                  })} */}
+                  })}  */}
                 </select>
               </div>
-
-    </>
+        </StyledDiv>
+      </>
 
   		);
 }

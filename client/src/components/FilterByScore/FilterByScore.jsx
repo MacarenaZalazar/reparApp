@@ -2,6 +2,7 @@ import React from "react";
 import {useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 //import { getScore,filterByScore} from "../../actions/index";
+import { StyledDiv } from './Styles';
 
 export default function FilterByScore() {
 
@@ -19,10 +20,10 @@ export default function FilterByScore() {
  
 
     return(
-      <>
-      <h4>Puntaje</h4>
+      <StyledDiv>
+      <label>Puntaje</label>
           <div>
-            <select onChange={e => handleFilterScore(e)}> 
+            <select className='form-select form-select-sm' onChange={e => handleFilterScore(e)}> 
               <option value="all">Todos</option>        
               {/* {allScores.map((el) => { 
                     return (
@@ -31,6 +32,6 @@ export default function FilterByScore() {
               })} */}
             </select>
           </div>
-      </>
+      </StyledDiv>
       );
 }
