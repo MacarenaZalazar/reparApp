@@ -1,5 +1,6 @@
 import React from "react";
 import { StyledDiv } from './Styles';
+import { AiFillStar } from "react-icons/ai";
 
 
 export default function TechnicUser({
@@ -11,10 +12,21 @@ export default function TechnicUser({
   workZones,
   jobTypes,
 }) {
-  
-  console.log('estoy en techUser')
+
+  const renderScore = (score) => {
+    let stars = []
+    for(let i=1; i<= score; i++ ){
+       stars.push(<AiFillStar/>)
+    }
+     return stars.map(s=>{
+      return s
+    })
+
+  }
+
   return (
     <StyledDiv>
+      <img src={image} alt="" />
       <div className='infoContainer'>
       <div className='name'>
         <h2>{name} {lastName}</h2>
@@ -25,9 +37,11 @@ export default function TechnicUser({
             return <li key={idx}>{type}</li>;
           })}
       </ul>
-      <p>Score: {score}</p>
+      <p>{renderScore(score)}
+       </p>
+       
         </div>
-      <img src={image} alt="" />
+      
       <h4>{user}</h4>
       <div className='infoContainer'>
       <label>Trabaja en:</label>
