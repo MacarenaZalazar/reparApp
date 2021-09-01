@@ -2,11 +2,11 @@ import { Route, Switch } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import technicUserDetails from "./components/technicUserDetails/technicUserDetails";
 import finalUserDetails from "./components/finalUserDetails/finalUserDetails";
-import DisplayFilters from "./components/DisplayFilters/DisplayFilters";
+import DisplayFilters from "./containers/DisplayFilters/DisplayFilters";
 import FormTechnicUser from "./components/FormTechnicalUser/FormTechnicUser";
 import FormUser from "./components/FormUser/FormUser";
 import NavBar from './containers/NavBar/NavBar';
-import TechnicUsers from './components/TechnicUsers/TechnicUsers';
+import TechnicUsers from './containers/TechnicUsers/TechnicUsers';
 
 
 function App() {
