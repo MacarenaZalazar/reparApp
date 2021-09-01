@@ -3,7 +3,7 @@ const {Schema, model} = require('mongoose');
 const tecnicosSchema = new Schema({
         user:{
             type: Schema.ObjectId,
-            ref: "user"
+            ref: "User"
         },
         workZones: {
             type: [],
