@@ -1,4 +1,8 @@
+
+const UsersT = require('../../models/TechUser');
+
 const techUserModifier = async (req, res, next) => {
+
   const { id } = req.params;
   try {
     res.send("Soy modify User Tech");
@@ -7,4 +11,4 @@ const techUserModifier = async (req, res, next) => {
   }
 };
 
-module.exports = { techUserModifier };
+module.exports = techUserModifier;

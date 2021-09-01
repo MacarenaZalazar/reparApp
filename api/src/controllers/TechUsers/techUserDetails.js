@@ -7,6 +7,4 @@ const techUsersDetails = async (req, res, next) => {
     }
 }
 
-module.exports = {
-    techUsersDetails
-}
+module.exports = techUsersDetails

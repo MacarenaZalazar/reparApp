@@ -7,6 +7,4 @@ const filteredTechByZoneAndJobType = async (req, res, next) => {
     }
 }
 
-module.exports = {
-    filteredTechByZoneAndJobType
-}
+module.exports = filteredTechByZoneAndJobType
