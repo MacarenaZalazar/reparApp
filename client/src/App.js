@@ -5,6 +5,9 @@ import finalUserDetails from "./components/finalUserDetails/finalUserDetails";
 import DisplayFilters from "./components/DisplayFilters/DisplayFilters";
 import FormTechnicUser from "./components/FormTechnicalUser/FormTechnicUser";
 import FormUser from "./components/FormUser/FormUser";
+import NavBar from './containers/NavBar/NavBar';
+import TechnicUsers from './components/TechnicUsers/TechnicUsers';
+
 
 function App() {
   return (
