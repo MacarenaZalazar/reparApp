@@ -1,9 +1,9 @@
+const UsersT = require('../../models/TechUser');
 
 const updateTechUser = async (req, res, next) => {
     try {
-        // throw new Error('Ocurrio un error')
-        const allTechnicUser = await TechnicUser.find({}).exec();
-        res.send(allTechnicUser)
+        
+        res.send("updateTechUser")
     } catch (error) {
         next({message: error.message, status: 404});
     }

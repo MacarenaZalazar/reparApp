@@ -7,6 +7,6 @@ const TipoDeTrabajoSchema = new Schema({
     }
 });
 
-model('jobType', TipoDeTrabajoSchema);
+// model('jobType', TipoDeTrabajoSchema);
 
-// module.exports = model('jobType', TipoDeTrabajoSchema);
+module.exports = model('jobType', TipoDeTrabajoSchema);

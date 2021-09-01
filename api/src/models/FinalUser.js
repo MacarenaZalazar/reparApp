@@ -20,5 +20,5 @@ const UsuarioFinalSchema = new Schema(
   }
 );
 
-model('UsersF', UsuarioFinalSchema);
-// module.exports = model('UsersF', UsuarioFinalSchema);    // el primer parametro sera asignado como nombre del modelo, y el segundo son los datos en si del modelo
+// model('UsersF', UsuarioFinalSchema);
+module.exports = model('UsersF', UsuarioFinalSchema);    // el primer parametro sera asignado como nombre del modelo, y el segundo son los datos en si del modelo

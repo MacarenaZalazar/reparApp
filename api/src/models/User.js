@@ -32,6 +32,6 @@ const userSchema = new Schema({
     timestamps: true                  // timestamps para que nos cargue fecha de ser creado y de actualizado si las hay
 });
 
-model('User', userSchema);
+// model('User', userSchema);
 
-// module.exports = model('User', userSchema);
+module.exports = model('User', userSchema);

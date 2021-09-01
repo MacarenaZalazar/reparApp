@@ -4,7 +4,8 @@ const fs = require('fs');
 const path = require('path');
 const { DB_USER, DB_PASSWORD, DB_HOST, DB_NAME } = process.env;
 
-let modelDefiners = [];
+
+
 const basename = path.basename(__filename);
 
 const connectDB = async () => {
@@ -23,10 +24,7 @@ const connectDB = async () => {
     .forEach((file) => {
       require(path.join(__dirname, '/models', file))
     });
-    //   conn.model("User", )
-    //   conn.model("UsersF", )
-    //   conn.model("UsersT", )
-    //   conn.model("jobType", )
+    
     
     console.log(`MongoDB connected: ${conn.connection.host}`);
   } catch (error) {
