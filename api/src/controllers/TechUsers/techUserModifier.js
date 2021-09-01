@@ -1,6 +1,8 @@
+
 const UsersT = require('../../models/TechUser');
 
-const techUserModifier = async (req, res, res) => {
+const techUserModifier = async (req, res, next) => {
+
   const { id } = req.params;
   try {
     res.send("Soy modify User Tech");
