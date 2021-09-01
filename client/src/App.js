@@ -5,7 +5,6 @@ import finalUserDetails from "./components/finalUserDetails/finalUserDetails";
 import DisplayFilters from "./components/DisplayFilters/DisplayFilters";
 import FormTechnicUser from "./components/FormTechnicalUser/FormTechnicUser";
 import FormUser from "./components/FormUser/FormUser";
-import NavBar from "./containers/NavBar/NavBar";
 
 function App() {
   return (
@@ -15,6 +14,9 @@ function App() {
       </Route>
       <Route path="/home">
         <DisplayFilters />
+      </Route>
+      <Route exact path='/home'>
+        <TechnicUsers/>
       </Route>
       <Route exact path="/finalUserDetails:id" component={finalUserDetails} />
       <Route
