@@ -1,10 +1,9 @@
-const { Router } = require('express');
-const e = require('express');
-const {filteredTechByZoneAndJobType, newTechUser, getAllTechUser} = require('../controllers/TechUsers')
-const router = Router()
+const { Router } = require("express");
+const {filteredTechByZoneAndJobType, techUsersDetails, techUserModifier} = require('../controllers/TechUsers')
+const router = Router();
 
-router.get('/', filteredTechByZoneAndJobType)
-router.post('/create', newTechUser);
-router.get('/all', getAllTechUser);
+router.get("/", filteredTechByZoneAndJobType);
+router.get("/:id", techUsersDetails);
+router.put("/:id", techUserModifier);
 
-module.exports = router
+module.exports = router;

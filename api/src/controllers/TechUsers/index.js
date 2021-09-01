@@ -1,11 +1,13 @@
 const filteredTechByZoneAndJobType = require('./filteredTechByZone&JobType');
-const updateTechUser = require('./updateTechUser');
-const newTechUser = require('./newTechUser');
-const getAllTechUser = require('./getAllTechUser');
+const techUserAll = require('./techUserAll');
+const techUserModifier = require('./techUserModifier');
+const techUserCreate = require('./techUserCreate');
+const techUsersDetails = require('./techUsersDetails')
 
 module.exports = {
     filteredTechByZoneAndJobType,
-    updateTechUser,
-    newTechUser,
-    getAllTechUser
+    techUserAll,
+    techUserModifier,
+    techUserCreate,
+    techUsersDetails
 }

@@ -1,6 +1,6 @@
 const UsersT = require('../../models/TechUser');
 
-const getAllTechUser = async (req, res, next) => {
+const techUserAll = async (req, res, next) => {
     try {
         const getAll = await UsersT.find({}).populate({path: "user"});
         res.send(getAll)
@@ -9,4 +9,4 @@ const getAllTechUser = async (req, res, next) => {
     }
 }
 
-module.exports = getAllTechUser;
+module.exports = techUserAll;
