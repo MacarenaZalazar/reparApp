@@ -1,8 +1,11 @@
+
 const updateTechUser = async (req, res, next) => {
     try {
-        res.send('Estoy en /update')
+        // throw new Error('Ocurrio un error')
+        const allTechnicUser = await TechnicUser.find({}).exec();
+        res.send(allTechnicUser)
     } catch (error) {
-        res.status(400).send('Ocurrio un error ' + error?.message)
+        next({message: error.message, status: 404});
     }
 }
 

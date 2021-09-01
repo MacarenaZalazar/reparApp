@@ -1,4 +1,4 @@
-const mongoose,{Schema, model} = require('mongoose');
+const {Schema, model} = require('mongoose');
 const userSchema = new Schema({
     name: {
         type: String,
@@ -32,4 +32,6 @@ const userSchema = new Schema({
     timestamps: true                  // timestamps para que nos cargue fecha de ser creado y de actualizado si las hay
 });
 
-module.exports = model('User', userSchema);
+model('User', userSchema);
+
+// module.exports = model('User', userSchema);

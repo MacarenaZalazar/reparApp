@@ -1,3 +1,4 @@
+
 const {Schema, model} = require('mongoose');
 
 const TipoDeTrabajoSchema = new Schema({
@@ -6,4 +7,6 @@ const TipoDeTrabajoSchema = new Schema({
     }
 });
 
-module.exports = model('jobType', TipoDeTrabajoSchema);
+model('jobType', TipoDeTrabajoSchema);
+
+// module.exports = model('jobType', TipoDeTrabajoSchema);
