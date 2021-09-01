@@ -9,6 +9,8 @@ export default function TechnicUser({
   workZones,
   jobTypes,
 }) {
+  
+  console.log('estoy en techUser')
   return (
     <div>
       <h1>{lastName}</h1>

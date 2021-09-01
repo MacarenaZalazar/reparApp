@@ -6,6 +6,7 @@ align-items: center;
 justify-content: center;
 margin: 20px;
     input{
+        border-radius: 5px;
         margin: 5px;
     }
     select{

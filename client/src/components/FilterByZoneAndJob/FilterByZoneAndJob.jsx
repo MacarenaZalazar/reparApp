@@ -31,21 +31,18 @@ export default function FilterByZoneAndJob() {
       
       <StyledDiv>
         <label>Zonas</label>
-            <div>
-              <select onChange={e => handleFilterZone(e)}> 
-                <option value="all">Todos</option>        
+              <select className='form-select form-select-sm'onChange={e => handleFilterZone(e)}> 
+                <option value="all">Todas</option>        
                 {/* {allZones.map((el) => { 
                       return (
                             <option value={el}>{el}</option>                
                     );
                 })} */}
               </select>
-            </div>
-        </StyledDiv>
+
 {/*---------------------------------------------------*/}
-      <StyledDiv>
+
       <label>Trabajo</label>
-              <div>
                 <select className='form-select form-select-sm' onChange={e => handleFilterJob(e)}> 
                   <option value="all">Todos</option>        
                   {/* {allJobs.map((el) => { 
@@ -54,7 +51,6 @@ export default function FilterByZoneAndJob() {
                       );
                   })}  */}
                 </select>
-              </div>
         </StyledDiv>
       </>
 
