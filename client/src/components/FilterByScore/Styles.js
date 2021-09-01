@@ -9,4 +9,7 @@ margin: 20px;
         margin: 5px;
         width: 168px;
     }
+    label{
+        padding: 5px;
+    }
 `;

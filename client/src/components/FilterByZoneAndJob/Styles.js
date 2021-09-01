@@ -7,6 +7,10 @@ justify-content: center;
 margin: 20px;
     select{
         margin: 5px;
+        padding: 5px;
         width: 168px;
+    }
+    label{
+        padding: 5px;
     }
 `;

@@ -39,9 +39,9 @@ export default function FilterByZoneAndJob() {
                     );
                 })} */}
               </select>
-
+      </StyledDiv>
 {/*---------------------------------------------------*/}
-
+      <StyledDiv>
       <label>Trabajo</label>
                 <select className='form-select form-select-sm' onChange={e => handleFilterJob(e)}> 
                   <option value="all">Todos</option>        
