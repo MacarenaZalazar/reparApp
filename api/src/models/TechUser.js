@@ -22,6 +22,4 @@ const tecnicosSchema = new Schema({
         timestamps: true             // timestamps para que nos cargue fecha de ser creado y de actualizado si las hay
     });
 
-// model('UsersT', tecnicosSchema);
-
 module.exports = model('UsersT', tecnicosSchema);    // el primer parametro sera asignado como nombre del modelo, y el segundo son los datos en si del modelo
