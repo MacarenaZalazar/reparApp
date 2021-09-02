@@ -8,8 +8,10 @@ margin: 20px;
     select{
         margin: 5px;
         width: 168px;
+        padding: 5px;
     }
     label{
+        font-weight: bold;
         padding: 5px;
     }
 `;

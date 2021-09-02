@@ -11,6 +11,7 @@ margin: 20px;
         width: 168px;
     }
     label{
+        font-weight: bold;
         padding: 5px;
     }
 `;

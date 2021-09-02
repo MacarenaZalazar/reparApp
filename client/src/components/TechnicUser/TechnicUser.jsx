@@ -13,33 +13,22 @@ export default function TechnicUser({
   jobTypes,
 }) {
 
-  const renderScore = (score) => {
-    let stars = []
-    for(let i=1; i<= score; i++ ){
-       stars.push(<AiFillStar/>)
-    }
-     return stars.map(s=>{
-      return s
-    })
-
-  }
-
   return (
     <StyledDiv>
       <img src={image} alt="" />
       <div className='infoContainer'>
-      <div className='name'>
-        <h2>{name} {lastName}</h2>
-      </div>
-      <ul>
-        {jobTypes &&
-          jobTypes.map((type, idx) => {
-            return <li key={idx}>{type}</li>;
-          })}
-      </ul>
-      <p>{renderScore(score)}
-       </p>
-       
+        <div className='name'>
+          <h3>{name} {lastName}</h3>
+        </div>
+        <div className='subtitle'>
+          <ul>
+            {jobTypes &&
+              jobTypes.map((type, idx) => {
+                return <li key={idx}>{type}</li>;
+              })}
+          </ul>
+          <p><AiFillStar/> {score}</p>
+          </div>
         </div>
       
       <h4>{user}</h4>
