@@ -20,6 +20,7 @@ const finalUserCreate = async (req, res, next) => {
         score: user.score,
       });
     });
+    UserSession.endSession();
     res.send("Se creo correctamente el usuario final");
   } catch (error) {
     UserSession.endSession();
