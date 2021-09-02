@@ -7,12 +7,15 @@ import FormUser from "./components/FormUser/FormUser";
 import NavBar from "./containers/NavBar/NavBar";
 import TechnicUsers from "./containers/TechnicUsers/TechnicUsers";
 import Hero from "./containers/Hero/Hero";
+import Login from "./components/Login/Login";
+
 function App() {
   return (
     <div>
       <Route>
         <NavBar />
       </Route>
+      <Route exact path="/login" component={Login} />
 
       <Route exact path="/">
         <Hero />

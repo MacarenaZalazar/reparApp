@@ -9,7 +9,7 @@ const Hero = () => {
       <HeroDiv className="container">
         <Searchbar />
       </HeroDiv>
-      <ReactPlayer className="video" url={video} loop playing muted />
+      {/* <ReactPlayer className="video" url={video} loop playing muted /> */}
     </StyledDiv>
   );
 };
