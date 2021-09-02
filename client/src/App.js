@@ -6,12 +6,16 @@ import FormUser from "./components/FormUser/FormUser";
 import NavBar from "./containers/NavBar/NavBar";
 import Hero from "./containers/Hero/Hero";
 import Home from "./containers/Home/Home";
+import Login from "./components/Login/Login";
 
 function App() {
   return (
-    <div className='appContainer'>
+    <div className="appContainer">
       <Route>
         <NavBar />
+      </Route>
+      <Route exact path="/login">
+        <Login />
       </Route>
       <Route exact path="/">
         <Hero />
