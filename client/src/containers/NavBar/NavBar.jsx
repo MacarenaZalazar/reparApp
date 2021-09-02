@@ -10,8 +10,8 @@ const NavBar = () => {
           <img src={Logo} alt="logo" />
           <h4>ReparApp</h4>
         </LogoDiv>
-        <Link className='link' to='/home'>
-        <span>Login</span>
+        <Link className="link" to="/login">
+          <span>Login</span>
         </Link>
       </NavBarDiv>
     </StyledDiv>
