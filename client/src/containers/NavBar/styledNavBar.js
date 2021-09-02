@@ -29,7 +29,7 @@ export const NavBarDiv = styled.div`
     }
 
     :hover {
-      background-color: #ff8882;
+      background-color: #194350;
     }
 `;
 

@@ -6,7 +6,7 @@ flex-direction: column;
 align-items: center;
 justify-content: space-around;
 background-color: transparent;
-margin-top: 60px;
+margin: 60px;
 width:75%;
 
 `
