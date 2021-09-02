@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { StyledDiv } from "./SearchbarStyles";
+import { StyledDiv, SearchBarDiv, ItemDiv } from "./SearchbarStyles";
 import { Link } from "react-router-dom";
 
 const Searchbar = () => {
@@ -21,21 +21,21 @@ const Searchbar = () => {
 
   return (
     <StyledDiv>
-      <label>¿Qué necesitas?</label>
-      <select
-        className="form-select form-select-sm"
-        name="oficios"
-        handleChange={handleSelect}
-      >
-        <option value=""></option>
-      </select>
-      <label>¿Dónde?</label>
-      <input type="text" value={input} onChange={handleChange} />
-      <Link to="/home">
-        <h1 className="btn btn-outline-dark" onClick={handleClick}>
-          Buscá!
-        </h1>
-      </Link>
+      <SearchBarDiv>
+        <ItemDiv>
+          <p>¿Qué necesitas?</p>
+          <select name="oficios" handleChange={handleSelect}>
+            <option value=""></option>
+          </select>
+        </ItemDiv>
+        <ItemDiv>
+          <p>¿Dónde?</p>
+          <input type="text" value={input} onChange={handleChange} />
+          <Link className="link" to="/home">
+            <p onClick={handleClick}>Buscá!</p>
+          </Link>
+        </ItemDiv>
+      </SearchBarDiv>
     </StyledDiv>
   );
 };
