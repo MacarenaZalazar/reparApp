@@ -24,6 +24,11 @@ const technicUsers = [
        },
 ]
 
+const jobs = ['plomería', 'electricidad', 'gasista', 'servicio técnico']
+
+
+
 export{
-    technicUsers
+    technicUsers,
+    jobs
 }
