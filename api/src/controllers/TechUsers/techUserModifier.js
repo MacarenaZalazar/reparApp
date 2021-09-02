@@ -13,11 +13,35 @@ const techUserModifier = async (req, res, next) => {
     phone,
     mail,
   } = req.body;
-  try {
-    UsersT.findByIdAndUpdate(id);
-    User.findByIdAndUpdate(id);
-  } catch (err) {
-    next(err);
+  if (
+    !workZones &&
+    !jobTypes &&
+    !name &&
+    !lastName &&
+    !mail &&
+    !userName &&
+    !password
+  ) {
+    res.sendStatus(400);
+  } else {
+    try {
+      const IDUSER = await UsersT.findById(id);
+      await UsersT.findByIdAndUpdate(id, {
+        workZones,
+        jobTypes,
+        qualification,
+      });
+      await User.findByIdAndUpdate(IDUSER.user, {
+        name,
+        lastName,
+        image,
+        phone,
+        mail,
+      });
+      res.sendStatus(200);
+    } catch (err) {
+      next(err);
+    }
   }
 };
 
