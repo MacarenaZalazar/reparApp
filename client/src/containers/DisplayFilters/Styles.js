@@ -7,5 +7,6 @@ export const StyledDiv = styled.div`
     justify-content: center;
     background-color: transparent;
     width: 25%;
+    font-size: 15px;
 
 `;
