@@ -1,6 +1,5 @@
 import { StyledDiv, LogoDiv, NavBarDiv } from "./styledNavBar";
 import Logo from "../../utils/wrench.png";
-import { Route } from "react-router-dom";
 import { Link } from "react-router-dom";
 
 const NavBar = () => {
