@@ -4,7 +4,7 @@ const UsuarioFinalSchema = new Schema(
   {
     user: {
       type: Schema.ObjectId,
-      ref: "user",
+      ref: "User",
     },
     zone: {
       type: String,

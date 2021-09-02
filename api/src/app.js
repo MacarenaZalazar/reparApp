@@ -29,7 +29,7 @@ server.use('/', routes);
 server.use((err, req, res, next) => { // eslint-disable-line no-unused-vars
   const status = err.status || 500;
   const message = err.message || 'Ocurrio un error intentelo mas tarde';
-  res.status(status).send(message);
+  res.status(status).send({message});
 });
 
 module.exports = server;
