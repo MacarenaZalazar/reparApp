@@ -5,7 +5,6 @@ import FormTechnicUser from "./components/FormTechnicalUser/FormTechnicUser";
 import FormUser from "./components/FormUser/FormUser";
 import NavBar from "./containers/NavBar/NavBar";
 import Hero from "./containers/Hero/Hero";
-import './AppStyles.css'
 import Home from "./containers/Home/Home";
 
 function App() {

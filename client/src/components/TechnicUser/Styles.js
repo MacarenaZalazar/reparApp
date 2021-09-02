@@ -28,6 +28,16 @@ background-color: white;
     label{
         font-size: 15px;
     }
+    .subtitle{
+        display:flex;
+        align-items: center;
+        ul{
+            padding: 5px;
+        }
+        p{
+            padding: 5px;
+        }
+    }
 }
 
 ul{
