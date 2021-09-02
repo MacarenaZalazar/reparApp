@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { StyledDiv, SearchBarDiv, ItemDiv } from "./SearchbarStyles";
 import { Link } from "react-router-dom";
+import { jobs } from "../../utils/mockData";
 
 const Searchbar = () => {
   const [input, setInput] = useState("");
@@ -24,8 +25,11 @@ const Searchbar = () => {
       <SearchBarDiv>
         <ItemDiv>
           <p>¿Qué necesitas?</p>
-          <select name="oficios" handleChange={handleSelect}>
+          <select name="jobs" handleChange={handleSelect}>
             <option value=""></option>
+            {jobs.map((j, idx) => {
+              return <option value={j} key={idx}>{j}</option>
+            })}
           </select>
         </ItemDiv>
         <ItemDiv>
