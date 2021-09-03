@@ -18,6 +18,6 @@ router.get("/", techUserAll);
 router.get("/:id", techUsersDetails);
 router.put("/:id", techUserModifier);
 router.post("/", techUserCreate);
-router.delete("/", deleteUserT);
+router.delete("/:id", deleteUserT);
 
 module.exports = router;
