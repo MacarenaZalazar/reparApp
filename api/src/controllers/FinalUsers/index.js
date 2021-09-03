@@ -1,6 +1,5 @@
-const finalUserCreate = require('./finalUserCreate')
-
+const finalUserCreate = require('./finalUserCreate');
 
 module.exports = {
-    finalUserCreate
+    finalUserCreate,
 }
