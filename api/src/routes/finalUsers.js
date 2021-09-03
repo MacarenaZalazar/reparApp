@@ -15,11 +15,15 @@ const {
 
 const { finalUserAll } = require("../controllers/FinalUsers/finalUsersAll");
 
+const { deleteUserF } = require("../controllers/FinalUsers/finalUserDelete");
+
 //creamos las rutas
 
 router.post("/create", finalUserCreate);
 
 router.put("/:id", finalUserModifier);
+
+router.delete("/id", deleteUserF);
 
 router.get("/:id", finalUsersDetails);
 
