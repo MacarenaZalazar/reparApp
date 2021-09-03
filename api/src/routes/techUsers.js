@@ -1,4 +1,7 @@
 const { Router } = require("express");
+
+//requerimos los controller
+
 const {
   filteredTechByZoneAndJobType,
   techUsersDetails,
@@ -7,6 +10,8 @@ const {
 } = require("../controllers/TechUsers");
 const router = Router();
 
+
+//creamos las rutas
 router.get("/", filteredTechByZoneAndJobType);
 router.get("/:id", techUsersDetails);
 router.put("/:id", techUserModifier);
