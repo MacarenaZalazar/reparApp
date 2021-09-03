@@ -7,12 +7,13 @@ const {
   techUsersDetails,
   techUserModifier,
   techUserCreate,
+  techUserAll,
 } = require("../controllers/TechUsers");
 const router = Router();
 
-
 //creamos las rutas
-router.get("/", filteredTechByZoneAndJobType);
+router.get("/filter", filteredTechByZoneAndJobType);
+router.get("/", techUserAll);
 router.get("/:id", techUsersDetails);
 router.put("/:id", techUserModifier);
 router.post("/", techUserCreate);
