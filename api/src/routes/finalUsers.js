@@ -19,7 +19,7 @@ const { deleteUserF } = require("../controllers/FinalUsers/finalUserDelete");
 
 //creamos las rutas
 
-router.post("/create", finalUserCreate);
+router.post("/", finalUserCreate);
 
 router.put("/:id", finalUserModifier);
 
