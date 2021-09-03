@@ -16,7 +16,8 @@ const userSchema = new Schema({
     },
     mail: {
         type: String,
-        required: true
+        required: true,
+        unique: true,
     },
     userName: {
         type: String,
@@ -31,6 +32,15 @@ const userSchema = new Schema({
 }, {
     timestamps: true                  // timestamps para que nos cargue fecha de ser creado y de actualizado si las hay
 });
+
+// middlewares
+userSchema.post('save', function(error, res, next) {
+    if (error.name === 'MongoServerError' && error.code === 11000) {
+      next(new Error('Ya existe este usuario'));
+    } else {
+      next(); // The `update()` call will still error out.
+    }
+  });
 
 // model('User', userSchema);
 

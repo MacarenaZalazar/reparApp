@@ -21,7 +21,7 @@ const finalUserCreate = async (req, res, next) => {
       });
     });
     UserSession.endSession();
-    res.send("Se creo correctamente el usuario final");
+    res.send({message: "Se creo correctamente el usuario final"});
   } catch (error) {
     UserSession.endSession();
     next({message: error?.message, status:404});
