@@ -13,14 +13,11 @@ const Searchbar = () => {
 
   const handleChange = (e) => {
     setInput(e.target.value);
-    console.log("input on change");
   };
   const handleSelect = (e) => {
-    console.log(e)
     setSelect(e.target.value);
-    console.log("select on change");
   };
-  const handleClick = (e) => {
+  const handleClick = () => {
     dispatch(getTechUsersByJobAndZone(select, input));
     setInput("");
   };
