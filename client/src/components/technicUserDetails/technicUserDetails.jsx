@@ -2,7 +2,7 @@ import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { getTechUsersById } from "../../redux/actions/techUsers";
-import { StyledDiv } from '../TechnicUserDetails/Styled';
+import { StyledDiv } from './Styled';
 
 
 export default function TechnicUserDetails(props) {
