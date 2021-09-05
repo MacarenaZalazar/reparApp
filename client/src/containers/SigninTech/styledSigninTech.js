@@ -7,6 +7,11 @@ export const StyledDiv = styled.div`
   justify-content: center;
   align-items: center;
   background-color: rgb(248, 248, 248);
+
+  h3 {
+    text-align: center;
+    padding: 2rem;
+  }
 `;
 
 export const SigninDiv = styled.div``;

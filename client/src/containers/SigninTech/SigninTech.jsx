@@ -1,14 +1,13 @@
 import { StyledDiv, SigninDiv } from "./styledSigninTech";
-import FormFinalUser from "../../components/FormUsers/FormFinalUser/FormFinalUser";
+
 import FormTechnicUser from "../../components/FormUsers/FormTechnicalUser/FormTechnicUser";
 
 const SigninTech = () => {
   return (
     <StyledDiv>
       <SigninDiv>
+        <h3>Usuario Técnico</h3>
         <FormTechnicUser />
-        <p>---------------</p>
-        {/* <FormFinalUser /> */}
       </SigninDiv>
     </StyledDiv>
   );
