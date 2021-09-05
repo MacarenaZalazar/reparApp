@@ -1,21 +1,24 @@
 import { StyledDiv, Input, Form } from "../stylesFormUsers";
 import { useState } from "react";
+import axios from "axios";
 
 const FormTechnicUser = () => {
   const [input, setInput] = useState({
     name: "",
     lastName: "",
-    username: "",
+    userName: "",
     password: "",
     image: "",
     phone: "",
-    email: "",
+    mail: "",
     qualifications: [],
     workZones: [],
+    jobTypes: [],
     errors: {},
   });
   const [qualification, setQualification] = useState("");
   const [zone, setZone] = useState("");
+  const [job, setJob] = useState("");
 
   function validate(values) {
     let errors = {};
@@ -25,8 +28,8 @@ const FormTechnicUser = () => {
     if (!values.lastName) {
       errors.lastName = "Campo obligatorio";
     }
-    if (!values.username) {
-      errors.username = "Campo obligatorio";
+    if (!values.userName) {
+      errors.userName = "Campo obligatorio";
     }
     if (!values.password) {
       errors.password = "Campo obligatorio";
@@ -65,6 +68,23 @@ const FormTechnicUser = () => {
       else alert("No puede ser vacío");
     }
   }
+  // Funcion para cambiar job y boton para añadir el array
+  function handleJobChange(evento) {
+    setJob(evento.target.value);
+  }
+  function addJob(evento) {
+    evento.preventDefault();
+    if (!input.jobTypes.includes(job) && job) {
+      setInput({
+        ...input,
+        jobTypes: [...input.jobTypes, job],
+      });
+      setJob("");
+    } else {
+      if (zone) alert("Ya existe");
+      else alert("No puede ser vacío");
+    }
+  }
   // Funcion para cambiar certificaciones y boton para añadir el array
   function handleQualificationChange(evento) {
     setQualification(evento.target.value);
@@ -84,7 +104,7 @@ const FormTechnicUser = () => {
     document.getElementsByClassName("qualificationInput")[0].value = "";
   }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const { errors, ...sinErrors } = input;
     const result = validate(sinErrors);
@@ -96,8 +116,13 @@ const FormTechnicUser = () => {
     });
 
     if (!Object.keys(result).length) {
-      alert("Formulario correcto");
-      console.log(input);
+      try {
+        console.log(input);
+        await axios.post("http://localhost:3001/techUsers", input);
+        alert("Usuario creado");
+      } catch (error) {
+        console.log(error);
+      }
     } else {
       alert("Se encontraron errores");
     }
@@ -132,8 +157,8 @@ const FormTechnicUser = () => {
             <input
               type="text"
               autoComplete="off"
-              name="username"
-              value={input.username}
+              name="userName"
+              value={input.userName}
               onChange={handleInputChange}
             />
           </Input>
@@ -171,7 +196,7 @@ const FormTechnicUser = () => {
             <label>Email:</label>
             <input
               type="email"
-              name="email"
+              name="mail"
               autoComplete="off"
               value={input.email}
               onChange={handleInputChange}
@@ -187,6 +212,17 @@ const FormTechnicUser = () => {
             />
 
             <button onClick={(e) => addZone(e)}>Agregar Zona</button>
+          </Input>
+          <Input error={input.errors.jobTypes}>
+            <label>* Tipos de Trabajo:</label>
+            <input
+              type="text"
+              autoComplete="off"
+              name="job"
+              onChange={handleJobChange}
+            />
+
+            <button onClick={(e) => addJob(e)}>Agregar Tipo</button>
           </Input>
           <Input error={input.errors.qualifications}>
             <label>* Certificaciones:</label>
@@ -204,7 +240,7 @@ const FormTechnicUser = () => {
           </Input>
           <span>* estos campos son requeridos</span>
 
-        <button type="submit">Crear Usuario</button>
+          <button type="submit">Crear Usuario</button>
         </Form>
       </form>
     </StyledDiv>

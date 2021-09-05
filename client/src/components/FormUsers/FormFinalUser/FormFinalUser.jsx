@@ -1,21 +1,20 @@
 import React, { useState } from "react";
 import { StyledDiv, Input, Form } from "../stylesFormUsers";
+import axios from "axios";
 
 const FormFinalUser = () => {
   const [input, setInput] = useState({
     name: "",
     lastName: "",
-    username: "",
+    userName: "",
     password: "",
     image: "",
     phone: "",
-    email: "",
-    zones: [],
+    mail: "",
+    zone: "",
     errors: {},
   });
 
-  const [zone, setZone] = useState("");
-  console.log(input.zones);
   function validate(values) {
     let errors = {};
     if (!values.name) {
@@ -24,14 +23,14 @@ const FormFinalUser = () => {
     if (!values.lastName) {
       errors.lastName = "Campo obligatorio";
     }
-    if (!values.username) {
-      errors.username = "Campo obligatorio";
+    if (!values.userName) {
+      errors.userName = "Campo obligatorio";
     }
     if (!values.password) {
       errors.password = "Campo obligatorio";
     }
-    if (!values.zones.length) {
-      errors.zones = "Campo obligatorio";
+    if (!values.zone.length) {
+      errors.zone = "Campo obligatorio";
     }
 
     return errors;
@@ -44,26 +43,7 @@ const FormFinalUser = () => {
     }));
   }
 
-  // Funcion para cambiar zonas y boton para añadir el array
-  function handleZoneChange(evento) {
-    setZone(evento.target.value);
-  }
-
-  function addZone(evento) {
-    evento.preventDefault();
-    if (!input.zones.includes(zone) && zone) {
-      setInput({
-        ...input,
-        zones: [...input.zones, zone],
-      });
-      setZone("");
-    } else {
-      if (zone) alert("Ya existe");
-      else alert("No puede estar vacío");
-    }
-  }
-
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const { errors, ...sinErrors } = input;
     const result = validate(sinErrors);
@@ -75,8 +55,13 @@ const FormFinalUser = () => {
     });
 
     if (!Object.keys(result).length) {
-      alert("Formulario correcto");
-      console.log(input);
+      try {
+        console.log(input);
+        await axios.post("http://localhost:3001/finalUsers", input);
+        alert("Usuario creado");
+      } catch (error) {
+        console.log(error);
+      }
     } else {
       alert("Se encontraron errores");
     }
@@ -111,8 +96,8 @@ const FormFinalUser = () => {
             <input
               type="text"
               autoComplete="off"
-              name="username"
-              value={input.username}
+              name="userName"
+              value={input.userName}
               onChange={handleInputChange}
             />
           </Input>
@@ -150,9 +135,9 @@ const FormFinalUser = () => {
             <label>Email:</label>
             <input
               type="email"
-              name="email"
+              name="mail"
               autoComplete="off"
-              value={input.email}
+              value={input.mail}
               onChange={handleInputChange}
             />
           </Input>
@@ -162,13 +147,10 @@ const FormFinalUser = () => {
               type="text"
               autoComplete="off"
               name="zone"
-              value={zone}
-              onChange={handleZoneChange}
+              value={input.zone}
+              onChange={handleInputChange}
             />
-
-            <button onClick={(e) => addZone(e)}>Agregar Zona</button>
           </Input>
-          <span>* estos campos son requeridos</span>
           <button type="submit">Crear Usuario</button>
         </Form>
       </form>
