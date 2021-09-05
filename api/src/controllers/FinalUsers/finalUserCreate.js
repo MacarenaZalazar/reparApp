@@ -11,8 +11,9 @@ const finalUserCreate = async (req, res, next) => {
         name: user.name,
         lastName: user.lastName,
         mail: user.mail,
-        userName: user.username,
+        userName: user.userName,
         password: user.password,
+        phone: user.phone,
       });
       await FinalUser.create({
         user: newUser._id,
@@ -24,7 +25,7 @@ const finalUserCreate = async (req, res, next) => {
     res.send({message: "Se creo correctamente el usuario final"});
   } catch (error) {
     UserSession.endSession();
-    next({message: error?.message, status:404});
+    next({ message: error?.message, status: 404 });
   }
 };
 

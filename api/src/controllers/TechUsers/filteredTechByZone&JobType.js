@@ -1,10 +1,18 @@
-const filteredTechByZoneAndJobType = async (req, res, next) => {
-    const {jobType, zone} = req.query
-    try {
-        res.send('estoy en GET /techUsers')
-    } catch (error) {
-        next(error)
-    }
-}
+const UserT = require("../../models/TechUser");
 
-module.exports = filteredTechByZoneAndJobType
+const filteredTechByZoneAndJobType = async (req, res, next) => {
+  const { jobTypes, workZones } = req.query;
+
+  if (jobTypes && workZones) {
+    try {
+      let filtered = await UserT.find({ jobTypes, workZones }).populate({
+        path: "user",
+      });
+      res.status(200).json(filtered);
+    } catch (error) {
+      next(error);
+    }
+  } else res.sendStatus(400);
+};
+
+module.exports = filteredTechByZoneAndJobType;

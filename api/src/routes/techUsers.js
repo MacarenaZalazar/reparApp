@@ -8,6 +8,7 @@ const {
   techUserModifier,
   techUserCreate,
   techUserAll,
+  deleteUserT,
 } = require("../controllers/TechUsers");
 const router = Router();
 
@@ -17,5 +18,6 @@ router.get("/", techUserAll);
 router.get("/:id", techUsersDetails);
 router.put("/:id", techUserModifier);
 router.post("/", techUserCreate);
+router.delete("/:id", deleteUserT);
 
 module.exports = router;

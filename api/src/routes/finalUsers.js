@@ -10,14 +10,14 @@ const {
   finalUserAll,
 } = require("../controllers/FinalUsers");
 
+const { deleteUserF } = require("../controllers/FinalUsers/finalUserDelete");
+
 //creamos las rutas
 
-router.post("/create", finalUserCreate);
-
+router.post("/", finalUserCreate);
 router.put("/:id", finalUserModifier);
-
-router.get("/:id", finalUsersDetail);
-
+router.delete("/id", deleteUserF);
+router.get("/:id", finalUsersDetails);
 router.get("/", finalUserAll);
 
 module.exports = router;
