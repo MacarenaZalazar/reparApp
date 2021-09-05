@@ -3,30 +3,21 @@ const router = Router();
 
 // requerimos los controller
 
-const { finalUserCreate } = require("../controllers/FinalUsers");
-
 const {
+  finalUserCreate,
   finalUserModifier,
-} = require("../controllers/FinalUsers/finalUserModifier");
-
-const {
-  finalUsersDetails,
-} = require("../controllers/FinalUsers/finalUserDetail");
-
-const { finalUserAll } = require("../controllers/FinalUsers/finalUsersAll");
+  finalUsersDetail,
+  finalUserAll,
+} = require("../controllers/FinalUsers");
 
 const { deleteUserF } = require("../controllers/FinalUsers/finalUserDelete");
 
 //creamos las rutas
 
 router.post("/", finalUserCreate);
-
 router.put("/:id", finalUserModifier);
-
 router.delete("/id", deleteUserF);
-
-router.get("/:id", finalUsersDetails);
-
+router.get("/:id", finalUsersDetail);
 router.get("/", finalUserAll);
 
 module.exports = router;

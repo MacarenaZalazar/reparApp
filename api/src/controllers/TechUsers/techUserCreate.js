@@ -1,54 +1,24 @@
-const Userst = require("../../models/TechUser");
-const User = require("../../models/User");
+const TechUser = require("../../models/TechUser");
+const UserController = require("../Users");
 
-const techUserCreate = (req, res, next) => {
-  const {
-    name,
-    lastName,
-    mail,
-    userName,
-    password,
-    workZones,
-    jobTypes,
-    qualification,
-    phone,
-  } = req.body;
-  if (
-    !workZones &&
-    !jobTypes &&
-    !name &&
-    !lastName &&
-    !mail &&
-    !userName &&
-    !password
-  ) {
-    res.sendStatus(400);
-  } else {
-    try {
-      const newUser = new User({
-        name,
-        lastName,
-        mail,
-        userName,
-        password,
-        phone,
+const techUserCreate = async (req, res, next) => {
+  const TechUserSession = await TechUser.startSession();
+  const {workZones, jobTypes, qualification} = req.body;
+  try {
+    await TechUserSession.withTransaction(async () => {
+      const newUser = await UserController.createNewUser(req.body);
+       await TechUser.create({
+        user: newUser._id,
+        workZones,
+        jobTypes,
+        qualification
       });
-      newUser.save((err) => {
-        if (err) throw err;
-        const userTech = new Userst({
-          user: newUser._id,
-          workZones,
-          jobTypes,
-          qualification,
-        });
-        userTech.save((err) => {
-          if (err) throw err;
-          res.status(200).send("usuario tech creado!");
-        });
-      });
-    } catch (error) {
-      next({ message: error?.message, status: 404 });
-    }
+    });
+    TechUserSession.endSession();
+    res.send({message: "Se creo correctamente el usuario tecnico"});
+  } catch (error) {
+    TechUserSession.endSession();
+    next({ message: error?.message, status: 404 });
   }
 };
 

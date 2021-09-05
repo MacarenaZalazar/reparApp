@@ -15,6 +15,4 @@ const finalUsersDetails = async (req, res, next) => {
   }
 };
 
-module.exports = {
-  finalUsersDetails,
-};
+module.exports = finalUsersDetails;
