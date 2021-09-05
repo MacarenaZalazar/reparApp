@@ -37,26 +37,6 @@ const techUserModifier = async (req, res, next) => {
   } finally {
     session.endSession();
   }
-
-
-  // try {
-  //   const IDUSER = await UsersT.findById(id);
-  //   await UsersT.findByIdAndUpdate(id, {
-  //     workZones,
-  //     jobTypes,
-  //     qualification,
-  //   });
-  //   await User.findByIdAndUpdate(IDUSER.user, {
-  //     name,
-  //     lastName,
-  //     image,
-  //     phone,
-  //     mail,
-  //   });
-  //   res.sendStatus(200);
-  // } catch (err) {
-  //   next(err);
-  // }
 };
 
 module.exports = techUserModifier;
