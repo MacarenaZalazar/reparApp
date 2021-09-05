@@ -1,4 +1,8 @@
-import { GET_TECH_USERS_ALL, GET_TECH_USERS_BY_ID, GET_TECH_USERS_BY_JOB_ZONE } from "../actions/techUsers/constantsTechUsers";
+import {
+  GET_TECH_USERS_ALL,
+  GET_TECH_USERS_BY_ID,
+  GET_TECH_USERS_BY_JOB_ZONE,
+} from "../actions/techUsers/constantsTechUsers";
 
 var initialState = {
   techUsers: [],
@@ -16,15 +20,16 @@ function reducer(state = initialState, action) {
         techUsers: payload,
       };
     case GET_TECH_USERS_BY_ID:
+      console.log(payload);
       return {
         ...state,
-        technicUserDetail: payload
+        technicUserDetail: payload,
       };
     case GET_TECH_USERS_BY_JOB_ZONE:
-      return{
+      return {
         ...state,
-        techUsers: payload
-      }
+        techUsers: payload,
+      };
 
     default:
       return state;
