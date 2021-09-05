@@ -1,5 +1,5 @@
 import { Route, Switch } from "react-router-dom";
-import technicUserDetails from "./components/technicUserDetails/technicUserDetails";
+import TechnicUserDetails from "./components/TechnicUserDetails/TechnicUserDetails";
 import finalUserDetails from "./components/finalUserDetails/finalUserDetails";
 import NavBar from "./containers/NavBar/NavBar";
 import Hero from "./containers/Hero/Hero";
@@ -29,11 +29,11 @@ function App() {
       <Route exact path="/home">
         <Home />
       </Route>
-      <Route exact path="/finalUserDetails:id" component={finalUserDetails} />
+      <Route exact path="/finalUserDetails/:id" component={finalUserDetails} />
       <Route
         exact
-        path="/technicUserDetails:Id"
-        component={technicUserDetails}
+        path="/technicUserDetails/:Id"
+        component={TechnicUserDetails}
       />
     </div>
   );
