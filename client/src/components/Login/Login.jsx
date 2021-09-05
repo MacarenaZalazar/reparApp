@@ -41,6 +41,7 @@ const Login = () => {
               name="username"
               placeholder="Ingrese usuario"
               onChange={handleInputChange}
+              autoComplete='off'
             />
           </InputDiv>
           <InputDiv>

@@ -10,11 +10,18 @@ export const NavBarDiv = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding-left: 50px;
   span {
     font-size: 14px;
   }
   a {
     text-decoration: none;
+  }
+  .linkHome{
+    color: black;
+  }
+  .navButtons{
+    margin-right: 50px;
   }
 
   .linkLogin,

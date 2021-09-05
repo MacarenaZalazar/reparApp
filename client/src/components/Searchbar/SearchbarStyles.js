@@ -2,9 +2,13 @@ import styled from "styled-components";
 
 export const StyledDiv = styled.div`
   width: 100%;
+  display: flex;
+  align-content: center;
+  justify-content: center;
 `;
 
 export const SearchBarDiv = styled.div`
+  width: 75%;
   color: rgb(248, 248, 248);
   display: flex;
   align-items: center;

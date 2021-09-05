@@ -1,9 +1,11 @@
 import React from "react";
 import { StyledDiv } from './Styles';
 import { AiFillStar } from "react-icons/ai";
+import { Link } from 'react-router-dom';
 
 
 export default function TechnicUser({
+  id,
   name,
   lastName,
   user,
@@ -20,6 +22,7 @@ export default function TechnicUser({
         <div className='name'>
           <h3>{name} {lastName}</h3>
         </div>
+          <span>{user}</span>
         <div className='subtitle'>
           <ul>
             {jobTypes &&
@@ -31,7 +34,6 @@ export default function TechnicUser({
           </div>
         </div>
       
-      <h4>{user}</h4>
       <div className='infoContainer'>
       <label>Trabaja en:</label>
       <ul>
@@ -41,6 +43,9 @@ export default function TechnicUser({
           })}
       </ul>
       </div>
+      <Link to={`/technicUserDetails/${id}`}>
+        <button>Ver perfil</button>
+      </Link>
 
     </StyledDiv>
   );

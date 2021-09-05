@@ -168,6 +168,7 @@ const FormFinalUser = () => {
 
             <button onClick={(e) => addZone(e)}>Agregar Zona</button>
           </Input>
+          <span>* estos campos son requeridos</span>
           <button type="submit">Crear Usuario</button>
         </Form>
       </form>

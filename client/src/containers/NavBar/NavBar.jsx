@@ -20,16 +20,21 @@ const NavBar = () => {
   return (
     <StyledDiv>
       <NavBarDiv className="container">
+        <Link to='/home' className='linkHome'>
         <LogoDiv>
           <img src={Logo} alt="logo" />
           <h4>ReparApp</h4>
         </LogoDiv>
-        <div>
+        </Link>
+        <div className='navButtons'>
+          <Link to='/home' className='linkLogin'>
+            <span>Inicio</span>
+          </Link>
           <Link className="linkLogin" to="/login">
             <span>Login</span>
           </Link>
           <button onClick={showAlert} className="linkSignin" to="/signin">
-            <span>Signin</span>
+            <span>SignIn</span>
           </button>
         </div>
       </NavBarDiv>

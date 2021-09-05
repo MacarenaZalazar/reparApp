@@ -6,11 +6,11 @@ export const StyledDiv = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: rgb(248, 248, 248);
+  background-color: #f9f6f4;
 `;
 
 export const LoginDiv = styled.div`
-  border: 1px solid #194350;
+  background-color: white;
   padding: 4rem;
   display: flex;
   justify-content: center;
@@ -18,6 +18,7 @@ export const LoginDiv = styled.div`
   flex-direction: column;
   gap: 2rem;
   border-radius: 3rem;
+  box-shadow: rgba(181, 129, 108, 0.8) 0px 8px 34px -25px;
 `;
 
 export const TitleDiv = styled.div``;
@@ -33,6 +34,7 @@ export const InputDiv = styled.div`
   input {
     border: 1px solid;
     padding: 1rem;
+    border-radius: 3px;
     background-color: rgb(248, 248, 248);
   }
 `;
