@@ -31,7 +31,7 @@ const { HOST_BACK } = process.env;
   });
 }); */
 
-server.listen( HOST_BACK, () => {
+server.listen( process.env.PORT || HOST_BACK, '0.0.0.0' ,() => {
     connectDB();
-    console.log(`Server on port ${HOST_BACK}`);
+    console.log(`Server on port ${process.env.PORT || HOST_BACK}`);
 })

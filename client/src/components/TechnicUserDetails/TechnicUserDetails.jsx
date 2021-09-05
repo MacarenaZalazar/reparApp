@@ -52,6 +52,7 @@ export default function TechnicUserDetails(props) {
       ) : (
         <p>Cargando...</p>
       )}
+
     </StyledDiv>
   );
 }

@@ -1,4 +1,4 @@
-import { Route, Switch } from "react-router-dom";
+import { Route } from "react-router-dom";
 import TechnicUserDetails from "./components/TechnicUserDetails/TechnicUserDetails";
 import finalUserDetails from "./components/finalUserDetails/finalUserDetails";
 import NavBar from "./containers/NavBar/NavBar";
