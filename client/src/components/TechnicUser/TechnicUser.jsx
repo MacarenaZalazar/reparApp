@@ -1,6 +1,11 @@
 import React from "react";
+import { StyledDiv } from './Styles';
+import { AiFillStar } from "react-icons/ai";
+import { Link } from 'react-router-dom';
+
 
 export default function TechnicUser({
+  id,
   name,
   lastName,
   user,
@@ -9,25 +14,39 @@ export default function TechnicUser({
   workZones,
   jobTypes,
 }) {
+
   return (
-    <div>
-      <h1>{lastName}</h1>
-      <h2>{name}</h2>
-      <h4>{user}</h4>
+    <StyledDiv>
       <img src={image} alt="" />
-      <p>{score}</p>
+      <div className='infoContainer'>
+        <div className='name'>
+          <h3>{name} {lastName}</h3>
+        </div>
+          <span>{user}</span>
+        <div className='subtitle'>
+          <ul>
+            {jobTypes &&
+              jobTypes.map((type, idx) => {
+                return <li key={idx}>{type}</li>;
+              })}
+          </ul>
+          <p><AiFillStar/> {score}</p>
+          </div>
+        </div>
+      
+      <div className='infoContainer'>
+      <label>Trabaja en:</label>
       <ul>
         {workZones &&
           workZones.map((zone, idx) => {
             return <li key={idx}>{zone}</li>;
           })}
       </ul>
-      <ul>
-        {jobTypes &&
-          jobTypes.map((type, idx) => {
-            return <li key={idx}>{type}</li>;
-          })}
-      </ul>
-    </div>
+      </div>
+      <Link to={`/technicUserDetails/${id}`}>
+        <button>Ver perfil</button>
+      </Link>
+
+    </StyledDiv>
   );
 }

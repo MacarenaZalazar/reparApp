@@ -1,33 +1,49 @@
-import React, {useState} from 'react';
+import React, { useState } from "react";
+import { StyledDiv, SearchBarDiv, ItemDiv } from "./SearchbarStyles";
+import { Link } from "react-router-dom";
+import { jobs } from "../../utils/mockData";
+import { useDispatch } from 'react-redux';
+import { getTechUsersByJobAndZone } from '../../redux/actions/techUsers/index';
 
 const Searchbar = () => {
-    const [input, setInput] = useState('')
-    const [select, setSelect] = useState('')
+  const [input, setInput] = useState("");
+  const [select, setSelect] = useState("");
+ 
+  const dispatch = useDispatch()
 
-    const handleChange  = (e) => {
-        setInput(e.target.value)
-        console.log('input on change')
-    }
-    const handleSelect = (e) => {
-        setSelect(e.target.value)
-        console.log('select on change')
-    }
-    const onClick = () => {
-        const filter = [select, input]
-    }
+  const handleChange = (e) => {
+    setInput(e.target.value);
+  };
+  const handleSelect = (e) => {
+    setSelect(e.target.value);
+  };
+  const handleClick = () => {
+    dispatch(getTechUsersByJobAndZone(select, input));
+    setInput("");
+  };
 
-
-    return (
-        <div>
-            <label>¿Qué necesitas?</label>
-            <select name="oficios" handleChange={handleSelect}>
-                <option value=""></option>
-            </select>
-            <label>¿Dónde?</label>
-            <input type="text" value={input} onChange={handleChange} />
-            <button onClick={onClick}>Buscá!</button>
-        </div>
-    );
+  return (
+    <StyledDiv>
+      <SearchBarDiv>
+        <ItemDiv>
+          <p>¿Qué necesitas?</p>
+          <select name="jobs" onChange={handleSelect}>
+            <option value=""></option>
+            {jobs.map((j, idx) => {
+              return <option value={j} key={idx}>{j}</option>
+            })}
+          </select>
+        </ItemDiv>
+        <ItemDiv>
+          <p>¿Dónde?</p>
+          <input type="text" value={input} onChange={handleChange} />
+          <Link className="link" to="/home">
+            <p onClick={handleClick}>Buscá!</p>
+          </Link>
+        </ItemDiv>
+      </SearchBarDiv>
+    </StyledDiv>
+  );
 };
 
 export default Searchbar;
