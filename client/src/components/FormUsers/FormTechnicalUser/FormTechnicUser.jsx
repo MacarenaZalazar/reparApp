@@ -202,8 +202,9 @@ const FormTechnicUser = () => {
               Agregar Certificación
             </button>
           </Input>
+          <span>* estos campos son requeridos</span>
 
-          <button type="submit">Crear Usuario</button>
+        <button type="submit">Crear Usuario</button>
         </Form>
       </form>
     </StyledDiv>

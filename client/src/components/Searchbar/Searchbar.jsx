@@ -2,21 +2,23 @@ import React, { useState } from "react";
 import { StyledDiv, SearchBarDiv, ItemDiv } from "./SearchbarStyles";
 import { Link } from "react-router-dom";
 import { jobs } from "../../utils/mockData";
+import { useDispatch } from 'react-redux';
+import { getTechUsersByJobAndZone } from '../../redux/actions/techUsers/index';
 
 const Searchbar = () => {
   const [input, setInput] = useState("");
   const [select, setSelect] = useState("");
+ 
+  const dispatch = useDispatch()
 
   const handleChange = (e) => {
     setInput(e.target.value);
-    console.log("input on change");
   };
   const handleSelect = (e) => {
     setSelect(e.target.value);
-    console.log("select on change");
   };
-  const handleClick = (e) => {
-    const filter = [select, input];
+  const handleClick = () => {
+    dispatch(getTechUsersByJobAndZone(select, input));
     setInput("");
   };
 
@@ -25,7 +27,7 @@ const Searchbar = () => {
       <SearchBarDiv>
         <ItemDiv>
           <p>¿Qué necesitas?</p>
-          <select name="jobs" handleChange={handleSelect}>
+          <select name="jobs" onChange={handleSelect}>
             <option value=""></option>
             {jobs.map((j, idx) => {
               return <option value={j} key={idx}>{j}</option>

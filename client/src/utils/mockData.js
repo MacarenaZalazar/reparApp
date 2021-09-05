@@ -24,7 +24,7 @@ const technicUsers = [
        },
 ]
 
-const jobs = ['plomería', 'electricidad', 'gasista', 'servicio técnico']
+const jobs = ['Plomero', 'Electricista', 'Gasista', 'Albañil', 'Servicio Técnico']
 
 
 

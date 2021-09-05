@@ -11,6 +11,24 @@ width: 600px;
 border-radius: 15px;
 box-shadow: rgba(181, 129, 108, 0.8) 0px 8px 34px -25px;
 background-color: white;
+button{
+    transition: 0.6s ease;
+    padding: 1rem 2rem;
+    color: rgb(248, 248, 248);
+    font-weight: bold;
+    background-color: #ff8882;
+    border: 1px solid #ffffff;
+    border-radius: 1rem;
+    
+    :hover {
+        background-color: #194350;
+        cursor: pointer;
+      }
+}
+span{
+    color:;
+    font-size: 15px;
+}
 .infoContainer{
     display:flex;
     flex-direction: column;
