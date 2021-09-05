@@ -25,4 +25,4 @@ const finalUserModifier = async (req, res, next) => {
   }
 };
 
-module.exports = { finalUserModifier };
+module.exports = finalUserModifier;

@@ -6,7 +6,7 @@ const router = Router();
 const {
   finalUserCreate,
   finalUserModifier,
-  finalUserModifier,
+  finalUsersDetail,
   finalUserAll,
 } = require("../controllers/FinalUsers");
 
@@ -17,7 +17,7 @@ const { deleteUserF } = require("../controllers/FinalUsers/finalUserDelete");
 router.post("/", finalUserCreate);
 router.put("/:id", finalUserModifier);
 router.delete("/id", deleteUserF);
-router.get("/:id", finalUsersDetails);
+router.get("/:id", finalUsersDetail);
 router.get("/", finalUserAll);
 
 module.exports = router;

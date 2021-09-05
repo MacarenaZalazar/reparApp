@@ -15,7 +15,7 @@ const techUserCreate = async (req, res, next) => {
       });
     });
     TechUserSession.endSession();
-    res.send({message: "Se creo correctamente el usuario final"});
+    res.send({message: "Se creo correctamente el usuario tecnico"});
   } catch (error) {
     TechUserSession.endSession();
     next({ message: error?.message, status: 404 });

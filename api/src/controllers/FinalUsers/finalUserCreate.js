@@ -1,5 +1,5 @@
 const FinalUser = require("../../models/FinalUser");
-const User = require("../../models/User");
+const UserController = require("../Users");
 
 const finalUserCreate = async (req, res, next) => {
   const UserSession = await User.startSession();
@@ -7,14 +7,7 @@ const finalUserCreate = async (req, res, next) => {
   const user = req.body;
   try {
     await UserSession.withTransaction(async () => {
-      const newUser = await User.create({
-        name: user.name,
-        lastName: user.lastName,
-        mail: user.mail,
-        userName: user.userName,
-        password: user.password,
-        phone: user.phone,
-      });
+      const newUser = await UserController.createNewUser(user);
       await FinalUser.create({
         user: newUser._id,
         zone: user.zone,

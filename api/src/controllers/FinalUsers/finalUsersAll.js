@@ -9,4 +9,4 @@ const finalUserAll = async (req, res, next) => {
   }
 };
 
-module.exports = { finalUserAll };
+module.exports = finalUserAll;
