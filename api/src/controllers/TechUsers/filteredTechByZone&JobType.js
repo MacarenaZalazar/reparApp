@@ -12,6 +12,24 @@ const filteredTechByZoneAndJobType = async (req, res, next) => {
     } catch (error) {
       next(error);
     }
+  } else if (jobTypes && !workZones) {
+    try {
+      let filtered = await UserT.find({ jobTypes }).populate({
+        path: "user",
+      });
+      res.status(200).json(filtered);
+    } catch (error) {
+      next(error);
+    }
+  } else if (!jobTypes && workZones) {
+    try {
+      let filtered = await UserT.find({ workZones }).populate({
+        path: "user",
+      });
+      res.status(200).json(filtered);
+    } catch (error) {
+      next(error);
+    }
   } else res.sendStatus(400);
 };
 
