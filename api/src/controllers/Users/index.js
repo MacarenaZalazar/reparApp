@@ -8,6 +8,7 @@ const createNewUser = async (user) => {
       mail: user.mail,
       userName: user.userName,
       password: user.password,
+      image: user.image,
     });
     return newUser;
   } catch (error) {
