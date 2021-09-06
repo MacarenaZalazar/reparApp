@@ -2,11 +2,11 @@ const {Schema, model} = require('mongoose');
 const userSchema = new Schema({
     name: {
         type: String,
-        required: true,
+        required: [true, 'El nombre es requerido'],
     },
     lastName: {
         type: String,
-        required: true,
+        required: [true, ],
     },
     image: {
         type: String,        // todavia falta deducir como mandan la foto desde el front 

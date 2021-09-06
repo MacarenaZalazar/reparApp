@@ -5,10 +5,11 @@ const UsuarioFinalSchema = new Schema(
     user: {
       type: Schema.ObjectId,
       ref: "User",
+      required: true
     },
     zone: {
       type: String,
-      required: true,
+      required: [true, 'La zona es requerida'],
     },
     score: {
       type: String,

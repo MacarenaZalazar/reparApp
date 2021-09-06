@@ -5,14 +5,15 @@ const tecnicosSchema = new Schema(
     user: {
       type: Schema.ObjectId,
       ref: "User",
+      required: true,
     },
     workZones: {
       type: [],
-      required: true,
+      required: [true, 'Las zonas de trabajo son requeridas'],
     },
     jobTypes: {
       type: [],
-      required: true,
+      required: [true, 'Los tipos de trabajo son requeridos'],
     },
     qualification: [],
     score: {

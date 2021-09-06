@@ -3,7 +3,8 @@ const {Schema, model} = require('mongoose');
 
 const TipoDeTrabajoSchema = new Schema({
     name: {
-        type: []
+        type: [],
+        require: [true, 'Es requerido el tipo de trabajo']
     }
 });
 
