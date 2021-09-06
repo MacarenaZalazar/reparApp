@@ -9,16 +9,19 @@ import { getTechUsersAll } from "../../redux/actions/techUsers/index";
 
 const Home = () => {
   const dispatch = useDispatch();
-
+  const {techUsers} = useSelector(state => state)
   useEffect(() => {
     dispatch(getTechUsersAll());
   }, []);
-  return (
-    <StyledDiv>
-      <DisplayFilters />
-      <TechnicUsers />
-    </StyledDiv>
-  );
+      return ( 
+        <StyledDiv>
+          {techUsers ? 
+            <>
+              <DisplayFilters />
+              <TechnicUsers />
+            </> : <span>Cargando...</span> }
+        </StyledDiv>
+        );
 };
 
 export default Home;
