@@ -27,7 +27,7 @@ export const ItemDiv = styled.div`
   gap: 2rem;
 
   select {
-    min-width: 50%;
+    min-width: 25%;
   }
 
   .link {
