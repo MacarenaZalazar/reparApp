@@ -2,7 +2,19 @@ import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { getTechUsersById } from "../../redux/actions/techUsers";
-import { StyledDiv } from "./Styled";
+import {
+  StyledDiv,
+  UserDetail,
+  H2Div,
+  H3Div,
+  PDiv,
+  ImageDiv,
+  WorkZonesDiv,
+  TechUserDiv,
+  QualificationDiv,
+  LeftDiv,
+  RightDiv,
+} from "./styledTechUserDetails";
 
 export default function TechnicUserDetails(props) {
   const technicUserID = props.match.params.Id;
@@ -16,7 +28,7 @@ export default function TechnicUserDetails(props) {
   }
 
   return (
-    <StyledDiv>
+    <StyledDiv className="container">
       {TechUser.user ? (
         <div className='detContainer'>
           <h1>{TechUser.user.userName}</h1>
@@ -50,9 +62,8 @@ export default function TechnicUserDetails(props) {
           <span onClick={handleClick}>Ver datos de contacto</span>
         </div>
       ) : (
-        <p>Cargando...</p>
+        <UserDetail>Cargando...</UserDetail>
       )}
-
     </StyledDiv>
   );
 }

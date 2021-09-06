@@ -17,7 +17,7 @@ const TechnicUsers = () => {
             name={t.user.name}
             lastName={t.user.lastName}
             user={t.user.userName}
-            image={t.image}
+            image={t.user.image}
             score={t.score}
             workZones={t.workZones}
             jobTypes={t.jobTypes}
