@@ -4,7 +4,7 @@ import TechnicUsers from "../TechnicUsers/TechnicUsers";
 import { StyledDiv } from "./Styles";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getTechUsersAll } from "../../redux/actions/techUsers/index";
+//import { getTechUsersAll } from "../../redux/actions/techUsers/index";
 
 const Home = () => {
   const dispatch = useDispatch();
