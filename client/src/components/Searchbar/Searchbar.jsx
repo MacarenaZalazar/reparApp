@@ -9,17 +9,20 @@ import axios from "axios";
 const Searchbar = () => {
   const [input, setInput] = useState("");
   const [select, setSelect] = useState("");
+  const [provinces, setProvinces] = useState([])
   const [cities, setCities] = useState([])
   const dispatch = useDispatch()
 
-
   useEffect( async ()=> {
     const argCities = await getCities()
-    setCities(argCities)
+    setProvinces(argCities)
   },[])
 
-  const handleChange = (e) => {
-    setInput(e.target.value);
+  const handleChange = async (e) => {
+     let departments = await axios.get(`https://apis.datos.gob.ar/georef/api/localidades?provincia=${e.target.value}&campos=nombre&max=100`)
+     departments = departments.data.localidades.map(e => e.nombre)
+     console.log(departments)
+     setCities(departments)
   };
   const handleSelect = (e) => {
     setSelect(e.target.value);
@@ -52,12 +55,19 @@ const Searchbar = () => {
           <p>¿Dónde?</p>
           {/* {<input type="text" value={input} onChange={handleChange} />} */}
 
-          <select name="cities" id="">
+          <select onChange={handleChange} name="provincias" id="">
             <option value=""></option>
-            {cities && cities.map((c, idx) => {
+            {provinces && provinces.map((c, idx) => {
               return <option key={idx} value={c}>{c}</option>
             })}
           </select>
+
+          { cities.length > 1 && <select name="departments" id="">
+            {cities.map((d, idx) => {
+              return <option key={idx} value={d}>{d}</option>
+            })}
+          </select>
+          }
 
           <Link className="link" to="/home">
             <p onClick={handleClick}>Buscá!</p>
