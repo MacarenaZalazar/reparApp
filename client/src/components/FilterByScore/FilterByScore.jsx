@@ -21,10 +21,13 @@ export default function FilterByScore() {
 
     return(
       <StyledDiv>
-      <label>Puntaje</label>
+      {/* <label>Puntaje</label> */}
           <div>
             <select className='form-select form-select-sm' onChange={e => handleFilterScore(e)}> 
-              <option value="all">Todos</option>        
+              <option value="all">Todos</option>
+              <option value="más reelevantes">más relevantes</option>
+              <option value="mejor puntuados">mejor puntuados</option>
+              <option value="menor precio">menor precio</option>        
               {/* {allScores.map((el) => { 
                     return (
                           <option value={el}>{el}</option>                

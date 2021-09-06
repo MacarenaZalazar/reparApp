@@ -1,13 +1,14 @@
 import React from "react";
 import {useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-//import { getZone,getJob,filterByZone,filterByJob} from "../../actions/index";
+import {getTechUsersByJobAndZone} from '../../redux/actions/techUsers'
 import { StyledDiv } from './Styles';
+import {jobs} from '../../utils/mockData'
 
 
 export default function FilterByZoneAndJob() {
 
-	//const dispatch = useDispatch();
+	const dispatch = useDispatch();
 /*
 	useEffect(() => {
        dispatch(getZone());
@@ -22,7 +23,7 @@ export default function FilterByZoneAndJob() {
   }; 
 
   const handleFilterJob = (e) => {
-      //dispatch(filterByJob(e.target.value)); 
+      dispatch(getTechUsersByJobAndZone(e.target.value, '')); 
   }; 
 
 
@@ -32,7 +33,8 @@ export default function FilterByZoneAndJob() {
       <StyledDiv>
         <label>Zonas</label>
               <select className='form-select form-select-sm'onChange={e => handleFilterZone(e)}> 
-                <option value="all">Todas</option>        
+                <option value="all">Todas</option>  
+                <option value="Capital Federal">Capital Federal</option>      
                 {/* {allZones.map((el) => { 
                       return (
                             <option value={el}>{el}</option>                
@@ -45,11 +47,11 @@ export default function FilterByZoneAndJob() {
       <label>Trabajo</label>
                 <select className='form-select form-select-sm' onChange={e => handleFilterJob(e)}> 
                   <option value="all">Todos</option>        
-                  {/* {allJobs.map((el) => { 
+                  {jobs.map((el) => { 
                         return (
                               <option value={el}>{el}</option>                
                       );
-                  })}  */}
+                  })} 
                 </select>
         </StyledDiv>
       </>
