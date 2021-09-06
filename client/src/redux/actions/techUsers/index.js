@@ -43,7 +43,7 @@ export function getTechUsersByJobAndZone(jobType, zone) {
   return async function (dispatch) {
     try {
       let techUsers = await axios.get(
-        `${TECH_USERS_URL}?jobTypes=${jobType}&workZones=${zone}`
+        `${TECH_USERS_URL}/filter?jobTypes=${jobType}&workZones=${zone}`
       );
       return dispatch({
         type: GET_TECH_USERS_BY_JOB_ZONE,
