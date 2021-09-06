@@ -6,21 +6,19 @@ import { StyledDiv } from "./Styled";
 
 export default function TechnicUserDetails(props) {
   const technicUserID = props.match.params.Id;
-  console.log(technicUserID);
-
   const dispatch = useDispatch();
-
   useEffect(() => {
     dispatch(getTechUsersById(technicUserID));
   }, []);
-
   const TechUser = useSelector((state) => state.technicUserDetail);
-  console.log(TechUser);
+  function handleClick(){
+    alert('Debes ingresar para ver esta información')
+  }
 
   return (
     <StyledDiv>
       {TechUser.user ? (
-        <div>
+        <div className='detContainer'>
           <h1>{TechUser.user.userName}</h1>
           <h2>{TechUser.user.lastName}</h2>
           <h4>{TechUser.user.name}</h4>
@@ -48,6 +46,8 @@ export default function TechnicUserDetails(props) {
                 return <li key={idx}>{zone}</li>;
               })}
           </ul>
+
+          <span onClick={handleClick}>Ver datos de contacto</span>
         </div>
       ) : (
         <p>Cargando...</p>
