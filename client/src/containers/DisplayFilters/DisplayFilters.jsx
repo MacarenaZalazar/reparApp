@@ -8,7 +8,9 @@ import { StyledDiv } from './Styles';
 const DisplayFilters = () => {
     return ( 
         <StyledDiv>
+            <span>Ordenar por</span>
             <FilterByScore/>
+            <span>Filtrar por:</span>
             <FilterByZoneAndJob/>
         </StyledDiv>  
     );
