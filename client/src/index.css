@@ -7,10 +7,10 @@ html {
   background-color: #f9f6f4;
 }
 *,
-/* *:before,
+*:before,
 *:after {
   box-sizing: inherit;
-} */
+}
 
 body {
   margin: 0;
