@@ -9,6 +9,7 @@ import SigninTech from "./containers/SigninTech/SigninTech";
 import SigninFinal from "./containers/SigninFinal/SigninFinal";
 import AboutUs from './containers/AboutUs/AboutUs';
 import ContactUs from './containers/ContactUs/ContactUs';
+import Footer from './components/Footer/Footer';
 
 
 function App() {
@@ -44,6 +45,7 @@ function App() {
       <Route exact path='/about'>
         <AboutUs/>
       </Route>
+      <Footer/>
     </div>
   );
 }
