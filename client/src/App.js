@@ -10,6 +10,8 @@ import SigninFinal from "./containers/SigninFinal/SigninFinal";
 import AboutUs from './containers/AboutUs/AboutUs';
 import ContactUs from './containers/ContactUs/ContactUs';
 import Footer from './components/Footer/Footer';
+// import Faq from "./components/faq/Faq";
+import FaqPage from "./containers/faqPage/FaqPage";
 
 
 function App() {
@@ -46,6 +48,10 @@ function App() {
         <AboutUs/>
       </Route>
       <Footer/>
+      <Route exact path='/faq'>
+        {/* <Faq/> */}
+        <FaqPage/>
+      </Route>
     </div>
   );
 }
