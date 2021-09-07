@@ -7,6 +7,8 @@ import Home from "./containers/Home/Home";
 import Login from "./components/Login/Login";
 import SigninTech from "./containers/SigninTech/SigninTech";
 import SigninFinal from "./containers/SigninFinal/SigninFinal";
+import AboutUs from './containers/AboutUs/AboutUs';
+import ContactUs from './containers/ContactUs/ContactUs';
 
 
 function App() {
@@ -36,6 +38,12 @@ function App() {
         path="/technicUserDetails/:Id"
         component={TechnicUserDetails}
       />
+      <Route exact path='/contacto'> 
+        <ContactUs/>
+      </Route>
+      <Route exact path='/about'>
+        <AboutUs/>
+      </Route>
     </div>
   );
 }
