@@ -7,12 +7,9 @@ import { getCities, getStates, getTechUsersByJobAndZone } from '../../redux/acti
 
 
 const Searchbar = () => {
-  const [input, setInput] = useState("");
   const [select, setSelect] = useState("");
-
-  const [states, setStates] = useState([])
-
-  const [cities, setCities] = useState([])
+  //const [states, setStates] = useState([])
+  //const [cities, setCities] = useState([])
   const dispatch = useDispatch()
   const {allStates, allCities} = useSelector(state => state)
 
@@ -20,8 +17,6 @@ const Searchbar = () => {
   useEffect(()=> {
     dispatch(getStates())
   },[])
-
-  console.log(allCities)
 
   const handleChange = (e) => {
     dispatch(getCities(e.target.value))
@@ -31,8 +26,9 @@ const Searchbar = () => {
     setSelect(e.target.value);
   };
   const handleClick = () => {
-    dispatch(getTechUsersByJobAndZone(select, input));
-    setInput("");
+    console.log(select)
+    dispatch(getTechUsersByJobAndZone(select, ''));
+
   };
 
 
@@ -51,9 +47,6 @@ const Searchbar = () => {
         </ItemDiv>
         <ItemDiv>
           <p>¿Dónde?</p>
-          {/* {<input type="text" value={input} onChange={handleChange} />} */}
-
-
           <select className="form-select" aria-label="Default select example" onChange={handleChange} name="provincias" id="">
             <option value=""></option>
             {allStates && allStates.map((c, idx) => {
