@@ -1,5 +1,6 @@
 import { StyledDiv, Input, Form } from "../stylesFormUsers";
 import { useState } from "react";
+import {jobs} from '../../../utils/mockData'
 import axios from "axios";
 
 const FormTechnicUser = () => {
@@ -215,13 +216,18 @@ const FormTechnicUser = () => {
           </Input>
           <Input error={input.errors.jobTypes}>
             <label>* Tipos de Trabajo:</label>
-            <input
+            <select className="form-select" name="job" id="">
+              <option onChange={handleJobChange} value=""></option>
+              {jobs.map((j, idx)=>{
+                return <option value={j} key={idx}>{j}</option>
+              })}
+            </select>
+            {/* <input
               type="text"
               autoComplete="off"
               name="job"
               onChange={handleJobChange}
-            />
-
+            /> */}
             <button onClick={(e) => addJob(e)}>Agregar Tipo</button>
           </Input>
           <Input error={input.errors.qualifications}>

@@ -151,6 +151,7 @@ const FormFinalUser = () => {
               onChange={handleInputChange}
             />
           </Input>
+          * estos campos son obligatorios
           <button type="submit">Crear Usuario</button>
         </Form>
       </form>

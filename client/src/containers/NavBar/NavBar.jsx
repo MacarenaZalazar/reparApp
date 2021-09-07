@@ -26,7 +26,6 @@ const NavBar = () => {
     dispatch(getTechUsersAll())
   }
   const {techUsers} = useSelector(state => state)
-  console.log(techUsers)
   return (
     <StyledDiv>
       <NavBarDiv className="container">
