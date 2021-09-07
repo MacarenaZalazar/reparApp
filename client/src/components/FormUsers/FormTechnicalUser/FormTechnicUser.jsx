@@ -1,7 +1,8 @@
-import { StyledDiv, Input, Form } from "../stylesFormUsers";
+import { StyledDiv, Input, Form, InputJobs } from "../stylesFormUsers";
 import { useState } from "react";
-import {jobs} from '../../../utils/mockData'
+import { jobs } from "../../../utils/mockData";
 import axios from "axios";
+import Checkbox from "../../Checkbox/Checkbox";
 
 const FormTechnicUser = () => {
   const [input, setInput] = useState({
@@ -58,6 +59,7 @@ const FormTechnicUser = () => {
   }
   function addZone(evento) {
     evento.preventDefault();
+    document.getElementsByClassName("zoneInput")[0].value = "";
     if (!input.workZones.includes(zone) && zone) {
       setInput({
         ...input,
@@ -70,22 +72,39 @@ const FormTechnicUser = () => {
     }
   }
   // Funcion para cambiar job y boton para añadir el array
-  function handleJobChange(evento) {
-    setJob(evento.target.value);
-  }
-  function addJob(evento) {
-    evento.preventDefault();
-    if (!input.jobTypes.includes(job) && job) {
+  // function handleJobChange(evento) {
+  //   setJob(evento.target.value);
+  // }
+
+  function addJob(job) {
+    if (input.jobTypes.includes(job)) {
+      const newFilter = input.jobTypes.filter((e) => e !== job);
+      setInput({
+        ...input,
+        jobTypes: newFilter,
+      });
+    } else {
       setInput({
         ...input,
         jobTypes: [...input.jobTypes, job],
       });
-      setJob("");
-    } else {
-      if (zone) alert("Ya existe");
-      else alert("No puede ser vacío");
     }
   }
+
+  // function addJob(evento) {
+  //   evento.preventDefault();
+  //   document.getElementsByClassName("jobInput")[0].value = "";
+  //   if (!input.jobTypes.includes(job) && job) {
+  //     setInput({
+  //       ...input,
+  //       jobTypes: [...input.jobTypes, job],
+  //     });
+  //     setJob("");
+  //   } else {
+  //     if (zone) alert("Ya existe");
+  //     else alert("No puede ser vacío");
+  //   }
+  // }
   // Funcion para cambiar certificaciones y boton para añadir el array
   function handleQualificationChange(evento) {
     setQualification(evento.target.value);
@@ -166,7 +185,7 @@ const FormTechnicUser = () => {
           <Input error={input.errors.password}>
             <label>* Password:</label>
             <input
-              type="text"
+              type="password"
               name="password"
               autoComplete="off"
               value={input.password}
@@ -206,6 +225,7 @@ const FormTechnicUser = () => {
           <Input error={input.errors.workZones}>
             <label>* Zonas:</label>
             <input
+              className="zoneInput"
               type="text"
               autoComplete="off"
               name="zone"
@@ -214,22 +234,23 @@ const FormTechnicUser = () => {
 
             <button onClick={(e) => addZone(e)}>Agregar Zona</button>
           </Input>
-          <Input error={input.errors.jobTypes}>
+          <InputJobs error={input.errors.jobTypes}>
             <label>* Tipos de Trabajo:</label>
-            <select className="form-select" name="job" id="">
-              <option onChange={handleJobChange} value=""></option>
-              {jobs.map((j, idx)=>{
-                return <option value={j} key={idx}>{j}</option>
-              })}
-            </select>
-            {/* <input
-              type="text"
-              autoComplete="off"
-              name="job"
-              onChange={handleJobChange}
-            /> */}
-            <button onClick={(e) => addJob(e)}>Agregar Tipo</button>
-          </Input>
+            <div className="gridJobs">
+              {jobs &&
+                jobs.map((j, idx) => {
+                  return (
+                    <div>
+                      <Checkbox
+                        key={idx}
+                        label={j}
+                        onChange={() => addJob(j)}
+                      />
+                    </div>
+                  );
+                })}
+            </div>
+          </InputJobs>
           <Input error={input.errors.qualifications}>
             <label>* Certificaciones:</label>
             <input
