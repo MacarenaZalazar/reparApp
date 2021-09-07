@@ -1,47 +1,64 @@
-const {Schema, model} = require('mongoose');
-const userSchema = new Schema({
+const { Schema, model } = require("mongoose");
+const bcrypt = require("bcryptjs");
+const userSchema = new Schema(
+  {
     name: {
-        type: String,
-        required: true,
+      type: String,
+      required: true,
     },
     lastName: {
-        type: String,
-        required: true,
+      type: String,
+      required: true,
     },
     image: {
-        type: String,        // todavia falta deducir como mandan la foto desde el front 
+      type: String, // todavia falta deducir como mandan la foto desde el front
     },
     phone: {
-        type: String,
+      type: String,
     },
     mail: {
-        type: String,
-        required: true,
-        unique: true,
+      type: String,
+      required: true,
+      unique: true,
     },
     userName: {
-        type: String,
-        required: true,
-        unique: true
+      type: String,
+      required: true,
+      unique: true,
     },
     password: {
-        type: String,
-        required: true,
-        // unique: true
+      type: String,
+      required: true,
+      // unique: true
     },
-}, {
-    timestamps: true                  // timestamps para que nos cargue fecha de ser creado y de actualizado si las hay
-});
+    roles: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "Role",
+      },
+    ],
+  },
+  {
+    timestamps: true, // timestamps para que nos cargue fecha de ser creado y de actualizado si las hay
+  }
+);
 
 // middlewares
-userSchema.post('save', function(error, res, next) {
-    if (error.name === 'MongoServerError' && error.code === 11000) {
-      next(new Error('Ya existe este usuario'));
-    } else {
-      next(); // The `update()` call will still error out.
-    }
-  });
+userSchema.post("save", function (error, res, next) {
+  if (error.name === "MongoServerError" && error.code === 11000) {
+    next(new Error("Ya existe este usuario"));
+  } else {
+    next();
+  }
+});
 
-// model('User', userSchema);
+userSchema.statics.encryptPassword = async (password) => {
+  const salt = await bcrypt.genSalt(10);
+  return await bcrypt.hash(password, salt);
+};
 
-module.exports = model('User', userSchema);
+userSchema.statics.comparePassword = async (password, receivedPassword) => {
+  return await bcrypt.compare(password, receivedPassword);
+};
+
+module.exports = model("User", userSchema);
