@@ -104,7 +104,7 @@ const FormFinalUser = () => {
           <Input error={input.errors.password}>
             <label>* Password:</label>
             <input
-              type="text"
+              type="password"
               name="password"
               autoComplete="off"
               value={input.password}

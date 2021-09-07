@@ -1,28 +1,29 @@
 import styled from "styled-components";
 
 export const StyledDiv = styled.div`
-background-color: white;
-box-shadow: rgba(181, 129, 108, 0.8) 0px 8px 34px -25px;
-border-radius: 15px;
-padding: 30px 50px;
-height: 100%;
-margin: 50px;
-display: flex;
-flex-direction: column;
-justify-content: center;
-align-items: center;
-button {
-  border: none;
-  padding: 0.6rem;
-  font-family: "Montserrat", sans-serif;
-  color: rgb(248, 248, 248);
-  background-color: #194350;
-  cursor: pointer;
-  border-radius: 1rem;
-  transition: 0.5s ease;
+  background-color: white;
+  box-shadow: rgba(181, 129, 108, 0.8) 0px 8px 34px -25px;
+  border-radius: 15px;
+  padding: 30px 50px;
+  height: 100%;
+  margin: 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  button {
+    border: none;
+    padding: 0.6rem;
+    font-family: "Montserrat", sans-serif;
+    color: rgb(248, 248, 248);
+    background-color: #194350;
+    cursor: pointer;
+    border-radius: 1rem;
+    transition: 0.5s ease;
 
-  :hover {
-    background-color: #ff8882;
+    :hover {
+      background-color: #ff8882;
+    }
   }
 `;
 
@@ -51,5 +52,17 @@ export const Input = styled.div`
     border: 1px solid #194350;
     background-color: ${({ error }) => (error ? "#ff8882" : "")};
     outline: none;
+  }
+`;
+export const InputJobs = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  .gridJobs {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 0.5rem;
+    padding: 0.3rem;
   }
 `;
