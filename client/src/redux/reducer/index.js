@@ -6,12 +6,7 @@ import {
   GET_CITIES,
 } from "../actions/techUsers/constantsTechUsers";
 
-import {
-  ADD_JOBTYPE,
-  DELETE_JOBTYPE
-} from '../actions/admin/constantJobTypes';
-
-
+import { ADD_JOBTYPE, DELETE_JOBTYPE } from "../actions/admin/constantJobTypes";
 
 var initialState = {
   techUsers: [],
@@ -19,26 +14,23 @@ var initialState = {
   jobTypes: [],
   allStates: [],
   allCities: [],
-  user: {},
 };
 
 function reducer(state = initialState, action) {
   const { type, payload } = action;
   switch (type) {
     case GET_TECH_USERS_ALL:
-      console.log("pay:", payload);
       return {
         ...state,
         techUsers: payload,
       };
     case GET_TECH_USERS_BY_ID:
-      console.log(payload);
+      console.log("tech user by id");
       return {
         ...state,
         technicUserDetail: payload,
       };
     case GET_TECH_USERS_BY_JOB_ZONE:
-      console.log("soy el pay:", payload);
       return {
         ...state,
         techUsers: payload,
@@ -63,12 +55,7 @@ function reducer(state = initialState, action) {
         ...state,
         jobTypes: payload,
       };
-    case "LOGIN":
-      console.log("llegue al reducer pay:", payload);
-      return {
-        ...state,
-        user: payload,
-      };
+
     default:
       return state;
   }

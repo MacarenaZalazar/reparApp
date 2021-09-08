@@ -5,7 +5,7 @@ const Role = require("../models/roles");
 
 const verifyToken = async (req, res, next) => {
   let token = req.headers["Authorization"];
-
+  console.log(token);
   if (!token) return res.status(403).json({ message: "No token provided" });
 
   try {

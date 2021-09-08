@@ -23,13 +23,12 @@ export function getTechUsersAll() {
   };
 }
 
-export function getTechUsersById(id, token) {
-  console.log(id);
-  console.log(token);
+export function getTechUsersById(id, config) {
+  console.log("config:", config);
   return async function (dispatch) {
     console.log(`${TECH_USERS_URL}/${id}`);
     try {
-      let techUser = await axios.get(`${TECH_USERS_URL}/${id}`, token);
+      let techUser = await axios.get(`${TECH_USERS_URL}/${id}`, config);
 
       return dispatch({
         type: GET_TECH_USERS_BY_ID,
