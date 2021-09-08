@@ -7,6 +7,7 @@ import {
   GET_STATES,
   GET_CITIES,
 } from "./constantsTechUsers";
+import { useSelector } from "react-redux";
 
 export function getTechUsersAll() {
   return async function (dispatch) {
@@ -22,11 +23,13 @@ export function getTechUsersAll() {
   };
 }
 
-export function getTechUsersById(id) {
+export function getTechUsersById(id, token) {
+  console.log(id);
+  console.log(token);
   return async function (dispatch) {
     console.log(`${TECH_USERS_URL}/${id}`);
     try {
-      let techUser = await axios.get(`${TECH_USERS_URL}/${id}`);
+      let techUser = await axios.get(`${TECH_USERS_URL}/${id}`, token);
 
       return dispatch({
         type: GET_TECH_USERS_BY_ID,

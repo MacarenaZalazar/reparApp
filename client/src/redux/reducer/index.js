@@ -14,6 +14,7 @@ var initialState = {
   jobTypes: [],
   allStates: [],
   allCities: [],
+  user: {},
 };
 
 function reducer(state = initialState, action) {
@@ -47,6 +48,7 @@ function reducer(state = initialState, action) {
         ...state,
         allCities: payload,
       };
+
     case ADD_JOBTYPE:
       return {
         ...state,
@@ -56,6 +58,12 @@ function reducer(state = initialState, action) {
       return {
         ...state,
         jobTypes: payload,
+      };
+    case "LOGIN":
+      console.log("llegue al reducer pay:", payload);
+      return {
+        ...state,
+        user: payload,
       };
 
     default:
