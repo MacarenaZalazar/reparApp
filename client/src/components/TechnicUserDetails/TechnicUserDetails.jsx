@@ -2,23 +2,24 @@ import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { getTechUsersById } from "../../redux/actions/techUsers";
-import {StyledDiv} from "./Styled";
+import { StyledDiv } from "./Styled";
 
 export default function TechnicUserDetails(props) {
+  const user = useSelector((state) => state.login);
   const technicUserID = props.match.params.Id;
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(getTechUsersById(technicUserID));
+    dispatch(getTechUsersById(technicUserID, user.token));
   }, []);
   const TechUser = useSelector((state) => state.technicUserDetail);
-  function handleClick(){
-    alert('Debes ingresar para ver esta información')
+  function handleClick() {
+    alert("Debes ingresar para ver esta información");
   }
 
   return (
     <StyledDiv className="container">
       {TechUser.user ? (
-        <div className='detContainer'>
+        <div className="detContainer">
           <h1>{TechUser.user.userName}</h1>
           <h2>{TechUser.user.lastName}</h2>
           <h4>{TechUser.user.name}</h4>
