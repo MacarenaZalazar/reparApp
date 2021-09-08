@@ -1,7 +1,14 @@
 const UserT = require("../../models/TechUser");
 
 const filteredTechByZoneAndJobType = async (req, res, next) => {
-  const { jobTypes, workZones } = req.query;
+  let { jobTypes, workZones } = req.query;
+
+  if (jobTypes === "null") {
+    jobTypes = null;
+  }
+  if (workZones === "null") {
+    workZones = null;
+  }
 
   if (jobTypes && workZones) {
     try {

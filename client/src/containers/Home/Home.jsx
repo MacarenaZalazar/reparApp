@@ -9,22 +9,24 @@ import { getStates, getCities } from "../../redux/actions/techUsers";
 
 const Home = () => {
   const dispatch = useDispatch();
-  const {techUsers} = useSelector(state => state)
+  const { techUsers } = useSelector((state) => state);
   useEffect(() => {
     dispatch(getStates());
-    dispatch(getCities())
+    dispatch(getCities());
   }, []);
 
-  
-      return ( 
-        <StyledDiv>
-          {techUsers ? 
-            <>
-              <DisplayFilters />
-              <TechnicUsers />
-            </> : <span>Cargando...</span> }
-        </StyledDiv>
-        );
+  return (
+    <StyledDiv>
+      {techUsers ? (
+        <>
+          <DisplayFilters />
+          <TechnicUsers />
+        </>
+      ) : (
+        <span>Cargando...</span>
+      )}
+    </StyledDiv>
+  );
 };
 
 export default Home;
