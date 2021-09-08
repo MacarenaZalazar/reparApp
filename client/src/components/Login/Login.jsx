@@ -21,7 +21,7 @@ const Login = () => {
   const dispatch = useDispatch();
   const history = useHistory();
   const [input, setInput] = useState({ mail: "", password: "" });
-  const loginState = useSelector((state) => state.login);
+  const user = useSelector((state) => state.user);
 
   function handleInputChange(evento) {
     setInput((input) => ({
@@ -34,9 +34,10 @@ const Login = () => {
     e.preventDefault();
     try {
       dispatch(login(input));
-      const role = loginState.roles && loginState.roles[0].name;
+      const role = user.roles && user.roles[0].name;
+      console.log("user", user);
       if (role === "userFinal") {
-        dispatch(getTechUsersByJobAndZone(null, login.data.zone));
+        dispatch(getTechUsersByJobAndZone(null, user.data.zone));
       }
       MySwal.fire({
         title: "Bienvenido",

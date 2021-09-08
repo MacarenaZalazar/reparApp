@@ -12,7 +12,7 @@ var initialState = {
   jobTypes: [],
   allStates: [],
   allCities: [],
-  login: {},
+  user: {},
 };
 
 function reducer(state = initialState, action) {
@@ -50,7 +50,7 @@ function reducer(state = initialState, action) {
       console.log("llegue al reducer pay:", payload);
       return {
         ...state,
-        login: payload,
+        user: payload,
       };
     default:
       return state;

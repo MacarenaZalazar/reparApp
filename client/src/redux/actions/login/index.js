@@ -5,7 +5,7 @@ export function login(input) {
     try {
       const login = await axios.post("http://localhost:3001/login", input);
 
-      window.localStorage.setItem("tokenReparApp", JSON.stringify(login.data));
+      window.localStorage.setItem("user", JSON.stringify(login.data));
 
       return dispatch({
         type: "LOGIN",
