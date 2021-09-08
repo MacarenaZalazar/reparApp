@@ -1,6 +1,6 @@
 const Role = require("../models/roles");
 // import User from "../models/User";
-
+const JobTypes = require("../models/JobTypes");
 // import bcrypt from "bcryptjs";
 
 const createRoles = async () => {
@@ -24,6 +24,24 @@ const createRoles = async () => {
   }
 };
 
+const createjobTypes = async () => {
+  try {
+    // Count Documents
+    const count = await JobTypes.estimatedDocumentCount();
+
+    // check for existing Job types
+    if (count > 0) return;
+
+    // Create default Job types
+
+    const array = ["Electricista", "Plomero", "Albañil", "Gasista"];
+    const values = await JobTypes.create({ name: array });
+
+    console.log(values);
+  } catch (error) {
+    console.error(error);
+  }
+};
 // export const createAdmin = async () => {
 //   // check for an existing admin user
 //   const user = await User.findOne({ email: "admin@localhost" });
@@ -42,4 +60,4 @@ const createRoles = async () => {
 //   }
 // };
 
-module.exports = createRoles;
+module.exports = { createRoles, createjobTypes };

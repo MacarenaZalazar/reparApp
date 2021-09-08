@@ -5,10 +5,11 @@ const morgan = require("morgan");
 const routes = require("./routes/index.js");
 const { HOST_FRONT } = process.env;
 const helmet = require("helmet");
-const createRoles = require("./libs/initialSetup");
+const { createRoles, createjobTypes } = require("./libs/initialSetup");
 
 const server = express();
 createRoles();
+createjobTypes();
 
 server.name = "API";
 
