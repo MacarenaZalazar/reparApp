@@ -3,22 +3,17 @@ import Logo from "../../utils/wrench.png";
 import { Link, Redirect } from "react-router-dom";
 // import Swal from "sweetalert2";
 // import withReactContent from "sweetalert2-react-content";
-import { useDispatch } from 'react-redux';
-import { getTechUsersAll } from '../../redux/actions/techUsers/index';
-import { useSelector } from 'react-redux';
-import DropdownMenu from '../../components/Dropdown/DropdownMenu';
-import Swal from "sweetalert2";
-import withReactContent from "sweetalert2-react-content";
 import { useDispatch } from "react-redux";
 import { getTechUsersAll } from "../../redux/actions/techUsers/index";
 import { useSelector } from "react-redux";
+import DropdownMenu from "../../components/Dropdown/DropdownMenu";
+import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
 
-
-// const MySwal = withReactContent(Swal);
+const MySwal = withReactContent(Swal);
 
 const NavBar = () => {
-
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   // const showAlert = async (e) => {
   //   e.preventDefault();
   //   MySwal.fire({
@@ -30,7 +25,7 @@ const NavBar = () => {
   //   });
   // };
 
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
   const showAlert = async (e) => {
     e.preventDefault();
     MySwal.fire({
@@ -41,7 +36,6 @@ const NavBar = () => {
       denyButtonText: '<a className="enlace"  href="/signinFinal">Final</a> ',
     });
   };
-
 
   function onClick() {
     dispatch(getTechUsersAll());
@@ -59,9 +53,9 @@ const NavBar = () => {
           </LogoDiv>
         </Link>
 
-        <div className='navButtons'>
+        <div className="navButtons">
           <DropdownMenu onClick={onClick} />
-         {/* { techUsers.length > 1 && <Link  onClick={onClick} to='/home' className='linkLogin'>
+          {/* { techUsers.length > 1 && <Link  onClick={onClick} to='/home' className='linkLogin'>
             <span>Inicio</span>
           </Link>}
 

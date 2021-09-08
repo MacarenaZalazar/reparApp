@@ -3,7 +3,7 @@ import {
   GET_TECH_USERS_BY_ID,
   GET_TECH_USERS_BY_JOB_ZONE,
   GET_STATES,
-  GET_CITIES
+  GET_CITIES,
 } from "../actions/techUsers/constantsTechUsers";
 
 var initialState = {
@@ -11,7 +11,7 @@ var initialState = {
   technicUserDetail: {},
   jobTypes: [],
   allStates: [],
-  allCities: []
+  allCities: [],
 };
 
 function reducer(state = initialState, action) {
@@ -30,6 +30,7 @@ function reducer(state = initialState, action) {
         technicUserDetail: payload,
       };
     case GET_TECH_USERS_BY_JOB_ZONE:
+      console.log("soy el pay:", payload);
       return {
         ...state,
         techUsers: payload,
@@ -37,13 +38,13 @@ function reducer(state = initialState, action) {
     case GET_STATES:
       return {
         ...state,
-        allStates: payload
+        allStates: payload,
       };
     case GET_CITIES:
       return {
         ...state,
-        allCities: payload
-      }
+        allCities: payload,
+      };
 
     default:
       return state;
