@@ -1,12 +1,17 @@
 import React from "react";
 import Logo from "../../utils/wrench.png";
-import { Navbar, Nav, Container } from "react-bootstrap";
-import { TiSocialGithub } from "react-icons/ti";
+import { Navbar, Container } from "react-bootstrap";
+import SocialLinks from "../SocialLinks/SocialLinks";
+import {socialMedia} from '../../utils/reparAppInfo'
+
+
 
 const Footer = () => {
+  const {instagram, facebook, linkedin, github} = socialMedia
+
   return (
     <>
-      <Navbar bg="light" variant="light">
+      <Navbar className='footer' bg="light" variant="light">
         <Container>
           <Navbar.Brand href="#home">
             <img
@@ -18,14 +23,9 @@ const Footer = () => {
             />
             ReparApp
           </Navbar.Brand>
-          <span color="white">@2021 all rights reserved</span>
-          <Nav.Link
-            href="https://github.com/MacarenaZalazar/reparApp"
-            target="_blank"
-          >
-            {" "}
-            <TiSocialGithub /> GitHub
-          </Nav.Link>
+          <span color="white"> @2021 all rights reserved</span>
+          <SocialLinks instagram={instagram} facebook={facebook} linkedin={linkedin} github={github} />
+  
         </Container>
       </Navbar>
     </>

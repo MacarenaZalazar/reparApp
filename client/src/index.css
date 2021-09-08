@@ -60,3 +60,8 @@ a {
 .appContainer {
   height: 100%;
 }
+
+/* .footer{
+  display: flex;
+  align-self: baseline;
+} */
