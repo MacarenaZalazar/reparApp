@@ -21,6 +21,10 @@ const userSchema = new Schema(
       required: true,
       unique: true,
     },
+    ban: {
+      type: Boolean,
+      default: false,
+    },
     userName: {
       type: String,
       required: true,

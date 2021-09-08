@@ -14,6 +14,10 @@ const workOrderSchema = new Schema(
       type: Schema.ObjectId,
       ref: "UsersF",
     },
+    ban: {
+      type: Boolean,
+      default: false,
+    },
     workImage: String,
     workType: {
       type: String,
