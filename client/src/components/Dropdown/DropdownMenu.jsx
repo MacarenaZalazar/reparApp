@@ -19,20 +19,19 @@ const DropdownMenu = ({onClick}) => {
       };
 
     return (
-        <div> 
+        <> 
         <DropdownButton
-            id='dropdown-button-drop-start'
             drop='start'
             variant="secondary"
             >
-            <BsJustify/>
+            {/* <BsJustify/> */}
             <Dropdown.Item href="/home">Inicio</Dropdown.Item>
             <Dropdown.Item href="/login">Ingresar</Dropdown.Item>
             <Dropdown.Item onClick={showAlert} >Registrarse</Dropdown.Item>
             <Dropdown.Item href="/about">Sobre Nosotr@s</Dropdown.Item>
             <Dropdown.Item href="/contacto">Contacto</Dropdown.Item>
             </DropdownButton>
-        </div>
+        </>
     );
 };
 
