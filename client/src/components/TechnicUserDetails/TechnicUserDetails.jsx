@@ -5,45 +5,54 @@ import { getTechUsersById } from "../../redux/actions/techUsers";
 import { StyledDiv } from "./Styled";
 
 export default function TechnicUserDetails(props) {
-  const user = useSelector((state) => state.login);
+  const userString = window.sessionStorage.getItem("user");
+  const user = JSON.parse(userString);
+  let config = {
+    headers: {
+      Authorization: `Bearer ${user.token}`,
+    },
+  };
+
   const technicUserID = props.match.params.Id;
   const dispatch = useDispatch();
+
   useEffect(() => {
-    dispatch(getTechUsersById(technicUserID, user.token));
+    dispatch(getTechUsersById(technicUserID, config));
   }, []);
-  const TechUser = useSelector((state) => state.technicUserDetail);
+
+  const TechnicUserDetail = useSelector((state) => state.technicUserDetail);
   function handleClick() {
     alert("Debes ingresar para ver esta información");
   }
 
   return (
     <StyledDiv className="container">
-      {TechUser.user ? (
+      {TechnicUserDetail.user ? (
         <div className="detContainer">
-          <h1>{TechUser.user.userName}</h1>
-          <h2>{TechUser.user.lastName}</h2>
-          <h4>{TechUser.user.name}</h4>
-          <img src={TechUser.image} alt="" />
-          <h4>{TechUser.score}</h4>
-          <p>{TechUser.phone}</p>
+          <h1>{TechnicUserDetail.user.userName}</h1>
+          <h2>{TechnicUserDetail.user.lastName}</h2>
+          <h4>{TechnicUserDetail.user.name}</h4>
+          <img src={TechnicUserDetail.image} alt="" />
+          <h4>{TechnicUserDetail.score}</h4>
+          <p>{TechnicUserDetail.phone}</p>
           <p>Zonas de trabajo:</p>
           <ul>
-            {TechUser.workZones &&
-              TechUser.workZones.map((zone, idx) => {
+            {TechnicUserDetail.workZones &&
+              TechnicUserDetail.workZones.map((zone, idx) => {
                 return <li key={idx}>{zone}</li>;
               })}
           </ul>
           <p>Especializado en:</p>
           <ul>
-            {TechUser.jobTypes &&
-              TechUser.jobTypes.map((zone, idx) => {
+            {TechnicUserDetail.jobTypes &&
+              TechnicUserDetail.jobTypes.map((zone, idx) => {
                 return <li key={idx}>{zone}</li>;
               })}
           </ul>
           <p>Calificaciones :</p>
           <ul>
-            {TechUser.qualification &&
-              TechUser.qualification.map((zone, idx) => {
+            {TechnicUserDetail.qualification &&
+              TechnicUserDetail.qualification.map((zone, idx) => {
                 return <li key={idx}>{zone}</li>;
               })}
           </ul>

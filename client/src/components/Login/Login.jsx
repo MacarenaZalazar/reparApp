@@ -7,11 +7,10 @@ import {
 } from "./styledLogin";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
-import { login } from "../../redux/actions/login";
 import { getTechUsersByJobAndZone } from "../../redux/actions/techUsers";
 import { MdAccountCircle, MdVpnKey } from "react-icons/md";
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
@@ -21,7 +20,6 @@ const Login = () => {
   const dispatch = useDispatch();
   const history = useHistory();
   const [input, setInput] = useState({ mail: "", password: "" });
-  const user = useSelector((state) => state.user);
 
   function handleInputChange(evento) {
     setInput((input) => ({
@@ -33,11 +31,13 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      dispatch(login(input));
-      const role = user.roles && user.roles[0].name;
-      console.log("user", user);
+      const login = await axios.post("http://localhost:3001/login", input);
+      window.sessionStorage.setItem("user", JSON.stringify(login.data));
+
+      const role = login.data.roles && login.data.roles[0].name;
+
       if (role === "userFinal") {
-        dispatch(getTechUsersByJobAndZone(null, user.data.zone));
+        dispatch(getTechUsersByJobAndZone(null, login.data.zone));
       }
       MySwal.fire({
         title: "Bienvenido",

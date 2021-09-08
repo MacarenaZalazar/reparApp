@@ -1,4 +1,5 @@
 import { Route } from "react-router-dom";
+
 import TechnicUserDetails from "./components/TechnicUserDetails/TechnicUserDetails";
 import finalUserDetails from "./components/finalUserDetails/finalUserDetails";
 import NavBar from "./containers/NavBar/NavBar";
@@ -7,22 +8,26 @@ import Home from "./containers/Home/Home";
 import Login from "./components/Login/Login";
 import SigninTech from "./containers/SigninTech/SigninTech";
 import SigninFinal from "./containers/SigninFinal/SigninFinal";
-import AboutUs from './containers/AboutUs/AboutUs';
-import ContactUs from './containers/ContactUs/ContactUs';
-import Footer from './components/Footer/Footer';
+import AboutUs from "./containers/AboutUs/AboutUs";
+import ContactUs from "./containers/ContactUs/ContactUs";
+import Footer from "./components/Footer/Footer";
 // import Faq from "./components/faq/Faq";
 import FaqPage from "./containers/faqPage/FaqPage";
-import Dashboard from "./containers/userAdmin/Dashboard";
+// import Dashboard from "./containers/userAdmin/Dashboard";
 
 function App() {
+  const userString = window.sessionStorage.getItem("user");
+  const user = JSON.parse(userString);
+
   return (
     <div className="appContainer">
       <Route>
         <NavBar />
       </Route>
       <Route exact path="/login">
-        <Login />
+        {user ? <ContactUs /> : <Login />}
       </Route>
+
       <Route exact path="/signinTech">
         <SigninTech />
       </Route>
@@ -41,21 +46,21 @@ function App() {
         path="/technicUserDetails/:Id"
         component={TechnicUserDetails}
       />
-      <Route exact path='/contacto'> 
-        <ContactUs/>
+      <Route exact path="/contacto">
+        <ContactUs />
       </Route>
-      <Route exact path='/about'>
-        <AboutUs/>
+      <Route exact path="/about">
+        <AboutUs />
       </Route>
-      <Route exact path='/faq'>
+      <Route exact path="/faq">
         {/* <Faq/> */}
-        <FaqPage/>
+        <FaqPage />
       </Route>
-      <Route exact path='/admin'>
-        <Dashboard/>
-      </Route>
+      {/* <Route exact path="/admin">
+        <Dashboard />
+      </Route> */}
 
-      <Footer/>
+      <Footer />
     </div>
   );
 }
