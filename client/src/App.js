@@ -12,7 +12,7 @@ import ContactUs from './containers/ContactUs/ContactUs';
 import Footer from './components/Footer/Footer';
 // import Faq from "./components/faq/Faq";
 import FaqPage from "./containers/faqPage/FaqPage";
-
+import Dashboard from "./containers/userAdmin/Dashboard";
 
 function App() {
   return (
@@ -47,11 +47,15 @@ function App() {
       <Route exact path='/about'>
         <AboutUs/>
       </Route>
-      <Footer/>
       <Route exact path='/faq'>
         {/* <Faq/> */}
         <FaqPage/>
       </Route>
+      <Route exact path='/admin'>
+        <Dashboard/>
+      </Route>
+
+      <Footer/>
     </div>
   );
 }

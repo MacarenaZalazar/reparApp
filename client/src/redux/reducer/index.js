@@ -6,6 +6,11 @@ import {
   GET_CITIES,
 } from "../actions/techUsers/constantsTechUsers";
 
+import {
+  ADD_JOBTYPE,
+  DELETE_JOBTYPE
+} from '../actions/admin/constantJobTypes';
+
 var initialState = {
   techUsers: [],
   technicUserDetail: {},
@@ -45,7 +50,16 @@ function reducer(state = initialState, action) {
         ...state,
         allCities: payload,
       };
-
+    case ADD_JOBTYPE:
+      return {
+        ...state,
+        jobTypes: payload
+      }
+      case DELETE_JOBTYPE:
+        return {
+          ...state,
+          jobTypes: payload
+        }
     default:
       return state;
   }
