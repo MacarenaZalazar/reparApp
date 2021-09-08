@@ -11,12 +11,15 @@ import {
   DELETE_JOBTYPE
 } from '../actions/admin/constantJobTypes';
 
+
+
 var initialState = {
   techUsers: [],
   technicUserDetail: {},
   jobTypes: [],
   allStates: [],
   allCities: [],
+  user: {},
 };
 
 function reducer(state = initialState, action) {
@@ -53,13 +56,19 @@ function reducer(state = initialState, action) {
     case ADD_JOBTYPE:
       return {
         ...state,
-        jobTypes: payload
-      }
-      case DELETE_JOBTYPE:
-        return {
-          ...state,
-          jobTypes: payload
-        }
+        jobTypes: payload,
+      };
+    case DELETE_JOBTYPE:
+      return {
+        ...state,
+        jobTypes: payload,
+      };
+    case "LOGIN":
+      console.log("llegue al reducer pay:", payload);
+      return {
+        ...state,
+        user: payload,
+      };
     default:
       return state;
   }

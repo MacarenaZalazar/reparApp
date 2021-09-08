@@ -9,4 +9,4 @@ const ADMIN_URL = `${BASE_URL}admin`
 module.exports = {
   TECH_USERS_URL,
   ADMIN_URL
-};
+}

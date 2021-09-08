@@ -6,7 +6,8 @@ import {
   ButtonDiv,
 } from "./styledLogin";
 import axios from "axios";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { login } from "../../redux/actions/login";
 import { getTechUsersByJobAndZone } from "../../redux/actions/techUsers";
 import { MdAccountCircle, MdVpnKey } from "react-icons/md";
 import { Link } from "react-router-dom";
@@ -20,6 +21,7 @@ const Login = () => {
   const dispatch = useDispatch();
   const history = useHistory();
   const [input, setInput] = useState({ mail: "", password: "" });
+  const user = useSelector((state) => state.user);
 
   function handleInputChange(evento) {
     setInput((input) => ({
@@ -30,16 +32,13 @@ const Login = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     try {
-      const login = await axios.post("http://localhost:3001/login", input);
-      const role = login.data.roles[0].name;
-
-      console.log(login.data);
+      dispatch(login(input));
+      const role = user.roles && user.roles[0].name;
+      console.log("user", user);
       if (role === "userFinal") {
-        dispatch(getTechUsersByJobAndZone(null, login.data.zone));
+        dispatch(getTechUsersByJobAndZone(null, user.data.zone));
       }
-
       MySwal.fire({
         title: "Bienvenido",
       });
