@@ -4,9 +4,14 @@ const TECH_USERS_URL = `${BASE_URL}techUsers`;
 
 // url admin
 
-const ADMIN_URL = `${BASE_URL}admin`
+const ADMIN_URL = `${BASE_URL}admin`;
+
+//url Job Types
+
+const JOB_TYPES_URL = `${BASE_URL}jobTypes`;
 
 module.exports = {
   TECH_USERS_URL,
-  ADMIN_URL
-}
+  ADMIN_URL,
+  JOB_TYPES_URL,
+};

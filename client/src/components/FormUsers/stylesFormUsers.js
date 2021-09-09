@@ -1,12 +1,13 @@
 import styled from "styled-components";
 
 export const StyledDiv = styled.div`
-  background-color: white;
-  box-shadow: rgba(181, 129, 108, 0.8) 0px 8px 34px -25px;
+  /* box-shadow: rgba(181, 129, 108, 0.8) 0px 8px 34px -25px;
   border-radius: 15px;
   padding: 30px 50px;
   height: 100%;
-  margin: 50px;
+  margin: 50px; */
+  height: calc(100vh - 15rem);
+  width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;

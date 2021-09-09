@@ -55,6 +55,7 @@ const NavBar = () => {
 
         <div className="navButtons">
           <DropdownMenu onClick={onClick} />
+
           {/* { techUsers.length > 1 && <Link  onClick={onClick} to='/home' className='linkLogin'>
             <span>Inicio</span>
           </Link>}

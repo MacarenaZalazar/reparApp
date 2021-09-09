@@ -13,54 +13,59 @@ import ContactUs from "./containers/ContactUs/ContactUs";
 import Footer from "./components/Footer/Footer";
 // import Faq from "./components/faq/Faq";
 import FaqPage from "./containers/faqPage/FaqPage";
-import Dashboard from "./containers/userAdmin/Dashboard";
+
+// import Dashboard from "./containers/userAdmin/Dashboard";
+import PrivateRoute from "./components/PrivateRoute/PrivateRoute";
+import { useEffect } from "react";
+import { getJobTypesAll } from "./redux/actions/jobTypes";
+import { useDispatch } from "react-redux";
+
+
 
 function App() {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getJobTypesAll());
+  }, []);
+
   const userString = window.sessionStorage.getItem("user");
   const user = JSON.parse(userString);
 
   return (
     <div className="appContainer">
-      <Route>
-        <NavBar />
-      </Route>
-      <Route exact path="/login">
-        {user ? <ContactUs /> : <Login />}
-      </Route>
+      <Route path="/" component={NavBar} />
 
-      <Route exact path="/signinTech">
-        <SigninTech />
-      </Route>
-      <Route exact path="/signinfinal">
-        <SigninFinal />
-      </Route>
-      <Route exact path="/">
-        <Hero />
-      </Route>
-      <Route exact path="/home">
-        <Home />
-      </Route>
+      {/* <Route exact path="/login" component={Login} /> */}
+      <PrivateRoute exact path="/login" component={Login} />
+
+      <Route exact path="/signinTech" component={SigninTech} />
+
+      <Route exact path="/signinfinal" component={SigninFinal} />
+
+      <Route exact path="/" component={Hero} />
+
+      <Route exact path="/home" component={Home} />
+
       <Route exact path="/finalUserDetails/:id" component={finalUserDetails} />
+
       <Route
         exact
         path="/technicUserDetails/:Id"
         component={TechnicUserDetails}
       />
-      <Route exact path="/contacto">
-        <ContactUs />
-      </Route>
-      <Route exact path="/about">
-        <AboutUs />
-      </Route>
-      <Route exact path="/faq">
-        {/* <Faq/> */}
-        <FaqPage />
-      </Route>
-      <Route exact path="/admin">
-        <Dashboard />
-      </Route>
 
-      <Footer />
+      <Route exact path="/contacto" component={ContactUs} />
+
+      <Route exact path="/about" component={AboutUs} />
+
+      <Route exact path="/faq" component={FaqPage} />
+
+      {/* <Route exact path="/admin">
+        <Dashboard />
+      </Route> */}
+      <Route path="/" component={Footer} />
+
     </div>
   );
 }
