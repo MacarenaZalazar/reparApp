@@ -13,11 +13,14 @@ import ContactUs from "./containers/ContactUs/ContactUs";
 import Footer from "./components/Footer/Footer";
 // import Faq from "./components/faq/Faq";
 import FaqPage from "./containers/faqPage/FaqPage";
+
 // import Dashboard from "./containers/userAdmin/Dashboard";
 import PrivateRoute from "./components/PrivateRoute/PrivateRoute";
 import { useEffect } from "react";
 import { getJobTypesAll } from "./redux/actions/jobTypes";
 import { useDispatch } from "react-redux";
+
+
 
 function App() {
   const dispatch = useDispatch();
@@ -51,6 +54,7 @@ function App() {
         path="/technicUserDetails/:Id"
         component={TechnicUserDetails}
       />
+
       <Route exact path="/contacto" component={ContactUs} />
 
       <Route exact path="/about" component={AboutUs} />
@@ -61,6 +65,7 @@ function App() {
         <Dashboard />
       </Route> */}
       <Route path="/" component={Footer} />
+
     </div>
   );
 }
