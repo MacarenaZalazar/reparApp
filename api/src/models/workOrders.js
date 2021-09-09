@@ -26,6 +26,9 @@ const workOrderSchema = new Schema(
       type: Boolean,
       default: false,
     },
+    jobType: {
+      type: String,
+    },
   },
   {
     timestamps: true,
