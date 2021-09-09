@@ -13,7 +13,7 @@ import ContactUs from "./containers/ContactUs/ContactUs";
 import Footer from "./components/Footer/Footer";
 // import Faq from "./components/faq/Faq";
 import FaqPage from "./containers/faqPage/FaqPage";
-// import Dashboard from "./containers/userAdmin/Dashboard";
+import Dashboard from "./containers/userAdmin/Dashboard";
 
 function App() {
   const userString = window.sessionStorage.getItem("user");
@@ -56,9 +56,9 @@ function App() {
         {/* <Faq/> */}
         <FaqPage />
       </Route>
-      {/* <Route exact path="/admin">
+      <Route exact path="/admin">
         <Dashboard />
-      </Route> */}
+      </Route>
 
       <Footer />
     </div>
