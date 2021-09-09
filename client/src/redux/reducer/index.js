@@ -6,6 +6,8 @@ import {
   GET_CITIES,
 } from "../actions/techUsers/constantsTechUsers";
 
+import { GET_JOB_TYPES } from "../actions/jobTypes/constantsJobTypes";
+
 import { ADD_JOBTYPE, DELETE_JOBTYPE } from "../actions/admin/constantJobTypes";
 
 var initialState = {
@@ -51,6 +53,12 @@ function reducer(state = initialState, action) {
         jobTypes: payload,
       };
     case DELETE_JOBTYPE:
+      return {
+        ...state,
+        jobTypes: payload,
+      };
+    case GET_JOB_TYPES:
+      console.log("pay:", payload);
       return {
         ...state,
         jobTypes: payload,

@@ -1,10 +1,15 @@
 import { StyledDiv, Input, Form, InputJobs } from "../stylesFormUsers";
 import { useState } from "react";
+import { useSelector } from "react-redux";
 import { jobs } from "../../../utils/mockData";
 import axios from "axios";
 import Checkbox from "../../Checkbox/Checkbox";
+import { useHistory } from "react-router-dom";
 
 const FormTechnicUser = () => {
+  const history = useHistory();
+  const jobTypesRedux = useSelector((state) => state.jobTypes);
+
   const [input, setInput] = useState({
     name: "",
     lastName: "",
@@ -140,6 +145,7 @@ const FormTechnicUser = () => {
         console.log(input);
         await axios.post("http://localhost:3001/techUsers", input);
         alert("Usuario creado");
+        history.push("/login");
       } catch (error) {
         console.log(error);
       }
@@ -237,8 +243,8 @@ const FormTechnicUser = () => {
           <InputJobs error={input.errors.jobTypes}>
             <label>* Tipos de Trabajo:</label>
             <div className="gridJobs">
-              {jobs &&
-                jobs.map((j, idx) => {
+              {jobTypesRedux &&
+                jobTypesRedux.map((j, idx) => {
                   return (
                     <div>
                       <Checkbox
