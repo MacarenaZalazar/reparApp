@@ -18,8 +18,9 @@ var initialState = {
   jobTypes: [],
   allStates: [],
   allCities: [],
+
   allUsers: [],
-  allRequests: []
+  allRequests: [],
 };
 
 function reducer(state = initialState, action) {
@@ -68,15 +69,15 @@ function reducer(state = initialState, action) {
         jobTypes: payload,
       };
     case GET_ALL_USERS:
-      return{
-        ...state, 
-        allUsers: payload
-      }
-    case GET_ALL_JOB_REQUESTS:
-      return{
+      return {
         ...state,
-        allRequests: payload
-      }
+        allUsers: payload,
+      };
+    case GET_ALL_JOB_REQUESTS:
+      return {
+        ...state,
+        allRequests: payload,
+      };
 
     default:
       return state;

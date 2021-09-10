@@ -21,8 +21,6 @@ import { useEffect } from "react";
 import { getJobTypesAll } from "./redux/actions/jobTypes";
 import { useDispatch } from "react-redux";
 
-
-
 function App() {
   const dispatch = useDispatch();
 
@@ -40,9 +38,12 @@ function App() {
       {/* <Route exact path="/login" component={Login} /> */}
       <PrivateRoute exact path="/login" component={Login} />
 
-      <Route exact path="/signinTech" component={SigninTech} />
+      <PrivateRoute exact path="/signinTech" component={SigninTech} />
 
-      <Route exact path="/signinfinal" component={SigninFinal} />
+      {/* <Route exact path="/signinTech" component={SigninTech} /> */}
+      <PrivateRoute exact path="/signinfinal" component={SigninFinal} />
+
+      {/* <Route exact path="/signinfinal" component={SigninFinal} /> */}
 
       <Route exact path="/" component={Hero} />
 
@@ -66,7 +67,6 @@ function App() {
         <Dashboard />
       </Route>
       <Route path="/" component={Footer} />
-
     </div>
   );
 }

@@ -35,6 +35,11 @@ const userSchema = new Schema(
       required: true,
       // unique: true
     },
+    state: {
+      type: String,
+      required: true,
+    },
+
     roles: [
       {
         type: Schema.ObjectId,
