@@ -14,7 +14,8 @@ import Footer from "./components/Footer/Footer";
 // import Faq from "./components/faq/Faq";
 import FaqPage from "./containers/faqPage/FaqPage";
 
-// import Dashboard from "./containers/userAdmin/Dashboard";
+import Dashboard from "./containers/UserAdmin/Dashboard";
+
 import PrivateRoute from "./components/PrivateRoute/PrivateRoute";
 import { useEffect } from "react";
 import { getJobTypesAll } from "./redux/actions/jobTypes";
@@ -61,9 +62,9 @@ function App() {
 
       <Route exact path="/faq" component={FaqPage} />
 
-      {/* <Route exact path="/admin">
+      <Route exact path="/admin">
         <Dashboard />
-      </Route> */}
+      </Route>
       <Route path="/" component={Footer} />
 
     </div>
