@@ -49,10 +49,10 @@ export function GetAllUsers(name){
 export function deleteUser(id){
     return async function (dispatch) {
     try {
-      const deleteJob = await axios.delete(name);
+      const deleteUser = await axios.delete(id);
       return dispatch({
         type: DELETE_USER,
-        payload: deleteJob.data,
+        payload: deleteUser.data,
       });
     } catch (error) {
       console.log(error);

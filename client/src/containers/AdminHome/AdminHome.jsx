@@ -30,7 +30,7 @@ const AdminHome = () => {
             </Carousel>
             <Carousel>
                 <Carousel.Item>
-                    {allRequests && allRequests.map((j,idx) => {
+                    {allRequests && allRequests.map((t,idx) => {
                         return <>
                              <Carousel.Item key={idx}>
                                 <JobRequestCard   id={t.id} name={t.name} lastName={t.lastName} user={t.user} 
