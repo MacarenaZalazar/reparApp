@@ -6,7 +6,7 @@ import { ADMIN_URL } from "../../../utils/constants";
 export function AddJobType(newJob) {
   return async function (dispatch) {
     try {
-      const addJob = await axios.post(ADMIN_URL, newJob);
+      const addJob = await axios.put(ADMIN_URL, newJob);
       return dispatch({
         type: ADD_JOBTYPE,
         payload: addJob.data,
