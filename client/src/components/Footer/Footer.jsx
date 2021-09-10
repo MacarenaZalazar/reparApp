@@ -3,6 +3,7 @@ import Logo from "../../utils/wrench.png";
 import { Navbar, Container } from "react-bootstrap";
 import SocialLinks from "../SocialLinks/SocialLinks";
 import {socialMedia} from '../../utils/reparAppInfo'
+import { Link } from 'react-router-dom';
 
 
 
@@ -23,9 +24,9 @@ const Footer = () => {
             />
             ReparApp
           </Navbar.Brand>
+          <Link to='/contacto'>Contacto</Link>
           <span color="white"> @2021 all rights reserved</span>
           <SocialLinks instagram={instagram} facebook={facebook} linkedin={linkedin} github={github} />
-  
         </Container>
       </Navbar>
     </>

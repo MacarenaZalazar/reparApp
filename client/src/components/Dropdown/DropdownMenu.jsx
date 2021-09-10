@@ -67,7 +67,7 @@ const DropdownMenu = ({ onClick }) => {
           <Dropdown.Item onClick={showAlert}>Registrarse</Dropdown.Item>
         )}
         <Dropdown.Item href="/about">Sobre Nosotr@s</Dropdown.Item>
-        <Dropdown.Item href="/contacto">Contacto</Dropdown.Item>
+        {/* <Dropdown.Item href="/contacto">Contacto</Dropdown.Item> */}
         {user && <Dropdown.Item onClick={logoutAlert}>Logout</Dropdown.Item>}
       </DropdownButton>
     </>
