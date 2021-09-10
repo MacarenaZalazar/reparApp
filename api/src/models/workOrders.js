@@ -21,6 +21,7 @@ const workOrderSchema = new Schema(
     workImage: String,
     workType: {
       type: String,
+      required: true,
     },
     complete: {
       type: Boolean,
