@@ -3,12 +3,12 @@ import UpdateJobTypes from "../../components/Admin/UdateJobTypes";
 import NewJobType from '../../components/Admin/NewJobType'
 import { useDispatch, useSelector } from "react-redux";
 import {DeleteJobType} from '../../redux/actions/admin/index';
-import { getJobTypesAll } from "../../redux/actions/jobTypes/index";
+
 
 import "./css.css";
 function Dashboard() {
-  var jobTypes = useSelector((state) => state.jobTypes);
-var dispatch = useDispatch();
+  const jobTypes = useSelector((state) => state.jobTypes);
+  const dispatch = useDispatch();
 
   function handleChange(n) {
     dispatch(DeleteJobType(n))
@@ -19,8 +19,6 @@ var dispatch = useDispatch();
     <div className="container conta-JobType">
       <div className="row">
         <div className="col-sm">
-          {/* <UpdateJobTypes /> */}
-          {/* falta la ruta del get de job types */}
           {
             jobTypes &&
             jobTypes.map((job, key) => {
