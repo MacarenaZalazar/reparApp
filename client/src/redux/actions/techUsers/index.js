@@ -77,7 +77,7 @@ export function getCities(city) {
   return async function (dispatch) {
     try {
       let cities = await axios.get(
-        `https://apis.datos.gob.ar/georef/api/localidades?provincia=${city}&campos=nombre&max=100`
+        `https://apis.datos.gob.ar/georef/api/localidades?provincia=${city}&campos=nombre&max=1000`
       );
       cities = cities.data.localidades.map((e) => e.nombre);
       return dispatch({
