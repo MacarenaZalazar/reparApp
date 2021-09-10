@@ -18,7 +18,7 @@ const workOrderSchema = new Schema(
       type: Boolean,
       default: false,
     },
-    workImage: String,
+    workImage: { type: String },
     workType: {
       type: String,
       required: true,
@@ -26,9 +26,6 @@ const workOrderSchema = new Schema(
     complete: {
       type: Boolean,
       default: false,
-    },
-    jobType: {
-      type: String,
     },
   },
   {
