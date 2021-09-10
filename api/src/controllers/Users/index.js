@@ -11,6 +11,7 @@ const createNewUser = async (user, idRole) => {
       password: Password,
       image: user.image,
       roles: idRole,
+      state: user.state,
     });
 
     return newUser;

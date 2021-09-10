@@ -6,7 +6,11 @@ import {
   GET_CITIES,
 } from "../actions/techUsers/constantsTechUsers";
 
+import { GET_JOB_TYPES } from "../actions/jobTypes/constantsJobTypes";
+
 import { ADD_JOBTYPE, DELETE_JOBTYPE } from "../actions/admin/constantJobTypes";
+import { GET_ALL_USERS } from "../actions/admin/constantsAdmin";
+import { GET_ALL_JOB_REQUESTS } from "../actions/allUsers/constantsAllUsers";
 
 var initialState = {
   techUsers: [],
@@ -14,6 +18,8 @@ var initialState = {
   jobTypes: [],
   allStates: [],
   allCities: [],
+  allUsers: [],
+  allRequests: [],
 };
 
 function reducer(state = initialState, action) {
@@ -54,6 +60,22 @@ function reducer(state = initialState, action) {
       return {
         ...state,
         jobTypes: payload,
+      };
+    case GET_JOB_TYPES:
+      console.log("pay:", payload);
+      return {
+        ...state,
+        jobTypes: payload,
+      };
+    case GET_ALL_USERS:
+      return {
+        ...state,
+        allUsers: payload,
+      };
+    case GET_ALL_JOB_REQUESTS:
+      return {
+        ...state,
+        allRequests: payload,
       };
 
     default:

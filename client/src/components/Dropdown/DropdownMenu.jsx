@@ -13,12 +13,35 @@ const DropdownMenu = ({ onClick }) => {
   const user = JSON.parse(userString);
   const showAlert = async (e) => {
     e.preventDefault();
-    MySwal.fire({
-      title: "Elige un tipo de usuario",
-      showDenyButton: true,
-      confirmButtonText:
-        '<a style=”color:white” href="/signinTech">Técnico</a> ',
-      denyButtonText: '<a className="enlace"  href="/signinFinal">Final</a> ',
+    // MySwal.fire({
+    //   title: "Elige un tipo de usuario",
+    //   showDenyButton: true,
+    //   confirmButtonText:
+    //     '<a style=”color:white” href="/signinTech">Técnico</a> ',
+    //   denyButtonText: '<a className="enlace"  href="/signinFinal">Final</a> ',
+    // });
+
+    const { value: fruit } = await Swal.fire({
+      input: "select",
+      inputOptions: {
+        Tipo: {
+          tech: "Técnico",
+          final: "Final",
+        },
+      },
+      inputPlaceholder: "Selecciona tipo",
+      showCancelButton: true,
+      inputValidator: (value) => {
+        return new Promise((resolve) => {
+          if (value === "tech") {
+            history.push("/signinTech");
+            resolve();
+          } else {
+            history.push("/signinFinal");
+            resolve();
+          }
+        });
+      },
     });
   };
 
@@ -44,7 +67,7 @@ const DropdownMenu = ({ onClick }) => {
           <Dropdown.Item onClick={showAlert}>Registrarse</Dropdown.Item>
         )}
         <Dropdown.Item href="/about">Sobre Nosotr@s</Dropdown.Item>
-        <Dropdown.Item href="/contacto">Contacto</Dropdown.Item>
+        {/* <Dropdown.Item href="/contacto">Contacto</Dropdown.Item> */}
         {user && <Dropdown.Item onClick={logoutAlert}>Logout</Dropdown.Item>}
       </DropdownButton>
     </>

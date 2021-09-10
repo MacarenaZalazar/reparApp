@@ -1,4 +1,5 @@
 const workOrders = require("../../models/workOrders");
+const UserF = require("../../models/FinalUser");
 
 const postNewRequest = async (req, res, next) => {
   const workOrdersSession = await workOrders.startSession();
@@ -67,9 +68,43 @@ const getRequest = async (req, res, next) => {
   }
 };
 
+const getRequestFiltered = async (req, res, next) => {
+  const { zone, workType } = req.body;
+  if (workType === "null") {
+    workType = null;
+  }
+  if (zone === "null") {
+    zone = null;
+  }
+
+  let filtered;
+  try {
+    if (workType && zone) {
+      filtered = await workOrders
+        .find({ zone, workType })
+        .populate({ path: "userFinal" });
+    } else if (workType && !zone) {
+      filtered = await workOrders
+        .find({ workType })
+        .populate({ path: "userFinal" });
+    } else if (!workType && zone) {
+      filtered = await workOrders
+        .find({ zone })
+        .populate({ path: "userFinal" });
+    } else {
+      return res.sendStatus(400);
+    }
+
+    res.status(200).json(filtered);
+  } catch (error) {
+    next(error);
+  }
+};
+
 module.exports = {
   postNewRequest,
   requestModifier,
   deleteRequest,
   getRequest,
+  getRequestFiltered,
 };

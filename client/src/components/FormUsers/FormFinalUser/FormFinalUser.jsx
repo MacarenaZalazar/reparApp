@@ -1,8 +1,13 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { StyledDiv, Input, Form } from "../stylesFormUsers";
 import axios from "axios";
+import Swal from "sweetalert2";
+import { useHistory } from "react-router-dom";
+import { getCities, getStates} from "../../../redux/actions/techUsers/index";
+import { useDispatch, useSelector } from 'react-redux';
 
 const FormFinalUser = () => {
+  const history = useHistory();
   const [input, setInput] = useState({
     name: "",
     lastName: "",
@@ -11,9 +16,20 @@ const FormFinalUser = () => {
     image: "",
     phone: "",
     mail: "",
-    zone: "",
+    state:"",
+    zone: [],
     errors: {},
   });
+  const [state, setState] = useState('')
+  const dispatch = useDispatch()
+  useEffect(()=>{
+    dispatch(getStates())
+  },[])
+  const { allStates, allCities } = useSelector((state) => state);
+
+  console.log(allCities)
+  console.log(state)
+
 
   function validate(values) {
     let errors = {};
@@ -29,6 +45,9 @@ const FormFinalUser = () => {
     if (!values.password) {
       errors.password = "Campo obligatorio";
     }
+    if (!values.state) {
+      errors.state = "Campo obligatorio";
+    }
     if (!values.zone.length) {
       errors.zone = "Campo obligatorio";
     }
@@ -41,6 +60,13 @@ const FormFinalUser = () => {
       ...input,
       [evento.target.name]: evento.target.value,
     }));
+  }
+  function handleZoneChange(e){
+    dispatch(getCities(e.target.value))
+    setState(e.target.value)
+  }
+  function addZone(){
+
   }
 
   const handleSubmit = async (e) => {
@@ -58,7 +84,25 @@ const FormFinalUser = () => {
       try {
         console.log(input);
         await axios.post("http://localhost:3001/finalUsers", input);
-        alert("Usuario creado");
+
+        const Toast = Swal.mixin({
+          toast: true,
+
+          showConfirmButton: false,
+          timer: 3000,
+          timerProgressBar: true,
+          didOpen: (toast) => {
+            toast.addEventListener("mouseenter", Swal.stopTimer);
+            toast.addEventListener("mouseleave", Swal.resumeTimer);
+          },
+        });
+
+        Toast.fire({
+          icon: "success",
+          title: "Registro exitoso",
+        });
+
+        history.push("/login");
       } catch (error) {
         console.log(error);
       }
@@ -141,15 +185,40 @@ const FormFinalUser = () => {
               onChange={handleInputChange}
             />
           </Input>
+          <Input error={input.state}>
+            <label>* Provincia:</label>
+            <select onChange={handleZoneChange} name="state" id="">
+            <option value=""></option>
+            {allStates &&
+              allStates.map((c, idx) => {
+                return (
+                  <option key={idx} value={c}>
+                    {c}
+                  </option>
+                );
+              })}
+            </select>
+          </Input>
           <Input error={input.errors.zones}>
-            <label>* Zonas:</label>
-            <input
-              type="text"
-              autoComplete="off"
-              name="zone"
-              value={input.zone}
-              onChange={handleInputChange}
-            />
+            {allCities.length > 1 && (
+              <> <label>* Zonas:</label>
+              <select
+              className="form-select"
+              aria-label="Default select example"
+              name="departments"
+              id=""
+            >
+              {allCities.map((d, idx) => {
+                return (
+                  <option key={idx} value={d}>
+                    {d}
+                  </option>
+                );
+              })}
+            </select>
+            <button onClick={(e) => addZone(e)}>Agregar Zona</button>
+            </>
+          )}
           </Input>
           * estos campos son obligatorios
           <button type="submit">Crear Usuario</button>
