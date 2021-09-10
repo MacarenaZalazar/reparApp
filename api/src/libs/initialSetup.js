@@ -2,6 +2,8 @@ const Role = require("../models/roles");
 // import User from "../models/User";
 const JobTypes = require("../models/JobTypes");
 // import bcrypt from "bcryptjs";
+const User = require("../models/User");
+const UserController = require("../controllers/Users");
 
 const createRoles = async () => {
   try {
@@ -43,22 +45,31 @@ const createjobTypes = async () => {
   }
 };
 
-// export const createAdmin = async () => {
-//   // check for an existing admin user
-//   const user = await User.findOne({ email: "admin@localhost" });
-//   // get roles _id
-//   const roles = await Role.find({ name: { $in: ["admin", "moderator"] } });
+const createAdmin = async () => {
+  try {
+    // check for an existing admin user
+    const exist = await User.findOne({ mail: "admin@gmail.com" });
 
-//   if (!user) {
-//     // create a new admin user
-//     await User.create({
-//       username: "admin",
-//       email: "admin@localhost",
-//       password: await bcrypt.hash("admin", 10),
-//       roles: roles.map((role) => role._id),
-//     });
-//     console.log("Admin User Created!");
-//   }
-// };
+    // get roles _id
+    const idRole = await Role.find({ name: { $in: "admin" } });
 
-module.exports = { createRoles, createjobTypes };
+    const user = {
+      name: "admin",
+      lastName: "admin",
+      mail: "admin@gmail.com",
+      userName: "admin",
+      password: "romanroman",
+      state: "admin",
+    };
+
+    if (!exist) {
+      // create a new admin user
+      await UserController.createNewUser(user, idRole);
+      console.log("Admin User Created!");
+    }
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+module.exports = { createRoles, createjobTypes, createAdmin };

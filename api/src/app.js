@@ -6,11 +6,16 @@ const cors = require("cors");
 const routes = require("./routes/index.js");
 const { HOST_FRONT } = process.env;
 const helmet = require("helmet");
-const { createRoles, createjobTypes } = require("./libs/initialSetup");
+const {
+  createRoles,
+  createjobTypes,
+  createAdmin,
+} = require("./libs/initialSetup");
 
 const server = express();
 createRoles();
 createjobTypes();
+createAdmin();
 
 server.name = "API";
 
