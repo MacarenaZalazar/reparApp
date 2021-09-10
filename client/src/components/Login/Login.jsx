@@ -49,6 +49,39 @@ const Login = () => {
     }
   };
 
+  const showAlert = async (e) => {
+    e.preventDefault();
+    // MySwal.fire({
+    //   title: "Elige un tipo de usuario",
+    //   showDenyButton: true,
+    //   confirmButtonText:
+    //     '<a style=”color:white” href="/signinTech">Técnico</a> ',
+    //   denyButtonText: '<a className="enlace"  href="/signinFinal">Final</a> ',
+    // });
+
+    const { value: fruit } = await Swal.fire({
+      input: "select",
+      inputOptions: {
+        Tipo: {
+          tech: "Técnico",
+          final: "Final",
+        },
+      },
+      inputPlaceholder: "Selecciona tipo",
+      showCancelButton: true,
+      inputValidator: (value) => {
+        return new Promise((resolve) => {
+          if (value === "tech") {
+            history.push("/signinTech");
+            resolve();
+          } else {
+            history.push("/signinFinal");
+            resolve();
+          }
+        });
+      },
+    });
+  };
   return (
     <StyledDiv>
       <form onSubmit={(e) => handleSubmit(e)}>
@@ -82,6 +115,7 @@ const Login = () => {
               ¡Ingresá!
             </button>
           </ButtonDiv>
+          <span>O <span onClick={showAlert}>registrate</span></span>
         </LoginDiv>
       </form>
     </StyledDiv>
