@@ -62,6 +62,13 @@ const logIn = async (req, res) => {
         workZones: userFound.workZones,
       });
     }
+    if (userFound.roles[0].name === "admin") {
+      res.json({
+        token,
+        id: userFound._id,
+        roles: userFound.roles,
+      });
+    }
     // res.json({ token, userFound });
   } catch (error) {
     console.log(error);
