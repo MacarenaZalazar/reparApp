@@ -1,4 +1,4 @@
-import { Route } from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
 
 import TechnicUserDetails from "./components/TechnicUserDetails/TechnicUserDetails";
 import finalUserDetails from "./components/finalUserDetails/finalUserDetails";
@@ -13,6 +13,7 @@ import ContactUs from "./containers/ContactUs/ContactUs";
 import Footer from "./components/Footer/Footer";
 // import Faq from "./components/faq/Faq";
 import FaqPage from "./containers/faqPage/FaqPage";
+import Error404 from "./containers/Error404/Error404";
 
 import Dashboard from "./containers/UserAdmin/Dashboard";
 
@@ -35,37 +36,40 @@ function App() {
     <div className="appContainer">
       <Route path="/" component={NavBar} />
 
-      {/* <Route exact path="/login" component={Login} /> */}
-      <PrivateRoute exact path="/login" component={Login} />
+      <Switch>
+        <PrivateRoute exact path="/login" component={Login} />
 
-      <PrivateRoute exact path="/signinTech" component={SigninTech} />
+        <PrivateRoute exact path="/signinTech" component={SigninTech} />
 
-      {/* <Route exact path="/signinTech" component={SigninTech} /> */}
-      <PrivateRoute exact path="/signinfinal" component={SigninFinal} />
+        <PrivateRoute exact path="/signinfinal" component={SigninFinal} />
 
-      {/* <Route exact path="/signinfinal" component={SigninFinal} /> */}
+        <Route exact path="/" component={Hero} />
 
-      <Route exact path="/" component={Hero} />
+        <Route exact path="/home" component={Home} />
 
-      <Route exact path="/home" component={Home} />
+        <Route
+          exact
+          path="/finalUserDetails/:id"
+          component={finalUserDetails}
+        />
 
-      <Route exact path="/finalUserDetails/:id" component={finalUserDetails} />
+        <Route
+          exact
+          path="/technicUserDetails/:Id"
+          component={TechnicUserDetails}
+        />
 
-      <Route
-        exact
-        path="/technicUserDetails/:Id"
-        component={TechnicUserDetails}
-      />
+        <Route exact path="/contacto" component={ContactUs} />
 
-      <Route exact path="/contacto" component={ContactUs} />
+        <Route exact path="/about" component={AboutUs} />
 
-      <Route exact path="/about" component={AboutUs} />
+        <Route exact path="/faq" component={FaqPage} />
 
-      <Route exact path="/faq" component={FaqPage} />
+        <Route exact path="/admin" component={Dashboard} />
 
-      <Route exact path="/admin">
-        <Dashboard />
-      </Route>
+        <Route path="*" component={Error404} />
+      </Switch>
+
       <Route path="/" component={Footer} />
     </div>
   );
