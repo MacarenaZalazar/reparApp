@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { StyledDiv, SearchBarDiv, ItemDiv } from "./SearchbarStyles";
 import { Link } from "react-router-dom";
-import { jobs } from "../../utils/mockData";
 import { useDispatch, useSelector } from "react-redux";
 import {
   getCities,
@@ -11,11 +10,10 @@ import {
 
 const Searchbar = () => {
   const [select, setSelect] = useState("");
-  //const [states, setStates] = useState([])
-  //const [cities, setCities] = useState([])
+  const [states, setStates] = useState([])
+  const [cities, setCities] = useState([])
   const dispatch = useDispatch();
-  const { allStates, allCities } = useSelector((state) => state);
-  const jobTypes = useSelector((state) => state.jobTypes);
+  const { allStates, allCities, jobTypes } = useSelector((state) => state);
 
   useEffect(() => {
     dispatch(getStates());
@@ -23,15 +21,18 @@ const Searchbar = () => {
 
   const handleChange = (e) => {
     dispatch(getCities(e.target.value));
+    setStates(e.target.value)
   };
   const handleSelect = (e) => {
     setSelect(e.target.value);
   };
   const handleClick = () => {
     console.log(select);
-    dispatch(getTechUsersByJobAndZone(select, ""));
+    dispatch(getTechUsersByJobAndZone(select, states, cities));
   };
-
+  function handleCities(e){
+    setCities(e.target.value)
+  }
   return (
     <StyledDiv>
       <SearchBarDiv>
@@ -80,6 +81,7 @@ const Searchbar = () => {
               aria-label="Default select example"
               name="departments"
               id=""
+              onChange={handleCities}
             >
               {allCities.map((d, idx) => {
                 return (

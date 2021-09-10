@@ -115,7 +115,7 @@ const Login = () => {
               ¡Ingresá!
             </button>
           </ButtonDiv>
-          <span>O <span onClick={showAlert}>registrate</span></span>
+          <span>O <span className='register'onClick={showAlert}>registrate</span></span>
         </LoginDiv>
       </form>
     </StyledDiv>
