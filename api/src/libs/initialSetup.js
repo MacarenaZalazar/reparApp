@@ -42,6 +42,7 @@ const createjobTypes = async () => {
     console.error(error);
   }
 };
+
 // export const createAdmin = async () => {
 //   // check for an existing admin user
 //   const user = await User.findOne({ email: "admin@localhost" });

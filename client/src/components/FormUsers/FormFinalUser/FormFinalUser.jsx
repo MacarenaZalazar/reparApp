@@ -1,8 +1,11 @@
 import React, { useState } from "react";
 import { StyledDiv, Input, Form } from "../stylesFormUsers";
 import axios from "axios";
+import Swal from "sweetalert2";
+import { useHistory } from "react-router-dom";
 
 const FormFinalUser = () => {
+  const history = useHistory();
   const [input, setInput] = useState({
     name: "",
     lastName: "",
@@ -13,6 +16,7 @@ const FormFinalUser = () => {
     mail: "",
     zone: "",
     errors: {},
+    state: "Mendoza",
   });
 
   function validate(values) {
@@ -58,7 +62,25 @@ const FormFinalUser = () => {
       try {
         console.log(input);
         await axios.post("http://localhost:3001/finalUsers", input);
-        alert("Usuario creado");
+
+        const Toast = Swal.mixin({
+          toast: true,
+
+          showConfirmButton: false,
+          timer: 3000,
+          timerProgressBar: true,
+          didOpen: (toast) => {
+            toast.addEventListener("mouseenter", Swal.stopTimer);
+            toast.addEventListener("mouseleave", Swal.resumeTimer);
+          },
+        });
+
+        Toast.fire({
+          icon: "success",
+          title: "Registro exitoso",
+        });
+
+        history.push("/login");
       } catch (error) {
         console.log(error);
       }

@@ -18,7 +18,6 @@ var initialState = {
   jobTypes: [],
   allStates: [],
   allCities: [],
-
   allUsers: [],
   allRequests: [],
 };

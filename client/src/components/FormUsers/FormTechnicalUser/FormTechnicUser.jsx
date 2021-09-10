@@ -5,6 +5,7 @@ import { jobs } from "../../../utils/mockData";
 import axios from "axios";
 import Checkbox from "../../Checkbox/Checkbox";
 import { useHistory } from "react-router-dom";
+import Swal from "sweetalert2";
 
 const FormTechnicUser = () => {
   const history = useHistory();
@@ -22,6 +23,7 @@ const FormTechnicUser = () => {
     workZones: [],
     jobTypes: [],
     errors: {},
+    state: "Santa Fe",
   });
   const [qualification, setQualification] = useState("");
   const [zone, setZone] = useState("");
@@ -144,7 +146,24 @@ const FormTechnicUser = () => {
       try {
         console.log(input);
         await axios.post("http://localhost:3001/techUsers", input);
-        alert("Usuario creado");
+
+        const Toast = Swal.mixin({
+          toast: true,
+
+          showConfirmButton: false,
+          timer: 3000,
+          timerProgressBar: true,
+          didOpen: (toast) => {
+            toast.addEventListener("mouseenter", Swal.stopTimer);
+            toast.addEventListener("mouseleave", Swal.resumeTimer);
+          },
+        });
+
+        Toast.fire({
+          icon: "success",
+          title: "Registro exitoso",
+        });
+
         history.push("/login");
       } catch (error) {
         console.log(error);

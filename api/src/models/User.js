@@ -39,7 +39,6 @@ const userSchema = new Schema(
       type: String,
       required: true,
     },
-
     roles: [
       {
         type: Schema.ObjectId,
