@@ -1,141 +1,151 @@
-import React from "react";
-import {useEffect } from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import Swal from "sweetalert2";
+import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-//import { getJob,postWorkOrder} from "../../actions/index";
-import { StyledDiv } from './Styles';
+import { getJobTypesAll } from "../../redux/actions/jobTypes";
 
-export default function FilterByScore() {
+const FormWorkOrder = () => {
+  const userString = window.sessionStorage.getItem("user");
+  const user = JSON.parse(userString);
 
-  //const dispatch = useDispatch();
-/*
+  const history = useHistory();
+  const [input, setInput] = useState({
+    title: "",
+    description: "",
+    workImage: "",
+    workType: "",
+  });
+
+  const dispatch = useDispatch();
+
   useEffect(() => {
-       dispatch(getJob());
-   }, []);
-*/
-  //const allJobs=useSelector((state)=> state.jobs);
+    dispatch(getJobTypesAll());
+  }, []);
 
-  //const [error,setError] = useState({});
-  //const [newWorkOrder,setNewWorkOrder] = useState({
-  //      name: "",
-  //      description: "",
-  //      workType:""
-  //  })
+  const jobs = useSelector((state) => state.jobTypes);
 
-//-------------------------
-
-function validate(input) {
-/*
+  function validate(values) {
     let errors = {};
-    if (!input.name) {
-      errors.name = 'Colocar un nombre';
-    } else{
-      if (!input.description) {
-      errors.description = 'colocar una descripcion';
-    } 
+    if (!values.title) {
+      errors.title = "Campo obligatorio";
     }
-  
+    if (!values.description) {
+      errors.lastName = "Campo obligatorio";
+    }
+    if (!values.workType) {
+      errors.workType = "Campo obligatorio";
+    }
+
     return errors;
-    */
+  }
+
+  function handleInputChange(evento) {
+    setInput((input) => ({
+      ...input,
+      [evento.target.name]: evento.target.value,
+    }));
+  }
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const { errors, ...sinErrors } = input;
+    const result = validate(sinErrors);
+    setInput((prevState) => {
+      return {
+        ...prevState,
+        errors: result,
+      };
+    });
+
+    if (!Object.keys(result).length) {
+      try {
+        console.log(input);
+        await axios.post(
+          `http://localhost:3001/request?userFinal=${user.id}`,
+          input
+        );
+
+        const Toast = Swal.mixin({
+          toast: true,
+
+          showConfirmButton: false,
+          timer: 3000,
+          timerProgressBar: true,
+          didOpen: (toast) => {
+            toast.addEventListener("mouseenter", Swal.stopTimer);
+            toast.addEventListener("mouseleave", Swal.resumeTimer);
+          },
+        });
+
+        Toast.fire({
+          icon: "success",
+          title: "Orden de trabajo creada con exito",
+        });
+
+        history.push("/home");
+      } catch (error) {
+        console.log(error);
+      }
+    } else {
+      alert("Se encontraron errores");
+    }
   };
 
-//-----------------------
+  return (
+    <div>
+      <form id="formCreate" onSubmit={(e) => handleSubmit(e)}>
+        <Form>
+          <Input error={input.errors.title}>
+            <label>* Titulo:</label>
+            <input
+              autoComplete="off"
+              type="text"
+              name="title"
+              value={input.title}
+              onChange={handleInputChange}
+            />
+          </Input>
+          <Input error={input.errors.description}>
+            <label>* Descripcion:</label>
+            <input
+              autoComplete="off"
+              type="text"
+              name="description"
+              value={input.description}
+              onChange={handleInputChange}
+            />
+          </Input>
+          <Input>
+            <label>* Imagen:</label>
+            <input
+              type="text"
+              autoComplete="off"
+              name="workImage"
+              value={input.workImage}
+              onChange={handleInputChange}
+            />
+          </Input>
+          <Select
+            error={input.errors.workType}
+            name="workType"
+            onChange={handleInputChange}
+          >
+            {jobs &&
+              jobs.map((job, idx) => {
+                return (
+                  <option name="workType" value={job} key={idx}>
+                    {job}
+                  </option>
+                );
+              })}
+          </Select>
+          * estos campos son obligatorios
+          <button type="submit">Crear Usuario</button>
+        </Form>
+      </form>
+    </div>
+  );
+};
 
-
-  function handleChange(e){
-    /*
-       setNewWorkOrder({
-           ...newWorkOrder,
-           [e.target.name] : e.target.value 
-       })
-       setError(validate({
-        ...newWorkOrder,
-        [e.target.name]: e.target.value 
-      }));
-      */
-   } 
-
-   //---------------------
-
-   function handleSelectJob(e){
-    /*
-        setNewWorkOrder({
-            ...newWorkOrder,
-            workType: e.target.value
-             
-        })
-        */
-}
- 
- //-----------------------
-
- function handleSubmit(e){
-  /*
-    e.preventDefault();
-    setError(validate({ 
-        ...newWorkOrder,
-        [e.target.name]:e.target.value
-    }));
-
-    dispatch(postWorkOrder(newWorkOrder));
-
-    alert("Pedido creado");
-    setNewWorkOrder({
-        name: "",
-        description: "",
-        workType:""
-    })
-  */  
-}
-
-
-    return(
-      <StyledDiv>
-        <form onSubmit={(e)=>handleSubmit(e)}>
-
-          <div>
-            <label>Nombre:</label>
-                <input
-                  type= "text"
-                  //value= {newWordOrder.name}
-                  name= "name"
-                  onChange={(e)=>handleChange(e)} 
-                  />
-
-                  {/*error.name && (
-                  <p>{error.name}</p>
-                  )*/}  
-          </div>
-{/*--------------------------------------------*/}
-          <div>
-            <label>Descripción:</label>
-                <input
-                  type= "text"
-                  //value= {newWordOrder.description}
-                  name= "description"
-                  onChange={(e)=>handleChange(e)} 
-                  />
-                  {/*error.description && (
-                  <p>{error.description}</p>
-                  )*/}  
-          </div>
-{/*--------------------------------------------*/}
-          <div>
-            <label>Tipo de trabajo</label>
-            <select onChange={e => handleSelectJob(e)}>        
-                {/*allJobs.map((el) => { 
-                      return (
-                            <option value={el}>{el}</option>                
-                     );
-                })*/}
-            </select>
-          </div>
-{/*--------------------------------------------*/}
-          <br/>
-          <button type='submit'>Crear pedido</button>    
-        </form>        
-      </StyledDiv>
-
-
-
-      );
-}
+export default FormWorkOrder;
