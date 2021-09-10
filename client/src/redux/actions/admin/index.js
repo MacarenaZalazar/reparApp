@@ -45,10 +45,10 @@ export function GetAllUsers(name) {
   };
 }
 
-export function deleteUser(name) {
+export function deleteUser(user) {
   return async function (dispatch) {
     try {
-      const deleteUser = await axios.delete(id);
+      const deleteUser = await axios.delete(user);
       return dispatch({
         type: DELETE_USER,
         payload: deleteUser.data,
