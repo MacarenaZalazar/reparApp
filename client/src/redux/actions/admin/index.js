@@ -34,7 +34,7 @@ export function DeleteJobType(name) {
 export function GetAllUsers(name) {
   return async function (dispatch) {
     try {
-      const users = await axios.get(name);
+      const users = await axios.get('');
       return dispatch({
         type: GET_ALL_USERS,
         payload: users.data,
@@ -48,7 +48,7 @@ export function GetAllUsers(name) {
 export function deleteUser(user) {
   return async function (dispatch) {
     try {
-      const deleteUser = await axios.delete(user);
+      const deleteUser = await axios.delete('');
       return dispatch({
         type: DELETE_USER,
         payload: deleteUser.data,
