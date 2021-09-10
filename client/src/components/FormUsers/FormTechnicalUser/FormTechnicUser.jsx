@@ -1,16 +1,21 @@
 import { StyledDiv, Input, Form, InputJobs } from "../stylesFormUsers";
 import { useState } from "react";
-import { useSelector } from "react-redux";
-import { jobs } from "../../../utils/mockData";
+import { useSelector, useDispatch } from "react-redux";
 import axios from "axios";
 import Checkbox from "../../Checkbox/Checkbox";
 import { useHistory } from "react-router-dom";
 import Swal from "sweetalert2";
+import { getCities, getStates } from "../../../redux/actions/techUsers";
+import { useEffect } from "react";
 
 const FormTechnicUser = () => {
   const history = useHistory();
   const jobTypesRedux = useSelector((state) => state.jobTypes);
-
+  const dispatch = useDispatch()
+  useEffect(()=>{
+      dispatch(getStates())
+  },[])
+  const { allStates, allCities } = useSelector((state) => state);
   const [input, setInput] = useState({
     name: "",
     lastName: "",
@@ -20,10 +25,10 @@ const FormTechnicUser = () => {
     phone: "",
     mail: "",
     qualifications: [],
+    state:"",
     workZones: [],
     jobTypes: [],
     errors: {},
-    state: "Santa Fe",
   });
   const [qualification, setQualification] = useState("");
   const [zone, setZone] = useState("");
@@ -46,12 +51,16 @@ const FormTechnicUser = () => {
     if (!values.qualifications.length) {
       errors.qualifications = "Campo obligatorio";
     }
+    if (!values.state) {
+      errors.state = "Campo obligatorio";
+    }
     if (!values.workZones.length) {
       errors.workZones = "Campo obligatorio";
     }
 
     return errors;
   }
+ 
 
   function handleInputChange(evento) {
     setInput((input) => ({
@@ -62,6 +71,7 @@ const FormTechnicUser = () => {
 
   // Funcion para cambiar zonas y boton para añadir el array
   function handleZoneChange(evento) {
+    dispatch(getCities(evento.target.value))
     setZone(evento.target.value);
   }
   function addZone(evento) {
@@ -247,17 +257,40 @@ const FormTechnicUser = () => {
               onChange={handleInputChange}
             />
           </Input>
+          <Input error={input.state}>
+            <label>* Provincia:</label>
+            <select onChange={handleZoneChange} name="state" id="">
+            <option value=""></option>
+            {allStates &&
+              allStates.map((c, idx) => {
+                return (
+                  <option key={idx} value={c}>
+                    {c}
+                  </option>
+                );
+              })}
+            </select>
+          </Input>
           <Input error={input.errors.workZones}>
-            <label>* Zonas:</label>
-            <input
-              className="zoneInput"
-              type="text"
-              autoComplete="off"
-              name="zone"
-              onChange={handleZoneChange}
-            />
-
+            {allCities.length > 1 && (
+            <> <label>* Zonas:</label>
+            <select
+              className="form-select"
+              aria-label="Default select example"
+              name="departments"
+              id=""
+            >
+              {allCities.map((d, idx) => {
+                return (
+                  <option key={idx} value={d}>
+                    {d}
+                  </option>
+                );
+              })}
+            </select>
             <button onClick={(e) => addZone(e)}>Agregar Zona</button>
+            </>
+          )}
           </Input>
           <InputJobs error={input.errors.jobTypes}>
             <label>* Tipos de Trabajo:</label>
