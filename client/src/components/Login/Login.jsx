@@ -6,7 +6,7 @@ import {
   ButtonDiv,
 } from "./styledLogin";
 import axios from "axios";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { getTechUsersByJobAndZone } from "../../redux/actions/techUsers";
 import { MdAccountCircle, MdVpnKey } from "react-icons/md";
 import { useState } from "react";

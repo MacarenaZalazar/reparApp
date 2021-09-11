@@ -20,11 +20,10 @@ const FormFinalUser = () => {
     zone: "",
     errors: {},
   });
-  const [state, setState] = useState("");
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getStates());
-  }, []);
+  }, [dispatch]);
   const { allStates, allCities } = useSelector((state) => state);
 
   function validate(values) {
@@ -61,7 +60,6 @@ const FormFinalUser = () => {
     }));
   }
   function handleStateChange(evento) {
-    console.log(evento.target.value);
     dispatch(getCities(evento.target.value));
     setInput((input) => ({
       ...input,
@@ -71,8 +69,6 @@ const FormFinalUser = () => {
   }
 
   function handleZoneChange(evento) {
-    console.log(evento.target.value);
-
     setInput((input) => ({
       ...input,
       zone: evento.target.value,
@@ -81,7 +77,6 @@ const FormFinalUser = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(input);
     const { errors, ...sinErrors } = input;
     const result = validate(sinErrors);
     setInput((prevState) => {
@@ -93,7 +88,6 @@ const FormFinalUser = () => {
 
     if (!Object.keys(result).length) {
       try {
-        console.log(input);
         await axios.post("http://localhost:3001/finalUsers", input);
 
         const Toast = Swal.mixin({

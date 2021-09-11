@@ -1,5 +1,4 @@
 import React from "react";
-import Faq from "../../components/faq/Faq";
 import Faq2 from "../../components/faq/Faq2";
 import Faq3 from "../../components/faq/Faq3";
 function FaqPage() {

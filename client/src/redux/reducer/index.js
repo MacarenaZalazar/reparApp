@@ -73,7 +73,6 @@ function reducer(state = initialState, action) {
         jobTypes: payload,
       };
     case GET_JOB_TYPES:
-      console.log("pay:", payload);
       return {
         ...state,
         jobTypes: payload,

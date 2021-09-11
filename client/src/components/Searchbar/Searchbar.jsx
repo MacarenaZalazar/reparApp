@@ -9,15 +9,16 @@ import {
 } from "../../redux/actions/techUsers/index";
 
 const Searchbar = () => {
-  useEffect(() => {
-    dispatch(getStates());
-  }, []);
+  const dispatch = useDispatch();
 
   const [jobTypesInput, setJobTypesInput] = useState("");
   const [state, setState] = useState([]);
   const [citie, setCitie] = useState([]);
-  const dispatch = useDispatch();
   const { allStates, allCities, jobTypes } = useSelector((state) => state);
+
+  useEffect(() => {
+    dispatch(getStates());
+  }, [dispatch]);
 
   const handleJobTypes = (e) => {
     setJobTypesInput(e.target.value);
@@ -33,9 +34,6 @@ const Searchbar = () => {
   }
 
   const handleClick = () => {
-    console.log(jobTypesInput);
-    console.log(state);
-    console.log(citie);
     dispatch(getTechUsersByJobAndZone(jobTypesInput, state, citie));
   };
 
