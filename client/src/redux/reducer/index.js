@@ -7,7 +7,10 @@ import {
 } from "../actions/techUsers/constantsTechUsers";
 
 import { GET_JOB_TYPES } from "../actions/jobTypes/constantsJobTypes";
-
+import {
+  GET_FINAL_USERS_ALL,
+  GET_FINAL_USERS_BY_ID,
+} from "../actions/finalUser/constantsFinalUser";
 import { ADD_JOBTYPE, DELETE_JOBTYPE } from "../actions/admin/constantJobTypes";
 import { GET_ALL_USERS } from "../actions/admin/constantsAdmin";
 import { GET_ALL_JOB_REQUESTS } from "../actions/allUsers/constantsAllUsers";
@@ -15,6 +18,8 @@ import { GET_ALL_JOB_REQUESTS } from "../actions/allUsers/constantsAllUsers";
 var initialState = {
   techUsers: [],
   technicUserDetail: {},
+  finalUser: [],
+  finalUserDetail: {},
   jobTypes: [],
   allStates: [],
   allCities: [],
@@ -86,6 +91,17 @@ function reducer(state = initialState, action) {
       return {
         ...state,
         allRequests: payload,
+      };
+    case GET_FINAL_USERS_ALL:
+      return {
+        ...state,
+        finalUser: payload,
+      };
+
+    case GET_TECH_USERS_BY_ID:
+      return {
+        ...state,
+        finalUserDetail: payload,
       };
 
     default:
