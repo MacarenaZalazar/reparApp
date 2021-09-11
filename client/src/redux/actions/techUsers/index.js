@@ -40,11 +40,14 @@ export function getTechUsersById(id, config) {
   };
 }
 
-export function getTechUsersByJobAndZone(jobType, zone) {
+export function getTechUsersByJobAndZone(jobType, state, workZones) {
+  console.log(jobType);
+  console.log(state);
+  console.log(workZones);
   return async function (dispatch) {
     try {
       let techUsers = await axios.get(
-        `${TECH_USERS_URL}/filter?jobTypes=${jobType}&workZones=${zone}`
+        `${TECH_USERS_URL}/filter?jobTypes=${jobType}&state=${state}&workZones=${workZones}`
       );
       return dispatch({
         type: GET_TECH_USERS_BY_JOB_ZONE,
