@@ -30,12 +30,10 @@ const NavBar = () => {
     dispatch(getTechUsersAll());
   }
 
-  const { techUsers } = useSelector((state) => state);
-
   return (
     <StyledDiv>
       <NavBarDiv className="container">
-        <Link onClick={onClick} to="/home" className="linkHome">
+        <Link to="/" className="linkHome">
           <LogoDiv>
             <img src={Logo} alt="logo" />
             <h4>ReparApp</h4>

@@ -41,7 +41,6 @@ function reducer(state = initialState, action) {
         techUsers: payload,
       };
     case GET_TECH_USERS_BY_ID:
-      console.log("tech user by id");
       return {
         ...state,
         technicUserDetail: payload,

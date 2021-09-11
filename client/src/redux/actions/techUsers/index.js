@@ -41,9 +41,7 @@ export function getTechUsersById(id, config) {
 }
 
 export function getTechUsersByJobAndZone(jobType, state, workZones) {
-  console.log(jobType);
-  console.log(state);
-  console.log(workZones);
+  console.log("estoy despachando filter SearchBar");
   return async function (dispatch) {
     try {
       let techUsers = await axios.get(
