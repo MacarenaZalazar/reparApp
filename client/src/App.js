@@ -20,13 +20,16 @@ import Dashboard from "./containers/UserAdmin/Dashboard";
 import PrivateRoute from "./components/PrivateRoute/PrivateRoute";
 import { useEffect } from "react";
 import { getJobTypesAll } from "./redux/actions/jobTypes";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 function App() {
   const dispatch = useDispatch();
+  const jobTypes = useSelector((state) => state.jobTypes);
 
   useEffect(() => {
-    dispatch(getJobTypesAll());
+    if (!jobTypes.length) {
+      dispatch(getJobTypesAll());
+    }
   }, []);
 
   return (
