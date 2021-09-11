@@ -37,10 +37,17 @@ export const Form = styled.div`
   span {
     padding: 10px 0;
   }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+  }
 `;
 export const Input = styled.div`
+  width: 100%;
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 1rem;
 
   input {
@@ -54,6 +61,44 @@ export const Input = styled.div`
     background-color: ${({ error }) => (error ? "#ff8882" : "")};
     outline: none;
   }
+
+  label {
+    width: 10rem;
+    text-align: end;
+  }
+
+  select {
+    width: 20rem;
+    padding: 0.3rem;
+    border-radius: 2rem;
+  }
+
+  .flexZones {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+
+    &__ul {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0.3rem;
+      p {
+        font-size: 0.8rem;
+      }
+
+      &--item {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        gap: 0.3rem;
+      }
+
+      .btn-zone {
+        padding: 0.1rem 0.4rem;
+        border-radius: 50%;
+      }
+    }
+  }
 `;
 export const InputJobs = styled.div`
   display: flex;
@@ -66,4 +111,19 @@ export const InputJobs = styled.div`
     grid-gap: 0.5rem;
     padding: 0.3rem;
   }
+`;
+
+export const Left = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 0.5rem;
+`;
+export const Right = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 0.5rem;
 `;

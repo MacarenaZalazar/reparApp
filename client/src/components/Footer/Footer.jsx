@@ -1,18 +1,17 @@
 import React from "react";
+import { StyledDiv } from "./styledFooter";
 import Logo from "../../utils/wrench.png";
 import { Navbar, Container } from "react-bootstrap";
 import SocialLinks from "../SocialLinks/SocialLinks";
-import {socialMedia} from '../../utils/reparAppInfo'
-import { Link } from 'react-router-dom';
-
-
+import { socialMedia } from "../../utils/reparAppInfo";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
-  const {instagram, facebook, linkedin, github} = socialMedia
+  const { instagram, facebook, linkedin, github } = socialMedia;
 
   return (
-    <>
-      <Navbar className='footer' bg="light" variant="light">
+    <StyledDiv>
+      <Navbar className="footer" bg="light" variant="dark">
         <Container>
           <Navbar.Brand href="#home">
             <img
@@ -24,12 +23,17 @@ const Footer = () => {
             />
             ReparApp
           </Navbar.Brand>
-          <Link to='/contacto'>Contacto</Link>
+          <Link to="/contacto">Contacto</Link>
           <span color="white"> @2021 all rights reserved</span>
-          <SocialLinks instagram={instagram} facebook={facebook} linkedin={linkedin} github={github} />
+          <SocialLinks
+            instagram={instagram}
+            facebook={facebook}
+            linkedin={linkedin}
+            github={github}
+          />
         </Container>
       </Navbar>
-    </>
+    </StyledDiv>
   );
 };
 

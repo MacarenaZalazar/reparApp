@@ -22,6 +22,16 @@ var initialState = {
   allRequests: [],
 };
 
+function capitalize(str) {
+  return str
+    .toLowerCase()
+    .split(" ")
+    .map(function (Word) {
+      return Word[0].toUpperCase() + Word.substr(1);
+    })
+    .join(" ");
+}
+
 function reducer(state = initialState, action) {
   const { type, payload } = action;
   switch (type) {
@@ -47,9 +57,11 @@ function reducer(state = initialState, action) {
         allStates: payload,
       };
     case GET_CITIES:
+      let payloadCapitalize = payload.map((pay) => capitalize(pay));
+
       return {
         ...state,
-        allCities: payload,
+        allCities: payloadCapitalize,
       };
     case ADD_JOBTYPE:
       return {

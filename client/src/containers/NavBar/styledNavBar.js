@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const StyledDiv = styled.div`
-  background-color: #ff8882;
+  background-color: #de6b48;
   width: 100%;
   box-shadow: 0 16px 24px -18px rgba(181, 129, 108, 0.5);
 `;
@@ -17,10 +17,10 @@ export const NavBarDiv = styled.div`
   a {
     text-decoration: none;
   }
-  .linkHome{
+  .linkHome {
     color: black;
   }
-  .navButtons{
+  .navButtons {
     margin-right: 50px;
   }
 
