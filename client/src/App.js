@@ -11,6 +11,7 @@ import SigninFinal from "./containers/SigninFinal/SigninFinal";
 import AboutUs from "./containers/AboutUs/AboutUs";
 import ContactUs from "./containers/ContactUs/ContactUs";
 import Footer from "./components/Footer/Footer";
+import PerfilUserTech from "./components/PerfilUserTech/PerfilUserTech";
 // import Faq from "./components/faq/Faq";
 import FaqPage from "./containers/faqPage/FaqPage";
 import Error404 from "./containers/Error404/Error404";
@@ -66,6 +67,8 @@ function App() {
         <Route exact path="/faq" component={FaqPage} />
 
         <Route exact path="/admin" component={Dashboard} />
+
+        <Route exact path="/usuarioTech" component={PerfilUserTech} />
 
         <Route path="*" component={Error404} />
       </Switch>
