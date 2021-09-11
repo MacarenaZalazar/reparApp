@@ -33,7 +33,7 @@ function App() {
     if (!jobTypes.length) {
       dispatch(getJobTypesAll());
     }
-  }, []);
+  }, [dispatch]);
 
   return (
     <div className="appContainer">

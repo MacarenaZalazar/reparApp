@@ -13,7 +13,7 @@ const Home = () => {
   useEffect(() => {
     dispatch(getStates());
     dispatch(getCities());
-  }, []);
+  }, [dispatch]);
 
   return (
     <StyledDiv>

@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 import { useDispatch } from "react-redux";
 import { getTechUsersAll } from "../../redux/actions/techUsers/index";
-import { useSelector } from "react-redux";
+
 import DropdownMenu from "../../components/Dropdown/DropdownMenu";
 import { RiMapPinUserFill } from "react-icons/ri";
 
@@ -42,9 +42,22 @@ const NavBar = () => {
 
         <UserName>
           {user && user.userName && (
-            <div className="flex">
-              <RiMapPinUserFill />
-              <p> Hola, {user.userName} </p>
+            <div>
+              {user.roles[0].name === "userFinal" ? (
+                <Link to="/usuarioFinal">
+                  <div className="flex">
+                    <RiMapPinUserFill />
+                    <p> Hola, {user.userName} </p>
+                  </div>
+                </Link>
+              ) : (
+                <Link to="/usuarioTech">
+                  <div className="flex">
+                    <RiMapPinUserFill />
+                    <p> Hola, {user.userName} </p>
+                  </div>
+                </Link>
+              )}
             </div>
           )}
         </UserName>
