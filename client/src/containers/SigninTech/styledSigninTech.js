@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const StyledDiv = styled.div`
   width: 100%;
-  height: calc(100vh - 6rem);
+  height: calc(100vh - 10rem);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -10,7 +10,6 @@ export const StyledDiv = styled.div`
 
   h3 {
     text-align: center;
-    padding: 2rem;
   }
 `;
 

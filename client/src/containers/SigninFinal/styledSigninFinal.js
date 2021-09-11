@@ -10,7 +10,6 @@ export const StyledDiv = styled.div`
 
   h3 {
     text-align: center;
-    padding: 2rem;
   }
 `;
 
