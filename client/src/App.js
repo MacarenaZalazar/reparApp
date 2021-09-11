@@ -23,6 +23,8 @@ import { useEffect } from "react";
 import { getJobTypesAll } from "./redux/actions/jobTypes";
 import { useDispatch, useSelector } from "react-redux";
 
+// jose estuvo aquí
+
 function App() {
   const dispatch = useDispatch();
   const jobTypes = useSelector((state) => state.jobTypes);
