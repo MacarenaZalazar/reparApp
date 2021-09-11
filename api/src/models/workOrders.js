@@ -27,6 +27,14 @@ const workOrderSchema = new Schema(
       type: Boolean,
       default: false,
     },
+    state: {
+      type: String,
+      required: true,
+    },
+    zone: {
+      type: String,
+      required: true,
+    },
   },
   {
     timestamps: true,

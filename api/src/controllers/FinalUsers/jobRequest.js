@@ -4,7 +4,8 @@ const UserF = require("../../models/FinalUser");
 const postNewRequest = async (req, res, next) => {
   const workOrdersSession = await workOrders.startSession();
   const { userFinal } = req.query;
-  const { title, description, workImage, workType } = req.body;
+
+  const { title, description, workImage, workType, state, zone } = req.body;
   try {
     await workOrdersSession.withTransaction(async () => {
       await workOrders.create({
@@ -13,6 +14,8 @@ const postNewRequest = async (req, res, next) => {
         userFinal,
         workImage,
         workType,
+        state,
+        zone,
       });
     });
     workOrdersSession.endSession();
