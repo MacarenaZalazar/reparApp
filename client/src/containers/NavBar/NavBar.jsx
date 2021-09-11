@@ -50,8 +50,15 @@ const NavBar = () => {
                     <p> Hola, {user.userName} </p>
                   </div>
                 </Link>
-              ) : (
+              ) : user.roles[0].name === "userTech" ? (
                 <Link to="/usuarioTech">
+                  <div className="flex">
+                    <RiMapPinUserFill />
+                    <p> Hola, {user.userName} </p>
+                  </div>
+                </Link>
+              ) : (
+                <Link to="/admin">
                   <div className="flex">
                     <RiMapPinUserFill />
                     <p> Hola, {user.userName} </p>

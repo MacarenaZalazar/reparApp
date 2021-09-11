@@ -110,6 +110,7 @@ const logIn = async (req, res) => {
         token,
         id: userFound._id,
         roles: userFound.roles,
+        userName: userFound.userName,
       });
     }
     // res.json({ token, userFound });

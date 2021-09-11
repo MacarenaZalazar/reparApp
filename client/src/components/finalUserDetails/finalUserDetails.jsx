@@ -1,15 +1,16 @@
 import React from "react";
-import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { getFinalUsersById } from "../../redux/actions/finalUser/index";
+import { useDispatch, useSelector } from "react-redux";
 
-export default function finalUserDetails(props) {
-  const finalUserID = props.match.params.id;
+function FinalUserDetails(props) {
   const dispatch = useDispatch();
+
   useEffect(() => {
     dispatch(getFinalUsersById(finalUserID));
   }, [dispatch]);
 
+  const finalUserID = props.match.params.id;
   const FinalUser = useSelector((state) => state.finalUserDetail);
 
   return (
@@ -25,3 +26,5 @@ export default function finalUserDetails(props) {
     </div>
   );
 }
+
+export default FinalUserDetails;

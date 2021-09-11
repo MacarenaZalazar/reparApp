@@ -22,7 +22,7 @@ export function getFinalUsersAll() {
 export function getFinalUsersById(id, config) {
   return async function (dispatch) {
     try {
-      let finalUser = await axios.get(`${FINAL_USERS_URL}/${id}`, config);
+      let finalUser = await axios.get(`${FINAL_USER_URL}/${id}`, config);
 
       return dispatch({
         type: GET_FINAL_USERS_BY_ID,
