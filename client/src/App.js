@@ -29,9 +29,6 @@ function App() {
     dispatch(getJobTypesAll());
   }, []);
 
-  const userString = window.sessionStorage.getItem("user");
-  const user = JSON.parse(userString);
-
   return (
     <div className="appContainer">
       <Route path="/" component={NavBar} />
