@@ -36,7 +36,7 @@ const Login = () => {
       const role = login.data.roles && login.data.roles[0].name;
 
       if (role === "userFinal") {
-        dispatch(getTechUsersByJobAndZone(null, login.data.zone));
+        dispatch(getTechUsersByJobAndZone(null, login.data.state, null));
       }
       MySwal.fire({
         title: "Bienvenido",
@@ -115,7 +115,12 @@ const Login = () => {
               ¡Ingresá!
             </button>
           </ButtonDiv>
-          <span>O <span className='register'onClick={showAlert}>registrate</span></span>
+          <span>
+            O{" "}
+            <span className="register" onClick={showAlert}>
+              registrate
+            </span>
+          </span>
         </LoginDiv>
       </form>
     </StyledDiv>
