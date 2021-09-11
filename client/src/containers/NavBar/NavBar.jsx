@@ -1,18 +1,17 @@
-import { StyledDiv, LogoDiv, NavBarDiv } from "./styledNavBar";
+import { UserName, StyledDiv, LogoDiv, NavBarDiv } from "./styledNavBar";
 import Logo from "../../utils/wrench.png";
-import { Link, Redirect } from "react-router-dom";
-// import Swal from "sweetalert2";
-// import withReactContent from "sweetalert2-react-content";
+import { Link } from "react-router-dom";
+
 import { useDispatch } from "react-redux";
 import { getTechUsersAll } from "../../redux/actions/techUsers/index";
 import { useSelector } from "react-redux";
 import DropdownMenu from "../../components/Dropdown/DropdownMenu";
-import Swal from "sweetalert2";
-import withReactContent from "sweetalert2-react-content";
-
-const MySwal = withReactContent(Swal);
+import { RiMapPinUserFill } from "react-icons/ri";
 
 const NavBar = () => {
+  const userString = window.sessionStorage.getItem("user");
+  const user = JSON.parse(userString);
+
   const dispatch = useDispatch();
   // const showAlert = async (e) => {
   //   e.preventDefault();
@@ -26,16 +25,6 @@ const NavBar = () => {
   // };
 
   // const dispatch = useDispatch();
-  const showAlert = async (e) => {
-    e.preventDefault();
-    MySwal.fire({
-      title: "Elige un tipo de usuario",
-      showDenyButton: true,
-      confirmButtonText:
-        '<a style=”color:white” href="/signinTech">Técnico</a> ',
-      denyButtonText: '<a className="enlace"  href="/signinFinal">Final</a> ',
-    });
-  };
 
   function onClick() {
     dispatch(getTechUsersAll());
@@ -53,6 +42,14 @@ const NavBar = () => {
           </LogoDiv>
         </Link>
 
+        <UserName>
+          {user && user.userName && (
+            <div className="flex">
+              <RiMapPinUserFill />
+              <p> Hola, {user.userName} </p>
+            </div>
+          )}
+        </UserName>
         <div className="navButtons">
           <DropdownMenu onClick={onClick} />
 

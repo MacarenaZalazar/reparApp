@@ -63,3 +63,16 @@ export const LogoDiv = styled.div`
     width: 40px;
   }
 `;
+
+export const UserName = styled.div`
+  font-weight: bold;
+  .flex {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 3rem;
+  }
+  p {
+    font-size: 1.5rem;
+  }
+`;
