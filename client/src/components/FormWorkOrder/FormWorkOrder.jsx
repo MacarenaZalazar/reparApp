@@ -5,6 +5,7 @@ import { Form, Input, StyledDiv } from "./styledFormWorkOrder";
 import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getJobTypesAll } from "../../redux/actions/jobTypes";
+import { getCities, getStates } from "../../redux/actions/techUsers/index";
 
 const FormWorkOrder = () => {
   const userString = window.sessionStorage.getItem("user");
@@ -22,6 +23,8 @@ const FormWorkOrder = () => {
     description: "",
     workImage: "",
     workType: "",
+    state: "",
+    zone: "",
     errors: {},
   });
 
@@ -29,8 +32,13 @@ const FormWorkOrder = () => {
 
   useEffect(() => {
     dispatch(getJobTypesAll());
-  }, []);
+  }, [dispatch]);
 
+  useEffect(() => {
+    dispatch(getStates());
+  }, [dispatch]);
+
+  const { allStates, allCities } = useSelector((state) => state);
   const jobTypes = useSelector((state) => state.jobTypes);
 
   function validate(values) {
@@ -44,6 +52,12 @@ const FormWorkOrder = () => {
     if (!values.workType) {
       errors.workType = "Campo obligatorio";
     }
+    if (!values.state) {
+      errors.state = "Campo obligatorio";
+    }
+    if (!values.zone.length) {
+      errors.zone = "Campo obligatorio";
+    }
 
     return errors;
   }
@@ -52,6 +66,21 @@ const FormWorkOrder = () => {
     setInput((input) => ({
       ...input,
       [evento.target.name]: evento.target.value,
+    }));
+  }
+  function handleStateChange(evento) {
+    dispatch(getCities(evento.target.value));
+    setInput((input) => ({
+      ...input,
+      state: evento.target.value,
+      zone: "",
+    }));
+  }
+
+  function handleZoneChange(evento) {
+    setInput((input) => ({
+      ...input,
+      zone: evento.target.value,
     }));
   }
 
@@ -125,7 +154,7 @@ const FormWorkOrder = () => {
               onChange={handleInputChange}
             />
           </Input>
-          <Input>
+          <Input error={input.errors.workType}>
             <label>* Tipo de trabajo:</label>
             <select
               className="form-select"
@@ -153,6 +182,43 @@ const FormWorkOrder = () => {
               value={input.workImage}
               onChange={handleInputChange}
             />
+          </Input>
+          <Input error={input.errors.state}>
+            <label>* Provincia:</label>
+            <select onChange={handleStateChange} name="state" id="">
+              <option value=""></option>
+              {allStates &&
+                allStates.map((c, idx) => {
+                  return (
+                    <option key={idx} value={c}>
+                      {c}
+                    </option>
+                  );
+                })}
+            </select>
+          </Input>
+          <Input error={input.errors.zone}>
+            {allCities.length > 1 && (
+              <div className="flexZones">
+                <div>
+                  <label>* Zonas:</label>
+                  <select
+                    aria-label="Default select example"
+                    name="departments"
+                    id=""
+                    onChange={handleZoneChange}
+                  >
+                    {allCities.map((d, idx) => {
+                      return (
+                        <option key={idx} value={d}>
+                          {d}
+                        </option>
+                      );
+                    })}
+                  </select>
+                </div>
+              </div>
+            )}
           </Input>
           * estos campos son obligatorios
           <button type="submit">Crear Pedido de Trabajo</button>
