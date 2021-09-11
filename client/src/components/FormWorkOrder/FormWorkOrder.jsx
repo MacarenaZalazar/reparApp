@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Swal from "sweetalert2";
+import { Form, Input, StyledDiv } from "./styledFormWorkOrder";
 import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getJobTypesAll } from "../../redux/actions/jobTypes";
@@ -9,12 +10,19 @@ const FormWorkOrder = () => {
   const userString = window.sessionStorage.getItem("user");
   const user = JSON.parse(userString);
 
+  let config = {
+    headers: {
+      "x-access-token": user && user.token,
+    },
+  };
+
   const history = useHistory();
   const [input, setInput] = useState({
     title: "",
     description: "",
     workImage: "",
     workType: "",
+    errors: {},
   });
 
   const dispatch = useDispatch();
@@ -23,7 +31,7 @@ const FormWorkOrder = () => {
     dispatch(getJobTypesAll());
   }, []);
 
-  const jobs = useSelector((state) => state.jobTypes);
+  const jobTypes = useSelector((state) => state.jobTypes);
 
   function validate(values) {
     let errors = {};
@@ -31,7 +39,7 @@ const FormWorkOrder = () => {
       errors.title = "Campo obligatorio";
     }
     if (!values.description) {
-      errors.lastName = "Campo obligatorio";
+      errors.description = "Campo obligatorio";
     }
     if (!values.workType) {
       errors.workType = "Campo obligatorio";
@@ -49,6 +57,7 @@ const FormWorkOrder = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
     const { errors, ...sinErrors } = input;
     const result = validate(sinErrors);
     setInput((prevState) => {
@@ -60,10 +69,10 @@ const FormWorkOrder = () => {
 
     if (!Object.keys(result).length) {
       try {
-        console.log(input);
         await axios.post(
-          `http://localhost:3001/request?userFinal=${user.id}`,
-          input
+          `http://localhost:3001/request?userFinal=${user.idUserFinal}`,
+          input,
+          config
         );
 
         const Toast = Swal.mixin({
@@ -93,7 +102,7 @@ const FormWorkOrder = () => {
   };
 
   return (
-    <div>
+    <StyledDiv>
       <form id="formCreate" onSubmit={(e) => handleSubmit(e)}>
         <Form>
           <Input error={input.errors.title}>
@@ -117,7 +126,26 @@ const FormWorkOrder = () => {
             />
           </Input>
           <Input>
-            <label>* Imagen:</label>
+            <label>* Tipo de trabajo:</label>
+            <select
+              className="form-select"
+              aria-label="Default select example"
+              name="workType"
+              onChange={handleInputChange}
+            >
+              <option value=""></option>
+              {jobTypes &&
+                jobTypes.map((j, idx) => {
+                  return (
+                    <option value={j} key={idx}>
+                      {j}
+                    </option>
+                  );
+                })}
+            </select>
+          </Input>
+          <Input>
+            <label>Imagen:</label>
             <input
               type="text"
               autoComplete="off"
@@ -126,25 +154,11 @@ const FormWorkOrder = () => {
               onChange={handleInputChange}
             />
           </Input>
-          <Select
-            error={input.errors.workType}
-            name="workType"
-            onChange={handleInputChange}
-          >
-            {jobs &&
-              jobs.map((job, idx) => {
-                return (
-                  <option name="workType" value={job} key={idx}>
-                    {job}
-                  </option>
-                );
-              })}
-          </Select>
           * estos campos son obligatorios
-          <button type="submit">Crear Usuario</button>
+          <button type="submit">Crear Pedido de Trabajo</button>
         </Form>
       </form>
-    </div>
+    </StyledDiv>
   );
 };
 

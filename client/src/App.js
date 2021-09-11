@@ -15,6 +15,7 @@ import PerfilUserTech from "./components/PerfilUserTech/PerfilUserTech";
 // import Faq from "./components/faq/Faq";
 import FaqPage from "./containers/faqPage/FaqPage";
 import Error404 from "./containers/Error404/Error404";
+import CreateWorkOrder from "./containers/CreateWorkOrder/CreateWorkOrder";
 
 import Dashboard from "./containers/UserAdmin/Dashboard";
 
@@ -45,6 +46,8 @@ function App() {
         <PrivateRoute exact path="/signinTech" component={SigninTech} />
 
         <PrivateRoute exact path="/signinfinal" component={SigninFinal} />
+
+        <Route exact path="/newWorkOrder" component={CreateWorkOrder} />
 
         <Route exact path="/" component={Hero} />
 
