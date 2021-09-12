@@ -1,19 +1,20 @@
-const BASE_URL = "http://localhost:3001/";
-// const BASE_URL_API = "https://api-pf-050921.herokuapp.com/";
-const TECH_USERS_URL = `${BASE_URL}techUsers`;
+// const BASE_URL = "http://localhost:3001/";
+// const BASE_URL = "https://api-pf-050921.herokuapp.com/";
+const BASE_URL = process.env.REACT_APP_API_URL || "http://localhost:3001"
+const TECH_USERS_URL = `${BASE_URL}/techUsers`;
 
 // url admin
 
-const ADMIN_URL = `${BASE_URL}admin`;
+const ADMIN_URL = `${BASE_URL}/admin`;
 
 //url Job Types
 
-const JOB_TYPES_URL = `${BASE_URL}jobTypes`;
+const JOB_TYPES_URL = `${BASE_URL}/jobTypes`;
 // url final User
-const FINAL_USER_URL = `${BASE_URL}finalUsers`;
+const FINAL_USER_URL = `${BASE_URL}/finalUsers`;
 
 //url request
-const REQUEST_URL = `${BASE_URL}request`;
+const REQUEST_URL = `${BASE_URL}/request`;
 
 module.exports = {
   TECH_USERS_URL,
