@@ -71,26 +71,26 @@ const getRequest = async (req, res, next) => {
 };
 
 const getRequestFiltered = async (req, res, next) => {
-  const { workType, state, zone } = req.query;
+  const { workType, state, workZones } = req.query;
 
-  console.log( workType, state, zone);
+  const workZoneSplit = workZones.split(",");
 
-  if (workType === "null") {
+  if (!workType || workType === "null") {
     workType = null;
   }
 
-  if (state === "null") {
+  if (!state || state === "null") {
     state = null;
-    zone = null;
+    workZones = null;
   }
 
-  if (zone === "null") {
-    zone = null;
+  if (!workZones || workZones === "null") {
+    workZones = null;
   }
 
-  if (workType && state && zone) {
+  if (workType && state && workZones) {
     try {
-      let filtered = await workOrders.find({ workType, state, zone });
+      let filtered = await workOrders.find({ workType, state, zone: workZoneSplit});
 
       res.status(200).json(filtered);
     } catch (error) {
@@ -104,7 +104,7 @@ const getRequestFiltered = async (req, res, next) => {
     } catch (error) {
       next(error);
     }
-  } else if (workType && state) {
+  } else if (workType && state && !workZones) {
     try {
       let filtered = await workOrders.find({ workType, state });
 
@@ -112,7 +112,7 @@ const getRequestFiltered = async (req, res, next) => {
     } catch (error) {
       next(error);
     }
-  } else if (!workType && state) {
+  } else if (!workType && state && !workZones) {
     try {
       let filtered = await workOrders.find({ state });
 
@@ -120,29 +120,16 @@ const getRequestFiltered = async (req, res, next) => {
     } catch (error) {
       next(error);
     }
+  } else if (!workType && state && workZones) {
+     try {
+       let filtered = await workOrders.find({ state, zone: workZoneSplit });
+
+       res.status(200).json(filtered);
+      }  catch (error) {
+       next(error);
+    }
   } else res.sendStatus(400);
 
-  /* try {
-    if (workType && zone) {
-      filtered = await workOrders
-        .find({ zone, workType })
-        .populate({ path: "userFinal" });
-    } else if (workType && !zone) {
-      filtered = await workOrders
-        .find({ workType })
-        .populate({ path: "userFinal" });
-    } else if (!workType && zone) {
-      filtered = await workOrders
-        .find({ zone })
-        .populate({ path: "userFinal" });
-    } else {
-      return res.sendStatus(400);
-    }
-
-    res.status(200).json(filtered);
-  } catch (error) {
-    next(error);
-  } */
 };
 
 module.exports = {
