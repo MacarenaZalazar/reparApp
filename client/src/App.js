@@ -12,7 +12,8 @@ import AboutUs from "./containers/AboutUs/AboutUs";
 import ContactUs from "./containers/ContactUs/ContactUs";
 import Footer from "./components/Footer/Footer";
 
-import PerfilUserFinal from "./components/PerfilUserFinal/PerfilUserFinal";
+// import PerfilUserFinal from "./components/PerfilUserFinal/PerfilUserFinal";
+import ProfileUserFinal from "./containers/FinalUserProfile/ProfileUserFinal";
 
 
 // import Faq from "./components/faq/Faq";
@@ -68,7 +69,7 @@ function App() {
 
         <Route exact path="/admin" component={Dashboard} />
 
-        <Route exact path="/perfilUserFinal" component={PerfilUserFinal} />
+        <Route exact path="/perfilUserFinal" component={ProfileUserFinal} />
         
         <Route path="*" component={Error404} />
       </Switch>

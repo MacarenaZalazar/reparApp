@@ -1,6 +1,6 @@
 import React from "react";
 
-function MenuUpDate() {
+function NewJobRequests() {
   return (
     <>
       <button
@@ -9,7 +9,7 @@ function MenuUpDate() {
         data-bs-toggle="modal"
         data-bs-target="#exampleModal"
       >
-        Launch demo modal
+        A New Job Requests !
       </button>
 
       <div
@@ -23,7 +23,7 @@ function MenuUpDate() {
           <div class="modal-content">
             <div class="modal-header">
               <h5 class="modal-title" id="exampleModalLabel">
-                Modal title
+                Create A New Job Requests
               </h5>
               <button
                 type="button"
@@ -33,29 +33,21 @@ function MenuUpDate() {
               ></button>
             </div>
             <div class="modal-body">
-              <form>
-                <div class="form-group">
-                  <label for="exampleFormControlInput1">Email address</label>
-                  <input
-                    type="email"
-                    class="form-control"
-                    id="exampleFormControlInput1"
-                    placeholder="name@example.com"
-                  />
-                </div>
-                <div class="form-group">
-                  <label for="exampleFormControlFile1">
-                    Example file input
+              <form className="w-75">
+                <div class="mb-3">
+                  <label for="exampleFormControlInput1" class="form-label">
+                    Title New Job Requests
                   </label>
                   <input
-                    type="file"
-                    class="form-control-file"
-                    id="exampleFormControlFile1"
+                    type="text"
+                    class="form-control"
+                    id="exampleFormControlInput1"
+                    placeholder="Enter You Title..."
                   />
                 </div>
-                <div class="form-group">
-                  <label for="exampleFormControlTextarea1">
-                    Example textarea
+                <div class="mb-3">
+                  <label for="exampleFormControlTextarea1" class="form-label">
+                    Description New Job Requests
                   </label>
                   <textarea
                     class="form-control"
@@ -63,6 +55,9 @@ function MenuUpDate() {
                     rows="3"
                   ></textarea>
                 </div>
+                <button type="submit" class="btn btn-success mt-3 w-50">
+                  Save
+                </button>
               </form>
             </div>
             <div class="modal-footer">
@@ -73,9 +68,6 @@ function MenuUpDate() {
               >
                 Close
               </button>
-              <button type="button" class="btn btn-primary">
-                Save changes
-              </button>
             </div>
           </div>
         </div>
@@ -84,4 +76,4 @@ function MenuUpDate() {
   );
 }
 
-export default MenuUpDate;
+export default NewJobRequests;
