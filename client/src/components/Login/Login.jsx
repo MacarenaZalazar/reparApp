@@ -8,6 +8,7 @@ import {
 import axios from "axios";
 import { useDispatch } from "react-redux";
 import { getTechUsersByJobAndZone } from "../../redux/actions/techUsers";
+import { getRequestAllFiltered } from "../../redux/actions/request/index";
 import { MdAccountCircle, MdVpnKey } from "react-icons/md";
 import { useState } from "react";
 import { useHistory } from "react-router-dom";
@@ -38,6 +39,11 @@ const Login = () => {
       if (role === "userFinal") {
         dispatch(
           getTechUsersByJobAndZone(null, login.data.state, login.data.zone)
+        );
+      }
+      if (role === "userTech") {
+        dispatch(
+          getRequestAllFiltered(null, login.data.state, login.data.workZones)
         );
       }
       MySwal.fire({

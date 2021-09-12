@@ -12,9 +12,13 @@ const JOB_TYPES_URL = `${BASE_URL}jobTypes`;
 // url final User
 const FINAL_USER_URL = `${BASE_URL}finalUsers`;
 
+//url request
+const REQUEST_URL = `${BASE_URL}request`;
+
 module.exports = {
   TECH_USERS_URL,
   ADMIN_URL,
   JOB_TYPES_URL,
   FINAL_USER_URL,
+  REQUEST_URL,
 };
