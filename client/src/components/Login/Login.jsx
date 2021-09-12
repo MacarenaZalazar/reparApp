@@ -57,6 +57,12 @@ const Login = () => {
       });
     }
   };
+  const forgotPassword = async (e) => {
+    e.preventDefault();
+    let passInput = { mail: input.mail, password: "forgot your password" };
+    await axios.post("http://localhost:3001/login", passInput);
+    alert("Enviamos un email con tu nueva contraseña");
+  };
 
   const showAlert = async (e) => {
     e.preventDefault();
@@ -128,6 +134,12 @@ const Login = () => {
             O{" "}
             <span className="register" onClick={showAlert}>
               registrate
+            </span>
+          </span>
+          <span>
+            O{" "}
+            <span className="register" onClick={(e) => forgotPassword(e)}>
+              Olvidaste tu contraseña?
             </span>
           </span>
         </LoginDiv>
