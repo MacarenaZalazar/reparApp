@@ -79,6 +79,8 @@ function App() {
         <Route exact path="/admin" component={Dashboard} />
 
         <Route exact path="/perfilUserFinal" component={ProfileUserFinal} />
+
+        {/* <Route exact path="/usuarioTech" component={PerfilUserTech} /> */}
         
         <Route path="*" component={Error404} />
       </Switch>
