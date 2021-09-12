@@ -51,6 +51,7 @@ function reducer(state = initialState, action) {
         technicUserDetail: payload,
       };
     case GET_TECH_USERS_BY_JOB_ZONE:
+      console.log(payload);
       return {
         ...state,
         techUsers: payload,
@@ -98,7 +99,7 @@ function reducer(state = initialState, action) {
         finalUser: payload,
       };
 
-    case GET_TECH_USERS_BY_ID:
+    case GET_FINAL_USERS_BY_ID:
       return {
         ...state,
         finalUserDetail: payload,

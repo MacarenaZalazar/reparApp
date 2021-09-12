@@ -34,6 +34,10 @@ const Searchbar = () => {
   }
 
   const handleClick = () => {
+    console.log("por despachar");
+    console.log(jobTypesInput);
+    console.log(state);
+    console.log(citie);
     dispatch(getTechUsersByJobAndZone(jobTypesInput, state, citie));
   };
 

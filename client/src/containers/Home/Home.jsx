@@ -13,7 +13,7 @@ const Home = () => {
   const user = JSON.parse(userString);
 
   const dispatch = useDispatch();
-  const { techUsers } = useSelector((state) => state);
+  const techUsers = useSelector((state) => state.techUsers);
   useEffect(() => {
     dispatch(getStates());
     dispatch(getCities());

@@ -36,7 +36,9 @@ const Login = () => {
       const role = login.data.roles && login.data.roles[0].name;
 
       if (role === "userFinal") {
-        dispatch(getTechUsersByJobAndZone(null, login.data.state, null));
+        dispatch(
+          getTechUsersByJobAndZone(null, login.data.state, login.data.zone)
+        );
       }
       MySwal.fire({
         title: "Bienvenido",
