@@ -6,14 +6,8 @@ name: Node.js CI
 on:
   push:
     branches: [ main ]
-    path:
-      - 'api/**'
-      - 'client/**'
   pull_request:
     branches: [ main ]
-    path:
-      - 'api/**'
-      - 'client/**'
 
 jobs:
   backend:
@@ -24,7 +18,8 @@ jobs:
       - name: Heroku deploy
         uses: akhileshns/heroku-deploy@v3.12.12
         with:
-          branch: main
+          appdir: "api"
+          branch: "main"
           heroku_api_key: ${{secrets.HEROKU_API_KEY}}
           heroku_app_name: "api-pf-050921"
           heroku_email: "sfranciach@gmail.com"
@@ -37,7 +32,8 @@ jobs:
       - name: Heroku deploy
         uses: akhileshns/heroku-deploy@v3.12.12
         with:
-          branch: main
+          appdir: "client"
+          branch: "main"
           heroku_api_key: ${{secrets.HEROKU_API_KEY}}
           heroku_app_name: "webclient-pf-050921"
           heroku_email: "sfranciach@gmail.com"
