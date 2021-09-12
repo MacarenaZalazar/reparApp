@@ -1,7 +1,7 @@
 import { Route, Switch } from "react-router-dom";
 
 import TechnicUserDetails from "./components/TechnicUserDetails/TechnicUserDetails";
-import finalUserDetails from "./components/finalUserDetails/finalUserDetails";
+import FinalUserDetails from "./components/FinalUserDetails/FinalUserDetails";
 import NavBar from "./containers/NavBar/NavBar";
 import Hero from "./containers/Hero/Hero";
 import Home from "./containers/Home/Home";
@@ -56,7 +56,7 @@ function App() {
         <Route
           exact
           path="/finalUserDetails/:id"
-          component={finalUserDetails}
+          component={FinalUserDetails}
         />
 
         <Route
