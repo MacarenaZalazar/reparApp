@@ -1,7 +1,7 @@
 import { Route, Switch } from "react-router-dom";
 
 import TechnicUserDetails from "./components/TechnicUserDetails/TechnicUserDetails";
-import FinalUserDetails from "./components/FinalUserDetails/FinalUserDetails";
+import FinalUserDetails from "./components/finalUserDetails/FinalUserDetails";
 import NavBar from "./containers/NavBar/NavBar";
 import Hero from "./containers/Hero/Hero";
 import Home from "./containers/Home/Home";
@@ -78,7 +78,7 @@ function App() {
 
         <Route exact path="/admin" component={Dashboard} />
 
-        <Route exact path="/perfilUserFinal" component={ProfileUserFinal} />
+        <Route exact path="/usuarioFinal" component={ProfileUserFinal} />
         
         <Route path="*" component={Error404} />
       </Switch>

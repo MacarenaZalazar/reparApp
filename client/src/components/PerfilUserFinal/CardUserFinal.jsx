@@ -1,24 +1,28 @@
 import React from "react";
-import NewJobRequests from './NewJobRequests';
-function CardUserFinal() {
+import {Link} from 'react-router-dom'
+function CardUserFinal({name,img,lastname,tell,mail,username,password,zone,state}) {
   return (
     <>
       <div class="card w-50">
-        <img src="..." class="card-img-top" alt="..." />
+        <img src={img} class="card-img-top" alt="image no found" />
         <div class="card-body">
-          <h5 class="card-title">Card title</h5>
-          <p class="card-text">
-            Some quick example text to build on the card title and make up the
-            bulk of the card's content.
-          </p>
+          <h5 class="card-title">Name: {name}</h5>
+          <h5 class="card-title">Lastname: {lastname}</h5>
+          <h5 class="card-title">Phone: {tell}</h5>
         </div>
         <ul class="list-group list-group-flush">
-          <li class="list-group-item">An item</li>
-          <li class="list-group-item">A second item</li>
-          <li class="list-group-item">A third item</li>
+          <li class="list-group-item">Mail: {mail}</li>
+          <li class="list-group-item">UserName: {username}</li>
+          <li class="list-group-item">Zone: {zone}</li>
+          <li class="list-group-item">State: {state}</li>
         </ul>
         <div class="card-body">
-          <NewJobRequests/>
+          <Link to='/home'>
+          <button type="button" class="btn btn-dark">Go To Home</button>
+          </Link>
+          <Link to='/newWorkOrder'>
+          <button type="button" class="btn btn-primary ml-3">New Work Order</button>
+          </Link>
           {/* <a href="#" class="card-link">
             Card link
           </a>
