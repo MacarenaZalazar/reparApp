@@ -73,10 +73,6 @@ const getRequest = async (req, res, next) => {
 const getRequestFiltered = async (req, res, next) => {
   let { workType, state, workZones } = req.query;
 
-  console.log(workType);
-  console.log(state);
-  console.log(workZones);
-
   let workZoneSplit = workZones.split(",");
 
   if (!workType || workType === "null") {
