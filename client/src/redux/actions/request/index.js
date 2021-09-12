@@ -8,8 +8,9 @@ export function getRequestAllFiltered(workType, state, workZones) {
   return async function (dispatch) {
     try {
       let allRequest = await axios.get(
-        `${REQUEST_URL}/filtered?workType=${workType}&state=${state}&zone=${workZonesString}`
+        `${REQUEST_URL}/filtered?workType=${workType}&state=${state}&workZones=${workZonesString}`
       );
+
       return dispatch({
         type: GET_ALL_REQUEST,
         payload: allRequest.data,

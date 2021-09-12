@@ -13,7 +13,6 @@ export default function TechnicUser({
   workZones,
   jobTypes,
 }) {
-  console.log(image);
   return (
     <StyledDiv>
       <img src={`${image}`} alt="img" />

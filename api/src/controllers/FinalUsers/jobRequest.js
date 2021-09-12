@@ -71,9 +71,13 @@ const getRequest = async (req, res, next) => {
 };
 
 const getRequestFiltered = async (req, res, next) => {
-  const { workType, state, workZones } = req.query;
+  let { workType, state, workZones } = req.query;
 
-  const workZoneSplit = workZones.split(",");
+  console.log(workType);
+  console.log(state);
+  console.log(workZones);
+
+  let workZoneSplit = workZones.split(",");
 
   if (!workType || workType === "null") {
     workType = null;
@@ -90,7 +94,11 @@ const getRequestFiltered = async (req, res, next) => {
 
   if (workType && state && workZones) {
     try {
-      let filtered = await workOrders.find({ workType, state, zone: workZoneSplit});
+      let filtered = await workOrders.find({
+        workType,
+        state,
+        zone: workZoneSplit,
+      });
 
       res.status(200).json(filtered);
     } catch (error) {
@@ -121,15 +129,14 @@ const getRequestFiltered = async (req, res, next) => {
       next(error);
     }
   } else if (!workType && state && workZones) {
-     try {
-       let filtered = await workOrders.find({ state, zone: workZoneSplit });
+    try {
+      let filtered = await workOrders.find({ state, zone: workZoneSplit });
 
-       res.status(200).json(filtered);
-      }  catch (error) {
-       next(error);
+      res.status(200).json(filtered);
+    } catch (error) {
+      next(error);
     }
   } else res.sendStatus(400);
-
 };
 
 module.exports = {

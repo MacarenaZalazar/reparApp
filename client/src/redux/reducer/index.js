@@ -26,7 +26,7 @@ var initialState = {
   allStates: [],
   allCities: [],
   allUsers: [],
-  allRequests: [],
+  allRequest: [],
 };
 
 function capitalize(str) {
@@ -105,9 +105,10 @@ function reducer(state = initialState, action) {
 
     //WorkOrders -- Request
     case GET_ALL_REQUEST:
+      console.log("payload:  ", payload);
       return {
         ...state,
-        allRequests: payload,
+        allRequest: payload,
       };
 
     default:
