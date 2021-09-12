@@ -13,6 +13,7 @@ function FinalUserDetails(props) {
   const finalUserID = props.match.params.id;
   const FinalUser = useSelector((state) => state.finalUserDetail);
 
+  // a ver si arregla
   return (
     <div>
       <h1>{FinalUser.user.userName}</h1>
