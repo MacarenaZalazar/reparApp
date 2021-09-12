@@ -6,8 +6,9 @@ import {
   ButtonDiv,
 } from "./styledLogin";
 import axios from "axios";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { getTechUsersByJobAndZone } from "../../redux/actions/techUsers";
+import { getRequestAllFiltered } from "../../redux/actions/request/index";
 import { MdAccountCircle, MdVpnKey } from "react-icons/md";
 import { useState } from "react";
 import { useHistory } from "react-router-dom";
@@ -36,7 +37,14 @@ const Login = () => {
       const role = login.data.roles && login.data.roles[0].name;
 
       if (role === "userFinal") {
-        dispatch(getTechUsersByJobAndZone(null, login.data.zone));
+        dispatch(
+          getTechUsersByJobAndZone(null, login.data.state, login.data.zone)
+        );
+      }
+      if (role === "userTech") {
+        dispatch(
+          getRequestAllFiltered(null, login.data.state, login.data.workZones)
+        );
       }
       MySwal.fire({
         title: "Bienvenido",
@@ -115,7 +123,12 @@ const Login = () => {
               ¡Ingresá!
             </button>
           </ButtonDiv>
-          <span>O <span className='register'onClick={showAlert}>registrate</span></span>
+          <span>
+            O{" "}
+            <span className="register" onClick={showAlert}>
+              registrate
+            </span>
+          </span>
         </LoginDiv>
       </form>
     </StyledDiv>

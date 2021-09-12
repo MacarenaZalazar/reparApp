@@ -9,30 +9,38 @@ import {
 } from "../../redux/actions/techUsers/index";
 
 const Searchbar = () => {
-  const [select, setSelect] = useState("");
-  const [states, setStates] = useState([])
-  const [cities, setCities] = useState([])
   const dispatch = useDispatch();
+
+  const [jobTypesInput, setJobTypesInput] = useState("");
+  const [state, setState] = useState([]);
+  const [citie, setCitie] = useState([]);
   const { allStates, allCities, jobTypes } = useSelector((state) => state);
 
   useEffect(() => {
     dispatch(getStates());
-  }, []);
+  }, [dispatch]);
 
-  const handleChange = (e) => {
+  const handleJobTypes = (e) => {
+    setJobTypesInput(e.target.value);
+  };
+
+  const handleChangeState = (e) => {
     dispatch(getCities(e.target.value));
-    setStates(e.target.value)
+    setState(e.target.value);
   };
-  const handleSelect = (e) => {
-    setSelect(e.target.value);
-  };
-  const handleClick = () => {
-    console.log(select);
-    dispatch(getTechUsersByJobAndZone(select, states, cities));
-  };
-  function handleCities(e){
-    setCities(e.target.value)
+
+  function handleChangeCitie(e) {
+    setCitie(e.target.value);
   }
+
+  const handleClick = () => {
+    console.log("por despachar");
+    console.log(jobTypesInput);
+    console.log(state);
+    console.log(citie);
+    dispatch(getTechUsersByJobAndZone(jobTypesInput, state, citie));
+  };
+
   return (
     <StyledDiv>
       <SearchBarDiv>
@@ -41,8 +49,8 @@ const Searchbar = () => {
           <select
             className="form-select"
             aria-label="Default select example"
-            name="jobs"
-            onChange={handleSelect}
+            name="jobTypesInput"
+            onChange={handleJobTypes}
           >
             <option value=""></option>
             {jobTypes &&
@@ -60,8 +68,8 @@ const Searchbar = () => {
           <select
             className="form-select"
             aria-label="Default select example"
-            onChange={handleChange}
-            name="provincias"
+            onChange={handleChangeState}
+            name="state"
             id=""
           >
             <option value=""></option>
@@ -81,8 +89,9 @@ const Searchbar = () => {
               aria-label="Default select example"
               name="departments"
               id=""
-              onChange={handleCities}
+              onChange={handleChangeCitie}
             >
+              <option value=""></option>
               {allCities.map((d, idx) => {
                 return (
                   <option key={idx} value={d}>

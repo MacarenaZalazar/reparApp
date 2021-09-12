@@ -6,8 +6,13 @@ import {
   GET_CITIES,
 } from "../actions/techUsers/constantsTechUsers";
 
-import { GET_JOB_TYPES } from "../actions/jobTypes/constantsJobTypes";
+import { GET_ALL_REQUEST } from "../actions/request/constantsRequest";
 
+import { GET_JOB_TYPES } from "../actions/jobTypes/constantsJobTypes";
+import {
+  GET_FINAL_USERS_ALL,
+  GET_FINAL_USERS_BY_ID,
+} from "../actions/finalUser/constantsFinalUser";
 import { ADD_JOBTYPE, DELETE_JOBTYPE } from "../actions/admin/constantJobTypes";
 import { GET_ALL_USERS } from "../actions/admin/constantsAdmin";
 import { GET_ALL_JOB_REQUESTS } from "../actions/allUsers/constantsAllUsers";
@@ -15,6 +20,8 @@ import { GET_ALL_JOB_REQUESTS } from "../actions/allUsers/constantsAllUsers";
 var initialState = {
   techUsers: [],
   technicUserDetail: {},
+  finalUser: [],
+  finalUserDetail: {},
   jobTypes: [],
   allStates: [],
   allCities: [],
@@ -41,12 +48,12 @@ function reducer(state = initialState, action) {
         techUsers: payload,
       };
     case GET_TECH_USERS_BY_ID:
-      console.log("tech user by id");
       return {
         ...state,
         technicUserDetail: payload,
       };
     case GET_TECH_USERS_BY_JOB_ZONE:
+      console.log(payload);
       return {
         ...state,
         techUsers: payload,
@@ -74,7 +81,6 @@ function reducer(state = initialState, action) {
         jobTypes: payload,
       };
     case GET_JOB_TYPES:
-      console.log("pay:", payload);
       return {
         ...state,
         jobTypes: payload,
@@ -84,7 +90,21 @@ function reducer(state = initialState, action) {
         ...state,
         allUsers: payload,
       };
-    case GET_ALL_JOB_REQUESTS:
+
+    case GET_FINAL_USERS_ALL:
+      return {
+        ...state,
+        finalUser: payload,
+      };
+
+    case GET_FINAL_USERS_BY_ID:
+      return {
+        ...state,
+        finalUserDetail: payload,
+      };
+
+    //WorkOrders -- Request
+    case GET_ALL_REQUEST:
       return {
         ...state,
         allRequests: payload,

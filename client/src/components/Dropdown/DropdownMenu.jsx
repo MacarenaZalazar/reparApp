@@ -1,11 +1,8 @@
 import React from "react";
 import { DropdownButton, Dropdown } from "react-bootstrap";
 import Swal from "sweetalert2";
-import withReactContent from "sweetalert2-react-content";
-import { BsJustify } from "react-icons/bs";
-import { useHistory } from "react-router-dom";
 
-const MySwal = withReactContent(Swal);
+import { useHistory } from "react-router-dom";
 
 const DropdownMenu = ({ onClick }) => {
   const history = useHistory();

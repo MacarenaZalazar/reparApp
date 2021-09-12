@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 import { useDispatch } from "react-redux";
 import { getTechUsersAll } from "../../redux/actions/techUsers/index";
-import { useSelector } from "react-redux";
+
 import DropdownMenu from "../../components/Dropdown/DropdownMenu";
 import { RiMapPinUserFill } from "react-icons/ri";
 
@@ -30,12 +30,10 @@ const NavBar = () => {
     dispatch(getTechUsersAll());
   }
 
-  const { techUsers } = useSelector((state) => state);
-
   return (
     <StyledDiv>
       <NavBarDiv className="container">
-        <Link onClick={onClick} to="/home" className="linkHome">
+        <Link to="/" className="link">
           <LogoDiv>
             <img src={Logo} alt="logo" />
             <h4>ReparApp</h4>
@@ -44,9 +42,29 @@ const NavBar = () => {
 
         <UserName>
           {user && user.userName && (
-            <div className="flex">
-              <RiMapPinUserFill />
-              <p> Hola, {user.userName} </p>
+            <div>
+              {user.roles[0].name === "userFinal" ? (
+                <Link to="/usuarioFinal" className="link">
+                  <div className="flex">
+                    <RiMapPinUserFill />
+                    <p> Hola, {user.userName} </p>
+                  </div>
+                </Link>
+              ) : user.roles[0].name === "userTech" ? (
+                <Link to="/usuarioTech" className="link">
+                  <div className="flex">
+                    <RiMapPinUserFill />
+                    <p> Hola, {user.userName} </p>
+                  </div>
+                </Link>
+              ) : (
+                <Link to="/admin">
+                  <div className="flex link">
+                    <RiMapPinUserFill />
+                    <p> Hola, {user.userName} </p>
+                  </div>
+                </Link>
+              )}
             </div>
           )}
         </UserName>

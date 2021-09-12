@@ -58,11 +58,13 @@ const logIn = async (req, res) => {
       console.log(userFinal);
 
       userFound.zone = userFinal[0].zone;
+      userFound.idFinal = userFinal[0]._id;
     }
     if (userFound.roles[0].name === "userTech") {
       const userTech = await UserT.find({ user: { $eq: userFound._id } });
 
       userFound.workZones = userTech[0].workZones;
+      userFound.idTech = userTech[0]._id;
     }
 
     if (!userFound) return res.status(400).json({ message: "User Not Found" });
@@ -86,18 +88,22 @@ const logIn = async (req, res) => {
       res.json({
         token,
         id: userFound._id,
+        idUserFinal: userFound.idFinal,
         roles: userFound.roles,
         zone: userFound.zone,
         userName: userFound.userName,
+        state: userFound.state,
       });
     }
     if (userFound.roles[0].name === "userTech") {
       res.json({
         token,
         id: userFound._id,
+        idTech: userFound.idTech,
         roles: userFound.roles,
         workZones: userFound.workZones,
         userName: userFound.userName,
+        state: userFound.state,
       });
     }
     if (userFound.roles[0].name === "admin") {
@@ -105,6 +111,7 @@ const logIn = async (req, res) => {
         token,
         id: userFound._id,
         roles: userFound.roles,
+        userName: userFound.userName,
       });
     }
     // res.json({ token, userFound });

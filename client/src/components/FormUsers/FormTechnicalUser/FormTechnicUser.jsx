@@ -21,7 +21,7 @@ const FormTechnicUser = () => {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getStates());
-  }, []);
+  }, [dispatch]);
   const { allStates, allCities } = useSelector((state) => state);
   const [input, setInput] = useState({
     name: "",
@@ -76,7 +76,6 @@ const FormTechnicUser = () => {
 
   // Funcion para cambiar zonas y boton para añadir el array
   function handleStateChange(evento) {
-    console.log(evento.target.value);
     dispatch(getCities(evento.target.value));
     setInput((input) => ({
       ...input,
@@ -86,8 +85,6 @@ const FormTechnicUser = () => {
   }
 
   function handleZoneChange(evento) {
-    console.log(evento.target.value);
-
     if (!input.workZones.includes(evento.target.value)) {
       setInput((input) => ({
         ...input,
@@ -145,7 +142,6 @@ const FormTechnicUser = () => {
   }
 
   const handleSubmit = async (e) => {
-    console.log(input);
     e.preventDefault();
     const { errors, ...sinErrors } = input;
     const result = validate(sinErrors);
@@ -158,7 +154,6 @@ const FormTechnicUser = () => {
 
     if (!Object.keys(result).length) {
       try {
-        console.log(input);
         await axios.post("http://localhost:3001/techUsers", input);
 
         const Toast = Swal.mixin({

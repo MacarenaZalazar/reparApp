@@ -5,18 +5,27 @@ import { StyledDiv } from "./Styles";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getStates, getCities } from "../../redux/actions/techUsers";
+import { Link } from "react-router-dom";
 //import { getTechUsersAll } from "../../redux/actions/techUsers/index";
 
 const Home = () => {
+  const userString = window.sessionStorage.getItem("user");
+  const user = JSON.parse(userString);
+
   const dispatch = useDispatch();
-  const { techUsers } = useSelector((state) => state);
+  const techUsers = useSelector((state) => state.techUsers);
   useEffect(() => {
     dispatch(getStates());
     dispatch(getCities());
-  }, []);
+  }, [dispatch]);
 
   return (
     <StyledDiv>
+      {user && user.roles[0].name === "userFinal" && (
+        <Link className="link" to="/newWorkOrder">
+          Nueva solicitud de trabajo
+        </Link>
+      )}
       {techUsers ? (
         <>
           <DisplayFilters />

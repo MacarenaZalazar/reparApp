@@ -7,7 +7,6 @@ import {
   GET_STATES,
   GET_CITIES,
 } from "./constantsTechUsers";
-import { useSelector } from "react-redux";
 
 export function getTechUsersAll() {
   return async function (dispatch) {
@@ -24,9 +23,7 @@ export function getTechUsersAll() {
 }
 
 export function getTechUsersById(id, config) {
-  console.log("config:", config);
   return async function (dispatch) {
-    console.log(`${TECH_USERS_URL}/${id}`);
     try {
       let techUser = await axios.get(`${TECH_USERS_URL}/${id}`, config);
 
@@ -40,11 +37,11 @@ export function getTechUsersById(id, config) {
   };
 }
 
-export function getTechUsersByJobAndZone(jobType, zone) {
+export function getTechUsersByJobAndZone(jobType, state, workZones) {
   return async function (dispatch) {
     try {
       let techUsers = await axios.get(
-        `${TECH_USERS_URL}/filter?jobTypes=${jobType}&workZones=${zone}`
+        `${TECH_USERS_URL}/filter?jobTypes=${jobType}&state=${state}&workZones=${workZones}`
       );
       return dispatch({
         type: GET_TECH_USERS_BY_JOB_ZONE,
