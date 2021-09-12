@@ -8,18 +8,34 @@ on:
     branches: [ main ]
     path:
       - 'api/**'
+      - 'client/**'
   pull_request:
     branches: [ main ]
     path:
       - 'api/**'
+      - 'client/**'
 
 jobs:
   backend:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - uses: akhileshns/heroku-deploy@v3.12.12
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Heroku deploy
+        uses: akhileshns/heroku-deploy@v3.12.12
         with:
           heroku_api_key: ${{secrets.HEROKU_API_KEY}}
           heroku_app_name: "api-pf-050921"
+          heroku_email: "sfranciach@gmail.com"
+  frontend:
+    needs: backend
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Heroku deploy
+        uses: akhileshns/heroku-deploy@v3.12.12
+        with:
+          heroku_api_key: ${{secrets.HEROKU_API_KEY}}
+          heroku_app_name: "webclient-pf-050921"
           heroku_email: "sfranciach@gmail.com"
