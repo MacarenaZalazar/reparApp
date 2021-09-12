@@ -7,8 +7,12 @@ import {
   getStates,
   getTechUsersByJobAndZone,
 } from "../../redux/actions/techUsers/index";
+import { getRequestAllFiltered } from "../../redux/actions/request/index";
 
 const Searchbar = () => {
+  const userString = window.sessionStorage.getItem("user");
+  const userSession = JSON.parse(userString);
+
   const dispatch = useDispatch();
 
   const [jobTypesInput, setJobTypesInput] = useState("");
@@ -34,11 +38,14 @@ const Searchbar = () => {
   }
 
   const handleClick = () => {
-    console.log("por despachar");
-    console.log(jobTypesInput);
-    console.log(state);
-    console.log(citie);
-    dispatch(getTechUsersByJobAndZone(jobTypesInput, state, citie));
+    if (userSession && userSession.roles === "userFinal") {
+      dispatch(getTechUsersByJobAndZone(jobTypesInput, state, citie));
+    } else if (userSession && userSession.roles === "userTech") {
+      dispatch(getRequestAllFiltered(jobTypesInput, state, citie));
+    } else {
+      dispatch(getTechUsersByJobAndZone(jobTypesInput, state, citie));
+      dispatch(getRequestAllFiltered(jobTypesInput, state, citie));
+    }
   };
 
   return (

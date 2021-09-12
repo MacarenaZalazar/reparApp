@@ -17,3 +17,11 @@ export const StyledDiv = styled.div`
     text-decoration: none;
   }
 `;
+export const SinUser = styled.div`
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  padding: 4rem;
+  h2 {
+    text-align: center;
+  }
+`;
