@@ -42,6 +42,7 @@ const Login = () => {
         );
       }
       if (role === "userTech") {
+        console.log("despacho como usuario tecnico");
         dispatch(
           getRequestAllFiltered(null, login.data.state, login.data.workZones)
         );

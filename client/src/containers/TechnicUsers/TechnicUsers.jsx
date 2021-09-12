@@ -1,7 +1,6 @@
 import React from "react";
 import TechnicUser from "../../components/TechnicUser/TechnicUser";
 import { useSelector } from "react-redux";
-// import { technicUsers } from "../../utils/mockData";
 import { StyledDiv } from "./Styles";
 
 const TechnicUsers = () => {

@@ -1,9 +1,10 @@
 import React from "react";
 import DisplayFilters from "../DisplayFilters/DisplayFilters";
 import TechnicUsers from "../TechnicUsers/TechnicUsers";
+import WorkOrders from "../WorkOrders/WorkOrders";
 import { StyledDiv } from "./Styles";
 import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { getStates, getCities } from "../../redux/actions/techUsers";
 import { Link } from "react-router-dom";
 //import { getTechUsersAll } from "../../redux/actions/techUsers/index";
@@ -13,7 +14,7 @@ const Home = () => {
   const user = JSON.parse(userString);
 
   const dispatch = useDispatch();
-  const techUsers = useSelector((state) => state.techUsers);
+
   useEffect(() => {
     dispatch(getStates());
     dispatch(getCities());
@@ -26,13 +27,18 @@ const Home = () => {
           Nueva solicitud de trabajo
         </Link>
       )}
-      {techUsers ? (
+      {user.roles[0].name === "userFinal" ? (
         <>
           <DisplayFilters />
           <TechnicUsers />
         </>
+      ) : user.roles[0].name === "userTech" ? (
+        <>
+          <DisplayFilters />
+          <WorkOrders />
+        </>
       ) : (
-        <span>Cargando...</span>
+        <p>Cargando...</p>
       )}
     </StyledDiv>
   );

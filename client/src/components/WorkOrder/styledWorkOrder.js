@@ -63,7 +63,8 @@ export const StyledDiv = styled.div`
   }
   img {
     margin: 10px;
-    max-width: 100px;
-    border-radius: 10px;
+    max-width: 15rem;
+    max-height: 10rem;
+    border-radius: 1rem;
   }
 `;
