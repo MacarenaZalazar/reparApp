@@ -6,6 +6,8 @@ import {
   GET_CITIES,
 } from "../actions/techUsers/constantsTechUsers";
 
+import { GET_ALL_REQUEST } from "../actions/request/constantsRequest";
+
 import { GET_JOB_TYPES } from "../actions/jobTypes/constantsJobTypes";
 import {
   GET_FINAL_USERS_ALL,
@@ -88,11 +90,7 @@ function reducer(state = initialState, action) {
         ...state,
         allUsers: payload,
       };
-    case GET_ALL_JOB_REQUESTS:
-      return {
-        ...state,
-        allRequests: payload,
-      };
+
     case GET_FINAL_USERS_ALL:
       return {
         ...state,
@@ -103,6 +101,13 @@ function reducer(state = initialState, action) {
       return {
         ...state,
         finalUserDetail: payload,
+      };
+
+    //WorkOrders -- Request
+    case GET_ALL_REQUEST:
+      return {
+        ...state,
+        allRequests: payload,
       };
 
     default:

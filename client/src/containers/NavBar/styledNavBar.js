@@ -17,39 +17,11 @@ export const NavBarDiv = styled.div`
   a {
     text-decoration: none;
   }
-  .linkHome {
+  .link {
     color: black;
   }
   .navButtons {
     margin-right: 50px;
-  }
-
-  .linkLogin,
-  .linkSignin {
-    text-decoration: none;
-    transition: 0.6s ease;
-    padding: 1rem 2rem;
-    color: rgb(248, 248, 248);
-    font-weight: bold;
-    background-color: transparent;
-  }
-  .linkSignin {
-    border-radius: 1rem;
-    border: 1px solid;
-
-    p {
-      font-weight: bold;
-    }
-    :hover {
-      background-color: #194350;
-      cursor: pointer;
-    }
-  }
-
-  .linkLogin {
-    :hover {
-      color: #194350;
-    }
   }
 `;
 

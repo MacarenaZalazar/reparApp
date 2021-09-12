@@ -33,7 +33,7 @@ const NavBar = () => {
   return (
     <StyledDiv>
       <NavBarDiv className="container">
-        <Link to="/" className="linkHome">
+        <Link to="/" className="link">
           <LogoDiv>
             <img src={Logo} alt="logo" />
             <h4>ReparApp</h4>
@@ -44,14 +44,14 @@ const NavBar = () => {
           {user && user.userName && (
             <div>
               {user.roles[0].name === "userFinal" ? (
-                <Link to="/usuarioFinal">
+                <Link to="/usuarioFinal" className="link">
                   <div className="flex">
                     <RiMapPinUserFill />
                     <p> Hola, {user.userName} </p>
                   </div>
                 </Link>
               ) : user.roles[0].name === "userTech" ? (
-                <Link to="/usuarioTech">
+                <Link to="/usuarioTech" className="link">
                   <div className="flex">
                     <RiMapPinUserFill />
                     <p> Hola, {user.userName} </p>
@@ -59,7 +59,7 @@ const NavBar = () => {
                 </Link>
               ) : (
                 <Link to="/admin">
-                  <div className="flex">
+                  <div className="flex link">
                     <RiMapPinUserFill />
                     <p> Hola, {user.userName} </p>
                   </div>

@@ -103,6 +103,7 @@ const logIn = async (req, res) => {
         roles: userFound.roles,
         workZones: userFound.workZones,
         userName: userFound.userName,
+        state: userFound.state,
       });
     }
     if (userFound.roles[0].name === "admin") {
