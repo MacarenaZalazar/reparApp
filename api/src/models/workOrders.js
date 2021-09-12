@@ -14,13 +14,26 @@ const workOrderSchema = new Schema(
       type: Schema.ObjectId,
       ref: "UsersF",
     },
-    workImage: String,
+    ban: {
+      type: Boolean,
+      default: false,
+    },
+    workImage: { type: String },
     workType: {
       type: String,
+      required: true,
     },
     complete: {
       type: Boolean,
       default: false,
+    },
+    state: {
+      type: String,
+      required: true,
+    },
+    zone: {
+      type: String,
+      required: true,
     },
   },
   {

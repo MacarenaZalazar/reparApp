@@ -1,18 +1,35 @@
 const UserT = require("../../models/TechUser");
 
 const filteredTechByZoneAndJobType = async (req, res, next) => {
-  const { jobTypes, workZones } = req.query;
+  let { jobTypes, state, workZones } = req.query;
 
-  if (jobTypes && workZones) {
+  if (!jobTypes || jobTypes === "null") {
+    jobTypes = null;
+  }
+
+  if (!state || state === "null") {
+    state = null;
+    workZones = null;
+  }
+
+  if (!workZones || workZones === "null") {
+    workZones = null;
+  }
+
+  if (jobTypes && state && workZones) {
+    //funciona
     try {
       let filtered = await UserT.find({ jobTypes, workZones }).populate({
         path: "user",
       });
-      res.status(200).json(filtered);
+
+      let filteredState = filtered.filter((e) => e.user.state === state);
+
+      res.status(200).json(filteredState);
     } catch (error) {
       next(error);
     }
-  } else if (jobTypes && !workZones) {
+  } else if (jobTypes && !state) {
     try {
       let filtered = await UserT.find({ jobTypes }).populate({
         path: "user",
@@ -21,12 +38,39 @@ const filteredTechByZoneAndJobType = async (req, res, next) => {
     } catch (error) {
       next(error);
     }
-  } else if (!jobTypes && workZones) {
+  } else if (jobTypes && state && !workZones) {
+    try {
+      let filtered = await UserT.find({ jobTypes, state }).populate({
+        path: "user",
+      });
+
+      let filteredState = filtered.filter((e) => e.user.state === state);
+
+      res.status(200).json(filteredState);
+    } catch (error) {
+      next(error);
+    }
+  } else if (!jobTypes && state && !workZones) {
+    try {
+      let filtered = await UserT.find({}).populate({
+        path: "user",
+      });
+
+      let filteredState = filtered.filter((e) => e.user.state === state);
+
+      res.status(200).json(filteredState);
+    } catch (error) {
+      next(error);
+    }
+  } else if (!jobTypes && state && workZones) {
     try {
       let filtered = await UserT.find({ workZones }).populate({
         path: "user",
       });
-      res.status(200).json(filtered);
+
+      let filteredState = filtered.filter((e) => e.user.state === state);
+
+      res.status(200).json(filteredState);
     } catch (error) {
       next(error);
     }

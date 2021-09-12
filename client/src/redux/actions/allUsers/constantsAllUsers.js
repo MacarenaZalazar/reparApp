@@ -1,0 +1,2 @@
+export const POST_SCORE = 'POST_SCORE'
+export const GET_ALL_JOB_REQUESTS = 'GET_ALL_JOB_REQUESTS'

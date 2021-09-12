@@ -6,14 +6,19 @@ const {
   deleteRequest,
   requestModifier,
   getRequest,
+  getRequestFiltered,
 } = require("../controllers/FinalUsers/jobRequest");
 
-router.delete("/:id", deleteRequest);
+const { verifyToken, isuserFinal } = require("../middlewares");
 
-router.post("/", postNewRequest);
+router.delete("/:id", [verifyToken, isuserFinal], deleteRequest);
 
-router.put("/:id", requestModifier);
+router.post("/", [verifyToken, isuserFinal], postNewRequest);
+
+router.put("/:id", [verifyToken, isuserFinal], requestModifier);
 
 router.get("/", getRequest);
+
+router.get("/filtered", getRequestFiltered);
 
 module.exports = router;

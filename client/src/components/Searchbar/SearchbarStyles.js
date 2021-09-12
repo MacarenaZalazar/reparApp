@@ -8,7 +8,7 @@ export const StyledDiv = styled.div`
 `;
 
 export const SearchBarDiv = styled.div`
-  width: 75%;
+  width: fit-content;
   color: rgb(248, 248, 248);
   display: flex;
   align-items: center;
@@ -27,7 +27,7 @@ export const ItemDiv = styled.div`
   gap: 2rem;
 
   select {
-    min-width: 50%;
+    min-width: 25%;
   }
 
   .link {

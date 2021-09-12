@@ -3,7 +3,8 @@ const workOrders = require("../../models/workOrders");
 const postNewRequest = async (req, res, next) => {
   const workOrdersSession = await workOrders.startSession();
   const { userFinal } = req.query;
-  const { title, description, workImage, workType } = req.body;
+
+  const { title, description, workImage, workType, state, zone } = req.body;
   try {
     await workOrdersSession.withTransaction(async () => {
       await workOrders.create({
@@ -12,6 +13,8 @@ const postNewRequest = async (req, res, next) => {
         userFinal,
         workImage,
         workType,
+        state,
+        zone,
       });
     });
     workOrdersSession.endSession();
@@ -67,9 +70,75 @@ const getRequest = async (req, res, next) => {
   }
 };
 
+const getRequestFiltered = async (req, res, next) => {
+  let { workType, state, workZones } = req.query;
+
+  let workZoneSplit = workZones.split(",");
+
+  if (!workType || workType === "null") {
+    workType = null;
+  }
+
+  if (!state || state === "null") {
+    state = null;
+    workZones = null;
+  }
+
+  if (!workZones || workZones === "null") {
+    workZones = null;
+  }
+
+  if (workType && state && workZones) {
+    try {
+      let filtered = await workOrders.find({
+        workType,
+        state,
+        zone: workZoneSplit,
+      });
+
+      res.status(200).json(filtered);
+    } catch (error) {
+      next(error);
+    }
+  } else if (workType && !state) {
+    try {
+      let filtered = await workOrders.find({ workType });
+
+      res.status(200).json(filtered);
+    } catch (error) {
+      next(error);
+    }
+  } else if (workType && state && !workZones) {
+    try {
+      let filtered = await workOrders.find({ workType, state });
+
+      res.status(200).json(filtered);
+    } catch (error) {
+      next(error);
+    }
+  } else if (!workType && state && !workZones) {
+    try {
+      let filtered = await workOrders.find({ state });
+
+      res.status(200).json(filtered);
+    } catch (error) {
+      next(error);
+    }
+  } else if (!workType && state && workZones) {
+    try {
+      let filtered = await workOrders.find({ state, zone: workZoneSplit });
+
+      res.status(200).json(filtered);
+    } catch (error) {
+      next(error);
+    }
+  } else res.sendStatus(400);
+};
+
 module.exports = {
   postNewRequest,
   requestModifier,
   deleteRequest,
   getRequest,
+  getRequestFiltered,
 };

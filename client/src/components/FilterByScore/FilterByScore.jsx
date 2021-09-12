@@ -1,13 +1,10 @@
 import React from "react";
-import {useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
 //import { getScore,filterByScore} from "../../actions/index";
-import { StyledDiv } from './Styles';
+import { StyledDiv } from "./Styles";
 
 export default function FilterByScore() {
-
   //const dispatch = useDispatch();
-/*
+  /*
   useEffect(() => {
        dispatch(getScore());
    }, []);
@@ -15,23 +12,28 @@ export default function FilterByScore() {
   //const allScores=useSelector((state)=> state.scores);
 
   const handleFilterScore = (e) => {
-      //dispatch(filterByScore(e.target.value)); 
-  }; 
- 
+    //dispatch(filterByScore(e.target.value));
+  };
 
-    return(
-      <StyledDiv>
-      <label>Puntaje</label>
-          <div>
-            <select className='form-select form-select-sm' onChange={e => handleFilterScore(e)}> 
-              <option value="all">Todos</option>        
-              {/* {allScores.map((el) => { 
+  return (
+    <StyledDiv>
+      {/* <label>Puntaje</label> */}
+      <div>
+        <select
+          className="form-select form-select-sm"
+          onChange={(e) => handleFilterScore(e)}
+        >
+          <option value="all">Todos</option>
+          <option value="más reelevantes">más relevantes</option>
+          <option value="mejor puntuados">mejor puntuados</option>
+          <option value="menor precio">menor precio</option>
+          {/* {allScores.map((el) => { 
                     return (
                           <option value={el}>{el}</option>                
                    );
               })} */}
-            </select>
-          </div>
-      </StyledDiv>
-      );
+        </select>
+      </div>
+    </StyledDiv>
+  );
 }

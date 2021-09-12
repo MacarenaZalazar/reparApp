@@ -5,14 +5,21 @@ import {
   InputDiv,
   ButtonDiv,
 } from "./styledLogin";
-
+import axios from "axios";
+import { useDispatch } from "react-redux";
+import { getTechUsersByJobAndZone } from "../../redux/actions/techUsers";
+import { getRequestAllFiltered } from "../../redux/actions/request/index";
 import { MdAccountCircle, MdVpnKey } from "react-icons/md";
-import { Link } from "react-router-dom";
-
 import { useState } from "react";
+import { useHistory } from "react-router-dom";
+import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
+const MySwal = withReactContent(Swal);
 
 const Login = () => {
-  const [input, setInput] = useState({ username: "", password: "" });
+  const dispatch = useDispatch();
+  const history = useHistory();
+  const [input, setInput] = useState({ mail: "", password: "" });
 
   function handleInputChange(evento) {
     setInput((input) => ({
@@ -21,11 +28,75 @@ const Login = () => {
     }));
   }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("enviado:", input);
+    try {
+      const login = await axios.post("http://localhost:3001/login", input);
+      window.sessionStorage.setItem("user", JSON.stringify(login.data));
+
+      const role = login.data.roles && login.data.roles[0].name;
+
+      if (role === "userFinal") {
+        dispatch(
+          getTechUsersByJobAndZone(null, login.data.state, login.data.zone)
+        );
+      }
+      if (role === "userTech") {
+        console.log("despacho como usuario tecnico");
+        dispatch(
+          getRequestAllFiltered(null, login.data.state, login.data.workZones)
+        );
+      }
+      MySwal.fire({
+        title: "Bienvenido",
+      });
+      history.push("/home");
+    } catch (error) {
+      MySwal.fire({
+        title: "Error en el logueo",
+      });
+    }
+  };
+  const forgotPassword = async (e) => {
+    e.preventDefault();
+    let passInput = { mail: input.mail, password: "forgot your password" };
+    await axios.post("http://localhost:3001/login", passInput);
+    alert("Enviamos un email con tu nueva contraseña");
   };
 
+  const showAlert = async (e) => {
+    e.preventDefault();
+    // MySwal.fire({
+    //   title: "Elige un tipo de usuario",
+    //   showDenyButton: true,
+    //   confirmButtonText:
+    //     '<a style=”color:white” href="/signinTech">Técnico</a> ',
+    //   denyButtonText: '<a className="enlace"  href="/signinFinal">Final</a> ',
+    // });
+
+    const { value: fruit } = await Swal.fire({
+      input: "select",
+      inputOptions: {
+        Tipo: {
+          tech: "Técnico",
+          final: "Final",
+        },
+      },
+      inputPlaceholder: "Selecciona tipo",
+      showCancelButton: true,
+      inputValidator: (value) => {
+        return new Promise((resolve) => {
+          if (value === "tech") {
+            history.push("/signinTech");
+            resolve();
+          } else {
+            history.push("/signinFinal");
+            resolve();
+          }
+        });
+      },
+    });
+  };
   return (
     <StyledDiv>
       <form onSubmit={(e) => handleSubmit(e)}>
@@ -37,11 +108,11 @@ const Login = () => {
             <MdAccountCircle className="icon" />
 
             <input
-              type="text"
-              name="username"
-              placeholder="Ingrese usuario"
+              type="email"
+              name="mail"
+              placeholder="Ingrese su e-mail"
               onChange={handleInputChange}
-              autoComplete='off'
+              autoComplete="off"
             />
           </InputDiv>
           <InputDiv>
@@ -59,6 +130,18 @@ const Login = () => {
               ¡Ingresá!
             </button>
           </ButtonDiv>
+          <span>
+            O{" "}
+            <span className="register" onClick={showAlert}>
+              registrate
+            </span>
+          </span>
+          <span>
+            O{" "}
+            <span className="register" onClick={(e) => forgotPassword(e)}>
+              Olvidaste tu contraseña?
+            </span>
+          </span>
         </LoginDiv>
       </form>
     </StyledDiv>

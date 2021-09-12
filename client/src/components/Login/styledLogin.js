@@ -19,6 +19,12 @@ export const LoginDiv = styled.div`
   gap: 2rem;
   border-radius: 3rem;
   box-shadow: rgba(181, 129, 108, 0.8) 0px 8px 34px -25px;
+  span.register{
+    cursor: pointer;
+    :hover{
+      font-weight: bold;
+    }
+  }
 `;
 
 export const TitleDiv = styled.div``;
