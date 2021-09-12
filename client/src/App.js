@@ -1,7 +1,7 @@
 import { Route, Switch } from "react-router-dom";
 
 import TechnicUserDetails from "./components/TechnicUserDetails/TechnicUserDetails";
-import FinalUserDetails from "./components/FinalUserDetails/FinalUserDetails";
+import FinalUserDetails from "./components/finalUserDetails/FinalUserDetails";
 import NavBar from "./containers/NavBar/NavBar";
 import Hero from "./containers/Hero/Hero";
 import Home from "./containers/Home/Home";
