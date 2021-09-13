@@ -12,7 +12,6 @@ const SocialLinks = ({instagram, facebook, linkedin, github}) => {
             {facebook && <Link to={facebook} target='_blank'><span><TiSocialFacebook/></span></Link> }
             {linkedin && <Link to={linkedin} target='_blank'><span><TiSocialLinkedin/></span></Link> }
             {github && <Link to={github} target='_blank'><span><TiSocialGithub/></span></Link> }
-            <i class="fa fa-github" aria-hidden="false"></i>
         </StyledDiv>
     );
 };

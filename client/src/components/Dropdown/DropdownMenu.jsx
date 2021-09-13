@@ -1,8 +1,8 @@
 import React from "react";
 import { DropdownButton, Dropdown } from "react-bootstrap";
 import Swal from "sweetalert2";
-
 import { useHistory } from "react-router-dom";
+import { BsJustify } from 'react-icons/bs';
 
 const DropdownMenu = ({ onClick }) => {
   const history = useHistory();
@@ -56,8 +56,8 @@ const DropdownMenu = ({ onClick }) => {
 
   return (
     <>
-      <DropdownButton drop="start" variant="secondary">
-        {/* <BsJustify/> */}
+      <DropdownButton drop="start" variant="secondary" title={<BsJustify/>}>
+        
         <Dropdown.Item href="/home">Inicio</Dropdown.Item>
         {!user && <Dropdown.Item href="/login">Ingresar</Dropdown.Item>}
         {!user && (
