@@ -14,6 +14,7 @@ const FormFinalUser = () => {
     lastName: "",
     userName: "",
     password: "",
+    confirmPassword: "",
     image: "",
     phone: "",
     mail: "",
@@ -40,6 +41,9 @@ const FormFinalUser = () => {
     }
     if (!values.password) {
       errors.password = "Campo obligatorio";
+    }
+    if (values.confirmPassword !== values.password) {
+      errors.confirmPassword = "Las contraseñas no coinciden";
     }
     if (!values.state) {
       errors.state = "Campo obligatorio";
@@ -163,6 +167,27 @@ const FormFinalUser = () => {
                   onChange={handleInputChange}
                 />
               </Input>
+              <Input error={input.errors.confirmPassword}>
+                <div className="flex__confirm">
+                  <div>
+                    <label>* Confirmar Password:</label>
+                    <input
+                      type="password"
+                      name="confirmPassword"
+                      autoComplete="off"
+                      value={input.confirmPassword}
+                      onChange={handleInputChange}
+                    />
+                  </div>
+                  <div className="flex__confirm--span">
+                    {input.errors.confirmPassword && (
+                      <span> ¡Las contraseñas no coinciden!</span>
+                    )}
+                  </div>
+                </div>
+              </Input>
+            </Left>
+            <Right>
               <Input>
                 <label>Imagen:</label>
                 <input
@@ -173,8 +198,6 @@ const FormFinalUser = () => {
                   onChange={handleInputChange}
                 />
               </Input>
-            </Left>
-            <Right>
               <Input>
                 <label>Teléfono:</label>
                 <input

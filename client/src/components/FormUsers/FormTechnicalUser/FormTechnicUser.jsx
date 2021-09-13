@@ -29,6 +29,7 @@ const FormTechnicUser = () => {
     lastName: "",
     userName: "",
     password: "",
+    confirmPassword: "",
     image: "",
     phone: "",
     mail: "",
@@ -56,6 +57,9 @@ const FormTechnicUser = () => {
     }
     if (!values.password) {
       errors.password = "Campo obligatorio";
+    }
+    if (values.confirmPassword !== values.password) {
+      errors.confirmPassword = "Las contraseñas no coinciden";
     }
 
     if (!values.state) {
@@ -229,6 +233,25 @@ const FormTechnicUser = () => {
                   onChange={handleInputChange}
                 />
               </Input>
+              <Input error={input.errors.confirmPassword}>
+                <div className="flex__confirm">
+                  <div>
+                    <label>* Confirmar Password:</label>
+                    <input
+                      type="password"
+                      name="confirmPassword"
+                      autoComplete="off"
+                      value={input.confirmPassword}
+                      onChange={handleInputChange}
+                    />
+                  </div>
+                  <div className="flex__confirm--span">
+                    {input.errors.confirmPassword && (
+                      <span> ¡Las contraseñas no coinciden!</span>
+                    )}
+                  </div>
+                </div>
+              </Input>
               <Input>
                 <label>Teléfono:</label>
                 <input
@@ -239,16 +262,7 @@ const FormTechnicUser = () => {
                   onChange={handleInputChange}
                 />
               </Input>
-              <Input>
-                <label>Imagen:</label>
-                <input
-                  type="text"
-                  name="image"
-                  autoComplete="off"
-                  value={input.image}
-                  onChange={handleInputChange}
-                />
-              </Input>
+
               <Input error={input.errors.mail}>
                 <label>* Email:</label>
                 <input
@@ -261,6 +275,16 @@ const FormTechnicUser = () => {
               </Input>
             </Left>
             <Right>
+              <Input>
+                <label>Imagen:</label>
+                <input
+                  type="text"
+                  name="image"
+                  autoComplete="off"
+                  value={input.image}
+                  onChange={handleInputChange}
+                />
+              </Input>
               <Input>
                 <label>* Provincia:</label>
                 <select
