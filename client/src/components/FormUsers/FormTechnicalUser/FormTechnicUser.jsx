@@ -14,7 +14,7 @@ import { useHistory } from "react-router-dom";
 import Swal from "sweetalert2";
 import { getCities, getStates } from "../../../redux/actions/techUsers";
 import { useEffect } from "react";
-import TECH_USERS_URL from "../../../utils/constants";
+import { TECH_USERS_URL } from "../../../utils/constants";
 
 const FormTechnicUser = () => {
   const history = useHistory();

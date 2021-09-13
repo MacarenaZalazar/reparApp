@@ -5,7 +5,7 @@ import Swal from "sweetalert2";
 import { useHistory } from "react-router-dom";
 import { getCities, getStates } from "../../../redux/actions/techUsers/index";
 import { useDispatch, useSelector } from "react-redux";
-import FINAL_USER_URL from "../../../utils/constants";
+import { FINAL_USER_URL } from "../../../utils/constants";
 
 const FormFinalUser = () => {
   const history = useHistory();

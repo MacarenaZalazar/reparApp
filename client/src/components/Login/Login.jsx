@@ -14,7 +14,7 @@ import { useState } from "react";
 import { useHistory } from "react-router-dom";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
-import LOGIN_URL from "../../utils/constants"
+import { LOGIN_URL } from "../../utils/constants";
 const MySwal = withReactContent(Swal);
 
 const Login = () => {
