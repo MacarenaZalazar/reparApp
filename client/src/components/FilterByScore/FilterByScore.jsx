@@ -1,15 +1,12 @@
-import React from "react";
+import React, {useState} from "react";
 //import { getScore,filterByScore} from "../../actions/index";
 import { StyledDiv } from "./Styles";
+import { useDispatch } from 'react-redux';
+
 
 export default function FilterByScore() {
-  //const dispatch = useDispatch();
-  /*
-  useEffect(() => {
-       dispatch(getScore());
-   }, []);
-*/
-  //const allScores=useSelector((state)=> state.scores);
+  const [order, setOrder] = useState('')
+  const dispatch = useDispatch();
 
   const handleFilterScore = (e) => {
     //dispatch(filterByScore(e.target.value));
@@ -27,11 +24,6 @@ export default function FilterByScore() {
           <option value="más reelevantes">más relevantes</option>
           <option value="mejor puntuados">mejor puntuados</option>
           <option value="menor precio">menor precio</option>
-          {/* {allScores.map((el) => { 
-                    return (
-                          <option value={el}>{el}</option>                
-                   );
-              })} */}
         </select>
       </div>
     </StyledDiv>
