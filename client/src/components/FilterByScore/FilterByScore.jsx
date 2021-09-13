@@ -1,15 +1,23 @@
-import React, {useState} from "react";
+import React from "react";
 //import { getScore,filterByScore} from "../../actions/index";
 import { StyledDiv } from "./Styles";
 import { useDispatch } from 'react-redux';
+import { orderByScore, orderByRelevant, orderByPrice } from '../../redux/actions/allUsers/index';
 
 
 export default function FilterByScore() {
-  const [order, setOrder] = useState('')
   const dispatch = useDispatch();
 
   const handleFilterScore = (e) => {
-    //dispatch(filterByScore(e.target.value));
+    const order = e.target.value
+    if(order === 'más reelevantes'){
+      dispatch(orderByRelevant())
+
+    } else if(order === 'mejor puntuados'){
+      dispatch(orderByScore())
+    } else if(order === 'menor precio'){
+      dispatch(orderByPrice())  
+    }
   };
 
   return (
