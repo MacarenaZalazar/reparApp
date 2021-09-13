@@ -14,6 +14,7 @@ import { useState } from "react";
 import { useHistory } from "react-router-dom";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
+import LOGIN_URL from "../../utils/constants"
 const MySwal = withReactContent(Swal);
 
 const Login = () => {
@@ -31,7 +32,7 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const login = await axios.post("http://localhost:3001/login", input);
+      const login = await axios.post(LOGIN_URL, input);
       window.sessionStorage.setItem("user", JSON.stringify(login.data));
 
       const role = login.data.roles && login.data.roles[0].name;
@@ -60,7 +61,7 @@ const Login = () => {
   const forgotPassword = async (e) => {
     e.preventDefault();
     let passInput = { mail: input.mail, password: "forgot your password" };
-    await axios.post("http://localhost:3001/login", passInput);
+    await axios.post(LOGIN_URL, passInput);
     alert("Enviamos un email con tu nueva contraseña");
   };
 

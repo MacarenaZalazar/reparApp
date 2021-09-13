@@ -26,7 +26,7 @@ var initialState = {
   allStates: [],
   allCities: [],
   allUsers: [],
-  allRequest: [],
+  allRequests: [],
 };
 
 function capitalize(str) {
@@ -108,7 +108,7 @@ function reducer(state = initialState, action) {
       console.log("payload:  ", payload);
       return {
         ...state,
-        allRequest: payload,
+        allRequests: payload,
       };
 
     default:

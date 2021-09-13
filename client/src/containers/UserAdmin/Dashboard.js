@@ -5,6 +5,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { DeleteJobType } from "../../redux/actions/admin/index";
 
 import "./css.css";
+import DeleteJobRequest from '../../components/Admin/DeleteJobRequest';
+import DeleteUser from '../../components/Admin/DeleteUser';
 function Dashboard() {
   const jobTypes = useSelector((state) => state.jobTypes);
   const dispatch = useDispatch();
@@ -34,6 +36,8 @@ function Dashboard() {
         </div>
         <div className="col-sm">
           <NewJobType />
+          <DeleteJobRequest/>
+          <DeleteUser/>
         </div>
       </div>
     </div>
