@@ -5,7 +5,7 @@ import { useSelector } from "react-redux";
 import { StyledDiv } from "./styledWorkOrders";
 
 const WorkOrders = () => {
-  const allRequest = useSelector((state) => state.allRequest);
+  const allRequest = useSelector((state) => state.allRequests);
   console.log(allRequest);
   return (
     <StyledDiv>
