@@ -7,6 +7,7 @@ const request = require("./workOrders");
 const login = require("./login");
 const admin = require("./admin");
 const jobType = require("./jobtypes");
+const contact = require("./contact");
 
 const router = Router();
 
@@ -19,5 +20,6 @@ router.use("/request", request);
 router.use("/login", login);
 router.use("/admin", admin);
 router.use("/jobTypes", jobType);
+router.use("/contact", contact);
 
 module.exports = router;
