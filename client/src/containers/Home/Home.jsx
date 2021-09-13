@@ -44,19 +44,17 @@ const Home = () => {
           <WorkOrders />
         </>
       ) : (
-        <div>
+        <>
           <DisplayFilters />
           <SinUser>
-            <div>
+            <div className='cardsDisplay'>
               <h2>Usuarios Tecnicos</h2>
               <TechnicUsers />
-            </div>
-            <div>
               <h2>Pedidos de trabajo</h2>
               <WorkOrders />
             </div>
           </SinUser>
-        </div>
+          </>
       )}
     </StyledDiv>
   );
