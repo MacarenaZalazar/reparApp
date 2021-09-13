@@ -27,6 +27,7 @@ import { useEffect } from "react";
 import { getJobTypesAll } from "./redux/actions/jobTypes";
 import { useDispatch, useSelector } from "react-redux";
 import Reported from "./containers/Reported/Reported";
+import ModifyUserFinal from './containers/FinalUserProfile/ModifyUserFinal';
 
 // jose estuvo aquí
 
@@ -54,6 +55,8 @@ function App() {
         <Route exact path ='/reportados' component={Reported} />
 
         <Route exact path="/newWorkOrder" component={CreateWorkOrder} />
+
+        <Route exact path='/modificarPerfilC' component={ModifyUserFinal}/>
 
         <Route exact path="/" component={Hero} />
 
