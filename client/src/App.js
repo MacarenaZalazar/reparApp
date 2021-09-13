@@ -26,6 +26,7 @@ import PrivateRoute from "./components/PrivateRoute/PrivateRoute";
 import { useEffect } from "react";
 import { getJobTypesAll } from "./redux/actions/jobTypes";
 import { useDispatch, useSelector } from "react-redux";
+import Reported from "./containers/Reported/Reported";
 
 // jose estuvo aquí
 
@@ -49,6 +50,8 @@ function App() {
         <PrivateRoute exact path="/signinTech" component={SigninTech} />
 
         <PrivateRoute exact path="/signinfinal" component={SigninFinal} />
+
+        <Route exact path ='/reportados' component={Reported} />
 
         <Route exact path="/newWorkOrder" component={CreateWorkOrder} />
 

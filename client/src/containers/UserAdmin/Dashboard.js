@@ -1,46 +1,33 @@
 import React from "react";
 import UpdateJobTypes from "../../components/Admin/UdateJobTypes";
 import NewJobType from "../../components/Admin/NewJobType";
-import { useDispatch, useSelector } from "react-redux";
-import { DeleteJobType } from "../../redux/actions/admin/index";
-
-import "./css.css";
 import DeleteJobRequest from '../../components/Admin/DeleteJobRequest';
 import DeleteUser from '../../components/Admin/DeleteUser';
-function Dashboard() {
-  const jobTypes = useSelector((state) => state.jobTypes);
-  const dispatch = useDispatch();
+import DeleteJobType from '../../components/Admin/DeleteJobType';
+import { StyledDashContainer } from './StyledDashboar';
+import { Link } from 'react-router-dom';
 
-  function handleChange(n) {
-    dispatch(DeleteJobType(n));
-  }
+
+function Dashboard() {
 
   return (
-    <div className="container conta-JobType">
-      <div className="row">
-        <div className="col-sm">
-          {jobTypes &&
-            jobTypes.map((job, key) => {
-              return (
-                <form onSubmit={handleChange(job)}>
-                  <UpdateJobTypes key={key} name={job} />
-                  <button
-                    type="submit"
-                    class="btn btn-danger mt-4 w-50 justify-content-center "
-                  >
-                    Delete
-                  </button>
-                </form>
-              );
-            })}
-        </div>
-        <div className="col-sm">
-          <NewJobType />
-          <DeleteJobRequest/>
+    <StyledDashContainer>
+          <div className='works'>
+            <h2>Tipos de trabajo</h2>
+            <div className='workContainer'>
+              <NewJobType />
+              <DeleteJobType/>
+            </div>
+          </div>
+            <Link className='reported' to='/reportados'>Ver Reportados</Link>
+          <div>
+
+          <h3>Buscar Usuario</h3>
           <DeleteUser/>
-        </div>
-      </div>
-    </div>
+          <h3>Buscar publicación</h3>
+          <DeleteJobRequest/>
+          </div>
+    </StyledDashContainer>
   );
 }
 
