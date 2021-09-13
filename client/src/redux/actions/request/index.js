@@ -20,3 +20,17 @@ export function getRequestAllFiltered(workType, state, workZones) {
     }
   };
 }
+
+export function getAllRequests(){
+  return async function (dispatch) {
+    try {
+      const allRequests = await axios.delete(GET_ALL_REQUEST);
+      return dispatch({
+        type: GET_ALL_REQUEST,
+        payload: allRequests.data,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  }; 
+}
