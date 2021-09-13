@@ -6,7 +6,7 @@ function NewJobType() {
 
   const [newJob, setNewjob] = useState("");
 
-  function handleOnSubmit(e) {
+  function handleClick(e) {
     e.preventDefault();
     dispatch(AddJobType(newJob));
   }
@@ -24,23 +24,35 @@ function NewJobType() {
 
   return (
     <>
-      <form onSubmit={(e) => handleOnSubmit(e)}>
+    <div className='addJob'>
+    <input
+            type="text"
+            class="form-control"
+            name="newJob"
+            placeholder="Nuevo trabajo..."
+            onChange={(e) => handleInputChange(e)}
+          />
+            <button onClick={handleClick}>
+              Agregar
+            </button>
+    </div>
+      {/* <form onSubmit={(e) => handleOnSubmit(e)}>
         <div class="form-group ">
-          <label for="exampleInputEmail1">JobType Name</label>
+          <label for="exampleInputEmail1">Agregar nuevo tipo de trabajo</label>
           <input
             type="text"
             class="form-control"
             name="newJob"
-            placeholder="New Name"
+            placeholder="Nuevo trabajo..."
             onChange={(e) => handleInputChange(e)}
           />
           <div className=" d-flex justify-content-center">
             <button type="submit" class="btn btn-success mt-4 w-50 ">
-              Submit
+              Agregar
             </button>
           </div>
         </div>
-      </form>
+      </form> */}
     </>
   );
 }

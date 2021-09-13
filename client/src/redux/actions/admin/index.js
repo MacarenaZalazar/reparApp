@@ -17,7 +17,7 @@ export function AddJobType(newJob) {
   };
 }
 
-export function DeleteJobType(name) {
+export function deleteJobType(name) {
   return async function (dispatch) {
     try {
       const deleteJob = await axios.delete(name);

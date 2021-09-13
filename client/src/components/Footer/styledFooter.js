@@ -6,7 +6,7 @@ export const StyledDiv = styled.div`
   width: 100%;
   display: flex;
   flex-direction: row;
-  position: fixed;
+  position: relative;
   background-color: #de6b48;
   align-items: center;
   justify-content: space-around;
