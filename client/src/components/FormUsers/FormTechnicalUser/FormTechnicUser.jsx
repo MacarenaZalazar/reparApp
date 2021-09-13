@@ -14,6 +14,7 @@ import { useHistory } from "react-router-dom";
 import Swal from "sweetalert2";
 import { getCities, getStates } from "../../../redux/actions/techUsers";
 import { useEffect } from "react";
+import TECH_USERS_URL from "../../../utils/constants";
 
 const FormTechnicUser = () => {
   const history = useHistory();
@@ -154,7 +155,7 @@ const FormTechnicUser = () => {
 
     if (!Object.keys(result).length) {
       try {
-        await axios.post("http://localhost:3001/techUsers", input);
+        await axios.post(TECH_USERS_URL, input);
 
         const Toast = Swal.mixin({
           toast: true,

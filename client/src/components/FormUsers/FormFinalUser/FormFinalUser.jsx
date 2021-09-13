@@ -5,6 +5,7 @@ import Swal from "sweetalert2";
 import { useHistory } from "react-router-dom";
 import { getCities, getStates } from "../../../redux/actions/techUsers/index";
 import { useDispatch, useSelector } from "react-redux";
+import FINAL_USER_URL from "../../../utils/constants";
 
 const FormFinalUser = () => {
   const history = useHistory();
@@ -88,7 +89,7 @@ const FormFinalUser = () => {
 
     if (!Object.keys(result).length) {
       try {
-        await axios.post("http://localhost:3001/finalUsers", input);
+        await axios.post(FINAL_USER_URL, input);
 
         const Toast = Swal.mixin({
           toast: true,
