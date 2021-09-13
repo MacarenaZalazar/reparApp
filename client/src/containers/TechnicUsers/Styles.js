@@ -9,7 +9,7 @@ background-color: transparent;
 margin: 60px;
 width:100%;
 .carousel{
-    width:800px;
+    width:710px;
     height: 300px;
 }
 `

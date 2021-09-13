@@ -7,5 +7,9 @@ export const StyledDiv = styled.div`
   justify-content: space-around;
   background-color: transparent;
   margin: 60px;
-  width: 75%;
+  width: 100%;
+  .carousel{
+    width:710px;
+    height: 300px;
+}
 `;

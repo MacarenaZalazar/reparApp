@@ -2,8 +2,8 @@ import styled from "styled-components";
 
 export const StyledDiv = styled.div`
   display: flex;
-  justify-content: center;
-  align-items: center;
+  justify-content:  center;
+  flex-direction: row;
   background-color: #f9f6f4;
 
   .link {
@@ -16,12 +16,24 @@ export const StyledDiv = styled.div`
 
     text-decoration: none;
   }
+  .cardsDisplay{
+    width: 75%;
+    display:flex;
+    flex-direction: column;
+
+  }
 `;
 export const SinUser = styled.div`
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  display: flex;
+  flex-direction:row;
   padding: 4rem;
   h2 {
     text-align: center;
+  }
+  .cardsDisplay{
+    width: 75%;
+    display:flex;
+    flex-direction: column;
+
   }
 `;
