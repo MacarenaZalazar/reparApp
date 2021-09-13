@@ -1,4 +1,5 @@
 const workOrders = require("../../models/workOrders");
+const UserF = require("../../models/FinalUser");
 
 const postNewRequest = async (req, res, next) => {
   const workOrdersSession = await workOrders.startSession();
@@ -135,10 +136,23 @@ const getRequestFiltered = async (req, res, next) => {
   } else res.sendStatus(400);
 };
 
+const getRequestsByID = async (req, res, next) => {
+  const { id } = req.params;
+  let userFinal = id;
+  try {
+    const getAll = await workOrders.find({ userFinal });
+
+    res.status(200).send(getAll);
+  } catch (error) {
+    next(error);
+  }
+};
+
 module.exports = {
   postNewRequest,
   requestModifier,
   deleteRequest,
   getRequest,
   getRequestFiltered,
+  getRequestsByID,
 };
