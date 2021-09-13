@@ -4,12 +4,13 @@ import { socialMedia } from '../../utils/reparAppInfo';
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 import { StyledForm, ContactUsContainer } from './stylesContactUs';
-import { useDispatch } from 'react-redux';
+import axios from "axios";
+import { CONTACT_URL } from "../../utils/constants";
 
 const ContactUs = () => {
-    const dispatch = useDispatch()
+    
     const {instagram, facebook, linkedin, github} =  socialMedia
-    const [input, setInput] = useState({email:'', name:'', descripcion:''})
+    const [input, setInput] = useState({mail:'', user:'', description:''})
 
     function handleChange(e){
         setInput((input) => ({
@@ -18,13 +19,12 @@ const ContactUs = () => {
         }))
     }
     
-    function handleSubmit(e){
+    const handleSubmit = async (e) => {
         alert('Su mensaje ha sido enviado')
         e.preventDefault()
-        //dispatch(input)
-        setInput({email:'', name:'', descripcion:''})
+        await axios.post(CONTACT_URL, input)
+        setInput({mail:'', user:'', description:''})
     }
-    console.log(input)
 
     return (
         <>
@@ -37,14 +37,14 @@ const ContactUs = () => {
             <StyledForm>
                 <h3>Envianos un mensaje</h3>
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-                <Form.Control name='email' value={input.email} type="email" placeholder="tu email" />
+                <Form.Control name='mail' value={input.mail} type="email" placeholder="Tu email" onChange={handleChange}/>
             </Form.Group>
             <Form.Group>
-                <Form.Control name='name' value={input.name} type="name" placeholder="Tu nombre" />
+                <Form.Control name='user' value={input.user} type="user" placeholder="Tu nombre" onChange={handleChange}/>
             </Form.Group>
             <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
                 <Form.Label>Mensaje </Form.Label>
-                <Form.Control name='descripcion' value={input.descripcion} as="textarea" rows={3} />
+                <Form.Control name='description' value={input.description} as="textarea" rows={3} onChange={handleChange}/>
             </Form.Group>
             <Button type='submit'>Enviar</Button>
             </StyledForm>
