@@ -42,9 +42,6 @@ function ProfileUserFinal() {
                   />
                 }
               </div>
-              <div className="col-sm">
-                <UpDateUserFinal />
-              </div>
             </div>
           </div>
         </div>

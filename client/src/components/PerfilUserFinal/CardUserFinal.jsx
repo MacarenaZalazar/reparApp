@@ -37,11 +37,11 @@ function CardUserFinal({
               New Work Order
             </button>
           </Link>
-          {/* <Link to="/modificarPerfilC">
+          <Link to="/modificarPerfilC">
             <button type="button" class="btn btn-primary ml-3">
               Modificar Perfil
             </button>
-          </Link> */}
+          </Link>
           {/* <a href="#" class="card-link">
             Card link
           </a>
