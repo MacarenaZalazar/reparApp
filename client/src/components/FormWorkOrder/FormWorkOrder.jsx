@@ -6,7 +6,7 @@ import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getJobTypesAll } from "../../redux/actions/jobTypes";
 import { getCities, getStates } from "../../redux/actions/techUsers/index";
-import REQUEST_URL from "../../utils/constants";
+import { REQUEST_URL } from "../../utils/constants";
 
 const FormWorkOrder = () => {
   const userString = window.sessionStorage.getItem("user");
