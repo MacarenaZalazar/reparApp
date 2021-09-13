@@ -99,6 +99,17 @@ export const Input = styled.div`
       }
     }
   }
+
+  .flex__confirm {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    &--span {
+      align-self: flex-end;
+    }
+  }
 `;
 export const InputJobs = styled.div`
   display: flex;
