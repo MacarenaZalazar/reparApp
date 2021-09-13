@@ -25,7 +25,33 @@ const TechnicUsers = () => {
           );
         })}
     </StyledDiv>
+
+  
   );
 };
 
 export default TechnicUsers;
+
+  {/* <StyledDiv>
+<Carousel className='carousel'
+ itemsToShow={1}
+
+ outerSpacing={100}>
+ {techUsers &&
+   techUsers.map((t, idx) => {
+     return (
+       <TechnicUser
+         key={idx}
+         id={t._id}
+         name={t.user.name}
+         lastName={t.user.lastName}
+         user={t.user.userName}
+         image={t.user.image}
+         score={t.score}
+         workZones={t.workZones}
+         jobTypes={t.jobTypes}
+       />
+     );
+   })}
+   </Carousel>
+   </StyledDiv> */}

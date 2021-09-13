@@ -7,6 +7,10 @@ align-items: center;
 justify-content: space-around;
 background-color: transparent;
 margin: 60px;
-width:75%;
-
+width:100%;
+.carousel{
+    width:800px;
+    height: 300px;
+}
 `
+
