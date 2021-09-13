@@ -1,15 +1,15 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
-import { getAllRequests } from "../../redux/actions/request";
+import { getRequestAllFiltered } from "../../redux/actions/request";
 import JobRequestCard from "../JobRequestCard/JobRequestCard";
 
 const DeleteJobRequest = () => {
   const dispatch = useDispatch();
   const { allRequests } = useSelector((state) => state);
-  console.log(allRequests)
+  
   function handleChange(e) {
-    dispatch(getAllRequests())
+    dispatch(getRequestAllFiltered(e.target.value, '', ''))
   }
   function handleClick(id) {
     dispatch(DeleteJobRequest(id));
