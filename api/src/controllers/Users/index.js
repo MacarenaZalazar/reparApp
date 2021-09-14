@@ -1,4 +1,8 @@
 const User = require("../../models/User");
+const UserF = require("../../models/FinalUser");
+const UserT = require("../../models/TechUser");
+const workOrders = require("../../models/workOrders");
+const roles = require("../../models/roles");
 
 const createNewUser = async (user, idRole, next) => {
   try {
@@ -27,7 +31,27 @@ const getByUserName = async (req, res, next) => {
     let UserR = await User.find({
       userName: { $regex: userName, $options: "i" },
     });
-    res.status(200).json(UserR);
+
+    let obj = [];
+
+    for (let i = 0; i < UserR.length; i++) {
+      let _id = UserR[i].roles[0];
+      let rolUserName = await roles.findOne({ _id });
+
+      if (rolUserName.name === "userFinal") {
+        let user = UserR[i]._id;
+        let auxF = await UserF.findOne({ user });
+        console.log(auxF._id);
+        obj = [...obj, { ...UserR[i]._doc, finalUserId: auxF._id }];
+      }
+      if (rolUserName.name === "userTech") {
+        let user = UserR[i]._id;
+        let auxT = await UserT.findOne({ user });
+        console.log(auxT);
+        obj = [...obj, { ...UserR[i]._doc, techUserId: auxT._id }];
+      }
+    }
+    res.status(200).json(obj);
   } catch (error) {
     next(error);
   }

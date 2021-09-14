@@ -8,6 +8,7 @@ const {
   getRequest,
   getRequestFiltered,
   getRequestsByID,
+  getDetailsRequest,
 } = require("../controllers/FinalUsers/jobRequest");
 
 const { verifyToken, isuserFinal } = require("../middlewares");
@@ -23,5 +24,7 @@ router.get("/", getRequest);
 router.get("/filtered", getRequestFiltered);
 
 router.get("/all/:id", [verifyToken], getRequestsByID);
+
+router.get("/details/:id", getDetailsRequest);
 
 module.exports = router;
