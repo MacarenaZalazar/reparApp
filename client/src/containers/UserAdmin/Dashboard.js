@@ -1,5 +1,5 @@
 import React from "react";
-import UpdateJobTypes from "../../components/Admin/UdateJobTypes";
+//import UpdateJobTypes from "../../components/Admin/UdateJobTypes";
 import NewJobType from "../../components/Admin/NewJobType";
 import DeleteJobType from '../../components/Admin/DeleteJobType';
 import { StyledDashContainer } from './StyledDashboar';
