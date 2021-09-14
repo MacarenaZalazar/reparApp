@@ -5,6 +5,7 @@ display:flex;
 flex-direction: column;
 align-items: center;
 padding: 50px;
+height: 100%;
 .reported{
     margin: 15px;
     padding: 15px;

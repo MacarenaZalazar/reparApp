@@ -18,13 +18,13 @@ export default function FilterByZoneAndJob() {
   const handleFilterState = (e) => {
     setState(e.target.value)
     if(userSession && userSession.roles === "userFinal"){
-      dispatch(getTechUsersByJobAndZone(job, e.target.value, city))
+        dispatch(getTechUsersByJobAndZone(job, e.target.value, city))
     }else if(userSession && userSession.roles === "userTech"){
-      dispatch(getRequestAllFiltered(job, e.target.value, city))
+        dispatch(getRequestAllFiltered(job, e.target.value, city))
     } else {
-      dispatch(getTechUsersByJobAndZone(job, e.target.value, city));
-      dispatch(getRequestAllFiltered(job, e.target.value, city));
-    }
+        dispatch(getTechUsersByJobAndZone(job, e.target.value, city));
+        dispatch(getRequestAllFiltered(job, e.target.value, city));
+      }
     dispatch(getCities(e.target.value));
   };
 
@@ -59,7 +59,7 @@ export default function FilterByZoneAndJob() {
           className="form-select form-select-sm"
           onChange={(e) => handleFilterJob(e)}
         >
-          <option value="all">Todos</option>
+          <option value="">Todos</option>
           {jobs.map((el, idx) => {
             return (
               <option key={idx} value={el}>
@@ -73,7 +73,7 @@ export default function FilterByZoneAndJob() {
         <label>Zonas</label>
         <div>
         <select className="form-select" onChange={(e) => handleFilterState(e)}>
-          <option value="all">Todas</option>
+          <option value="">Todas</option>
           {allStates.map((el, idx) => {
             return (
               <option key={idx} value={el}>
