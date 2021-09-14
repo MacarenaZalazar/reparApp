@@ -1,6 +1,6 @@
 import axios from "axios";
-import { REQUEST_URL } from "../../../utils/constants";
-import { GET_ALL_REQUEST } from "./constantsRequest";
+import { REQUEST_URL, WORKORDERS_URL } from "../../../utils/constants";
+import { GET_ALL_REQUEST, GET_REQUEST_BY_USER } from "./constantsRequest";
 
 export function getRequestAllFiltered(workType, state, workZones) {
   const workZonesString = workZones.toString();
@@ -33,4 +33,19 @@ export function getAllRequests(){
       console.log(error);
     }
   }; 
+}
+
+export const getRequestByUser = (id, config) =>{
+  return async function (dispatch) {
+    try {
+      const requests = await axios.get(`${WORKORDERS_URL}/all/${id}`, config);
+      return dispatch({
+        type: GET_REQUEST_BY_USER,
+        payload: requests.data,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  }; 
+
 }
