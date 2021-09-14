@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { AddJobType } from "../../redux/actions/admin/index";
+import Button from 'react-bootstrap/Button'
+
 function NewJobType() {
   const dispatch = useDispatch();
 
@@ -33,9 +35,9 @@ function NewJobType() {
             autoComplete='off'
             onChange={(e) => handleInputChange(e)}
           />
-            <button onClick={handleClick}>
+            <Button onClick={handleClick}>
               Agregar
-            </button>
+            </Button>
     </div>
       {/* <form onSubmit={(e) => handleOnSubmit(e)}>
         <div class="form-group ">

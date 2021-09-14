@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import { deleteJobType } from "../../redux/actions/admin/index";
+import Button from 'react-bootstrap/Button'
 
 
 const DeleteJobType = () => {
@@ -28,7 +29,7 @@ const DeleteJobType = () => {
                 })}
             </select>
             }
-            <button onClick={handleClick}>Eliminar</button>
+            <Button onClick={handleClick}>Eliminar</Button>
             </div>
         </div>
     );

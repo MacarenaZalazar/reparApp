@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import { Link } from 'react-router-dom';
 import axios from "axios";
 import { ADMIN_URL } from '../../utils/constants';
-import { Button } from 'react-bootstrap/Button';
+import Button  from 'react-bootstrap/Button';
 
 
 
@@ -45,12 +45,12 @@ const UserCard = ({name, lastName, img, user, id, score, jobTypes, workZones, ph
             <span>{(workZones) && workZones}</span>
             <span>{phone}</span>
             <span>{mail}</span>
-            <Link to={`/finalUserDetails/${id}`}>Ver perfil</Link>
-            <Link to={`/technicUserDetails/${id}`}>Ver perfil</Link>
-            {(banned)? <button onClick={() => handleUnban(id) }>Desbanear</button> : 
-                <button onClick={() => handleBan(id)}>Banear</button>
+            <Link to={`/finalUserDetails/${id}`}><Button>Ver perfil</Button></Link>
+            {/* <Link to={`/technicUserDetails/${id}`}>Button>Ver perfil</Button></Link> */}
+            {(banned)? <Button onClick={() => handleUnban(id) }>Desbanear</Button> : 
+                <Button onClick={() => handleBan(id)}>Banear</Button>
             }
-              <Link to={`/workOrders/${id}`} >Ver pedidos de trabajo</Link>
+              <Link to={`/workOrders/${id}`} ><Button>Ver pedidos de trabajo</Button></Link>
          
         </div>
     );
