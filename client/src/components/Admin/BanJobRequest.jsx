@@ -1,12 +1,12 @@
 import axios from "axios";
-import React, {useEffect} from "react";
+import React, {useEffect , useState} from "react";
 import { useDispatch, useSelector } from "react-redux";
 import JobRequestCard from "../JobRequestCard/JobRequestCard";
 import {ADMIN_URL} from '../../utils/constants'
 import { getRequestByUser } from '../../redux/actions/request/index';
 
 const BanJobRequest = (props) => {
-  //const [workOrder, setWorkOrder] = useState([])
+  const[flag, setFlag] = useState(true)
   const userID = props.match.params.id
   const dispatch = useDispatch()
   const {requestsByUser} = useSelector(state => state)
@@ -18,15 +18,25 @@ const BanJobRequest = (props) => {
     },
   };
 
-  console.log(requestsByUser)
   useEffect(() => {
     dispatch(getRequestByUser(userID, config))
-  }, [])
+  }, [flag])
  
-  const handleClick = async (id) => {
+  const handleBan= async (id) => {
     try {
       await axios.put(`${ADMIN_URL}/ban/work`, {ban: true, id},config)
-      alert('EL pedido se ha eliminado')
+      alert('El pedido ha sido baneado')
+      setFlag(false)
+    } catch (error) {
+      alert('No se ha podido banear el pedido')
+    }
+  }
+
+  const handleUnbanned = async (id) => {
+    try {
+      await axios.put(`${ADMIN_URL}/ban/work`, {ban: true, id},config)
+      alert('El pedido ha sido baneado')
+      setFlag(true)
     } catch (error) {
       alert('No se ha podido banear el pedido')
     }
@@ -48,8 +58,10 @@ const BanJobRequest = (props) => {
                 jobType={u.jobType}
                 zones={u.z}
                 request={u.request}
+                ban={u.ban}
               />
-              <button onClick={() => handleClick(u.idFinal)}>Banear</button>
+              {(u.ban) ?  <button onClick={() => handleBan(u.id)}>Banear</button> :
+              <button onClick={() => handleUnbanned(u.id)}>Desbanear</button>}
             </>
           );
         })}
