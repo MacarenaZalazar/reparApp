@@ -24,7 +24,9 @@ const createNewUser = async (user, idRole, next) => {
 const getByUserName = async (req, res, next) => {
   const { userName } = req.query;
   try {
-    let UserR = await User.find({ userName });
+    let UserR = await User.find({
+      userName: { $regex: userName, $options: "i" },
+    });
     res.status(200).json(UserR);
   } catch (error) {
     next(error);
