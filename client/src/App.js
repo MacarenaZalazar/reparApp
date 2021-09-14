@@ -28,7 +28,7 @@ import { getJobTypesAll } from "./redux/actions/jobTypes";
 import { useDispatch, useSelector } from "react-redux";
 import Reported from "./containers/Reported/Reported";
 import ModifyUserFinal from "./containers/FinalUserProfile/ModifyUserFinal";
-import DeleteJobRequest from './components/Admin/DeleteJobRequest';
+import BanJobRequest from './components/Admin/BanJobRequest';
 
 // jose estuvo aquí
 
@@ -66,7 +66,7 @@ function App() {
           component={CreateWorkOrder}
           allow="userFinal"
         />
-        <Route exact path='/workOrders/:id' component={DeleteJobRequest} />
+        <Route exact path='/workOrders/:id' component={BanJobRequest} />
 
         <Route exact path="/modificarPerfilC" component={ModifyUserFinal} />
 

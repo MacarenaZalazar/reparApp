@@ -1,5 +1,5 @@
 import axios from "axios";
-import { REQUEST_URL, WORKORDERS_URL } from "../../../utils/constants";
+import { REQUEST_URL} from "../../../utils/constants";
 import { GET_ALL_REQUEST, GET_REQUEST_BY_USER } from "./constantsRequest";
 
 export function getRequestAllFiltered(workType, state, workZones) {
@@ -38,7 +38,7 @@ export function getAllRequests(){
 export const getRequestByUser = (id, config) =>{
   return async function (dispatch) {
     try {
-      const requests = await axios.get(`${WORKORDERS_URL}/all/${id}`, config);
+      const requests = await axios.get(`${REQUEST_URL}/all/${id}`, config);
       return dispatch({
         type: GET_REQUEST_BY_USER,
         payload: requests.data,

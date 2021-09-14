@@ -1,7 +1,6 @@
 import React from "react";
 import UpdateJobTypes from "../../components/Admin/UdateJobTypes";
 import NewJobType from "../../components/Admin/NewJobType";
-import DeleteJobRequest from '../../components/Admin/DeleteJobRequest';
 import DeleteJobType from '../../components/Admin/DeleteJobType';
 import { StyledDashContainer } from './StyledDashboar';
 import { Link } from 'react-router-dom';
