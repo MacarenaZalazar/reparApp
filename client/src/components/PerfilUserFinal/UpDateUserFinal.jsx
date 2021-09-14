@@ -1,9 +1,36 @@
-import React from "react";
+import React,{ useState, useEffect }  from "react";
+import {putFinalUsersAll} from '../../redux/actions/finalUser/index'
+import { useDispatch } from "react-redux";
 
 function UpDateUserFinal() {
+  const [input, setInput] = useState({
+    name: "",
+    lastName: "",
+    image: "",
+    phone: "",
+    mail: "",
+    state: "",
+    zone: "",
+  });
+
+  function handleInputChange(evento) {
+    setInput((input) => ({
+      ...input,
+      [evento.target.name]: evento.target.value,
+    }));
+  }
+  const dispatch = useDispatch();
+
+  // useEffect(() => {
+  //   dispatch(putFinalUsersAll(input));
+  // }, [dispatch]);  
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+  }
   return (
     <>
-      <form>
+      <form className='w-75 m-auto'>
         <div class="form-group mt-2">
           <label for="exampleInputEmail1">Yours Name</label>
           <input
