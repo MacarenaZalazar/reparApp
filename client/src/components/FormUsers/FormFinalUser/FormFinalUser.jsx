@@ -93,26 +93,35 @@ const FormFinalUser = () => {
 
     if (!Object.keys(result).length) {
       try {
-        await axios.post(FINAL_USER_URL, input);
+        const respuesta = await axios.post(FINAL_USER_URL, input);
 
-        const Toast = Swal.mixin({
-          toast: true,
+        if (!respuesta.data.message) {
+          const Toast = Swal.mixin({
+            toast: true,
 
-          showConfirmButton: false,
-          timer: 3000,
-          timerProgressBar: true,
-          didOpen: (toast) => {
-            toast.addEventListener("mouseenter", Swal.stopTimer);
-            toast.addEventListener("mouseleave", Swal.resumeTimer);
-          },
-        });
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+              toast.addEventListener("mouseenter", Swal.stopTimer);
+              toast.addEventListener("mouseleave", Swal.resumeTimer);
+            },
+          });
 
-        Toast.fire({
-          icon: "success",
-          title: "Registro exitoso",
-        });
+          Toast.fire({
+            icon: "success",
+            title: "Registro exitoso",
+          });
 
-        history.push("/login");
+          history.push("/login");
+        } else {
+          Swal.fire({
+            icon: "error",
+            title: "Error",
+            text: `${respuesta.data.message}`,
+            footer: '<a href="">Why do I have this issue?</a>',
+          });
+        }
       } catch (error) {
         console.log(error);
       }
