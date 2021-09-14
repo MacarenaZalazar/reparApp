@@ -24,7 +24,7 @@ const createNewUser = async (user, idRole, next) => {
 };
 
 const getByUserName = async (req, res, next) => {
-  const { userName } = req.body;
+  const { userName } = req.query;
   try {
     let UserbyUserName = await User.find({ userName }).populate({
       path: "roles",
