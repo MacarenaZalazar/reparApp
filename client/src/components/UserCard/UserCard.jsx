@@ -1,8 +1,6 @@
 import React from 'react';
 
 const UserCard = ({name, lastName, img, user, id, score, jobTypes, workZones, phone, mail}) => {
-    console.log(name)
-    console.log('estoy en userCard')
     return (
         <div>
             <span>{id}</span>

@@ -5,6 +5,7 @@ import { ADMIN_URL } from "../../utils/constants";
 
 const BanUser = () => {
   const [user, setUser] = useState([])
+  const [input, setInput] = useState('')
   
   const userString = window.sessionStorage.getItem("user");
   const useR = JSON.parse(userString);
@@ -16,6 +17,7 @@ const BanUser = () => {
   };
 
   const handleChange = async (e) => {
+    setInput(e.target.value)
     try {
       const usersByUsername = await axios.get(`${ADMIN_URL}/userbyuserName?userName=${e.target.value}`)
       setUser(usersByUsername.data)
@@ -23,17 +25,35 @@ const BanUser = () => {
       console.log(error)
     }
   };
+  const handleBan= async (id) => {
+    try {
+      await axios.put(`${ADMIN_URL}/ban/user`,  {ban: true, id: id }, config)
+      alert('Usuari@ banead@')
+      try {
+        const usersByUsername = await axios.get(`${ADMIN_URL}/userbyuserName?userName=${input}`)
+        setUser(usersByUsername.data)
+      } catch (error) {
+        console.log(error)
+      }
+    } catch (error) {
+     alert('No se ha podido banear al usuari@') 
+    }
+   };
 
-  const handleClick = async (id) => {
+  const handleUnban= async (id) => {
    try {
-     await axios.put(`${ADMIN_URL}/ban/user`,  {ban: true, id: id }, config)
+     await axios.put(`${ADMIN_URL}/ban/user`,  {ban: false, id: id }, config)
      alert('Usuari@ banead@')
+     try {
+      const usersByUsername = await axios.get(`${ADMIN_URL}/userbyuserName?userName=${input}`)
+      setUser(usersByUsername.data)
+    } catch (error) {
+      console.log(error)
+    }
    } catch (error) {
     alert('No se ha podido banear al usuari@') 
    }
   };
-
-  // 
  
 console.log(user)
   return (
@@ -44,7 +64,7 @@ console.log(user)
         onChange={handleChange}
         placeholder="nombre de usuario..."
       />
-      {user.length > 1 &&
+      {user.length >= 1 &&
         user.map((u, idx) => {
           return (
             <>
@@ -60,7 +80,9 @@ console.log(user)
                 phone={u.phone}
                 mail={u.mail}
               />
-              <button onClick={() => handleClick(u._id)}>Bannear</button>
+              {(u.ban)? <button onClick={() => handleUnban(u._id) }>Desbanear</button> : 
+              <button key={idx+ 'b'} onClick={() => handleBan(u._id)}>Banear</button>
+              }
             </>
           );
         })}

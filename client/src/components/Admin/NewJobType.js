@@ -30,6 +30,7 @@ function NewJobType() {
             class="form-control"
             name="newJob"
             placeholder="Nuevo trabajo..."
+            autoComplete='off'
             onChange={(e) => handleInputChange(e)}
           />
             <button onClick={handleClick}>
