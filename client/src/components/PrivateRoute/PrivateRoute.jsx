@@ -5,11 +5,13 @@ const PrivateRoute = ({ component: Component, allow, ...rest }) => {
   const user = JSON.parse(userString);
 
   if (allow) {
-    console.log(allow);
-    console.log(user.roles[0].name);
     return (
       <Route {...rest}>
-        {user.roles[0].name === allow ? <Component /> : <Redirect to="/home" />}
+        {user && user.roles && user.roles[0].name === (allow || "admin") ? (
+          <Component />
+        ) : (
+          <Redirect to="/home" />
+        )}
       </Route>
     );
   } else {
