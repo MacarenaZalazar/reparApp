@@ -7,6 +7,8 @@ const User = require("../../models/User");
 const nodemailer = require("nodemailer");
 
 const finalUserCreate = async (req, res, next) => {
+  console.log(req.body);
+
   const session = await FinalUser.startSession();
   // UserSession.startTransaction();
   try {
@@ -53,6 +55,7 @@ const finalUserCreate = async (req, res, next) => {
       res.send({ token });
     });
   } catch (error) {
+    console.log(error);
     next({ message: error?.message, status: 404 });
   } finally {
     session.endSession();

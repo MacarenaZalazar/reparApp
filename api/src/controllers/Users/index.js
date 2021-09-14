@@ -2,7 +2,7 @@ const User = require("../../models/User");
 const UserF = require("../../models/FinalUser");
 const UserT = require("../../models/TechUser");
 
-const createNewUser = async (user, idRole) => {
+const createNewUser = async (user, idRole, next) => {
   try {
     const Password = await User.encryptPassword(user.password);
     const newUser = await User.create({
@@ -18,7 +18,8 @@ const createNewUser = async (user, idRole) => {
 
     return newUser;
   } catch (error) {
-    throw error;
+    console.log(error);
+    next(error);
   }
 };
 

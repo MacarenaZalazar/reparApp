@@ -27,7 +27,7 @@ import { useEffect } from "react";
 import { getJobTypesAll } from "./redux/actions/jobTypes";
 import { useDispatch, useSelector } from "react-redux";
 import Reported from "./containers/Reported/Reported";
-import ModifyUserFinal from './containers/FinalUserProfile/ModifyUserFinal';
+import ModifyUserFinal from "./containers/FinalUserProfile/ModifyUserFinal";
 
 // jose estuvo aquí
 
@@ -52,11 +52,21 @@ function App() {
 
         <PrivateRoute exact path="/signinfinal" component={SigninFinal} />
 
-        <Route exact path ='/reportados' component={Reported} />
+        <PrivateRoute
+          exact
+          path="/reportados"
+          component={Reported}
+          allow="admin"
+        />
 
-        <Route exact path="/newWorkOrder" component={CreateWorkOrder} />
+        <PrivateRoute
+          exact
+          path="/newWorkOrder"
+          component={CreateWorkOrder}
+          allow="userFinal"
+        />
 
-        <Route exact path='/modificarPerfilC' component={ModifyUserFinal}/>
+        <Route exact path="/modificarPerfilC" component={ModifyUserFinal} />
 
         <Route exact path="/" component={Hero} />
 
@@ -80,11 +90,21 @@ function App() {
 
         <Route exact path="/faq" component={FaqPage} />
 
-        <Route exact path="/admin" component={Dashboard} />
+        <PrivateRoute exact path="/admin" component={Dashboard} allow="admin" />
 
-        <Route exact path="/usuarioFinal" component={ProfileUserFinal} />
+        <PrivateRoute
+          exact
+          path="/usuarioFinal"
+          component={ProfileUserFinal}
+          allow="userFinal"
+        />
 
-        <Route exact path="/usuarioTech" component={PerfilUserTech} />
+        <PrivateRoute
+          exact
+          path="/usuarioTech"
+          component={PerfilUserTech}
+          allow="userTech"
+        />
 
         <Route path="*" component={Error404} />
       </Switch>

@@ -24,6 +24,7 @@ server.use(express.json({ limit: "50mb" }));
 server.use(cookieParser());
 server.use(helmet());
 server.use(morgan("dev"));
+
 server.use(
   cors({
     origin: "*",
