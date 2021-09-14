@@ -62,6 +62,22 @@ const deleteRequest = async (req, res, next) => {
   }
 };
 
+const getDetailsRequest = async (req, res, next) => {
+  const workOrdersSession = await workOrders.startSession();
+  const { id } = req.params;
+  try {
+    let workOrder;
+    await workOrdersSession.withTransaction(async () => {
+      workOrder = await workOrders.findById(id);
+    });
+    workOrdersSession.endSession();
+    res.send(workOrder);
+  } catch (error) {
+    workOrdersSession.endSession();
+    next({ message: error?.message, status: 404 });
+  }
+};
+
 const getRequest = async (req, res, next) => {
   try {
     const getAll = await workOrders.find({}).populate({ path: "userFinal" });
@@ -141,8 +157,9 @@ const getRequestsByID = async (req, res, next) => {
   let userFinal = id;
   try {
     const getAll = await workOrders.find({ userFinal });
+    // const getIdUser = await UserF.find({ _id: userFinal });
 
-    res.status(200).send(getAll);
+    res.status(200).json(getAll);
   } catch (error) {
     next(error);
   }
@@ -155,4 +172,5 @@ module.exports = {
   getRequest,
   getRequestFiltered,
   getRequestsByID,
+  getDetailsRequest,
 };
