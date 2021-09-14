@@ -2,6 +2,7 @@ import React, {useState} from "react";
 import UserCard from "../UserCard/UserCard";
 import axios from "axios";
 import { ADMIN_URL } from "../../utils/constants";
+import { Link } from 'react-router-dom';
 
 const BanUser = () => {
   const [user, setUser] = useState([])
@@ -54,8 +55,7 @@ const BanUser = () => {
     alert('No se ha podido banear al usuari@') 
    }
   };
- 
-console.log(user)
+
   return (
     <div>
       <label>Buscar Usuari@</label>
@@ -83,6 +83,8 @@ console.log(user)
               {(u.ban)? <button onClick={() => handleUnban(u._id) }>Desbanear</button> : 
               <button key={idx+ 'b'} onClick={() => handleBan(u._id)}>Banear</button>
               }
+              <Link to={`/workOrders/${u._id}`} >Ver pedidos de trabajo</Link>
+              
             </>
           );
         })}

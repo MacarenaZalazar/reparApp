@@ -6,7 +6,7 @@ import {
   GET_CITIES,
 } from "../actions/techUsers/constantsTechUsers";
 
-import { GET_ALL_REQUEST } from "../actions/request/constantsRequest";
+import { GET_ALL_REQUEST, GET_REQUEST_BY_USER } from "../actions/request/constantsRequest";
 
 import { GET_JOB_TYPES } from "../actions/jobTypes/constantsJobTypes";
 import {
@@ -28,6 +28,7 @@ var initialState = {
   allCities: [],
   allUsers: [],
   allRequests: [],
+  requestsByUser: []
 };
 
 function capitalize(str) {
@@ -129,6 +130,11 @@ function reducer(state = initialState, action) {
         allRequests: [...state.allRequests].sort(payload),
         techUsers: [...state.techUsers].sort(payload)
       }
+    case GET_REQUEST_BY_USER:
+      return {
+        ...state, 
+        requestsByUser: payload
+      }  
     default:
       return state;
   }

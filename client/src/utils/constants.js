@@ -20,6 +20,8 @@ const LOGIN_URL = `${BASE_URL}/login`;
 
 const CONTACT_URL = `${BASE_URL}/contact`;
 
+const WORKORDERS_URL = `${BASE_URL}/workOrders`;
+
 module.exports = {
   TECH_USERS_URL,
   ADMIN_URL,
@@ -28,4 +30,5 @@ module.exports = {
   REQUEST_URL,
   LOGIN_URL,
   CONTACT_URL,
+  WORKORDERS_URL
 };

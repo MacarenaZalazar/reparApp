@@ -1,32 +1,45 @@
-import React from "react";
-import { useDispatch } from "react-redux";
-import { useSelector } from "react-redux";
-import { getRequestAllFiltered } from "../../redux/actions/request";
+import axios from "axios";
+import React, {useEffect} from "react";
+import { useDispatch, useSelector } from "react-redux";
 import JobRequestCard from "../JobRequestCard/JobRequestCard";
+import {WORKORDERS_URL} from '../../utils/constants'
+import { getRequestByUser } from '../../redux/actions/request/index';
 
-const DeleteJobRequest = () => {
-  const dispatch = useDispatch();
-  const { allRequests } = useSelector((state) => state);
-  
-  function handleChange(e) {
-    dispatch(getRequestAllFiltered(e.target.value, '', ''))
+const DeleteJobRequest = (props) => {
+  //const [workOrder, setWorkOrder] = useState([])
+  const userID = props.match.params.id
+  const dispatch = useDispatch()
+  const {requestsByUser} = useSelector(state => state)
+  const userString = window.sessionStorage.getItem("user");
+  const useR = JSON.parse(userString);
+  let config = {
+    headers: {
+      "x-access-token": useR && useR.token,
+    },
+  };
+
+
+  useEffect(() => {
+    dispatch(getRequestByUser(userID, config))
+  }, [])
+ 
+  const handleClick = async (id) => {
+    try {
+      await axios.delete(`${WORKORDERS_URL}/${id}`)
+      alert('EL pedido se ha eliminado')
+    } catch (error) {
+      alert('No se ha podido eliminar el pedido')
+    }
   }
-  function handleClick(id) {
-    dispatch(DeleteJobRequest(id));
-  }
+
   return (
     <div>
-      <label>Buscar pedido de trabajo</label>
-      <input
-        type="text"
-        onChange={handleChange}
-        placeholder="pedido de trabajo..."
-      />
-      {allRequests.length > 1 &&
-        allRequests.map((u, idx) => {
+      {requestsByUser.length > 1 &&
+        requestsByUser.map((u, idx) => {
           return (
             <>
               <JobRequestCard
+                key={idx}
                 id={u.id}
                 name={u.name}
                 lastName={u.lastName}
@@ -37,7 +50,7 @@ const DeleteJobRequest = () => {
                 zones={u.z}
                 request={u.request}
               />
-              <button onClick={handleClick(u.id)}>Eliminar</button>
+              <button onClick={() => handleClick(u.id)}>Eliminar</button>
             </>
           );
         })}

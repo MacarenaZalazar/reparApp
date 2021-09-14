@@ -24,8 +24,6 @@ function Dashboard() {
 
           <h3>Buscar Usuario</h3>
           <BanUser/>
-          <h3>Buscar publicación</h3>
-          <DeleteJobRequest/>
           </div>
     </StyledDashContainer>
   );
