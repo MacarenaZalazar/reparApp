@@ -5,6 +5,15 @@ import { ADMIN_URL } from "../../utils/constants";
 
 const BanUser = () => {
   const [user, setUser] = useState([])
+  
+  const userString = window.sessionStorage.getItem("user");
+  const useR = JSON.parse(userString);
+
+  let config = {
+    headers: {
+      "x-access-token": useR && useR.token,
+    },
+  };
 
   const handleChange = async (e) => {
     try {
@@ -17,7 +26,7 @@ const BanUser = () => {
 
   const handleClick = async (id) => {
    try {
-     await axios.put(`${ADMIN_URL}/ban/user`, {id, ban: true})
+     await axios.put(`${ADMIN_URL}/ban/user`,  {ban: true, id: id }, config)
      alert('Usuari@ banead@')
    } catch (error) {
     alert('No se ha podido banear al usuari@') 
@@ -51,7 +60,7 @@ console.log(user)
                 phone={u.phone}
                 mail={u.mail}
               />
-              <button onClick={handleClick(u.id)}>Bannear</button>
+              <button onClick={() => handleClick(u._id)}>Bannear</button>
             </>
           );
         })}
