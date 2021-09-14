@@ -17,6 +17,7 @@ import { ADD_JOBTYPE, DELETE_JOBTYPE } from "../actions/admin/constantJobTypes";
 import { GET_ALL_USERS } from "../actions/admin/constantsAdmin";
 import { GET_ALL_JOB_REQUESTS, ORDER_BY_PRICE, ORDER_BY_SCORE, ORDER_BY_RELEVANT } from "../actions/allUsers/constantsAllUsers";
 
+
 var initialState = {
   techUsers: [],
   technicUserDetail: {},
@@ -128,7 +129,6 @@ function reducer(state = initialState, action) {
         allRequests: [...state.allRequests].sort(payload),
         techUsers: [...state.techUsers].sort(payload)
       }
-
     default:
       return state;
   }

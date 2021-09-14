@@ -1,7 +1,7 @@
 import axios from "axios";
 import { DELETE_JOBTYPE, ADD_JOBTYPE } from "./constantJobTypes";
 import { ADMIN_URL } from "../../../utils/constants";
-import { DELETE_USER, GET_ALL_USERS } from "./constantsAdmin";
+import { GET_ALL_USERS } from "./constantsAdmin";
 
 export function AddJobType(newJob) {
   return async function (dispatch) {
@@ -45,16 +45,3 @@ export function GetAllUsers(name) {
   };
 }
 
-export function deleteUser(user) {
-  return async function (dispatch) {
-    try {
-      const deleteUser = await axios.delete('');
-      return dispatch({
-        type: DELETE_USER,
-        payload: deleteUser.data,
-      });
-    } catch (error) {
-      console.log(error);
-    }
-  };
-}
