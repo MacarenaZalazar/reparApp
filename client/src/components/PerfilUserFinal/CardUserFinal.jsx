@@ -13,7 +13,7 @@ function CardUserFinal({
 }) {
   return (
     <>
-      <div class="card w-50">
+      <div class="card w-50 m-auto">
         <img src={img} class="card-img-top" alt="image no found" />
         <div class="card-body">
           <h5 class="card-title">Name: {name}</h5>

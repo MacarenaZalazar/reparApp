@@ -3,6 +3,7 @@ import { FINAL_USER_URL } from "../../../utils/constants";
 import {
   GET_FINAL_USERS_ALL,
   GET_FINAL_USERS_BY_ID,
+  PUT_FINAL_USERS_ALL
 } from "./constantsFinalUser";
 
 export function getFinalUsersAll() {
@@ -32,4 +33,18 @@ export function getFinalUsersById(id, config) {
       console.log(error);
     }
   };
+}
+
+export function putFinalUsersAll(finalUser){
+  return async function (dispatch) {
+    try {
+      const allRequests = await axios.put(FINAL_USER_URL,finalUser);
+      return dispatch({
+        type: PUT_FINAL_USERS_ALL,
+        payload: allRequests.data,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  }; 
 }

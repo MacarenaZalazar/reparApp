@@ -5,9 +5,11 @@ import { ContainerDiv } from './Styles';
 
 const ModifyUserFinal = () => {
     return (
-        <ContainerDiv>
+        <div className='container'>
+            <div className='container w-75'>
             <UpDateUserFinal />
-        </ContainerDiv>
+            </div>
+        </div>
     );
 };
 
