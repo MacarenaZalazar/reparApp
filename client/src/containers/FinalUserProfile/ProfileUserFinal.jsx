@@ -3,6 +3,7 @@ import CardUserFinal from "../../components/PerfilUserFinal/CardUserFinal";
 import UpDateUserFinal from "../../components/PerfilUserFinal/UpDateUserFinal";
 import { useDispatch, useSelector } from "react-redux";
 import { getFinalUsersById } from "../../redux/actions/finalUser/index";
+import { ContainerDiv } from "./Styles";
 
 function ProfileUserFinal() {
   const userString = window.sessionStorage.getItem("user");
@@ -24,6 +25,7 @@ function ProfileUserFinal() {
   console.log(user);
   return (
     <>
+    <ContainerDiv>
       {user.user ? (
         <div className="container">
           <div className="container">
@@ -48,6 +50,7 @@ function ProfileUserFinal() {
       ) : (
         <p>Cargando...</p>
       )}
+    </ContainerDiv>
     </>
   );
 }

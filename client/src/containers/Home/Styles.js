@@ -5,6 +5,7 @@ export const StyledDiv = styled.div`
   justify-content:  center;
   flex-direction: row;
   background-color: #f9f6f4;
+  height: 100%;
 
   .link {
     padding: 1rem;

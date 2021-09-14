@@ -6,9 +6,9 @@ import { StyledDiv } from "./styledWorkOrders";
 
 const WorkOrders = () => {
   const allRequest = useSelector((state) => state.allRequests);
-  console.log(allRequest);
-  return (
-    <StyledDiv>
+      return ( 
+  <StyledDiv>
+   { allRequest.length > 1 ? 
       <Carousel 
       className='carousel'
       itemsToShow={1}
@@ -27,7 +27,9 @@ const WorkOrders = () => {
             />
           );
         })}
-      </Carousel>
+      </Carousel> : (
+        <span>No se han encontrado pedidos de trabajo</span>
+      )}
     </StyledDiv>
   );
 };
