@@ -1,27 +1,36 @@
 import styled from "styled-components";
 
 export const StyledDiv = styled.div`
-  left: 0;
-  bottom: 0;
-  width: 100%;
+  background-color: #0a122a;
+  padding: 1rem;
+  p {
+    color: #f9f6f4;
+  }
+`;
+
+export const FooterDiv = styled.div`
+  padding: 0 2rem;
   display: flex;
-  flex-direction: row;
-  position: relative;
-  background-color: #de6b48;
+  justify-content: space-between;
   align-items: center;
-  justify-content: space-around;
-  .titlelogo{
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    img{
-      padding: 10px
+`;
+export const LinksDiv = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+
+  .link {
+    transition: 0.5s ease;
+    :hover {
+      transform: scale(1.1);
+      color: #f06449;
+      font-weight: bold;
     }
   }
-
-  .link:hover{
-    color:black;
-    font-weight: bold;
-  }
+`;
+export const SocialDiv = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
