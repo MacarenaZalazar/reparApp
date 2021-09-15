@@ -56,7 +56,18 @@ const getByUserName = async (req, res, next) => {
     next(error);
   }
 };
+const verifyEmail = async (req, res, next) => {
+  const { mail } = req.query;
+  try {
+    let existe = User.find({ mail });
+    res.status(200).json(existe);
+  } catch (error) {
+    next(error);
+  }
+};
+
 module.exports = {
   createNewUser,
   getByUserName,
+  verifyEmail,
 };

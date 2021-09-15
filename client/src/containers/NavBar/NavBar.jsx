@@ -14,6 +14,7 @@ import { getTechUsersAll } from "../../redux/actions/techUsers/index";
 import Swal from "sweetalert2";
 // import DropdownMenu from "../../components/Dropdown/DropdownMenu";
 import { RiMapPinUserFill } from "react-icons/ri";
+import { restoreState } from "../../redux/actions/allUsers/index";
 
 const NavBar = () => {
   const history = useHistory();
@@ -51,20 +52,20 @@ const NavBar = () => {
 
   const logoutAlert = () => {
     window.sessionStorage.removeItem("user");
-
     Swal.fire({
       icon: "success",
       title: "Sesion cerrada",
       showConfirmButton: false,
       timer: 2000,
     });
+    dispatch(restoreState());
     history.push("/");
   };
 
   return (
     <StyledDiv data-aos="fade-down">
       <NavBarDiv className="container">
-        <Link to="/">
+        <Link to="/" onClick={() => dispatch(restoreState())}>
           <LogoDiv>
             <img src={Logo} alt="logo" />
           </LogoDiv>
