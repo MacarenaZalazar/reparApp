@@ -17,6 +17,7 @@ import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
 import { LOGIN_URL } from "../../utils/constants";
 const MySwal = withReactContent(Swal);
+import LoginGoogle from "../googleAutho/LoginGoogle";
 
 const Login = () => {
   const dispatch = useDispatch();
@@ -155,6 +156,7 @@ const Login = () => {
           </ButtonDiv>
         </LoginDiv>
       </form>
+      <LoginGoogle />
       <OptionsDiv>
         <span>
           O{" "}
