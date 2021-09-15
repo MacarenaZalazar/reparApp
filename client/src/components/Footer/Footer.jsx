@@ -1,5 +1,5 @@
 import React from "react";
-import { StyledDiv } from "./styledFooter";
+import { StyledDiv, FooterDiv, LinksDiv, SocialDiv } from "./styledFooter";
 import Logo from "../../utils/wrench.png";
 
 import SocialLinks from "../SocialLinks/SocialLinks";
@@ -11,37 +11,28 @@ const Footer = () => {
 
   return (
     <StyledDiv>
-      <div>
-        <div className='titlelogo'>
-          <img
-              alt=""
-              src={Logo}
-              width="30"
-              height="30"
-              className="d-inline-block"
-              />
-
-       <h5>
-            
-            ReparApp
-              </h5>
-              
-        </div>
-        </div>
-    
-          <Link className='link' to="/contacto">Contacto</Link>
-          <div>
-
+      <FooterDiv className="container">
+        <LinksDiv>
+          <Link className="link" to="/contacto">
+            Contacto
+          </Link>
+          <Link className="link" to="/about">
+            Sobre Nosotrxs
+          </Link>
+          <Link className="link" to="/faq">
+            FAQ
+          </Link>
+        </LinksDiv>
+        <SocialDiv>
           <SocialLinks
             instagram={instagram}
             facebook={facebook}
             linkedin={linkedin}
             github={github}
-            />
-          <span color="white"> @2021 all rights reserved</span>
-          </div>
- 
-
+          />
+        </SocialDiv>
+        <p> @2021 All Rights Reserved</p>
+      </FooterDiv>
     </StyledDiv>
   );
 };

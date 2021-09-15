@@ -1,5 +1,17 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Handlee&display=swap");
+
+/* 
+PALETA DE COLORES
+--oxford-blue: #0a122aff;
+--orange-soda: #f06449ff;
+--cultured: #fbfaf8ff;
+--bone: #e7decdff;
+--orange-yellow: #F3B61F;
+--Forest-green: #004F2D;
+
+*/
+
 html {
   font-size: 62.5%;
   font-family: "Montserrat", sans-serif;
@@ -63,8 +75,8 @@ a {
   height: 100%;
   background-color: #f9f6f4;
 }
-#root{
-  height:100%;
+#root {
+  height: 100%;
 }
 /* .footer{
   display: flex;

@@ -49,7 +49,7 @@ const Searchbar = () => {
   };
 
   return (
-    <StyledDiv>
+    <StyledDiv data-aos="fade-right">
       <SearchBarDiv>
         <ItemDiv>
           <p>¿Qué necesitas?</p>
@@ -110,7 +110,7 @@ const Searchbar = () => {
           )}
 
           <Link className="link" to="/home">
-            <p onClick={handleClick}>Buscá!</p>
+            <p onClick={handleClick}>¡Buscá!</p>
           </Link>
         </ItemDiv>
       </SearchBarDiv>
