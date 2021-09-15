@@ -6,7 +6,10 @@ import {
   GET_CITIES,
 } from "../actions/techUsers/constantsTechUsers";
 
-import { GET_ALL_REQUEST, GET_REQUEST_BY_USER } from "../actions/request/constantsRequest";
+import {
+  GET_ALL_REQUEST,
+  GET_REQUEST_BY_USER,
+} from "../actions/request/constantsRequest";
 
 import { GET_JOB_TYPES } from "../actions/jobTypes/constantsJobTypes";
 import {
@@ -15,8 +18,12 @@ import {
 } from "../actions/finalUser/constantsFinalUser";
 import { ADD_JOBTYPE, DELETE_JOBTYPE } from "../actions/admin/constantJobTypes";
 import { GET_ALL_USERS } from "../actions/admin/constantsAdmin";
-import { GET_ALL_JOB_REQUESTS, ORDER_BY_PRICE, ORDER_BY_SCORE, ORDER_BY_RELEVANT } from "../actions/allUsers/constantsAllUsers";
-
+import {
+  GET_ALL_JOB_REQUESTS,
+  ORDER_BY_PRICE,
+  ORDER_BY_SCORE,
+  ORDER_BY_RELEVANT,
+} from "../actions/allUsers/constantsAllUsers";
 
 var initialState = {
   techUsers: [],
@@ -28,7 +35,7 @@ var initialState = {
   allCities: [],
   allUsers: [],
   allRequests: [],
-  requestsByUser: []
+  requestsByUser: [],
 };
 
 function capitalize(str) {
@@ -116,25 +123,31 @@ function reducer(state = initialState, action) {
       return {
         ...state,
         allRequests: [...state.allRequests].sort(payload),
-        techUsers: [...state.techUsers].sort(payload)
-    }
+        techUsers: [...state.techUsers].sort(payload),
+      };
     case ORDER_BY_PRICE:
       return {
         ...state,
-        allRequests:[...state.allRequests].sort(payload),
-        techUsers: [...state.techUsers].sort(payload)
-    }
+        allRequests: [...state.allRequests].sort(payload),
+        techUsers: [...state.techUsers].sort(payload),
+      };
     case ORDER_BY_RELEVANT:
       return {
         ...state,
         allRequests: [...state.allRequests].sort(payload),
-        techUsers: [...state.techUsers].sort(payload)
-      }
+        techUsers: [...state.techUsers].sort(payload),
+      };
     case GET_REQUEST_BY_USER:
       return {
-        ...state, 
-        requestsByUser: payload
-      }  
+        ...state,
+        requestsByUser: payload,
+      };
+    case "Restore":
+      return {
+        ...state,
+        techUsers: [],
+        allRequests: [],
+      };
     default:
       return state;
   }

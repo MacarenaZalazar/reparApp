@@ -1,3 +1,4 @@
+import LoginGoogle from "../googleAutho/LoginGoogle";
 import {
   StyledDiv,
   LoginDiv,
@@ -17,7 +18,6 @@ import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
 import { LOGIN_URL } from "../../utils/constants";
 const MySwal = withReactContent(Swal);
-import LoginGoogle from "../googleAutho/LoginGoogle";
 
 const Login = () => {
   const dispatch = useDispatch();
