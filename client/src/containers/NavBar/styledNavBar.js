@@ -1,38 +1,21 @@
 import styled from "styled-components";
 
 export const StyledDiv = styled.div`
-  background-color: #de6b48;
-  width: 100%;
-  box-shadow: 0 16px 24px -18px rgba(181, 129, 108, 0.5);
+  background-color: #0a122a;
+
+  padding: 0.5rem;
 `;
 
 export const NavBarDiv = styled.div`
+  color: #d2d0ff;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding-left: 50px;
-  span {
-    font-size: 14px;
-  }
-  a {
-    text-decoration: none;
-  }
-  .link {
-    color: black;
-  }
-  .navButtons {
-    margin-right: 50px;
-  }
 `;
 
 export const LogoDiv = styled.div`
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
   img {
-    margin: 10px;
-    padding: 5px;
-    width: 40px;
+    width: 10rem;
   }
 `;
 
@@ -46,5 +29,30 @@ export const UserName = styled.div`
   }
   p {
     font-size: 1.5rem;
+  }
+`;
+export const ButtonsDiv = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+`;
+
+export const Button = styled.div`
+  border-radius: 1rem;
+  padding: 0.5rem 3rem;
+  transition: 0.5s ease;
+  background-color: #fbfaf8;
+  p {
+    font-weight: bold;
+    color: #000003;
+    display: inline;
+    width: 100%;
+  }
+
+  :hover {
+    transform: scale(1.1);
+    cursor: pointer;
+    background-color: #f06449;
   }
 `;

@@ -28,13 +28,19 @@ import { getJobTypesAll } from "./redux/actions/jobTypes";
 import { useDispatch, useSelector } from "react-redux";
 import Reported from "./containers/Reported/Reported";
 import ModifyUserFinal from "./containers/FinalUserProfile/ModifyUserFinal";
-import BanJobRequest from './components/Admin/BanJobRequest';
+import BanJobRequest from "./components/Admin/BanJobRequest";
 
+import Aos from "aos";
+import "aos/dist/aos.css";
 // jose estuvo aquí
 
 function App() {
   const dispatch = useDispatch();
   const jobTypes = useSelector((state) => state.jobTypes);
+
+  useEffect(() => {
+    Aos.init({ duration: 1000 });
+  }, []);
 
   useEffect(() => {
     if (!jobTypes.length) {
@@ -66,7 +72,7 @@ function App() {
           component={CreateWorkOrder}
           allow="userFinal"
         />
-        <Route exact path='/workOrders/:id' component={BanJobRequest} />
+        <Route exact path="/workOrders/:id" component={BanJobRequest} />
 
         <Route exact path="/modificarPerfilC" component={ModifyUserFinal} />
 
