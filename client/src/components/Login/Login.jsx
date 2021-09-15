@@ -4,6 +4,7 @@ import {
   TitleDiv,
   InputDiv,
   ButtonDiv,
+  OptionsDiv,
 } from "./styledLogin";
 import axios from "axios";
 import { useDispatch } from "react-redux";
@@ -22,6 +23,20 @@ const Login = () => {
   const history = useHistory();
   const [input, setInput] = useState({ mail: "", password: "" });
 
+  function validate(values) {
+    let errors = {};
+
+    if (!values.password) {
+      errors.password = "Campo obligatorio";
+    }
+
+    if (!values.mail) {
+      errors.mail = "Campo obligatorio";
+    }
+
+    return errors;
+  }
+
   function handleInputChange(evento) {
     setInput((input) => ({
       ...input,
@@ -31,31 +46,43 @@ const Login = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    try {
-      const login = await axios.post(LOGIN_URL, input);
-      window.sessionStorage.setItem("user", JSON.stringify(login.data));
+    const { errors, ...sinErrors } = input;
+    const result = validate(sinErrors);
+    setInput((prevState) => {
+      return {
+        ...prevState,
+        errors: result,
+      };
+    });
 
-      const role = login.data.roles && login.data.roles[0].name;
+    if (!Object.keys(result).length) {
+      try {
+        const login = await axios.post(LOGIN_URL, input);
+        window.sessionStorage.setItem("user", JSON.stringify(login.data));
 
-      if (role === "userFinal") {
-        dispatch(
-          getTechUsersByJobAndZone(null, login.data.state, login.data.zone)
-        );
+        const role = login.data.roles && login.data.roles[0].name;
+
+        if (role === "userFinal") {
+          dispatch(
+            getTechUsersByJobAndZone(null, login.data.state, login.data.zone)
+          );
+        }
+        if (role === "userTech") {
+          dispatch(
+            getRequestAllFiltered(null, login.data.state, login.data.workZones)
+          );
+        }
+        MySwal.fire({
+          title: "Bienvenido",
+        });
+        history.push("/home");
+      } catch (error) {
+        MySwal.fire({
+          title: "Error en el logueo",
+        });
       }
-      if (role === "userTech") {
-        console.log("despacho como usuario tecnico");
-        dispatch(
-          getRequestAllFiltered(null, login.data.state, login.data.workZones)
-        );
-      }
-      MySwal.fire({
-        title: "Bienvenido",
-      });
-      history.push("/home");
-    } catch (error) {
-      MySwal.fire({
-        title: "Error en el logueo",
-      });
+    } else {
+      alert("Se encontraron errores");
     }
   };
   const forgotPassword = async (e) => {
@@ -67,13 +94,6 @@ const Login = () => {
 
   const showAlert = async (e) => {
     e.preventDefault();
-    // MySwal.fire({
-    //   title: "Elige un tipo de usuario",
-    //   showDenyButton: true,
-    //   confirmButtonText:
-    //     '<a style=”color:white” href="/signinTech">Técnico</a> ',
-    //   denyButtonText: '<a className="enlace"  href="/signinFinal">Final</a> ',
-    // });
 
     const { value: fruit } = await Swal.fire({
       input: "select",
@@ -98,12 +118,13 @@ const Login = () => {
       },
     });
   };
+
   return (
     <StyledDiv>
       <form onSubmit={(e) => handleSubmit(e)}>
         <LoginDiv>
           <TitleDiv>
-            <h4>Login</h4>
+            <h4>¡Hola! Ingresá tus datos</h4>
           </TitleDiv>
           <InputDiv>
             <MdAccountCircle className="icon" />
@@ -126,25 +147,28 @@ const Login = () => {
               onChange={handleInputChange}
             />
           </InputDiv>
+
           <ButtonDiv>
             <button className="link" type="submit">
               ¡Ingresá!
             </button>
           </ButtonDiv>
-          <span>
-            O{" "}
-            <span className="register" onClick={showAlert}>
-              registrate
-            </span>
-          </span>
-          <span>
-            O{" "}
-            <span className="register" onClick={(e) => forgotPassword(e)}>
-              Olvidaste tu contraseña?
-            </span>
-          </span>
         </LoginDiv>
       </form>
+      <OptionsDiv>
+        <span>
+          O{" "}
+          <span className="register" onClick={showAlert}>
+            registrate
+          </span>
+        </span>
+        <span>
+          O{" "}
+          <span className="register" onClick={(e) => forgotPassword(e)}>
+            Olvidaste tu contraseña?
+          </span>
+        </span>
+      </OptionsDiv>
     </StyledDiv>
   );
 };
