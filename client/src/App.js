@@ -12,7 +12,6 @@ import AboutUs from "./containers/AboutUs/AboutUs";
 import ContactUs from "./containers/ContactUs/ContactUs";
 import Footer from "./components/Footer/Footer";
 import PerfilUserTech from "./components/PerfilUserTech/PerfilUserTech";
-
 import ProfileUserFinal from "./containers/FinalUserProfile/ProfileUserFinal";
 
 // import Faq from "./components/faq/Faq";
@@ -72,6 +71,7 @@ function App() {
           component={CreateWorkOrder}
           allow="userFinal"
         />
+
         <Route exact path="/workOrders/:id" component={BanJobRequest} />
 
         <Route exact path="/modificarPerfilC" component={ModifyUserFinal} />

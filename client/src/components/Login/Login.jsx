@@ -8,15 +8,16 @@ import {
   OptionsDiv,
 } from "./styledLogin";
 import axios from "axios";
+
 import { useDispatch } from "react-redux";
 import { getTechUsersByJobAndZone } from "../../redux/actions/techUsers";
 import { getRequestAllFiltered } from "../../redux/actions/request/index";
 import { MdAccountCircle, MdVpnKey } from "react-icons/md";
 import { useState } from "react";
 import { useHistory } from "react-router-dom";
+import { LOGIN_URL } from "../../utils/constants";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
-import { LOGIN_URL } from "../../utils/constants";
 const MySwal = withReactContent(Swal);
 
 const Login = () => {

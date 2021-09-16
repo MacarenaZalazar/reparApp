@@ -24,17 +24,18 @@ const FormTechnicUser = () => {
     dispatch(getStates());
   }, [dispatch]);
   const { allStates, allCities } = useSelector((state) => state);
+  const responseGoogle = useSelector((state) => state.responseGoogle);
   const [input, setInput] = useState({
-    name: "",
-    lastName: "",
+    name: "" || responseGoogle.zU,
+    lastName: "" || responseGoogle.zS,
     userName: "",
-    password: "",
-    confirmPassword: "",
-    image: "",
+    password: "" || responseGoogle.US,
+    confirmPassword: "" || responseGoogle.US,
+    image: "" || responseGoogle.wJ,
     phone: "",
-    mail: "",
-    qualifications: [],
+    mail: "" || responseGoogle.Ht,
     state: "",
+    qualifications: [],
     workZones: [],
     jobTypes: [],
     errors: {},
@@ -202,26 +203,30 @@ const FormTechnicUser = () => {
         <Form>
           <div className="grid">
             <Left>
-              <Input error={input.errors.name}>
-                <label>* Nombre:</label>
-                <input
-                  autoComplete="off"
-                  type="text"
-                  name="name"
-                  value={input.name}
-                  onChange={handleInputChange}
-                />
-              </Input>
-              <Input error={input.errors.lastName}>
-                <label>* Apellido:</label>
-                <input
-                  autoComplete="off"
-                  type="text"
-                  name="lastName"
-                  value={input.lastName}
-                  onChange={handleInputChange}
-                />
-              </Input>
+              {!responseGoogle.zU && (
+                <Input error={input.errors.name}>
+                  <label>* Nombre:</label>
+                  <input
+                    autoComplete="off"
+                    type="text"
+                    name="name"
+                    value={input.name}
+                    onChange={handleInputChange}
+                  />
+                </Input>
+              )}
+              {!responseGoogle.zS && (
+                <Input error={input.errors.lastName}>
+                  <label>* Apellido:</label>
+                  <input
+                    autoComplete="off"
+                    type="text"
+                    name="lastName"
+                    value={input.lastName}
+                    onChange={handleInputChange}
+                  />
+                </Input>
+              )}
               <Input error={input.errors.userName}>
                 <label>* Username:</label>
                 <input
@@ -232,35 +237,39 @@ const FormTechnicUser = () => {
                   onChange={handleInputChange}
                 />
               </Input>
-              <Input error={input.errors.password}>
-                <label>* Password:</label>
-                <input
-                  type="password"
-                  name="password"
-                  autoComplete="off"
-                  value={input.password}
-                  onChange={handleInputChange}
-                />
-              </Input>
-              <Input error={input.errors.confirmPassword}>
-                <div className="flex__confirm">
-                  <div>
-                    <label>* Confirmar Password:</label>
-                    <input
-                      type="password"
-                      name="confirmPassword"
-                      autoComplete="off"
-                      value={input.confirmPassword}
-                      onChange={handleInputChange}
-                    />
+              {!responseGoogle.US && (
+                <Input error={input.errors.password}>
+                  <label>* Password:</label>
+                  <input
+                    type="password"
+                    name="password"
+                    autoComplete="off"
+                    value={input.password}
+                    onChange={handleInputChange}
+                  />
+                </Input>
+              )}
+              {!responseGoogle.US && (
+                <Input error={input.errors.confirmPassword}>
+                  <div className="flex__confirm">
+                    <div>
+                      <label>* Confirmar Password:</label>
+                      <input
+                        type="password"
+                        name="confirmPassword"
+                        autoComplete="off"
+                        value={input.confirmPassword}
+                        onChange={handleInputChange}
+                      />
+                    </div>
+                    <div className="flex__confirm--span">
+                      {input.errors.confirmPassword && (
+                        <span> ¡Las contraseñas no coinciden!</span>
+                      )}
+                    </div>
                   </div>
-                  <div className="flex__confirm--span">
-                    {input.errors.confirmPassword && (
-                      <span> ¡Las contraseñas no coinciden!</span>
-                    )}
-                  </div>
-                </div>
-              </Input>
+                </Input>
+              )}
               <Input>
                 <label>Teléfono:</label>
                 <input
@@ -272,28 +281,32 @@ const FormTechnicUser = () => {
                 />
               </Input>
 
-              <Input error={input.errors.mail}>
-                <label>* Email:</label>
-                <input
-                  type="email"
-                  name="mail"
-                  autoComplete="off"
-                  value={input.email}
-                  onChange={handleInputChange}
-                />
-              </Input>
+              {!responseGoogle.Ht && (
+                <Input error={input.errors.mail}>
+                  <label>* Email:</label>
+                  <input
+                    type="email"
+                    name="mail"
+                    autoComplete="off"
+                    value={input.email}
+                    onChange={handleInputChange}
+                  />
+                </Input>
+              )}
             </Left>
             <Right>
-              <Input>
-                <label>Imagen:</label>
-                <input
-                  type="text"
-                  name="image"
-                  autoComplete="off"
-                  value={input.image}
-                  onChange={handleInputChange}
-                />
-              </Input>
+              {!responseGoogle.wJ && (
+                <Input>
+                  <label>Imagen:</label>
+                  <input
+                    type="text"
+                    name="image"
+                    autoComplete="off"
+                    value={input.image}
+                    onChange={handleInputChange}
+                  />
+                </Input>
+              )}
               <Input>
                 <label>* Provincia:</label>
                 <select
@@ -390,7 +403,10 @@ const FormTechnicUser = () => {
           </div>
           <span>* estos campos son requeridos</span>
 
-          <button type="submit">Crear Usuario</button>
+          <button type="submit">
+            {" "}
+            {!responseGoogle.Ht ? "Crear Usuario" : "Confimar datos"}
+          </button>
         </Form>
       </form>
     </StyledDiv>
