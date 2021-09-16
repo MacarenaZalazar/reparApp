@@ -5,7 +5,6 @@ const SigninFinal = () => {
   return (
     <StyledDiv>
       <SigninDiv>
-        <h3>Usuario Final</h3>
         <FormFinalUser />
       </SigninDiv>
     </StyledDiv>

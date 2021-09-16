@@ -138,6 +138,7 @@ const FormFinalUser = () => {
     <StyledDiv>
       <form id="formCreate" onSubmit={(e) => handleSubmit(e)}>
         <Form>
+          <h4>Usuario Final</h4>
           <div className="grid">
             <Left>
               {!responseGoogle.zU && (
@@ -188,23 +189,14 @@ const FormFinalUser = () => {
               )}
               {!responseGoogle.US && (
                 <Input error={input.errors.confirmPassword}>
-                  <div className="flex__confirm">
-                    <div>
-                      <label>* Confirmar Password:</label>
-                      <input
-                        type="password"
-                        name="confirmPassword"
-                        autoComplete="off"
-                        value={input.confirmPassword}
-                        onChange={handleInputChange}
-                      />
-                    </div>
-                    <div className="flex__confirm--span">
-                      {input.errors.confirmPassword && (
-                        <span> ¡Las contraseñas no coinciden!</span>
-                      )}
-                    </div>
-                  </div>
+                  <label>* Confirmar Password: </label>
+                  <input
+                    type="password"
+                    name="confirmPassword"
+                    autoComplete="off"
+                    value={input.confirmPassword}
+                    onChange={handleInputChange}
+                  />
                 </Input>
               )}
             </Left>
@@ -282,10 +274,10 @@ const FormFinalUser = () => {
               </Input>
             </Right>
           </div>
-          * estos campos son obligatorios
           <button type="submit">
-            {!responseGoogle.Ht ? "Crear Usuario" : "Confimar datos"}
+            {!responseGoogle.Ht ? <p>Crear Usuario</p> : <p>Confimar datos</p>}
           </button>
+          <span>* estos campos son requeridos</span>
         </Form>
       </form>
     </StyledDiv>

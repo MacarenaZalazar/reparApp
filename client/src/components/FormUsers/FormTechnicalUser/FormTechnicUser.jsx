@@ -201,6 +201,7 @@ const FormTechnicUser = () => {
     <StyledDiv>
       <form id="formCreate" onSubmit={(e) => handleSubmit(e)}>
         <Form>
+          <h4>Usuario Técnico</h4>
           <div className="grid">
             <Left>
               {!responseGoogle.zU && (
@@ -251,35 +252,16 @@ const FormTechnicUser = () => {
               )}
               {!responseGoogle.US && (
                 <Input error={input.errors.confirmPassword}>
-                  <div className="flex__confirm">
-                    <div>
-                      <label>* Confirmar Password:</label>
-                      <input
-                        type="password"
-                        name="confirmPassword"
-                        autoComplete="off"
-                        value={input.confirmPassword}
-                        onChange={handleInputChange}
-                      />
-                    </div>
-                    <div className="flex__confirm--span">
-                      {input.errors.confirmPassword && (
-                        <span> ¡Las contraseñas no coinciden!</span>
-                      )}
-                    </div>
-                  </div>
+                  <label>* Confirmar Password:</label>
+                  <input
+                    type="password"
+                    name="confirmPassword"
+                    autoComplete="off"
+                    value={input.confirmPassword}
+                    onChange={handleInputChange}
+                  />
                 </Input>
               )}
-              <Input>
-                <label>Teléfono:</label>
-                <input
-                  type="text"
-                  name="phone"
-                  autoComplete="off"
-                  value={input.phone}
-                  onChange={handleInputChange}
-                />
-              </Input>
 
               {!responseGoogle.Ht && (
                 <Input error={input.errors.mail}>
@@ -295,6 +277,16 @@ const FormTechnicUser = () => {
               )}
             </Left>
             <Right>
+              <Input>
+                <label>Teléfono:</label>
+                <input
+                  type="text"
+                  name="phone"
+                  autoComplete="off"
+                  value={input.phone}
+                  onChange={handleInputChange}
+                />
+              </Input>
               {!responseGoogle.wJ && (
                 <Input>
                   <label>Imagen:</label>
@@ -385,7 +377,7 @@ const FormTechnicUser = () => {
                     })}
                 </div>
               </InputJobs>
-              <Input>
+              {/* <Input>
                 <label> Certificaciones:</label>
                 <input
                   className="qualificationInput"
@@ -398,15 +390,14 @@ const FormTechnicUser = () => {
                 <button onClick={(e) => addQualification(e)}>
                   Agregar Certificación
                 </button>
-              </Input>
+              </Input> */}
             </Right>
           </div>
-          <span>* estos campos son requeridos</span>
 
           <button type="submit">
-            {" "}
-            {!responseGoogle.Ht ? "Crear Usuario" : "Confimar datos"}
+            {!responseGoogle.Ht ? <p>Crear Usuario</p> : <p>Confimar datos</p>}
           </button>
+          <span>* estos campos son requeridos</span>
         </Form>
       </form>
     </StyledDiv>

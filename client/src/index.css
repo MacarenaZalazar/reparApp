@@ -15,8 +15,7 @@ PALETA DE COLORES
 html {
   font-size: 62.5%;
   font-family: "Montserrat", sans-serif;
-  height: 100%;
-  background-color: #f9f6f4;
+  background-color: #fbfaf8ff;
   box-sizing: border-box;
 }
 *,
@@ -28,7 +27,7 @@ html {
 body {
   margin: 0;
   padding: 0;
-  height: 100%;
+  background-color: #fbfaf8ff;
 }
 
 img {
@@ -72,13 +71,6 @@ a {
   margin: 0 auto;
 }
 
-.appContainer {
-  height: 100%;
-  background-color: #f9f6f4;
-}
-#root {
-  height: 100%;
-}
 /* .footer{
   display: flex;
   align-self: baseline;
