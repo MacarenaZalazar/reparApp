@@ -9,8 +9,8 @@ export const StyledDiv = styled.div`
   align-items: center;
   background-color: rgb(248, 248, 248);
   background-image: url(${gifSignin});
-  background-position: center left;
-  background-size: 25%;
+  background-position: bottom left;
+  background-size: 20%;
   background-repeat: no-repeat;
 
   h3 {

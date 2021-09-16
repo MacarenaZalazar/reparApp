@@ -33,13 +33,20 @@ export const StyledDiv = styled.div`
 `;
 
 export const Form = styled.div`
-  h4 {
-    text-align: center;
-    color: #0a122aff;
-    width: 50%;
-    background-color: #f06449ff;
-    padding: 0.5rem;
-    border-radius: 1rem;
+  .title {
+    position: relative;
+    text-transform: uppercase;
+    h4 {
+      &:after {
+        position: absolute;
+        top: 110%;
+        left: 0;
+        width: 100%;
+        height: 0.5rem;
+        background-color: #f06449ff;
+        content: " ";
+      }
+    }
   }
 
   color: #e7decdff;
@@ -48,8 +55,8 @@ export const Form = styled.div`
   border-radius: 1rem;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
+  justify-content: space-between;
+  gap: 2rem;
   padding: 5rem 1.3rem;
   span {
     padding: 10px 0;

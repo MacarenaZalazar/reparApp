@@ -138,7 +138,9 @@ const FormFinalUser = () => {
     <StyledDiv>
       <form id="formCreate" onSubmit={(e) => handleSubmit(e)}>
         <Form>
-          <h4>Usuario Final</h4>
+          <div className="title">
+            <h4>Usuario Final</h4>
+          </div>
           <div className="grid">
             <Left>
               {!responseGoogle.zU && (
