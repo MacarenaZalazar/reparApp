@@ -2,26 +2,30 @@ const User = require("../../models/User");
 const UserF = require("../../models/FinalUser");
 
 const finalUserModifier = async (req, res, next) => {
-  const UserFSession = await UserF.startSession();
+  const session = await UserF.startSession();
   const { id } = req.params;
-  // const user = req.body;
   const { name, lastName, image, phone, state, zone, password } = req.body;
+  
   try {
-    await UserFSession.withTransaction(async () => {
-      const { user } = await UserF.findByIdAndUpdate(id, { zone });
+    await session.withTransaction(async () => {
+
+      const {user} = await UserF.findByIdAndUpdate(id, { zone });
       await User.findByIdAndUpdate(user, {
         name,
         lastName,
         image,
         phone,
-        password,
-        state,
+        state
       });
+      if(password){
+        const pass = await User.encryptPassword(password);
+        await User.findByIdAndUpdate(user, {password: pass});
+      }
     });
-    UserFSession.endSession();
+    session.endSession();
     res.send("Usuario modificado correctamente");
   } catch (err) {
-    UserFSession.endSession();
+    session.endSession();
     next({ message: err?.message, status: 404 });
   }
 };
