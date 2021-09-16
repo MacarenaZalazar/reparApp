@@ -46,7 +46,7 @@ function App() {
     if (!jobTypes.length) {
       dispatch(getJobTypesAll());
     }
-  }, [dispatch]);
+  }, [jobTypes.length, dispatch]);
 
   return (
     <div className="appContainer">

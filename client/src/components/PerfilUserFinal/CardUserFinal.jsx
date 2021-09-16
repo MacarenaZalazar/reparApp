@@ -14,7 +14,7 @@ function CardUserFinal({
   return (
     <>
       <div class="card w-50 m-auto">
-        <img src={img} class="card-img-top" alt="image no found" />
+        <img src={img} class="card-img-top" alt='imagen'/>
         <div class="card-body">
           <h5 class="card-title">Name: {name}</h5>
           <h5 class="card-title">Lastname: {lastname}</h5>

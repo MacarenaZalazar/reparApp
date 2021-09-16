@@ -1,6 +1,5 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { useEffect } from "react";
 import { getTechUsersById } from "../../redux/actions/techUsers";
 import { StyledDiv } from "./Styled";
 import { useHistory } from "react-router-dom";
@@ -20,7 +19,7 @@ export default function TechnicUserDetails(props) {
 
   useEffect(() => {
     dispatch(getTechUsersById(technicUserID, config));
-  }, [dispatch]);
+  }, [dispatch, technicUserID]);
 
   const TechnicUserDetail = useSelector((state) => state.technicUserDetail);
 

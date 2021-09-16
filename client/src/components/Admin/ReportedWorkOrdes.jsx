@@ -14,12 +14,14 @@ const ReportedWorkOrdes = () => {
         "x-access-token": useR && useR.token,
       },
     };
-    useEffect( async () => {
+    useEffect(  () => {
+      (async () => {
         const workOrders = await axios.get(`${ADMIN_URL}/reported/workOrders`, config) 
-        setOrders(workOrders.data)
+        setOrders(workOrders.data)})()
+      
     }, [flag])
 
-    const handleBan= async (id) => {
+    const handleBan = async (id) => {
         try {
           await axios.put(`${ADMIN_URL}/ban/work`, {ban: true, id},config)
           alert('El pedido ha sido baneado')

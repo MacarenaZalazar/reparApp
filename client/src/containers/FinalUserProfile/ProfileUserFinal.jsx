@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import CardUserFinal from "../../components/PerfilUserFinal/CardUserFinal";
-import UpDateUserFinal from "../../components/PerfilUserFinal/UpDateUserFinal";
+//import UpDateUserFinal from "../../components/PerfilUserFinal/UpDateUserFinal";
 import { useDispatch, useSelector } from "react-redux";
 import { getFinalUsersById } from "../../redux/actions/finalUser/index";
 import { ContainerDiv } from "./Styles";
@@ -18,7 +18,7 @@ function ProfileUserFinal() {
 
   useEffect(() => {
     dispatch(getFinalUsersById(users.idUserFinal, config));
-  }, [dispatch]);
+  }, [dispatch, users.idUserFinal]);
 
   const user = useSelector((state) => state.finalUserDetail);
 

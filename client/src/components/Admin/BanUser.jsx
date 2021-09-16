@@ -19,7 +19,7 @@ const BanUser = () => {
   const handleChange = async (e) => {
     setInput(e.target.value)
     try {
-      const usersByUsername = await axios.get(`${ADMIN_URL}/userbyuserName?userName=${e.target.value}`)
+      const usersByUsername = await axios.get(`${ADMIN_URL}/userbyuserName?userName=${e.target.value}`, config)
       setUser(usersByUsername.data)
     } catch (error) {
       console.log(error)

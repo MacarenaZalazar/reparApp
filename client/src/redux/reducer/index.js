@@ -20,7 +20,7 @@ import {
 import { ADD_JOBTYPE, DELETE_JOBTYPE } from "../actions/admin/constantJobTypes";
 import { GET_ALL_USERS } from "../actions/admin/constantsAdmin";
 import {
-  GET_ALL_JOB_REQUESTS,
+//  GET_ALL_JOB_REQUESTS,
   ORDER_BY_PRICE,
   ORDER_BY_SCORE,
   ORDER_BY_RELEVANT,
