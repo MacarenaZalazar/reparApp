@@ -31,6 +31,9 @@ const Login = () => {
     if (!values.password) {
       errors.password = "Campo obligatorio";
     }
+    if (values.password.length > 15) {
+      errors.password = "Contraseña máximo 15 caracteres";
+    }
 
     if (!values.mail) {
       errors.mail = "Campo obligatorio";
@@ -149,6 +152,9 @@ const Login = () => {
               onChange={handleInputChange}
             />
           </InputDiv>
+          {input.errors && input.errors.password && (
+            <p>{input.errors.password}</p>
+          )}
 
           <ButtonDiv>
             <button className="link" type="submit">
