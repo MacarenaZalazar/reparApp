@@ -24,7 +24,7 @@ const {
 
 router.post("/", checkDuplicateUsernameOrEmail, finalUserCreate);
 router.put("/:id", [verifyToken, isuserFinal], finalUserModifier);
-router.delete("/id", [verifyToken, isuserFinal], deleteUserF);
+router.delete("/:id", [verifyToken, isuserFinal], deleteUserF);
 router.get("/:id", finalUsersDetail);
 router.get("/", finalUserAll);
 

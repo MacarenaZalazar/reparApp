@@ -13,7 +13,8 @@ import ContactUs from "./containers/ContactUs/ContactUs";
 import Footer from "./components/Footer/Footer";
 import PerfilUserTech from "./components/PerfilUserTech/PerfilUserTech";
 import ProfileUserFinal from "./containers/FinalUserProfile/ProfileUserFinal";
-
+import FormTechnicUserModifier from "./components/PerfilUserTech/UserTechModifier";
+import WorkOrderDetails from "./containers/WorkOrderDetails/WorkOrderDetails";
 // import Faq from "./components/faq/Faq";
 import FaqPage from "./containers/faqPage/FaqPage";
 import Error404 from "./containers/Error404/Error404";
@@ -106,14 +107,18 @@ function App() {
           component={ProfileUserFinal}
           allow="userFinal"
         />
-
         <PrivateRoute
           exact
           path="/usuarioTech"
           component={PerfilUserTech}
           allow="userTech"
         />
-
+        <Route
+          exact
+          path="/usuarioFinal/modifier"
+          component={FormTechnicUserModifier}
+        />
+        <Route exact path="/workOrdersDetails" component={WorkOrderDetails} />
         <Route path="*" component={Error404} />
       </Switch>
 

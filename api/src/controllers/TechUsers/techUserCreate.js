@@ -7,7 +7,7 @@ const nodemailer = require("nodemailer");
 
 const techUserCreate = async (req, res, next) => {
   const TechUserSession = await TechUser.startSession();
-  const { workZones, jobTypes, qualification } = req.body;
+  const { workZones, jobTypes, qualification, price } = req.body;
   try {
     await TechUserSession.withTransaction(async () => {
       const idRole = await Role.find({ name: { $in: "userTech" } });
@@ -17,6 +17,7 @@ const techUserCreate = async (req, res, next) => {
         workZones,
         jobTypes,
         qualification,
+        price,
       });
       const token = jwt.sign({ id: newUser._id }, SECRET, {
         expiresIn: 86400, // 24 hours

@@ -5,16 +5,17 @@ const finalUserModifier = async (req, res, next) => {
   const UserFSession = await UserF.startSession();
   const { id } = req.params;
   // const user = req.body;
-  const { name, lastName, image, phone, mail, zone } = req.body;
+  const { name, lastName, image, phone, state, zone, password } = req.body;
   try {
     await UserFSession.withTransaction(async () => {
-      const {user} = await UserF.findByIdAndUpdate(id, { zone });
+      const { user } = await UserF.findByIdAndUpdate(id, { zone });
       await User.findByIdAndUpdate(user, {
         name,
         lastName,
         image,
         phone,
-        mail,
+        password,
+        state,
       });
     });
     UserFSession.endSession();

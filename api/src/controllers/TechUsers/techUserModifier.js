@@ -11,29 +11,39 @@ const techUserModifier = async (req, res, next) => {
     lastName,
     image,
     phone,
-    mail,
+    state,
+    price,
   } = req.body;
   const session = await User.startSession();
   try {
     session.startTransaction();
-    const userTechUpdate = await UsersT.findByIdAndUpdate(id, {
-      workZones,
-      jobTypes,
-      qualification
-    }, {new:true, session});
+    const userTechUpdate = await UsersT.findByIdAndUpdate(
+      id,
+      {
+        workZones,
+        jobTypes,
+        qualification,
+        price,
+      },
+      { new: true, session }
+    );
 
-    await User.findByIdAndUpdate(userTechUpdate.user, {
-      name,
-      lastName,
-      image,
-      phone,
-      mail
-    }, {session});
-    res.send(userTechUpdate)
+    await User.findByIdAndUpdate(
+      userTechUpdate.user,
+      {
+        name,
+        lastName,
+        image,
+        phone,
+        state,
+      },
+      { session }
+    );
+    res.send(userTechUpdate);
     await session.commitTransaction();
   } catch (error) {
     await session.abortTransaction();
-    next({message: error.message, status: 404});
+    next({ message: error.message, status: 404 });
   } finally {
     session.endSession();
   }

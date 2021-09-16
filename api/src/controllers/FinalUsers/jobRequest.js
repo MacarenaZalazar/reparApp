@@ -29,7 +29,7 @@ const postNewRequest = async (req, res, next) => {
 const requestModifier = async (req, res, next) => {
   const workOrdersSession = await workOrders.startSession();
   const { id } = req.params;
-  const { title, description, workImage, workType } = req.body;
+  const { title, description, workImage, workType, state, zone } = req.body;
   try {
     await workOrdersSession.withTransaction(async () => {
       await workOrders.findByIdAndUpdate(id, {
@@ -37,6 +37,8 @@ const requestModifier = async (req, res, next) => {
         description,
         workImage,
         workType,
+        state,
+        zone,
       });
     });
     workOrdersSession.endSession();
