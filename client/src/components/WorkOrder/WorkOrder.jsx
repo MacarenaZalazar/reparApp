@@ -1,7 +1,11 @@
 import React from "react";
 import { StyledDiv } from "./styledWorkOrder";
+import { Link } from "react-router-dom";
+import { getRequestDetailsbyID } from "../../redux/actions/request";
+import { useDispatch } from "react-redux";
 
-const WorkOrder = ({ title, description, state, zone, workImage }) => {
+const WorkOrder = ({ title, description, state, zone, workImage, _id }) => {
+  const dispatch = useDispatch();
   return (
     <StyledDiv>
       <img src={`${workImage}`} alt="img" />
@@ -14,6 +18,11 @@ const WorkOrder = ({ title, description, state, zone, workImage }) => {
         </div>
         <div className="subtitle">
           <p>{description}</p>
+          <Link to="/workOrdersDetails">
+            <button onClick={() => dispatch(getRequestDetailsbyID(_id))}>
+              Detalles
+            </button>
+          </Link>
         </div>
       </div>
       <div className="infoContainer">

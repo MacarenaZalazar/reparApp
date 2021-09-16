@@ -3,8 +3,10 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getTechUsersById } from "../../redux/actions/techUsers/index";
 import { Link } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 const PerfilUserTech = () => {
+  const history = useHistory();
   const userString = window.sessionStorage.getItem("user");
   const userSession = JSON.parse(userString);
   let config = {
@@ -25,13 +27,16 @@ const PerfilUserTech = () => {
       {user.user ? (
         <div>
           <Link to="/home">Home</Link>
-          <button>Modificar perfil</button>
+          <button onClick={() => history.push("/usuarioFinal/modifier")}>
+            Modificar perfil
+          </button>
           <button>Puntuaciones pendientes</button>
           <h2>{user.user.userName}</h2>
           <h4>{user.user.lastName}</h4>
           <h5>{user.user.name}</h5>
           <p>{user.user.mail}</p>
           <p>{user.user.phone}</p>
+          <p>{user.user.state}</p>
           <img src={`${user.user.image}`} alt="image_perfil" />
           <ul>
             {user &&

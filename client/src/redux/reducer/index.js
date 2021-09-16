@@ -9,6 +9,7 @@ import {
 import {
   GET_ALL_REQUEST,
   GET_REQUEST_BY_USER,
+  GET_REQUEST_DETAILS,
 } from "../actions/request/constantsRequest";
 
 import { GET_JOB_TYPES } from "../actions/jobTypes/constantsJobTypes";
@@ -38,6 +39,7 @@ var initialState = {
   allRequests: [],
   requestsByUser: [],
   responseGoogle: {},
+  requestDetails: {},
 };
 
 function capitalize(str) {
@@ -148,7 +150,12 @@ function reducer(state = initialState, action) {
         techUsers: [],
         allRequests: [],
       };
-
+    case GET_REQUEST_DETAILS:
+      console.log("entre", payload);
+      return {
+        ...state,
+        requestDetails: payload,
+      };
     //Google Login
     case LOGIN_GOOGLE:
       return {
