@@ -17,7 +17,7 @@ function LoginGoogle() {
 
   const responseGoogle = async (response) => {
     const mailGoogle = response.Ws.Ht;
-    const mailVictor = "victor@victor.com";
+    //const mailVictor = "victor@victor.com";
 
     try {
       let existed = await axios.get(`${LOGIN_URL}?mail=${mailGoogle}`);

@@ -5,12 +5,12 @@ import { useDispatch, useSelector } from "react-redux";
 
 function FinalUserDetails(props) {
   const dispatch = useDispatch();
+  const finalUserID = props.match.params.id;
 
   useEffect(() => {
     dispatch(getFinalUsersById(finalUserID));
-  }, [dispatch]);
+  }, [dispatch, finalUserID]);
 
-  const finalUserID = props.match.params.id;
   const FinalUser = useSelector((state) => state.finalUserDetail);
 
   return (

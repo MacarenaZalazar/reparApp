@@ -10,7 +10,7 @@ import Logo from "../../utils/logo.png";
 import { Link } from "react-router-dom";
 import { useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { getTechUsersAll } from "../../redux/actions/techUsers/index";
+//import { getTechUsersAll } from "../../redux/actions/techUsers/index";
 import Swal from "sweetalert2";
 // import DropdownMenu from "../../components/Dropdown/DropdownMenu";
 import { RiMapPinUserFill } from "react-icons/ri";

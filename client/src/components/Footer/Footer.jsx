@@ -1,7 +1,5 @@
 import React from "react";
 import { StyledDiv, FooterDiv, LinksDiv, SocialDiv } from "./styledFooter";
-import Logo from "../../utils/wrench.png";
-
 import SocialLinks from "../SocialLinks/SocialLinks";
 import { socialMedia } from "../../utils/reparAppInfo";
 import { Link } from "react-router-dom";

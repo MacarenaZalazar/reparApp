@@ -20,7 +20,7 @@ const BanJobRequest = (props) => {
 
   useEffect(() => {
     dispatch(getRequestByUser(userID, config))
-  }, [flag])
+  }, [flag, dispatch, userID])
  
   const handleBan= async (id) => {
     try {

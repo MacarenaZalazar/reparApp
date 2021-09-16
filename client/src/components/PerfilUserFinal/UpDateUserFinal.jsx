@@ -1,33 +1,33 @@
-import React,{ useState, useEffect }  from "react";
-import {putFinalUsersAll} from '../../redux/actions/finalUser/index'
-import { useDispatch } from "react-redux";
+import React from "react";
+//import {putFinalUsersAll} from '../../redux/actions/finalUser/index'
+//import { useDispatch } from "react-redux";
 
 function UpDateUserFinal() {
-  const [input, setInput] = useState({
-    name: "",
-    lastName: "",
-    image: "",
-    phone: "",
-    mail: "",
-    state: "",
-    zone: "",
-  });
+  // const [input, setInput] = useState({
+  //   name: "",
+  //   lastName: "",
+  //   image: "",
+  //   phone: "",
+  //   mail: "",
+  //   state: "",
+  //   zone: "",
+  // });
 
-  function handleInputChange(evento) {
-    setInput((input) => ({
-      ...input,
-      [evento.target.name]: evento.target.value,
-    }));
-  }
-  const dispatch = useDispatch();
+  // function handleInputChange(evento) {
+  //   setInput((input) => ({
+  //     ...input,
+  //     [evento.target.name]: evento.target.value,
+  //   }));
+  // }
+  //const dispatch = useDispatch();
 
   // useEffect(() => {
   //   dispatch(putFinalUsersAll(input));
   // }, [dispatch]);  
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-  }
+  // const handleSubmit = async (e) => {
+  //   e.preventDefault();
+  // }
   return (
     <>
       <form className='w-75 m-auto'>

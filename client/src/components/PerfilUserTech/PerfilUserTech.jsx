@@ -18,7 +18,7 @@ const PerfilUserTech = () => {
 
   useEffect(() => {
     dispatch(getTechUsersById(userSession.idTech, config));
-  }, [dispatch]);
+  }, [dispatch, userSession.idTech]);
 
   const user = useSelector((state) => state.technicUserDetail);
   console.log(user);
