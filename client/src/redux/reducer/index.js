@@ -23,6 +23,7 @@ import {
   ORDER_BY_PRICE,
   ORDER_BY_SCORE,
   ORDER_BY_RELEVANT,
+  LOGIN_GOOGLE,
 } from "../actions/allUsers/constantsAllUsers";
 
 var initialState = {
@@ -36,6 +37,7 @@ var initialState = {
   allUsers: [],
   allRequests: [],
   requestsByUser: [],
+  responseGoogle: {},
 };
 
 function capitalize(str) {
@@ -62,7 +64,6 @@ function reducer(state = initialState, action) {
         technicUserDetail: payload,
       };
     case GET_TECH_USERS_BY_JOB_ZONE:
-      console.log(payload);
       return {
         ...state,
         techUsers: payload,
@@ -114,7 +115,6 @@ function reducer(state = initialState, action) {
 
     //WorkOrders -- Request
     case GET_ALL_REQUEST:
-      console.log("payload:  ", payload);
       return {
         ...state,
         allRequests: payload,
@@ -147,6 +147,13 @@ function reducer(state = initialState, action) {
         ...state,
         techUsers: [],
         allRequests: [],
+      };
+
+    //Google Login
+    case LOGIN_GOOGLE:
+      return {
+        ...state,
+        responseGoogle: payload,
       };
     default:
       return state;

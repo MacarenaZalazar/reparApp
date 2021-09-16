@@ -59,7 +59,8 @@ const getByUserName = async (req, res, next) => {
 const verifyEmail = async (req, res, next) => {
   const { mail } = req.query;
   try {
-    let existe = User.find({ mail });
+    let existe = await User.findOne({ mail: mail });
+
     res.status(200).json(existe);
   } catch (error) {
     next(error);

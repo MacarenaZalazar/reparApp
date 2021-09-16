@@ -44,6 +44,7 @@ const logIn = async (req, res) => {
           return res.status(500).send(err.message);
         }
       });
+
       passwordChanged = await User.encryptPassword(code);
 
       await User.findByIdAndUpdate(userFound._id, {

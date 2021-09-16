@@ -1,5 +1,9 @@
 // import { GET_ALL_JOB_REQUESTS } from "./constantsAllUsers";
-import { ORDER_BY_PRICE, ORDER_BY_SCORE } from "./constantsAllUsers";
+import {
+  ORDER_BY_PRICE,
+  ORDER_BY_SCORE,
+  LOGIN_GOOGLE,
+} from "./constantsAllUsers";
 import { ORDER_BY_RELEVANT } from "./constantsAllUsers";
 
 export const postScore = (score) => {};
@@ -45,5 +49,12 @@ export const orderByRelevant = () => {
     payload: function (a, b) {
       return (a.add === true) - (b.add === true);
     },
+  };
+};
+
+export const loginGoogle = (response) => {
+  return {
+    type: LOGIN_GOOGLE,
+    payload: response.Ws,
   };
 };

@@ -6,7 +6,7 @@ export const StyledDiv = styled.div`
   padding: 30px 50px;
   height: 100%;
   margin: 50px; */
-  height: calc(100vh - 15rem);
+  height: calc(100vh - 11.75rem);
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -59,7 +59,7 @@ export const Input = styled.div`
     width: 20rem;
     border: 1px solid #194350;
     background-color: ${({ error }) => (error ? "#ff8882" : "")};
-    outline: none;
+    outline: 0;
   }
 
   label {
