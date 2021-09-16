@@ -2,7 +2,6 @@ import styled from "styled-components";
 
 export const StyledDiv = styled.div`
   background-color: #0a122a;
-
   padding: 0.5rem;
 `;
 
@@ -42,10 +41,10 @@ export const Button = styled.div`
   border-radius: 1rem;
   padding: 0.5rem 3rem;
   transition: 0.5s ease;
-  background-color: #fbfaf8;
+  background-color: #e7decdff;
   p {
     font-weight: bold;
-    color: #000003;
+    color: #0a122aff;
     display: inline;
     width: 100%;
   }

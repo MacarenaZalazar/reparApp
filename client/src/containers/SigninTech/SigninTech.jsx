@@ -6,7 +6,6 @@ const SigninTech = () => {
   return (
     <StyledDiv>
       <SigninDiv>
-        <h3>Usuario Técnico</h3>
         <FormTechnicUser />
       </SigninDiv>
     </StyledDiv>

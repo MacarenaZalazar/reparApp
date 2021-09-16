@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const StyledDiv = styled.div`
   background-color: #0a122a;
-  padding: 1rem;
+  padding: 0.5rem;
   p {
     color: #f9f6f4;
   }

@@ -107,18 +107,18 @@ const NavBar = () => {
             </Button>
           )}
           {!user && (
-            <Button>
-              <Link className="linkLogin" to="/login">
+            <Link className="linkLogin" to="/login">
+              <Button>
                 <p>Ingresar</p>
-              </Link>
-            </Button>
+              </Button>
+            </Link>
           )}
           {user && (
-            <Button onClick={logoutAlert}>
-              <Link className="linkLogin" to="/login">
+            <Link className="linkLogin" to="/login">
+              <Button onClick={logoutAlert}>
                 <p>Cerrar Sesión</p>
-              </Link>
-            </Button>
+              </Button>
+            </Link>
           )}
         </ButtonsDiv>
 

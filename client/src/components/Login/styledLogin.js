@@ -2,12 +2,11 @@ import styled from "styled-components";
 
 export const StyledDiv = styled.div`
   width: 100%;
-  height: calc(100vh - 11.75rem);
+  height: calc(100vh - 10.75rem);
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: #fbfaf8;
   gap: 2rem;
 `;
 
