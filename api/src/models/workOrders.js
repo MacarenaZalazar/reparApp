@@ -14,6 +14,16 @@ const workOrderSchema = new Schema(
       type: Schema.ObjectId,
       ref: "UsersF",
     },
+    userTech: {
+      type: Schema.ObjectId,
+      ref: "UsersT",
+    },
+    scoreFinal: {
+      type: String,
+    },
+    scoreTech: {
+      type: String,
+    },
     ban: {
       type: Boolean,
       default: false,
