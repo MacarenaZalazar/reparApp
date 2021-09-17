@@ -3,6 +3,11 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, NavLink } from "react-router-dom";
 import { getRequestByUser } from "../../redux/actions/request/index";
+import {
+  WorksOrdersDiv,
+  WorksSolicited,
+  WorksFinished,
+} from "./styledCardUserFinal";
 function CardUserFinal({
   name,
   img,
@@ -62,21 +67,41 @@ function CardUserFinal({
           <a href="#" class="card-link">
             Another link
           </a> */}
-
-          {requestsByUser &&
-            requestsByUser.map((req) => {
-              return (
-                <div>
-                  <p>{req.title}</p>
-                  {req.solicited && (
-                    <Link to={`/solicitedWork/${req._id}`}>
-                      Ver solicitante
-                    </Link>
-                  )}
-                </div>
-              );
-            })}
         </div>
+        <WorksOrdersDiv>
+          <WorksSolicited>
+            <h5>Tus solicitudes en proceso</h5>
+            {requestsByUser &&
+              requestsByUser.map((req) => {
+                return (
+                  <div>
+                    <p>{req.title}</p>
+                    {req.solicited && !req.complete && (
+                      <Link className="link" to={`/solicitedWork/${req._id}`}>
+                        Ver solicitante
+                      </Link>
+                    )}
+                  </div>
+                );
+              })}
+          </WorksSolicited>
+          <WorksFinished>
+            <h5>Tus solicitudes finalizadas</h5>
+            {requestsByUser &&
+              requestsByUser.map((req) => {
+                return (
+                  <div>
+                    <p>{req.title}</p>
+                    {req.complete && (
+                      <Link className="link" to={`/solicitedWork/${req._id}`}>
+                        Ver Detalle
+                      </Link>
+                    )}
+                  </div>
+                );
+              })}
+          </WorksFinished>
+        </WorksOrdersDiv>
       </div>
     </>
   );
