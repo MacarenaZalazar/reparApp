@@ -70,9 +70,11 @@ export const getRequestByUserTech = (id, config) => {
 };
 
 export const getRequestDetailsbyID = (id) => {
+  console.log("despachando accion");
   return async function (dispatch) {
     try {
       const requestDetails = await axios.get(`${REQUEST_URL}/details/${id}`);
+      console.log(requestDetails);
       return dispatch({
         type: GET_REQUEST_DETAILS,
         payload: requestDetails.data,

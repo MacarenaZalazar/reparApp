@@ -38,6 +38,7 @@ const requestModifier = async (req, res, next) => {
     zone,
     userTech,
     solicited,
+    acepted,
   } = req.body;
   try {
     await workOrdersSession.withTransaction(async () => {
@@ -50,6 +51,7 @@ const requestModifier = async (req, res, next) => {
         zone,
         userTech,
         solicited,
+        acepted,
       });
     });
     workOrdersSession.endSession();

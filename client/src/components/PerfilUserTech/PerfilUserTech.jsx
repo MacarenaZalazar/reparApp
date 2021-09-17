@@ -73,11 +73,13 @@ const PerfilUserTech = () => {
 
             {requestsByUserTech &&
               requestsByUserTech.map((req) => {
-                return (
-                  <div>
-                    <p>{req.title}</p>
-                  </div>
-                );
+                if (req.acepted) {
+                  return (
+                    <div>
+                      <p>{req.title}</p>
+                    </div>
+                  );
+                }
               })}
           </div>
         </div>

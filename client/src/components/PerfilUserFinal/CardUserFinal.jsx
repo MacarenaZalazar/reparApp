@@ -1,7 +1,7 @@
 import React from "react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { getRequestByUser } from "../../redux/actions/request/index";
 function CardUserFinal({
   name,
@@ -65,7 +65,16 @@ function CardUserFinal({
 
           {requestsByUser &&
             requestsByUser.map((req) => {
-              return <p>{req.title}</p>;
+              return (
+                <div>
+                  <p>{req.title}</p>
+                  {req.solicited && (
+                    <Link to={`/solicitedWork/${req._id}`}>
+                      Ver solicitante
+                    </Link>
+                  )}
+                </div>
+              );
             })}
         </div>
       </div>
