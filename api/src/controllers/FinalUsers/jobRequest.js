@@ -39,6 +39,11 @@ const requestModifier = async (req, res, next) => {
     userTech,
     solicited,
     acepted,
+    scoreFinal,
+    scoreTech,
+    completeFinal,
+    completeTech,
+    complete,
   } = req.body;
   try {
     await workOrdersSession.withTransaction(async () => {
@@ -52,6 +57,11 @@ const requestModifier = async (req, res, next) => {
         userTech,
         solicited,
         acepted,
+        scoreFinal,
+        scoreTech,
+        completeFinal,
+        completeTech,
+        complete,
       });
     });
     workOrdersSession.endSession();

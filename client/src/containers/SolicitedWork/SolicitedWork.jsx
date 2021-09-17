@@ -4,9 +4,12 @@ import { useEffect } from "react";
 import { getRequestDetailsbyID } from "../../redux/actions/request/index";
 import { getTechUsersById } from "../../redux/actions/techUsers/index";
 import { REQUEST_URL } from "../../utils/constants";
+import { Link, useHistory } from "react-router-dom";
 import axios from "axios";
+import Swal from "sweetalert2";
 
 const SolicitedWork = (props) => {
+  const history = useHistory();
   const dispatch = useDispatch();
 
   const requestDetails = useSelector((state) => state.requestDetails);
@@ -21,11 +24,13 @@ const SolicitedWork = (props) => {
   }, [requestDetails]);
 
   async function aceptUserTech() {
-    const respuesta = await axios.put(`${REQUEST_URL}/${idWork}`, {
+    await axios.put(`${REQUEST_URL}/${idWork}`, {
       acepted: true,
     });
-    console.log(respuesta);
+    alert("¡Aceptaste al Tecnico!");
+    history.push("/usuarioFinal");
   }
+
   async function refuseUserTech() {
     const respuesta = await axios.put(`${REQUEST_URL}/${idWork}`, {
       acepted: false,
@@ -33,6 +38,44 @@ const SolicitedWork = (props) => {
       userTech: null,
     });
     console.log(respuesta);
+  }
+
+  let scoreFinalInput = "";
+  let obj = "";
+  async function finishedWork() {
+    const { value: scoreFinal } = await Swal.fire({
+      title: "Califica al tecnico",
+      input: "number",
+      inputLabel: "tu calificacion",
+      inputPlaceholder: "Calificación de 1 a 5",
+      inputAttributes: {
+        min: 1,
+        max: 5,
+        step: 1,
+      },
+    });
+
+    if (scoreFinal) {
+      scoreFinalInput = scoreFinal;
+    }
+
+    if (!requestDetails.completeTech) {
+      obj = {
+        completeFinal: true,
+        scoreFinal: scoreFinalInput,
+      };
+    } else {
+      console.log("entre al else");
+      obj = {
+        complete: true,
+        completeFinal: true,
+        scoreFinal: scoreFinalInput,
+      };
+    }
+
+    await axios.put(`${REQUEST_URL}/${idWork}`, obj);
+    Swal.fire(`¡Gracias!`);
+    history.push("/usuarioFinal");
   }
 
   return (
@@ -48,8 +91,16 @@ const SolicitedWork = (props) => {
         <h4> {technicUserDetail.user.lastName} </h4>
       )}
 
-      <button onClick={() => aceptUserTech()}>Aceptar solicitud</button>
-      <button onClick={() => refuseUserTech()}>Rechazar Solicitud</button>
+      {!requestDetails.acepted && (
+        <button onClick={() => aceptUserTech()}>Aceptar solicitud</button>
+      )}
+      {!requestDetails.acepted && (
+        <button onClick={() => refuseUserTech()}>Rechazar Solicitud</button>
+      )}
+      {requestDetails.acepted && <Link to="/contacto"> Reportar problema</Link>}
+      {requestDetails.acepted && (
+        <button onClick={() => finishedWork()}>Finalizar Trabajo</button>
+      )}
     </StyledDiv>
   );
 };

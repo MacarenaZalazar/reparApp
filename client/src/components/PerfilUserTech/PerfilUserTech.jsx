@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getTechUsersById } from "../../redux/actions/techUsers/index";
 import { getRequestByUserTech } from "../../redux/actions/request/index";
+import { getRequestDetailsbyID } from "../../redux/actions/request";
 import { Link } from "react-router-dom";
 import { useHistory } from "react-router-dom";
 
@@ -77,6 +78,23 @@ const PerfilUserTech = () => {
                   return (
                     <div>
                       <p>{req.title}</p>
+                      <Link to={`/solicitedWorkTech/${req._id}`}>
+                        Ver Estado
+                      </Link>
+                    </div>
+                  );
+                }
+              })}
+            <h4>Trabajos Pendientes </h4>
+            {requestsByUserTech &&
+              requestsByUserTech.map((req) => {
+                if (req.solicited && !req.acepted) {
+                  return (
+                    <div>
+                      <p>{req.title}</p>
+                      <Link to={`/solicitedWorkTech/${req._id}`}>
+                        Ver Estado
+                      </Link>
                     </div>
                   );
                 }

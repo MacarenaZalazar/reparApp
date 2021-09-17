@@ -20,6 +20,7 @@ import FaqPage from "./containers/faqPage/FaqPage";
 import Error404 from "./containers/Error404/Error404";
 import CreateWorkOrder from "./containers/CreateWorkOrder/CreateWorkOrder";
 import SolicitedWork from "./containers/SolicitedWork/SolicitedWork";
+import SolicitedWorkTech from "./containers/SolicitedWorkTech/SolicitedWorkTech";
 
 import Dashboard from "./containers/UserAdmin/Dashboard";
 
@@ -122,6 +123,12 @@ function App() {
         <Route exact path="/workOrdersDetails" component={WorkOrderDetails} />
 
         <Route exact path="/solicitedWork/:idWork" component={SolicitedWork} />
+
+        <Route
+          exact
+          path="/solicitedWorkTech/:idWork"
+          component={SolicitedWorkTech}
+        />
 
         <Route path="*" component={Error404} />
       </Switch>
