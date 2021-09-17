@@ -1,5 +1,8 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Link, NavLink } from "react-router-dom";
+import { getRequestByUser } from "../../redux/actions/request/index";
 function CardUserFinal({
   name,
   img,
@@ -11,10 +14,21 @@ function CardUserFinal({
   zone,
   state,
 }) {
+  const userString = window.sessionStorage.getItem("user");
+  const user = JSON.parse(userString);
+
+  const requestsByUser = useSelector((state) => state.requestsByUser);
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getRequestByUser(user.idUserFinal));
+  }, []);
+
   return (
     <>
       <div class="card w-50 m-auto">
-        <img src={img} class="card-img-top" alt='imagen'/>
+        <img src={img} class="card-img-top" alt="imagen" />
         <div class="card-body">
           <h5 class="card-title">Name: {name}</h5>
           <h5 class="card-title">Lastname: {lastname}</h5>
@@ -48,6 +62,20 @@ function CardUserFinal({
           <a href="#" class="card-link">
             Another link
           </a> */}
+
+          {requestsByUser &&
+            requestsByUser.map((req) => {
+              return (
+                <div>
+                  <p>{req.title}</p>
+                  {req.solicited && (
+                    <Link to={`/solicitedWork/${req._id}`}>
+                      Ver solicitante
+                    </Link>
+                  )}
+                </div>
+              );
+            })}
         </div>
       </div>
     </>

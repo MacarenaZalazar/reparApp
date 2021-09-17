@@ -2,6 +2,7 @@ import React from "react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getTechUsersById } from "../../redux/actions/techUsers/index";
+import { getRequestByUserTech } from "../../redux/actions/request/index";
 import { Link } from "react-router-dom";
 import { useHistory } from "react-router-dom";
 
@@ -18,9 +19,14 @@ const PerfilUserTech = () => {
 
   useEffect(() => {
     dispatch(getTechUsersById(userSession.idTech, config));
-  }, [dispatch, userSession.idTech]);
+  }, []);
+
+  useEffect(() => {
+    dispatch(getRequestByUserTech(userSession.idTech));
+  }, []);
 
   const user = useSelector((state) => state.technicUserDetail);
+  const requestsByUserTech = useSelector((state) => state.requestsByUserTech);
   console.log(user);
   return (
     <div>
@@ -61,6 +67,21 @@ const PerfilUserTech = () => {
           </ul>
           <p>{user.price}</p>
           <p>{user.score}</p>
+
+          <div>
+            <h4>Trabajos</h4>
+
+            {requestsByUserTech &&
+              requestsByUserTech.map((req) => {
+                if (req.acepted) {
+                  return (
+                    <div>
+                      <p>{req.title}</p>
+                    </div>
+                  );
+                }
+              })}
+          </div>
         </div>
       ) : (
         <p>Cargando...</p>
