@@ -12,8 +12,8 @@ const WorkOrders = () => {
         <Carousel className="carousel" itemsToShow={1} outerSpacing={50}>
           {allRequest &&
             allRequest.map((e, idx) => {
-              return (
-                <div>
+              if (!e.solicited) {
+                return (
                   <WorkOrder
                     key={idx}
                     title={e.title}
@@ -23,8 +23,8 @@ const WorkOrders = () => {
                     workImage={e.workImage}
                     _id={e._id}
                   />
-                </div>
-              );
+                );
+              }
             })}
         </Carousel>
       ) : (

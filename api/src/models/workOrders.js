@@ -49,6 +49,14 @@ const workOrderSchema = new Schema(
       type: String,
       required: true,
     },
+    solicited: {
+      type: Boolean,
+      default: false,
+    },
+    acepted: {
+      type: Boolean,
+      default: false,
+    },
   },
   {
     timestamps: true,

@@ -10,6 +10,7 @@ import {
   GET_ALL_REQUEST,
   GET_REQUEST_BY_USER,
   GET_REQUEST_DETAILS,
+  GET_REQUEST_BY_USER_TECH,
 } from "../actions/request/constantsRequest";
 
 import { GET_JOB_TYPES } from "../actions/jobTypes/constantsJobTypes";
@@ -20,7 +21,7 @@ import {
 import { ADD_JOBTYPE, DELETE_JOBTYPE } from "../actions/admin/constantJobTypes";
 import { GET_ALL_USERS } from "../actions/admin/constantsAdmin";
 import {
-//  GET_ALL_JOB_REQUESTS,
+  //  GET_ALL_JOB_REQUESTS,
   ORDER_BY_PRICE,
   ORDER_BY_SCORE,
   ORDER_BY_RELEVANT,
@@ -37,6 +38,7 @@ var initialState = {
   allCities: [],
   allUsers: [],
   allRequests: [],
+  requestsByUserTech: [],
   requestsByUser: [],
   responseGoogle: {},
   requestDetails: {},
@@ -144,6 +146,13 @@ function reducer(state = initialState, action) {
         ...state,
         requestsByUser: payload,
       };
+    //JOB REQUEST BY USER TECH
+
+    case GET_REQUEST_BY_USER_TECH:
+      return {
+        ...state,
+        requestsByUserTech: payload,
+      };
     case "Restore":
       return {
         ...state,
@@ -162,6 +171,7 @@ function reducer(state = initialState, action) {
         ...state,
         responseGoogle: payload,
       };
+
     default:
       return state;
   }
