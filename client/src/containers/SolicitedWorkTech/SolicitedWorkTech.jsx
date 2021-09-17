@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { getRequestDetailsbyID } from "../../redux/actions/request/index";
 import { REQUEST_URL } from "../../utils/constants";
-import { useHistory } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import axios from "axios";
 import Swal from "sweetalert2";
 
@@ -73,9 +73,10 @@ const SolicitedWorkTech = (props) => {
       )}
 
     <button onClick={() => refuseUserTech()}>Rechazar Solicitud</button> */}
-      {requestDetails.acepted && (
+      {requestDetails.acepted && !requestDetails.complete && (
         <button onClick={() => finishedWork()}>Finalizar Trabajo</button>
       )}
+      {requestDetails.acepted && <Link to="/contacto"> Reportar problema</Link>}
     </StyledDiv>
   );
 };
