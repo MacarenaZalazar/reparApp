@@ -99,7 +99,9 @@ const SolicitedWork = (props) => {
       {!requestDetails.acepted && requestDetails.solicited && (
         <button onClick={() => refuseUserTech()}>Rechazar Solicitud</button>
       )}
-      {requestDetails.acepted && <Link to="/contacto"> Reportar problema</Link>}
+      {requestDetails.acepted && !requestDetails.complete && (
+        <Link to="/contacto"> Reportar problema</Link>
+      )}
       {requestDetails.acepted && (
         <button onClick={() => finishedWork()}>Finalizar Trabajo</button>
       )}
