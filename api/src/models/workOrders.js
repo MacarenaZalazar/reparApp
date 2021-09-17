@@ -37,6 +37,14 @@ const workOrderSchema = new Schema(
       type: Boolean,
       default: false,
     },
+    completeFinal: {
+      type: Boolean,
+      default: false,
+    },
+    completeTech: {
+      type: Boolean,
+      default: false,
+    },
     reported: {
       type: Boolean,
       default: false,
