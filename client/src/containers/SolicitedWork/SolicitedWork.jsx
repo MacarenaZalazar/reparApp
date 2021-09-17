@@ -83,7 +83,9 @@ const SolicitedWork = (props) => {
       <p>Nombre del trabajo</p>
       {requestDetails && <h4> {requestDetails.title}</h4>}
 
-      <p>Postulante para este trabajo</p>
+      {technicUserDetail && technicUserDetail.user && (
+        <p>Postulante para este trabajo</p>
+      )}
       {technicUserDetail && technicUserDetail.user && (
         <h4> {technicUserDetail.user.name} </h4>
       )}
@@ -91,10 +93,10 @@ const SolicitedWork = (props) => {
         <h4> {technicUserDetail.user.lastName} </h4>
       )}
 
-      {!requestDetails.acepted && (
+      {!requestDetails.acepted && requestDetails.solicited && (
         <button onClick={() => aceptUserTech()}>Aceptar solicitud</button>
       )}
-      {!requestDetails.acepted && (
+      {!requestDetails.acepted && requestDetails.solicited && (
         <button onClick={() => refuseUserTech()}>Rechazar Solicitud</button>
       )}
       {requestDetails.acepted && <Link to="/contacto"> Reportar problema</Link>}

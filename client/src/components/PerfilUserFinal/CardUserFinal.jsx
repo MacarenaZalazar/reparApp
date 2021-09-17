@@ -7,6 +7,8 @@ import {
   WorksOrdersDiv,
   WorksSolicited,
   WorksFinished,
+  WorksAtention,
+  WorksProcess,
 } from "./styledCardUserFinal";
 function CardUserFinal({
   name,
@@ -70,35 +72,80 @@ function CardUserFinal({
         </div>
         <WorksOrdersDiv>
           <WorksSolicited>
-            <h5>Tus solicitudes en proceso</h5>
+            <h5>Solicitudes en proceso</h5>
             {requestsByUser &&
               requestsByUser.map((req) => {
-                return (
-                  <div>
-                    <p>{req.title}</p>
-                    {req.solicited && !req.complete && (
-                      <Link className="link" to={`/solicitedWork/${req._id}`}>
-                        Ver solicitante
-                      </Link>
-                    )}
-                  </div>
-                );
-              })}
-          </WorksSolicited>
-          <WorksFinished>
-            <h5>Tus solicitudes finalizadas</h5>
-            {requestsByUser &&
-              requestsByUser.map((req) => {
-                return (
-                  <div>
-                    <p>{req.title}</p>
-                    {req.complete && (
+                if (!req.complete && !req.solicited) {
+                  return (
+                    <div>
+                      <p>{req.title}</p>
                       <Link className="link" to={`/solicitedWork/${req._id}`}>
                         Ver Detalle
                       </Link>
-                    )}
-                  </div>
-                );
+                    </div>
+                  );
+                }
+              })}
+          </WorksSolicited>
+          <WorksAtention>
+            <h5>Solicitudes que requieren atencion</h5>
+            {requestsByUser &&
+              requestsByUser.map((req) => {
+                if (!req.complete && req.solicited && !req.acepted) {
+                  return (
+                    <div>
+                      <p>{req.title}</p>
+                      <Link className="link" to={`/solicitedWork/${req._id}`}>
+                        Ver postulación
+                      </Link>
+                    </div>
+                  );
+                }
+              })}
+            {requestsByUser &&
+              requestsByUser.map((req) => {
+                if (!req.complete && req.solicited && req.completeTech) {
+                  return (
+                    <div>
+                      <p>{req.title}</p>
+                      <Link className="link" to={`/solicitedWork/${req._id}`}>
+                        Finalizar
+                      </Link>
+                    </div>
+                  );
+                }
+              })}
+          </WorksAtention>
+          <WorksProcess>
+            <h5>Solicitudes en proceso</h5>
+            {requestsByUser &&
+              requestsByUser.map((req) => {
+                if (!req.complete && req.acepted && !req.completeTech) {
+                  return (
+                    <div>
+                      <p>{req.title}</p>
+                      <Link className="link" to={`/solicitedWork/${req._id}`}>
+                        Finalizar
+                      </Link>
+                    </div>
+                  );
+                }
+              })}
+          </WorksProcess>
+          <WorksFinished>
+            <h5>Historial de solicitudes</h5>
+            {requestsByUser &&
+              requestsByUser.map((req) => {
+                if (req.complete)
+                  return (
+                    <div>
+                      <p>{req.title}</p>
+
+                      <Link className="link" to={`/solicitedWork/${req._id}`}>
+                        Ver Detalle
+                      </Link>
+                    </div>
+                  );
               })}
           </WorksFinished>
         </WorksOrdersDiv>
