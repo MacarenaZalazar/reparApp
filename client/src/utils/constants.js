@@ -20,6 +20,8 @@ const LOGIN_URL = `${BASE_URL}/login`;
 
 const CONTACT_URL = `${BASE_URL}/contact`;
 
+const MERCADOPAGO_URL = `${BASE_URL}/mercadopago`
+
 
 module.exports = {
   TECH_USERS_URL,
@@ -28,5 +30,6 @@ module.exports = {
   FINAL_USER_URL,
   REQUEST_URL,
   LOGIN_URL,
-  CONTACT_URL
+  CONTACT_URL, 
+  MERCADOPAGO_URL
 };
