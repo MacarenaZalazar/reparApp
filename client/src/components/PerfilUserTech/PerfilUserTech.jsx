@@ -2,6 +2,15 @@ import React from "react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getTechUsersById } from "../../redux/actions/techUsers/index";
+import { getRequestByUserTech } from "../../redux/actions/request/index";
+import { getRequestDetailsbyID } from "../../redux/actions/request";
+
+import {
+  WorksAwait,
+  WorksFinished,
+  WorksProcess,
+  WorksSolicited,
+} from "./styledPerfilUserTech";
 import { Link } from "react-router-dom";
 import { useHistory } from "react-router-dom";
 
@@ -18,9 +27,14 @@ const PerfilUserTech = () => {
 
   useEffect(() => {
     dispatch(getTechUsersById(userSession.idTech, config));
-  }, [dispatch, userSession.idTech]);
+  }, []);
+
+  useEffect(() => {
+    dispatch(getRequestByUserTech(userSession.idTech));
+  }, []);
 
   const user = useSelector((state) => state.technicUserDetail);
+  const requestsByUserTech = useSelector((state) => state.requestsByUserTech);
   console.log(user);
   return (
     <div>
@@ -61,6 +75,90 @@ const PerfilUserTech = () => {
           </ul>
           <p>{user.price}</p>
           <p>{user.score}</p>
+
+          <div>
+            <WorksSolicited>
+              <h5>Trabajos postulados</h5>
+              {requestsByUserTech &&
+                requestsByUserTech.map((req) => {
+                  if (req.solicited && !req.acepted) {
+                    return (
+                      <div>
+                        <p>{req.title}</p>
+                        <Link
+                          className="link"
+                          to={`/solicitedWorkTech/${req._id}`}
+                        >
+                          Ver Detalle
+                        </Link>
+                      </div>
+                    );
+                  }
+                })}
+            </WorksSolicited>
+            <WorksProcess>
+              <h5>Trabajos en proceso/aceptado</h5>
+              {requestsByUserTech &&
+                requestsByUserTech.map((req) => {
+                  if (req.acepted && !req.completeTech) {
+                    return (
+                      <div>
+                        <p>{req.title}</p>
+                        <Link
+                          className="link"
+                          to={`/solicitedWorkTech/${req._id}`}
+                        >
+                          Finalizar
+                        </Link>
+                      </div>
+                    );
+                  }
+                })}
+            </WorksProcess>
+            <WorksAwait>
+              <h5>En espera de finalizacion</h5>
+              {requestsByUserTech &&
+                requestsByUserTech.map((req) => {
+                  if (
+                    req.solicited &&
+                    req.acepted &&
+                    req.completeTech &&
+                    !req.complete
+                  ) {
+                    return (
+                      <div>
+                        <p>{req.title}</p>
+                        <Link
+                          className="link"
+                          to={`/solicitedWorkTech/${req._id}`}
+                        >
+                          Finalizar
+                        </Link>
+                      </div>
+                    );
+                  }
+                })}
+            </WorksAwait>
+            <WorksFinished>
+              <h5>Historial de trabajos</h5>
+              {requestsByUserTech &&
+                requestsByUserTech.map((req) => {
+                  if (req.complete) {
+                    return (
+                      <div>
+                        <p>{req.title}</p>
+                        <Link
+                          className="link"
+                          to={`/solicitedWorkTech/${req._id}`}
+                        >
+                          Finalizar
+                        </Link>
+                      </div>
+                    );
+                  }
+                })}
+            </WorksFinished>
+          </div>
         </div>
       ) : (
         <p>Cargando...</p>

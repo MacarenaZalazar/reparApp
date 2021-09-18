@@ -7,23 +7,28 @@ const {
   requestModifier,
   getRequest,
   getRequestFiltered,
-  getRequestsByID,
+  getRequestsByIDFinal,
+  getRequestsByIDTech,
   getDetailsRequest,
 } = require("../controllers/FinalUsers/jobRequest");
 
-const { verifyToken, isuserFinal } = require("../middlewares");
+const { verifyToken, isuserFinal, isuserTech } = require("../middlewares");
 
 router.delete("/:id", [verifyToken, isuserFinal], deleteRequest);
 
 router.post("/", [verifyToken, isuserFinal], postNewRequest);
 
-router.put("/:id", [verifyToken, isuserFinal], requestModifier);
+// router.put("/:id", [verifyToken, isuserFinal, isuserTech], requestModifier);
+router.put("/:id", requestModifier);
 
 router.get("/", getRequest);
 
 router.get("/filtered", getRequestFiltered);
 
-router.get("/all/:id", [verifyToken], getRequestsByID);
+// router.get("/all/:id", [verifyToken], getRequestsByID);
+router.get("/all/:id", getRequestsByIDFinal);
+
+router.get("/allTech/:id", getRequestsByIDTech);
 
 router.get("/details/:id", getDetailsRequest);
 

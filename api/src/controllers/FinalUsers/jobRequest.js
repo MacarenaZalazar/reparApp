@@ -29,7 +29,22 @@ const postNewRequest = async (req, res, next) => {
 const requestModifier = async (req, res, next) => {
   const workOrdersSession = await workOrders.startSession();
   const { id } = req.params;
-  const { title, description, workImage, workType, state, zone } = req.body;
+  const {
+    title,
+    description,
+    workImage,
+    workType,
+    state,
+    zone,
+    userTech,
+    solicited,
+    acepted,
+    scoreFinal,
+    scoreTech,
+    completeFinal,
+    completeTech,
+    complete,
+  } = req.body;
   try {
     await workOrdersSession.withTransaction(async () => {
       await workOrders.findByIdAndUpdate(id, {
@@ -39,6 +54,14 @@ const requestModifier = async (req, res, next) => {
         workType,
         state,
         zone,
+        userTech,
+        solicited,
+        acepted,
+        scoreFinal,
+        scoreTech,
+        completeFinal,
+        completeTech,
+        complete,
       });
     });
     workOrdersSession.endSession();
@@ -154,11 +177,23 @@ const getRequestFiltered = async (req, res, next) => {
   } else res.sendStatus(400);
 };
 
-const getRequestsByID = async (req, res, next) => {
+const getRequestsByIDFinal = async (req, res, next) => {
   const { id } = req.params;
   let userFinal = id;
   try {
     const getAll = await workOrders.find({ userFinal });
+    // const getIdUser = await UserF.find({ _id: userFinal });
+
+    res.status(200).json(getAll);
+  } catch (error) {
+    next(error);
+  }
+};
+const getRequestsByIDTech = async (req, res, next) => {
+  const { id } = req.params;
+  let userTech = id;
+  try {
+    const getAll = await workOrders.find({ userTech });
     // const getIdUser = await UserF.find({ _id: userFinal });
 
     res.status(200).json(getAll);
@@ -173,6 +208,7 @@ module.exports = {
   deleteRequest,
   getRequest,
   getRequestFiltered,
-  getRequestsByID,
+  getRequestsByIDFinal,
+  getRequestsByIDTech,
   getDetailsRequest,
 };

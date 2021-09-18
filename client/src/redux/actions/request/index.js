@@ -4,6 +4,7 @@ import {
   GET_ALL_REQUEST,
   GET_REQUEST_BY_USER,
   GET_REQUEST_DETAILS,
+  GET_REQUEST_BY_USER_TECH,
 } from "./constantsRequest";
 
 export function getRequestAllFiltered(workType, state, workZones) {
@@ -43,6 +44,7 @@ export const getRequestByUser = (id, config) => {
   return async function (dispatch) {
     try {
       const requests = await axios.get(`${REQUEST_URL}/all/${id}`, config);
+
       return dispatch({
         type: GET_REQUEST_BY_USER,
         payload: requests.data,
@@ -52,11 +54,27 @@ export const getRequestByUser = (id, config) => {
     }
   };
 };
+export const getRequestByUserTech = (id, config) => {
+  return async function (dispatch) {
+    try {
+      const requests = await axios.get(`${REQUEST_URL}/allTech/${id}`, config);
+
+      return dispatch({
+        type: GET_REQUEST_BY_USER_TECH,
+        payload: requests.data,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
 
 export const getRequestDetailsbyID = (id) => {
+  console.log("despachando accion");
   return async function (dispatch) {
     try {
       const requestDetails = await axios.get(`${REQUEST_URL}/details/${id}`);
+      console.log(requestDetails);
       return dispatch({
         type: GET_REQUEST_DETAILS,
         payload: requestDetails.data,
