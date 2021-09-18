@@ -25,6 +25,10 @@ const userSchema = new Schema(
       type: Boolean,
       default: false,
     },
+    promoted: {
+      type: Boolean,
+      default: false,
+    },
     userName: {
       type: String,
       required: true,

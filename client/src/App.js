@@ -19,7 +19,6 @@ import WorkOrderDetails from "./containers/WorkOrderDetails/WorkOrderDetails";
 import FaqPage from "./containers/faqPage/FaqPage";
 import Error404 from "./containers/Error404/Error404";
 import CreateWorkOrder from "./containers/CreateWorkOrder/CreateWorkOrder";
-
 import Dashboard from "./containers/UserAdmin/Dashboard";
 
 import PrivateRoute from "./components/PrivateRoute/PrivateRoute";
@@ -32,6 +31,8 @@ import BanJobRequest from "./components/Admin/BanJobRequest";
 
 import Aos from "aos";
 import "aos/dist/aos.css";
+import Checkout from './components/MercadoPAgo/Checkout';
+import PagoPromocion from './components/MercadoPAgo/PagoPromocion';
 // jose estuvo aquí
 
 function App() {
@@ -107,6 +108,10 @@ function App() {
           component={ProfileUserFinal}
           allow="userFinal"
         />
+
+    <PrivateRoute exact path="/checkout" component={Checkout} allow="userTech" />
+    <PrivateRoute exact path="/pago" component={PagoPromocion} allow="userTech" />
+
         <PrivateRoute
           exact
           path="/usuarioTech"

@@ -8,6 +8,7 @@ const login = require("./login");
 const admin = require("./admin");
 const jobType = require("./jobtypes");
 const contact = require("./contact");
+const mercadopago = require("./mercadopago")
 
 const router = Router();
 
@@ -21,5 +22,6 @@ router.use("/login", login);
 router.use("/admin", admin);
 router.use("/jobTypes", jobType);
 router.use("/contact", contact);
+router.use("/mercadopago", mercadopago);
 
 module.exports = router;
