@@ -15,11 +15,15 @@ const tecnicosSchema = new Schema(
       required: true,
     },
     qualification: [],
-    price: { type: Number },
+    price: {
+      type: Number
+    },
     score: {
       type: Number,
-      required: false,
     },
+    totalScore: {
+      type: [],
+    }
   },
   {
     timestamps: true, // timestamps para que nos cargue fecha de ser creado y de actualizado si las hay
