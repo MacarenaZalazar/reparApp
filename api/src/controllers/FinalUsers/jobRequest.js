@@ -1,5 +1,6 @@
 const workOrders = require("../../models/workOrders");
-const UserF = require("../../models/FinalUser");
+const UsersF = require("../../models/FinalUser");
+const UsersT = require("../../models/TechUser");
 
 const postNewRequest = async (req, res, next) => {
   const workOrdersSession = await workOrders.startSession();
@@ -65,6 +66,34 @@ const requestModifier = async (req, res, next) => {
       });
     });
     workOrdersSession.endSession();
+    if(complete) {
+      const order = await workOrders.findById(id);
+      await UsersF.findByIdAndUpdate(order.userFinal, {$push:{totalScore: order.scoreFinal}});
+      await UsersT.findByIdAndUpdate(order.userTech, {$push:{totalScore: order.scoreTech}});
+      const userF = await UsersF.findById(order.userFinal);
+      const userT = await UsersT.findById(order.userTech);
+      /* --------------------------------- */
+      /* let sumaF = 0;
+      for(let x = 0; x < userF.totalScore.length; x++){
+        sumaF = sumaF + userF.totalScore[x];
+      }
+      let promF = sumaF / userF.totalScore.length;
+
+      let sumaT = 0;
+      for(let y = 0; y < userT.totalScore.length; y++){
+        sumaT = sumaT + userT.totalScore[y];
+      }
+      let promT = sumaT / userT.totalScore.length; */
+      /* --------------------------------- */
+      let arrF = userF.totalScore.map(x => parseInt(x));
+      let sumF = arrF.reduce((previous, current) => current += previous);
+      let promF = sumF / arrF.length;
+      let arrT = userT.totalScore.map(y => parseInt(y));
+      let sumT = arrT.reduce((previous, current) => current += previous);
+      let promT = sumT / arrT.length;
+      await UsersF.findByIdAndUpdate(order.userFinal, {score: Math.round(promF)});
+      await UsersT.findByIdAndUpdate(order.userTech, {score: Math.round(promT)});
+    }
     res.send("Orden actualizada correctamente");
   } catch (error) {
     workOrdersSession.endSession();

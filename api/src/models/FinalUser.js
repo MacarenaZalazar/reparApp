@@ -11,9 +11,11 @@ const UsuarioFinalSchema = new Schema(
       required: true,
     },
     score: {
-      type: String,
-      required: false,
+      type: Number,
     },
+    totalScore: {
+      type: [],
+    }
   },
   {
     timestamps: true, // timestamps para que nos cargue fecha de ser creado y de actualizado si las hay
