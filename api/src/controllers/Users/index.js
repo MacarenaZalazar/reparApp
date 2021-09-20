@@ -67,8 +67,30 @@ const verifyEmail = async (req, res, next) => {
   }
 };
 
+const reportUser = async (req, res, next) => {
+  const { _id } = req.query;
+  try {
+    await User.findByIdAndUpdate(_id, { reported: true });
+    res.sendStatus(200);
+  } catch (error) {
+    next(error);
+  }
+};
+
+const reportWork = async (req, res, next) => {
+  const { _id } = req.query;
+  try {
+    await workOrders.findByIdAndUpdate(_id, { reported: true });
+    res.sendStatus(200);
+  } catch (error) {
+    next(error);
+  }
+};
+
 module.exports = {
   createNewUser,
   getByUserName,
   verifyEmail,
+  reportUser,
+  reportWork,
 };

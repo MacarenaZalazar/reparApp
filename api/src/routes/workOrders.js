@@ -1,6 +1,6 @@
 const { Router } = require("express");
 const router = Router();
-
+const { reportWork } = require("../controllers/Users");
 const {
   postNewRequest,
   deleteRequest,
@@ -31,5 +31,7 @@ router.get("/all/:id", getRequestsByIDFinal);
 router.get("/allTech/:id", getRequestsByIDTech);
 
 router.get("/details/:id", getDetailsRequest);
+
+router.post("/report/:id", reportWork);
 
 module.exports = router;
