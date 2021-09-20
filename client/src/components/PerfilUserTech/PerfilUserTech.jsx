@@ -44,7 +44,6 @@ const PerfilUserTech = () => {
           <button onClick={() => history.push("/usuarioFinal/modifier")}>
             Modificar perfil
           </button>
-          <button>Puntuaciones pendientes</button>
           <h2>{user.user.userName}</h2>
           <h4>{user.user.lastName}</h4>
           <h5>{user.user.name}</h5>
