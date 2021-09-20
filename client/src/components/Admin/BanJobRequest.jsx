@@ -23,7 +23,7 @@ const BanJobRequest = (props) => {
 
   useEffect(() => {
     dispatch(getRequestByUser(userID, config))
-  }, [flag, dispatch, userID, config])
+  }, [dispatch, userID, flag])
  
   const handleBan= async (id) => {
     try {
@@ -44,7 +44,7 @@ const BanJobRequest = (props) => {
       alert('No se ha podido banear el pedido')
     }
   }
-
+console.log(requestsByUser)
   return (
     <div>
       {requestsByUser.length > 1 &&
@@ -53,17 +53,17 @@ const BanJobRequest = (props) => {
             <>
               <JobRequestCard
                 key={idx}
-                name={u.name}
-                lastName={u.lastName}
                 image={u.image}
-                user={u.user}
-                score={u.score}
-                jobType={u.jobType}
+                title={u.title}
+                workType={u.workType}
+                complete={u.complete}
                 zones={u.z}
-                request={u.request}
                 ban={u.ban}
+                description={u.description}
+                state={u.state}
+                reported={u.reported}
               />
-              {(u.ban) ?  <button onClick={() => handleBan(u.id)}>Banear</button> :
+              {(!u.ban) ?  <button onClick={() => handleBan(u.id)}>Banear</button> :
               <button onClick={() => handleUnbanned(u.id)}>Desbanear</button>}
             </>
           );

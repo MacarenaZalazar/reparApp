@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useMemo} from "react";
 import { useEffect } from "react";
 import { getFinalUsersById } from "../../redux/actions/finalUser/index";
 import { useDispatch, useSelector } from "react-redux";
@@ -6,6 +6,15 @@ import { useDispatch, useSelector } from "react-redux";
 function FinalUserDetails(props) {
   const dispatch = useDispatch();
   const finalUserID = props.match.params.id;
+  const userString = window.sessionStorage.getItem("user");
+  const user = JSON.parse(userString);
+  let config = useMemo(()=>{
+    return {
+      headers: {
+        "x-access-token": user && user.token,
+      },
+    };
+  }, [user]) 
 
   useEffect(() => {
     dispatch(getFinalUsersById(finalUserID));

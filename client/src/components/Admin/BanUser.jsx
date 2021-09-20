@@ -29,7 +29,7 @@ const BanUser = () => {
       console.log(error)
     }
   } 
-
+console.log(user)
   return (
     <div>
       <label>Buscar Usuari@</label>
@@ -45,17 +45,16 @@ const BanUser = () => {
             <>
               <UserCard
                 key={idx}
-                name={u.name}
-                lastName={u.lastName}
-                img={u.img}
-                user={u.user}
-                score={u.score}
-                jobTypes={u.jobTypes}
-                workZones={u.workZones}
-                phone={u.phone}
-                mail={u.mail}
                 id={u._id}
                 ban={u.ban}
+                image={u.image}
+                name={u.name}
+                lastName={u.lastName}
+                state={u.state}
+                userName={u.userName}
+                score={u.score}
+                promoted={u.promoted}
+                userId={u.finalUserId}
               />              
             </>
           );

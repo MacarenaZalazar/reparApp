@@ -1,6 +1,8 @@
 import React from 'react';
 
-const JobRequestCard = ({id, name, lastName, image, user, score, jobType, zone, request}) => {
+const JobRequestCard = ({id, ban, reported,title, description, complete, state, image, workType}) => {
+    
+   
 
     function handleClick(){
         //dispatch
@@ -8,12 +10,13 @@ const JobRequestCard = ({id, name, lastName, image, user, score, jobType, zone, 
 
     return (
         <div>
-            <span>{`${name} ${lastName}`} </span>
-            <span>{user}</span>
-            <span>{score}</span>
-            <span>{jobType}</span>
-            <span>{zone}</span>
-            <span>{request}</span>
+            <span>{title} </span>
+            <span>{description}</span>
+            <span>{ban}</span>
+            <span>{reported}</span>
+            <span>{workType}</span>
+            <span>{state}</span>
+            <span>{complete}</span>
             <img src={image} alt="" />
             <button onClick={handleClick}>Ver más</button>
 
