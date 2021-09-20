@@ -31,7 +31,7 @@ const ReportedUsers = () => {
     return (
         <ContainerDiv>
             <h3>Usuarios reportados</h3>
-            {reported.length > 1 ? 
+            {reported.length > 0 ? 
             <>
             {reported.map((u, idx)=> {
                 return <div>

@@ -18,8 +18,6 @@ import {
   GET_FINAL_USERS_ALL,
   GET_FINAL_USERS_BY_ID,
 } from "../actions/finalUser/constantsFinalUser";
-import { ADD_JOBTYPE, DELETE_JOBTYPE } from "../actions/admin/constantJobTypes";
-import { GET_ALL_USERS } from "../actions/admin/constantsAdmin";
 import {
   //  GET_ALL_JOB_REQUESTS,
   ORDER_BY_PRICE,
@@ -84,27 +82,11 @@ function reducer(state = initialState, action) {
         ...state,
         allCities: payloadCapitalize.sort(),
       };
-    case ADD_JOBTYPE:
-      return {
-        ...state,
-        jobTypes: payload,
-      };
-    case DELETE_JOBTYPE:
-      return {
-        ...state,
-        jobTypes: payload,
-      };
     case GET_JOB_TYPES:
       return {
         ...state,
         jobTypes: payload.sort(),
       };
-    case GET_ALL_USERS:
-      return {
-        ...state,
-        allUsers: payload,
-      };
-
     case GET_FINAL_USERS_ALL:
       return {
         ...state,
