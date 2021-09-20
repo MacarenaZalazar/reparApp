@@ -25,7 +25,10 @@ const ReportUser = () => {
     const handleChange = (e) =>{
         e.preventDefault()
         setMotive(e.target.value)
-    }   
+    }  
+    const handleInputChange = (e) =>{
+        setComment(e.target.value)
+    } 
     return (
         <div>
             <span>Soy ReportUser</span> 
@@ -40,7 +43,7 @@ const ReportUser = () => {
              {motive === 'Otro' && 
              <>
              <label>¿Cuál?</label>
-             <input value={comment} />
+             <input onChange={handleInputChange} value={comment} />
              </>}
             {motive && <Button onClick={showAlert}>Reportar</Button>}
         </div>

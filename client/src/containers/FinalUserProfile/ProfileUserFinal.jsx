@@ -4,21 +4,25 @@ import CardUserFinal from "../../components/PerfilUserFinal/CardUserFinal";
 import { useDispatch, useSelector } from "react-redux";
 import { getFinalUsersById } from "../../redux/actions/finalUser/index";
 import { ContainerDiv } from "./Styles";
+import { useMemo } from "react";
 
 function ProfileUserFinal() {
   const userString = window.sessionStorage.getItem("user");
   const users = JSON.parse(userString);
 
-  let config = {
-    headers: {
-      "x-access-token": users && users.token,
-    },
-  };
+  let config = useMemo(() => {
+    return {
+      headers: {
+        "x-access-token": users && users.token,
+      },
+    };
+  }, [users]) 
+  
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(getFinalUsersById(users.idUserFinal, config));
-  }, [dispatch, users.idUserFinal]);
+  }, [dispatch, users.idUserFinal, config]);
 
   const user = useSelector((state) => state.finalUserDetail);
 

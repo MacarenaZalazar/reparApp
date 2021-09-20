@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useMemo } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { getTechUsersById } from "../../redux/actions/techUsers";
 import { StyledDiv } from "./Styled";
@@ -8,18 +8,20 @@ export default function TechnicUserDetails(props) {
   const history = useHistory();
   const userString = window.sessionStorage.getItem("user");
   const user = JSON.parse(userString);
-  let config = {
-    headers: {
-      "x-access-token": user && user.token,
-    },
-  };
+  let config = useMemo(()=>{
+    return {
+      headers: {
+        "x-access-token": user && user.token,
+      },
+    };
+  }, [user]) 
 
   const technicUserID = props.match.params.Id;
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(getTechUsersById(technicUserID, config));
-  }, [dispatch, technicUserID]);
+  }, [dispatch, technicUserID, config]);
 
   const TechnicUserDetail = useSelector((state) => state.technicUserDetail);
 

@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, {useEffect , useState} from "react";
+import React, {useEffect , useMemo, useState} from "react";
 import { useDispatch, useSelector } from "react-redux";
 import JobRequestCard from "../JobRequestCard/JobRequestCard";
 import {ADMIN_URL} from '../../utils/constants'
@@ -12,15 +12,18 @@ const BanJobRequest = (props) => {
   const {requestsByUser} = useSelector(state => state)
   const userString = window.sessionStorage.getItem("user");
   const useR = JSON.parse(userString);
-  let config = {
-    headers: {
-      "x-access-token": useR && useR.token,
-    },
-  };
+
+  const config = useMemo(()=> {
+    return {
+      headers: {
+        "x-access-token": useR && useR.token,
+      },
+    };
+  }, [useR])
 
   useEffect(() => {
     dispatch(getRequestByUser(userID, config))
-  }, [flag, dispatch, userID])
+  }, [flag, dispatch, userID, config])
  
   const handleBan= async (id) => {
     try {

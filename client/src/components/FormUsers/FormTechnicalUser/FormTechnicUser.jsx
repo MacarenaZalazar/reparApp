@@ -40,7 +40,7 @@ const FormTechnicUser = () => {
     jobTypes: [],
     errors: {},
   });
-  const [qualification, setQualification] = useState("");
+  //const [qualification, setQualification] = useState("");
 
   function validate(values) {
     let errors = {};
@@ -129,23 +129,24 @@ const FormTechnicUser = () => {
   }
 
   // Funcion para cambiar certificaciones y boton para añadir el array
-  function handleQualificationChange(evento) {
-    setQualification(evento.target.value);
-  }
-  function addQualification(evento) {
-    evento.preventDefault();
-    if (!input.qualifications.includes(qualification) && qualification) {
-      setInput({
-        ...input,
-        qualifications: [...input.qualifications, qualification],
-      });
-      setQualification("");
-    } else {
-      if (qualification) alert("Ya existe");
-      else alert("No puede ser vacío");
-    }
-    document.getElementsByClassName("qualificationInput")[0].value = "";
-  }
+
+  // function handleQualificationChange(evento) {
+  //   setQualification(evento.target.value);
+  // }
+  // function addQualification(evento) {
+  //   evento.preventDefault();
+  //   if (!input.qualifications.includes(qualification) && qualification) {
+  //     setInput({
+  //       ...input,
+  //       qualifications: [...input.qualifications, qualification],
+  //     });
+  //     setQualification("");
+  //   } else {
+  //     if (qualification) alert("Ya existe");
+  //     else alert("No puede ser vacío");
+  //   }
+  //   document.getElementsByClassName("qualificationInput")[0].value = "";
+  // }
 
   const handleSubmit = async (e) => {
     e.preventDefault();

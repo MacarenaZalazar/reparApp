@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useMemo } from 'react';
 import axios from 'axios';
 import { ADMIN_URL } from '../../utils/constants';
 import WorkOrder from '../WorkOrder/WorkOrder';
@@ -9,17 +9,19 @@ const ReportedWorkOrdes = () => {
     const [flag, setFlag] = useState(true)
     const userString = window.sessionStorage.getItem("user");
     const useR = JSON.parse(userString);
-    let config = {
-      headers: {
-        "x-access-token": useR && useR.token,
-      },
-    };
+    const config = useMemo(()=> {
+      return {
+        headers: {
+          "x-access-token": useR && useR.token,
+        },
+      };
+    }, [useR])
     useEffect(  () => {
       (async () => {
         const workOrders = await axios.get(`${ADMIN_URL}/reported/workOrders`, config) 
         setOrders(workOrders.data)})()
       
-    }, [flag])
+    }, [flag, config])
 
     const handleBan = async (id) => {
         try {

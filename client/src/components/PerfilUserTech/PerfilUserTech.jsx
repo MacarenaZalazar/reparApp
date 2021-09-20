@@ -1,9 +1,9 @@
-import React from "react";
+import React, { useMemo } from "react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getTechUsersById } from "../../redux/actions/techUsers/index";
 import { getRequestByUserTech } from "../../redux/actions/request/index";
-import { getRequestDetailsbyID } from "../../redux/actions/request";
+//import { getRequestDetailsbyID } from "../../redux/actions/request";
 
 import {
   WorksAwait,
@@ -18,20 +18,23 @@ const PerfilUserTech = () => {
   const history = useHistory();
   const userString = window.sessionStorage.getItem("user");
   const userSession = JSON.parse(userString);
-  let config = {
-    headers: {
-      "x-access-token": userSession && userSession.token,
-    },
-  };
+  let config = useMemo(()=>{
+    return {
+      headers: {
+        "x-access-token": userSession && userSession.token,
+      },
+    }
+  },[userSession])
+
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(getTechUsersById(userSession.idTech, config));
-  }, []);
+  }, [userSession, config, dispatch]);
 
   useEffect(() => {
     dispatch(getRequestByUserTech(userSession.idTech));
-  }, []);
+  }, [userSession, dispatch]);
 
   const user = useSelector((state) => state.technicUserDetail);
   const requestsByUserTech = useSelector((state) => state.requestsByUserTech);
@@ -81,8 +84,7 @@ const PerfilUserTech = () => {
               <h5>Trabajos postulados</h5>
               {requestsByUserTech &&
                 requestsByUserTech.map((req) => {
-                  if (req.solicited && !req.acepted) {
-                    return (
+                 return (req.solicited) && (!req.acepted) &&
                       <div>
                         <p>{req.title}</p>
                         <Link
@@ -92,16 +94,14 @@ const PerfilUserTech = () => {
                           Ver Detalle
                         </Link>
                       </div>
-                    );
-                  }
+
                 })}
             </WorksSolicited>
             <WorksProcess>
               <h5>Trabajos en proceso/aceptado</h5>
               {requestsByUserTech &&
                 requestsByUserTech.map((req) => {
-                  if (req.acepted && !req.completeTech) {
-                    return (
+                return (req.acepted) && (!req.completeTech) &&
                       <div>
                         <p>{req.title}</p>
                         <Link
@@ -111,21 +111,13 @@ const PerfilUserTech = () => {
                           Finalizar
                         </Link>
                       </div>
-                    );
-                  }
                 })}
             </WorksProcess>
             <WorksAwait>
               <h5>En espera de finalizacion</h5>
               {requestsByUserTech &&
                 requestsByUserTech.map((req) => {
-                  if (
-                    req.solicited &&
-                    req.acepted &&
-                    req.completeTech &&
-                    !req.complete
-                  ) {
-                    return (
+                 return (req.solicited) && (req.acepted) && (req.completeTech) && (!req.complete) &&
                       <div>
                         <p>{req.title}</p>
                         <Link
@@ -135,16 +127,13 @@ const PerfilUserTech = () => {
                           Finalizar
                         </Link>
                       </div>
-                    );
-                  }
                 })}
             </WorksAwait>
             <WorksFinished>
               <h5>Historial de trabajos</h5>
               {requestsByUserTech &&
                 requestsByUserTech.map((req) => {
-                  if (req.complete) {
-                    return (
+                  return (req.complete) &&
                       <div>
                         <p>{req.title}</p>
                         <Link
@@ -154,8 +143,6 @@ const PerfilUserTech = () => {
                           Finalizar
                         </Link>
                       </div>
-                    );
-                  }
                 })}
             </WorksFinished>
           </div>

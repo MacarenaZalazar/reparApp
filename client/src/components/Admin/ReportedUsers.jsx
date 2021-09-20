@@ -1,4 +1,4 @@
-import React, { useEffect, useState }from 'react';
+import React, { useEffect, useState, useMemo }from 'react';
 import { ContainerDiv } from '../../containers/FinalUserProfile/Styles';
 import { ADMIN_URL } from '../../utils/constants';
 import axios from 'axios';
@@ -9,11 +9,13 @@ const ReportedUsers = () => {
     const[reported, setReported] = useState([])
     const userString = window.sessionStorage.getItem("user");
     const useR = JSON.parse(userString);
-    let config = {
-      headers: {
-        "x-access-token": useR && useR.token,
-      },
-    };
+    const config = useMemo(()=> {
+        return {
+          headers: {
+            "x-access-token": useR && useR.token,
+          },
+        };
+      }, [useR])
 
     useEffect(  () => {
        (async () => {
@@ -24,7 +26,7 @@ const ReportedUsers = () => {
                 console.log(error)
             }
         } )()
-    }, [])
+    }, [config])
 
     return (
         <ContainerDiv>

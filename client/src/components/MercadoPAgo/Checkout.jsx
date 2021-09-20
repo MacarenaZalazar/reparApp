@@ -2,17 +2,20 @@ import React, {useEffect, useState} from 'react';
 import axios from 'axios';
 import { MERCADOPAGO_URL } from '../../utils/constants';
 import PagoPromocion from './PagoPromocion';
+import { useMemo } from 'react';
 
 const Checkout = () => {
     const userString = window.sessionStorage.getItem("user");
     const user = JSON.parse(userString);
     const userId = user.id
     const [data, setData] = useState('')
-    const order = {
-        title: "Promoción 7D",
-         unit_price: 10,
-         quantity: 1
-    }
+    const order = useMemo(() => {
+     return {
+            title: "Promoción 7D",
+            unit_price: 10,
+            quantity: 1
+        }
+    }, [])
     useEffect(()=> {
         (async () => {
             try {
@@ -23,7 +26,7 @@ const Checkout = () => {
             }
         })()
 
-    }, [])
+    }, [order, userId])
     return (
         <div>
             {!data ? <span>Aguarde un momento...</span> :

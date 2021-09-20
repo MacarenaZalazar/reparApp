@@ -100,7 +100,8 @@ const Login = () => {
   const showAlert = async (e) => {
     e.preventDefault();
 
-    const { value: fruit } = await Swal.fire({
+    // const { value: fruit } = 
+    await Swal.fire({
       input: "select",
       inputOptions: {
         Tipo: {
