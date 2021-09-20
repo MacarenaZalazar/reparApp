@@ -20,7 +20,7 @@ export function AddJobType(newJob) {
 export function deleteJobType(name) {
   return async function (dispatch) {
     try {
-      const deleteJob = await axios.delete(name);
+      const deleteJob = await axios.delete(ADMIN_URL);
       return dispatch({
         type: DELETE_JOBTYPE,
         payload: deleteJob.data,

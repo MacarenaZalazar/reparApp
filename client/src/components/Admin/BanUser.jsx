@@ -2,6 +2,7 @@ import React, {useState} from "react";
 import UserCard from "../UserCard/UserCard";
 import axios from "axios";
 import { ADMIN_URL } from "../../utils/constants";
+import  Button from 'react-bootstrap/Button';
 
 const BanUser = () => {
   const [user, setUser] = useState([])
@@ -16,27 +17,29 @@ const BanUser = () => {
     },
   };
 
-  const handleChange = async (e) => {
+  const handleChange = (e) => {
     setInput(e.target.value)
+  };
+
+  const handleClick = async () => {
     try {
-      const usersByUsername = await axios.get(`${ADMIN_URL}/userbyuserName?userName=${e.target.value}`, config)
+      const usersByUsername = await axios.get(`${ADMIN_URL}/userbyuserName?userName=${input}`, config)
       setUser(usersByUsername.data)
     } catch (error) {
       console.log(error)
     }
-  };
-
-  console.log(user)
+  } 
 
   return (
     <div>
       <label>Buscar Usuari@</label>
       <input
+        onChange={(e) => handleChange(e)}
         type="text"
-        onChange={handleChange}
         placeholder="nombre de usuario..."
       />
-      {user.length >= 1 &&
+      <Button onClick={handleClick} >Buscar</Button>
+      {user.length > 0 &&
         user.map((u, idx) => {
           return (
             <>
