@@ -6,7 +6,6 @@ import {ADMIN_URL} from '../../utils/constants'
 import { getRequestByUser } from '../../redux/actions/request/index';
 
 const BanJobRequest = (props) => {
-  const[flag, setFlag] = useState(true)
   const userID = props.match.params.id
   const dispatch = useDispatch()
   const {requestsByUser} = useSelector(state => state)
@@ -23,13 +22,12 @@ const BanJobRequest = (props) => {
 
   useEffect(() => {
     dispatch(getRequestByUser(userID, config))
-  }, [dispatch, userID, flag])
+  }, [dispatch])
  
   const handleBan= async (id) => {
     try {
       await axios.put(`${ADMIN_URL}/ban/work`, {ban: true, id},config)
       alert('El pedido ha sido baneado')
-      setFlag(false)
     } catch (error) {
       alert('No se ha podido banear el pedido')
     }
@@ -37,9 +35,8 @@ const BanJobRequest = (props) => {
 
   const handleUnbanned = async (id) => {
     try {
-      await axios.put(`${ADMIN_URL}/ban/work`, {ban: true, id},config)
+      await axios.put(`${ADMIN_URL}/ban/work`, {ban: false, id},config)
       alert('El pedido ha sido baneado')
-      setFlag(true)
     } catch (error) {
       alert('No se ha podido banear el pedido')
     }
@@ -47,7 +44,7 @@ const BanJobRequest = (props) => {
 console.log(requestsByUser)
   return (
     <div>
-      {requestsByUser.length > 1 &&
+      {requestsByUser.length > 0 &&
         requestsByUser.map((u, idx) => {
           return (
             <>

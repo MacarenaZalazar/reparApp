@@ -30,11 +30,11 @@ const PerfilUserTech = () => {
 
   useEffect(() => {
     dispatch(getTechUsersById(userSession.idTech, config));
-  }, [userSession, config, dispatch]);
+  }, [dispatch]);
 
   useEffect(() => {
     dispatch(getRequestByUserTech(userSession.idTech));
-  }, [userSession, dispatch]);
+  }, [dispatch]);
 
   const user = useSelector((state) => state.technicUserDetail);
   const requestsByUserTech = useSelector((state) => state.requestsByUserTech);
