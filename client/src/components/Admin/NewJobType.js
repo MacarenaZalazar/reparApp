@@ -1,17 +1,20 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
-import { AddJobType } from "../../redux/actions/admin/index";
 import Button from 'react-bootstrap/Button'
+import axios from 'axios';
 
 function NewJobType() {
-  const dispatch = useDispatch();
-
   const [newJob, setNewjob] = useState("");
 
   function handleClick(e) {
     e.preventDefault();
-    console.log(newJob)
-    dispatch(AddJobType(newJob));
+    return async () => {
+        try {
+        await axios.put(ADMIN_URL, newJob);
+        alert('El tipo de trabajo ha sido agregado')
+      } catch (error) {
+        console.log(error);
+      }
+    }
   }
 
   function handleInputChange(e) {
