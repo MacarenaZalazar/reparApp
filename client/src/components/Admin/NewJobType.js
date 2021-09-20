@@ -10,26 +10,22 @@ function NewJobType() {
 
   function handleClick(e) {
     e.preventDefault();
+    console.log(newJob)
     dispatch(AddJobType(newJob));
   }
 
   function handleInputChange(e) {
     setNewjob((job) => ({
-      ...job,
       newJob: e.target.value,
     }));
   }
-
-  // useEffect(() => {
-  //   dispatch(getJobTypesAll());
-  // }, [handleOnSubmit]);
 
   return (
     <>
     <div className='addJob'>
     <input
             type="text"
-            class="form-control"
+            className="form-control"
             name="newJob"
             placeholder="Nuevo trabajo..."
             autoComplete='off'
@@ -39,23 +35,6 @@ function NewJobType() {
               Agregar
             </Button>
     </div>
-      {/* <form onSubmit={(e) => handleOnSubmit(e)}>
-        <div class="form-group ">
-          <label for="exampleInputEmail1">Agregar nuevo tipo de trabajo</label>
-          <input
-            type="text"
-            class="form-control"
-            name="newJob"
-            placeholder="Nuevo trabajo..."
-            onChange={(e) => handleInputChange(e)}
-          />
-          <div className=" d-flex justify-content-center">
-            <button type="submit" class="btn btn-success mt-4 w-50 ">
-              Agregar
-            </button>
-          </div>
-        </div>
-      </form> */}
     </>
   );
 }
