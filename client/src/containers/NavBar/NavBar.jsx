@@ -66,12 +66,18 @@ const NavBar = () => {
   return (
     <StyledDiv data-aos="fade-down">
       <NavBarDiv className="container">
-        <Link to="/" onClick={() => dispatch(restoreState())}>
+   
+        { user && user.roles[0].name === 'admin' ?
+        <Link to="/admin">
+        <LogoDiv>
+          <img src={Logo} alt="logo" />
+        </LogoDiv>
+      </Link> :      <Link to="/" onClick={() => dispatch(restoreState())}>
           <LogoDiv>
             <img src={Logo} alt="logo" />
           </LogoDiv>
         </Link>
-
+      }
         <UserName>
           {user && user.userName && (
             <div>
