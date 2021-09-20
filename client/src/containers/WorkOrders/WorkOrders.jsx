@@ -8,7 +8,7 @@ const WorkOrders = () => {
   const allRequest = useSelector((state) => state.allRequests);
   return (
     <StyledDiv>
-      {allRequest.length > 1 ? (
+      {allRequest.length >= 1 ? (
         <Carousel className="carousel" itemsToShow={1} outerSpacing={50}>
           {allRequest &&
             allRequest.map((e, idx) => {
