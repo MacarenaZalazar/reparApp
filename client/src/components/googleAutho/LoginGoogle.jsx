@@ -62,7 +62,8 @@ function LoginGoogle() {
         }
       } else {
         dispatch(loginGoogle(response));
-        const { value: fruit } = await Swal.fire({
+        // const { value: fruit } = 
+        await Swal.fire({
           input: "select",
           inputOptions: {
             Tipo: {

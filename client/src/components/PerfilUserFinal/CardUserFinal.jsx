@@ -1,7 +1,7 @@
 import React from "react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { getRequestByUser } from "../../redux/actions/request/index";
 import {
   WorksOrdersDiv,
@@ -30,7 +30,7 @@ function CardUserFinal({
 
   useEffect(() => {
     dispatch(getRequestByUser(user.idUserFinal));
-  }, []);
+  }, [dispatch, user.idUserFinal]);
 
   return (
     <>
@@ -63,81 +63,68 @@ function CardUserFinal({
               Modificar Perfil
             </button>
           </Link>
-          {/* <a href="#" class="card-link">
-            Card link
-          </a>
-          <a href="#" class="card-link">
-            Another link
-          </a> */}
         </div>
         <WorksOrdersDiv>
           <WorksSolicited>
             <h5>Solicitudes en proceso</h5>
             {requestsByUser &&
               requestsByUser.map((req) => {
-                if (!req.complete && !req.solicited) {
-                  return (
+                return  (!req.complete) && (!req.solicited) && 
+
                     <div>
                       <p>{req.title}</p>
                       <Link className="link" to={`/solicitedWork/${req._id}`}>
                         Ver Detalle
                       </Link>
                     </div>
-                  );
+      
                 }
-              })}
+              )}
           </WorksSolicited>
           <WorksAtention>
             <h5>Solicitudes que requieren atencion</h5>
             {requestsByUser &&
               requestsByUser.map((req) => {
-                if (!req.complete && req.solicited && !req.acepted) {
-                  return (
+                return (!req.complete) && (req.solicited) && (!req.acepted) &&
                     <div>
                       <p>{req.title}</p>
                       <Link className="link" to={`/solicitedWork/${req._id}`}>
                         Ver postulación
                       </Link>
                     </div>
-                  );
+                
                 }
-              })}
+              )}
             {requestsByUser &&
               requestsByUser.map((req) => {
-                if (!req.complete && req.solicited && req.completeTech) {
-                  return (
+               return (!req.complete) && (req.solicited) && (req.completeTech) &&
                     <div>
                       <p>{req.title}</p>
                       <Link className="link" to={`/solicitedWork/${req._id}`}>
                         Finalizar
                       </Link>
                     </div>
-                  );
                 }
-              })}
+              )}
           </WorksAtention>
           <WorksProcess>
             <h5>Solicitudes en proceso</h5>
             {requestsByUser &&
               requestsByUser.map((req) => {
-                if (!req.complete && req.acepted && !req.completeTech) {
-                  return (
+                return (!req.complete) && (req.acepted) && (!req.completeTech) &&
                     <div>
                       <p>{req.title}</p>
                       <Link className="link" to={`/solicitedWork/${req._id}`}>
                         Finalizar
                       </Link>
                     </div>
-                  );
-                }
               })}
           </WorksProcess>
           <WorksFinished>
             <h5>Historial de solicitudes</h5>
             {requestsByUser &&
               requestsByUser.map((req) => {
-                if (req.complete)
-                  return (
+                return (req.complete) &&
                     <div>
                       <p>{req.title}</p>
 
@@ -145,7 +132,6 @@ function CardUserFinal({
                         Ver Detalle
                       </Link>
                     </div>
-                  );
               })}
           </WorksFinished>
         </WorksOrdersDiv>

@@ -16,7 +16,7 @@ const SolicitedWorkTech = (props) => {
 
   useEffect(() => {
     dispatch(getRequestDetailsbyID(idWork));
-  }, []);
+  }, [dispatch, idWork]);
 
   let scoreTechInput = "";
   let obj = "";
