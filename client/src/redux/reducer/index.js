@@ -75,14 +75,14 @@ function reducer(state = initialState, action) {
     case GET_STATES:
       return {
         ...state,
-        allStates: payload,
+        allStates: payload.sort(),
       };
     case GET_CITIES:
       let payloadCapitalize = payload.map((pay) => capitalize(pay));
 
       return {
         ...state,
-        allCities: payloadCapitalize,
+        allCities: payloadCapitalize.sort(),
       };
     case ADD_JOBTYPE:
       return {
@@ -97,7 +97,7 @@ function reducer(state = initialState, action) {
     case GET_JOB_TYPES:
       return {
         ...state,
-        jobTypes: payload,
+        jobTypes: payload.sort(),
       };
     case GET_ALL_USERS:
       return {
