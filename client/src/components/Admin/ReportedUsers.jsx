@@ -26,7 +26,7 @@ const ReportedUsers = () => {
                 console.log(error)
             }
         } )()
-    }, [config])
+    }, [])
 
     return (
         <ContainerDiv>

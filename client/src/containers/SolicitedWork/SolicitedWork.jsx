@@ -18,10 +18,10 @@ const SolicitedWork = (props) => {
 
   useEffect(() => {
     dispatch(getRequestDetailsbyID(idWork));
-  }, [dispatch, idWork]);
+  }, [dispatch]);
   useEffect(() => {
     dispatch(getTechUsersById(requestDetails.userTech));
-  }, [dispatch, requestDetails]);
+  }, [dispatch]);
 
   async function aceptUserTech() {
     await axios.put(`${REQUEST_URL}/${idWork}`, {

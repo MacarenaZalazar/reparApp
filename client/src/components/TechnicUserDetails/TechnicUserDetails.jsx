@@ -21,7 +21,7 @@ export default function TechnicUserDetails(props) {
 
   useEffect(() => {
     dispatch(getTechUsersById(technicUserID, config));
-  }, [dispatch, technicUserID, config]);
+  }, [dispatch]);
 
   const TechnicUserDetail = useSelector((state) => state.technicUserDetail);
 

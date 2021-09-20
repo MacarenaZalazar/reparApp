@@ -18,7 +18,7 @@ function FinalUserDetails(props) {
 
   useEffect(() => {
     dispatch(getFinalUsersById(finalUserID));
-  }, [dispatch, finalUserID]);
+  }, [dispatch]);
 
   const FinalUser = useSelector((state) => state.finalUserDetail);
 

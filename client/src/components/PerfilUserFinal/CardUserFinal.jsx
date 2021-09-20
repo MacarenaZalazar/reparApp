@@ -30,7 +30,7 @@ function CardUserFinal({
 
   useEffect(() => {
     dispatch(getRequestByUser(user.idUserFinal));
-  }, [dispatch, user.idUserFinal]);
+  }, [dispatch]);
 
   return (
     <>

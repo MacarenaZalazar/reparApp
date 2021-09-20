@@ -6,7 +6,7 @@ import JobRequestCard from '../JobRequestCard/JobRequestCard';
 import { REQUEST_URL } from '../../utils/constants';
 
 const WorkOrdersFinalUser = () => {
-    const [flag, setFlag] = useState(true)
+    /* const [flag, setFlag] = useState(true) */
     const userID = props.match.params.id
     const dispatch = useDispatch()
     const {requestsByUser} = useSelector(state => state)
@@ -19,13 +19,13 @@ const WorkOrdersFinalUser = () => {
     };
     useEffect(() => {
         dispatch(getRequestByUser(userID, config))
-      }, [flag])
+      }, [dispatch])
     
     const handleDelete= async (id) => {
         try {
           await axios.delete(`${REQUEST_URL}/${id}`, config)
           alert('El pedido ha sido eliminado')
-          setFlag(!flag)
+          /* setFlag(!flag) */
         } catch (error) {
           alert('No se ha podido eliminar el pedido')
         }

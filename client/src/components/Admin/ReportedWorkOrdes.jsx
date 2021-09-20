@@ -21,7 +21,7 @@ const ReportedWorkOrdes = () => {
         const workOrders = await axios.get(`${ADMIN_URL}/reported/workOrders`, config) 
         setOrders(workOrders.data)})()
       
-    }, [flag, config])
+    }, [])
 
     const handleBan = async (id) => {
         try {

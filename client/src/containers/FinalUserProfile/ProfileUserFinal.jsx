@@ -22,7 +22,7 @@ function ProfileUserFinal() {
 
   useEffect(() => {
     dispatch(getFinalUsersById(users.idUserFinal, config));
-  }, [dispatch, users.idUserFinal, config]);
+  }, [dispatch]);
 
   const user = useSelector((state) => state.finalUserDetail);
 

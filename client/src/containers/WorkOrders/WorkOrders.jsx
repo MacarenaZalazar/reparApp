@@ -1,4 +1,3 @@
-import React, {useEffect} from "react";
 import WorkOrder from "../../components/WorkOrder/WorkOrder";
 import { useSelector } from "react-redux";
 import Carousel from "react-elastic-carousel";
@@ -6,9 +5,7 @@ import { StyledDiv } from "./styledWorkOrders";
 
 const WorkOrders = () => {
   const allRequest = useSelector((state) => state.allRequests);
-  useEffect(()=>{
-
-  },[])
+  
   return (
     <StyledDiv>
       {allRequest.length >= 1 ? (
