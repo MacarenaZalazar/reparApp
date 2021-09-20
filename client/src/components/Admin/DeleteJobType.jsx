@@ -1,20 +1,36 @@
-import React, { useState } from 'react';
-import { useDispatch, useSelector } from "react-redux";
-import { deleteJobType } from "../../redux/actions/admin/index";
+import React, { useState, useMemo } from 'react';
+import { useSelector } from "react-redux";
 import Button from 'react-bootstrap/Button'
+import { ADMIN_URL } from "../../utils/constants";
+import axios from 'axios'
 
 
 const DeleteJobType = () => {
-    const [job, setJob] = useState('')
+    const [newJob, setNewJob] = useState('')
     const jobTypes = useSelector((state) => state.jobTypes);
-    const dispatch = useDispatch();
-
-    function handleChange(e){
-        setJob(e.target.value)
+    const userString = window.sessionStorage.getItem("user");
+    const useR = JSON.parse(userString);
+    console.log(useR)
+    const config = useMemo(()=> {
+      return {
+        headers: {
+          "x-access-token": useR && useR.token,
+        },
+      };
+    }, [useR])
+    const handleChange = (e) => {
+        setNewJob({newJob: e.target.value})
     }
 
-    function handleClick() {
-      dispatch(deleteJobType(job));
+    const handleClick = async (e) =>{
+        console.log('toy ak perro')
+            try {
+            await axios.delete(ADMIN_URL, newJob, config);
+            alert('El tipo de trabajo ha sido eliminado')
+          } catch (error) {
+            console.log(error);
+          }
+        
     }
   
     return (
@@ -29,7 +45,7 @@ const DeleteJobType = () => {
                 })}
             </select>
             }
-            <Button onClick={handleClick}>Eliminar</Button>
+            <Button onClick={(e)=>handleClick(e)}>Eliminar</Button>
             </div>
         </div>
     );

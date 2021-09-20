@@ -1,20 +1,29 @@
-import React, { useState } from "react";
+import React, { useState, useMemo } from "react";
 import Button from 'react-bootstrap/Button'
 import axios from 'axios';
+import { ADMIN_URL } from "../../utils/constants";
 
 function NewJobType() {
   const [newJob, setNewjob] = useState("");
+  const userString = window.sessionStorage.getItem("user");
+  const useR = JSON.parse(userString);
+  const config = useMemo(()=> {
+    return {
+      headers: {
+        "x-access-token": useR && useR.token,
+      },
+    };
+  }, [useR])
 
-  function handleClick(e) {
-    e.preventDefault();
-    return async () => {
+  function handleClick() {
+    (async () => {
         try {
-        await axios.put(ADMIN_URL, newJob);
+        await axios.put(ADMIN_URL, newJob, config);
         alert('El tipo de trabajo ha sido agregado')
       } catch (error) {
         console.log(error);
       }
-    }
+    })()
   }
 
   function handleInputChange(e) {
@@ -34,7 +43,7 @@ function NewJobType() {
             autoComplete='off'
             onChange={(e) => handleInputChange(e)}
           />
-            <Button onClick={handleClick}>
+            <Button onClick={(e) => handleClick(e)}>
               Agregar
             </Button>
     </div>
