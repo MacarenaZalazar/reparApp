@@ -35,6 +35,7 @@ import Aos from "aos";
 import "aos/dist/aos.css";
 import Checkout from './components/MercadoPAgo/Checkout';
 import PagoPromocion from './components/MercadoPAgo/PagoPromocion';
+import ReportUser from './components/ReportUser/ReportUser';
 // jose estuvo aquí
 
 function App() {
@@ -135,9 +136,9 @@ function App() {
           component={SolicitedWorkTech}
         />
 
+        <Route paht = '/report' component={ReportUser} />
         <Route path="*" component={Error404} />
       </Switch>
-
       <Route path="/" component={Footer} />
     </div>
   );
