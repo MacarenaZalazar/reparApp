@@ -110,8 +110,8 @@ const Searchbar = () => {
             </select>
           )}
 
-          <Link className="link" to="/home">
-            <p onClick={(e) => handleClick(e)}>¡Buscá!</p>
+          <Link onClick={(e) => handleClick(e)} className="link" to="/home">
+            <p>¡Buscá!</p>
           </Link>
         </ItemDiv>
       </SearchBarDiv>
