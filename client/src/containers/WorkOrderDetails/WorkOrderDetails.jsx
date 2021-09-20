@@ -26,8 +26,11 @@ const WorkOrderDetails = () => {
       <p>{workDetails.zone}</p>
       <p>{workDetails.workType}</p>
       <img src={workDetails.workImage} alt="" />
-
-      <button onClick={postulacion(workDetails._id)}> Postularse </button>
+      {user && user.roles !== "" ? (
+        <button onClick={postulacion(workDetails._id)}> Postularse </button>
+      ) : (
+        <div />
+      )}
     </div>
   );
 };
