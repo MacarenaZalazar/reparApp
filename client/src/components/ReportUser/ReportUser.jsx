@@ -10,6 +10,7 @@ const ReportUser = () => {
        await Swal.fire({
             title: 'Estás segur@?',
             showCancelButton: true,
+            
         }).then((result)=>{
             if(result.isConfirmed){
                 console.log('Confirmado')
