@@ -55,8 +55,10 @@ export default function FilterByZoneAndJob() {
   return (
     <StyledDiv>
       <FilterDiv>
-        <FaFilter className="icon" />
-
+        <div className="front">
+          <FaFilter className="icon" />
+          <p>Filtrar</p>
+        </div>
         <div className="flexFilter">
           <ContentFilter>
             <p>Trabajo</p>

@@ -16,8 +16,11 @@ export const FilterDiv = styled.div`
   border-radius: 1.5rem;
 
   &:hover {
-    .icon {
-      transform: translateX(-50%);
+    .front {
+      transform: translateX(-350%);
+      p {
+        opacity: 0;
+      }
     }
     p,
     select {
@@ -27,18 +30,34 @@ export const FilterDiv = styled.div`
   }
   .icon {
     transition: 1s ease;
-    transform: translateX(400%);
+
     color: #0a122aff;
     background-color: #f06449ff;
-    font-size: 5rem;
+    font-size: 2.5rem;
     border-radius: 50%;
-    padding: 1rem;
+    padding: 0.2rem;
+  }
+  .front {
+    transition: 1s ease;
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    top: 50;
+    left: 50;
+    p {
+      transition: 0.5s ease;
+      opacity: 100;
+      color: #f06449ff;
+      font-weight: bold;
+    }
   }
   .flexFilter {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    gap: 6rem;
+    gap: 3rem;
   }
 `;
 
@@ -48,10 +67,11 @@ export const ContentFilter = styled.div`
   align-items: center;
   gap: 1rem;
   p {
-    transition: 1s ease;
+    width: 100%;
+    transition: 0.5s ease;
     color: #0a122aff;
     opacity: 0;
-    font-size: 1.5rem;
+    font-size: 1.2rem;
   }
   select {
     transition: 1s ease;
