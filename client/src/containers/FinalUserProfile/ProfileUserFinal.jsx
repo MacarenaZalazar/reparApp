@@ -4,7 +4,7 @@ import CardUserFinal from "../../components/PerfilUserFinal/CardUserFinal";
 import { useDispatch, useSelector } from "react-redux";
 import { getFinalUsersById } from "../../redux/actions/finalUser/index";
 import { useMemo } from "react";
-import { TiArrowLeftThick } from "react-icons/ti";
+import { TiArrowBack, TiPlus, TiEdit } from "react-icons/ti";
 import { Link } from "react-router-dom";
 
 import { ProfileDiv, StyledDiv, ButtonsDiv } from "./Styles";
@@ -12,12 +12,6 @@ import { ProfileDiv, StyledDiv, ButtonsDiv } from "./Styles";
 function ProfileUserFinal() {
   const userString = window.sessionStorage.getItem("user");
   const users = JSON.parse(userString);
-
-  const [back, setBack] = useState(false);
-
-  const changeBack = () => {
-    setBack(!back);
-  };
 
   let config = useMemo(() => {
     return {
@@ -38,35 +32,19 @@ function ProfileUserFinal() {
   console.log(user);
   return (
     <StyledDiv className="container">
-      <ButtonsDiv back={back}>
-        <Link onClick={changeBack} className="link" to="/home">
-          <TiArrowLeftThick className="icon" />
+      <ButtonsDiv>
+        <Link className="link" to="/home">
+          <TiArrowBack className="icon" />
           <p>Volver a Home</p>
         </Link>
-
-        {/* <Link
-              onMouseEnter={changeFlagNewOrder}
-              onMouseOut={changeFlagNewOrder}
-              className="link"
-              to="/newWorkOrder"
-            >
-              New Work Order
-              {flagNewOrder ? (
-                <p>
-                  <TiArrowLeftThick />
-                </p>
-              ) : (
-                <p>Nueva Orden</p>
-              )}
-            </Link>
-            <Link
-              // onMouseEnter={changeFlag}
-              // onMouseOut={changeFlag}
-              className="link"
-              to="/modificarPerfilC"
-            >
-              Modificar Perfil
-            </Link> */}
+        <Link className="link" to="/newWorkOrder">
+          <TiPlus className="icon" />
+          <p>Nueva Orden</p>
+        </Link>
+        <Link className="link" to="/modificarPerfilC">
+          <TiEdit className="icon" />
+          <p>Editar Perfil</p>
+        </Link>
       </ButtonsDiv>
       <ProfileDiv>
         {user.user ? (

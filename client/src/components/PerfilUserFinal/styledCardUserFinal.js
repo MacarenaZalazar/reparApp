@@ -38,6 +38,7 @@ export const ItemCard = styled.div`
     font-size: 1.2rem;
     background-color: #f06449ff;
     color: #0a122aff;
+    padding: 0 2rem;
   }
 `;
 
