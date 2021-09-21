@@ -5,11 +5,9 @@ import { REQUEST_URL } from "../../utils/constants";
 import { useEffect, useMemo } from "react";
 import { useDispatch } from "react-redux";
 import { getFinalUsersById } from "../../redux/actions/finalUser";
-import Button from 'react-bootstrap/Button';
-import { Link } from 'react-router-dom';
-import ReportUser from '../../components/ReportUser/ReportUser';
-
-
+import Button from "react-bootstrap/Button";
+import { Link } from "react-router-dom";
+import ReportUser from "../../components/ReportUser/ReportUser";
 
 const WorkOrderDetails = () => {
   const userString = window.sessionStorage.getItem("user");
@@ -40,12 +38,16 @@ const WorkOrderDetails = () => {
   console.log(workDetails);
   return (
     <div>
-      <h2>Titulo: {workDetails.title}</h2>
-      <h6>Descripcion: {workDetails.description}</h6>
-      <p>Provincia: {workDetails.state}</p>
-      <p>Ciudad: {workDetails.zone}</p>
-      <p>Tipo de servicio: {workDetails.workType}</p>
-      <img src={workDetails.workImage} alt="" />
+      {workDetails && workDetails.title && (
+        <div>
+          <h2>Titulo: {workDetails.title}</h2>
+          <h6>Descripcion: {workDetails.description}</h6>
+          <p>Provincia: {workDetails.state}</p>
+          <p>Ciudad: {workDetails.zone}</p>
+          <p>Tipo de servicio: {workDetails.workType}</p>
+          <img src={workDetails.workImage} alt="" />
+        </div>
+      )}
       {user && user.roles[0].name === "userTech" ? (
         <div>
           {finalUser && finalUser.user && finalUser.user.mail && (
@@ -53,17 +55,22 @@ const WorkOrderDetails = () => {
               <h1>Usuario solicitante : {finalUser.user.userName}</h1>
               <p>Mail: {finalUser.user.mail}</p>
               <p>Telefono: {finalUser.user.phone}</p>
+              <p>Puntaje usuario: {finalUser.score}</p>
             </div>
-            
-          )}  
-          <Button onClick={() => postulacion(workDetails._id)}> Postularse </Button>
+          )}
+          <Button onClick={() => postulacion(workDetails._id)}>
+            {" "}
+            Postularse{" "}
+          </Button>
           <Button>Reportar</Button>
           <ReportUser workOrderId={workDetails._id} />
         </div>
       ) : (
         <div />
-        )}
-        <span>Querés postularte?<Link to='/login'>Ingresá</Link></span>
+      )}
+      <span>
+        Querés postularte?<Link to="/login">Ingresá</Link>
+      </span>
     </div>
   );
 };
