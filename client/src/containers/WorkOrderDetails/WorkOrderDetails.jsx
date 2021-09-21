@@ -5,6 +5,11 @@ import { REQUEST_URL } from "../../utils/constants";
 import { useEffect, useMemo } from "react";
 import { useDispatch } from "react-redux";
 import { getFinalUsersById } from "../../redux/actions/finalUser";
+import Button from 'react-bootstrap/Button';
+import { Link } from 'react-router-dom';
+import ReportUser from '../../components/ReportUser/ReportUser';
+
+
 
 const WorkOrderDetails = () => {
   const userString = window.sessionStorage.getItem("user");
@@ -49,12 +54,16 @@ const WorkOrderDetails = () => {
               <p>Mail: {finalUser.user.mail}</p>
               <p>Telefono: {finalUser.user.phone}</p>
             </div>
-          )}
-          <button onClick={postulacion(workDetails._id)}> Postularse </button>
+            
+          )}  
+          <Button onClick={() => postulacion(workDetails._id)}> Postularse </Button>
+          <Button>Reportar</Button>
+          <ReportUser workOrderId={workDetails._id} />
         </div>
       ) : (
         <div />
-      )}
+        )}
+        <span>Querés postularte?<Link to='/login'>Ingresá</Link></span>
     </div>
   );
 };

@@ -136,7 +136,7 @@ function App() {
           component={SolicitedWorkTech}
         />
 
-        <Route paht = '/report' component={ReportUser} />
+        {/* <Route paht = '/report' component={ReportUser} /> */}
         <Route path="*" component={Error404} />
       </Switch>
       <Route path="/" component={Footer} />

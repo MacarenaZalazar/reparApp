@@ -23,9 +23,8 @@ const DeleteJobType = () => {
     }
 
     const handleClick = async (e) =>{
-        console.log('toy ak perro')
             try {
-            await axios.delete(ADMIN_URL, newJob, config);
+            await axios.put(`${ADMIN_URL}/put`, newJob, config);
             alert('El tipo de trabajo ha sido eliminado')
           } catch (error) {
             console.log(error);

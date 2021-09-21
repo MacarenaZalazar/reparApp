@@ -32,6 +32,6 @@ router.get("/allTech/:id", getRequestsByIDTech);
 
 router.get("/details/:id", getDetailsRequest);
 
-router.post("/report/:id", reportWork);
+router.post("/report", reportWork);
 
 module.exports = router;

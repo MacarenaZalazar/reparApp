@@ -2,6 +2,5 @@ export const POST_SCORE = "POST_SCORE";
 export const GET_ALL_JOB_REQUESTS = "GET_ALL_JOB_REQUESTS";
 export const ORDER_BY_SCORE = "ORDER_BY_SCORE";
 export const ORDER_BY_PRICE = "ORDER_BY_PRICE";
-export const ORDER_BY_RELEVANT = "ORDER_BY_RELEVANT";
 
 export const LOGIN_GOOGLE = "LOGIN_GOOGLE";

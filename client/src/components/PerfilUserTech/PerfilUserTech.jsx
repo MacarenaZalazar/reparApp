@@ -13,6 +13,7 @@ import {
 } from "./styledPerfilUserTech";
 import { Link } from "react-router-dom";
 import { useHistory } from "react-router-dom";
+import Button from 'react-bootstrap/Button';
 
 const PerfilUserTech = () => {
   const history = useHistory();
@@ -77,14 +78,16 @@ const PerfilUserTech = () => {
           </ul>
           <p>{user.price}</p>
           <p>{user.score}</p>
+          {(!user.user.promoted) ? <><Link to='/checkout'><Button>Promocionar</Button></Link></>
+          : <span>Promocionado</span>}
 
           <div>
             <WorksSolicited>
               <h5>Trabajos postulados</h5>
               {requestsByUserTech &&
-                requestsByUserTech.map((req) => {
+                requestsByUserTech.map((req, key) => {
                  return (req.solicited) && (!req.acepted) &&
-                      <div>
+                      <div key={key}>
                         <p>{req.title}</p>
                         <Link
                           className="link"
@@ -115,9 +118,9 @@ const PerfilUserTech = () => {
             <WorksAwait>
               <h5>En espera de finalizacion</h5>
               {requestsByUserTech &&
-                requestsByUserTech.map((req) => {
+                requestsByUserTech.map((req, key) => {
                  return (req.solicited) && (req.acepted) && (req.completeTech) && (!req.complete) &&
-                      <div>
+                      <div key={key}>
                         <p>{req.title}</p>
                         <Link
                           className="link"
