@@ -15,7 +15,7 @@ const {
 const { getByUserName } = require("../controllers/Users/index");
 
 router.put("/", [verifyToken, isAdmin], jobTypeModifier);
-router.delete("/", jobTypeDelete);
+router.put("/put",[verifyToken, isAdmin], jobTypeDelete);
 router.put("/ban/work", [verifyToken, isAdmin], banUserorWorkOrder);
 router.put("/ban/user", [verifyToken, isAdmin], banUser);
 router.get("/allUsers", [verifyToken, isAdmin], allUsers);
