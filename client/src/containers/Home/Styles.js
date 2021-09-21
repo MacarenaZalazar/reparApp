@@ -1,11 +1,10 @@
 import styled from "styled-components";
 
 export const StyledDiv = styled.div`
-  display: flex;
-  justify-content:  center;
-  flex-direction: row;
-  background-color: #f9f6f4;
-  height: 100%;
+  width: 100%;
+  height: calc(100vh - 10.75rem);
+  background-color: #fbfaf8ff;
+  padding: 0.5rem;
 
   .link {
     padding: 1rem;
@@ -17,24 +16,23 @@ export const StyledDiv = styled.div`
 
     text-decoration: none;
   }
-  .cardsDisplay{
+  .cardsDisplay {
     width: 75%;
-    display:flex;
+    display: flex;
     flex-direction: column;
-
   }
 `;
 export const SinUser = styled.div`
   display: flex;
-  flex-direction:row;
   padding: 4rem;
   h2 {
     text-align: center;
   }
-  .cardsDisplay{
+  .cardsDisplay {
     width: 75%;
-    display:flex;
+    display: flex;
     flex-direction: column;
-
   }
 `;
+
+export const HomeDiv = styled.div``;
