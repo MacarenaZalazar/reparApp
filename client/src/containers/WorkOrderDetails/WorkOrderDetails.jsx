@@ -7,6 +7,7 @@ import { useDispatch } from "react-redux";
 import { getFinalUsersById } from "../../redux/actions/finalUser";
 import Button from 'react-bootstrap/Button';
 import { Link } from 'react-router-dom';
+import ReportUser from '../../components/ReportUser/ReportUser';
 
 
 
@@ -55,10 +56,9 @@ const WorkOrderDetails = () => {
             </div>
             
           )}  
-          <Button onClick={postulacion(workDetails._id)}> Postularse </Button>
-          <Link to='/reported'>
-                <Button>Reportar</Button>
-          </Link>
+          <Button onClick={() => postulacion(workDetails._id)}> Postularse </Button>
+          <Button>Reportar</Button>
+          <ReportUser workOrderId={workDetails._id} />
         </div>
       ) : (
         <div />
