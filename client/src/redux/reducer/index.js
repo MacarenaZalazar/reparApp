@@ -142,7 +142,6 @@ function reducer(state = initialState, action) {
         allRequests: [],
       };
     case GET_REQUEST_DETAILS:
-      console.log("entre", payload);
       return {
         ...state,
         requestDetails: payload,
