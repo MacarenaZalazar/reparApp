@@ -85,9 +85,9 @@ const PerfilUserTech = () => {
             <WorksSolicited>
               <h5>Trabajos postulados</h5>
               {requestsByUserTech &&
-                requestsByUserTech.map((req) => {
+                requestsByUserTech.map((req, key) => {
                  return (req.solicited) && (!req.acepted) &&
-                      <div>
+                      <div key={key}>
                         <p>{req.title}</p>
                         <Link
                           className="link"
