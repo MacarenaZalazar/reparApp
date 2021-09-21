@@ -40,6 +40,7 @@ var initialState = {
   requestsByUser: [],
   responseGoogle: {},
   requestDetails: {},
+  promoted: []
 };
 
 function capitalize(str) {
@@ -59,6 +60,7 @@ function reducer(state = initialState, action) {
       return {
         ...state,
         techUsers: payload,
+        promoted: payload.filter(e => (e.promoted))
       };
     case GET_TECH_USERS_BY_ID:
       return {
@@ -69,6 +71,8 @@ function reducer(state = initialState, action) {
       return {
         ...state,
         techUsers: payload,
+        promoted: payload.filter(e => (e.promoted))
+
       };
     case GET_STATES:
       return {
