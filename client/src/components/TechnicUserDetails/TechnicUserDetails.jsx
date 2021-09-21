@@ -27,7 +27,6 @@ export default function TechnicUserDetails(props) {
   }, [dispatch]);
 
   const TechnicUserDetail = useSelector((state) => state.technicUserDetail);
-  console.log(TechnicUserDetail)
 
   function handleClick() {
     history.push("/login");
