@@ -8,13 +8,13 @@ export default function TechnicUserDetails(props) {
   const history = useHistory();
   const userString = window.sessionStorage.getItem("user");
   const user = JSON.parse(userString);
-  let config = useMemo(()=>{
+  let config = useMemo(() => {
     return {
       headers: {
         "x-access-token": user && user.token,
       },
     };
-  }, [user]) 
+  }, [user]);
 
   const technicUserID = props.match.params.Id;
   const dispatch = useDispatch();
@@ -34,12 +34,10 @@ export default function TechnicUserDetails(props) {
       <div className="detContainer">
         {TechnicUserDetail.user && (
           <div>
-            <h1>{TechnicUserDetail.user.userName}</h1>
-            <h2>{TechnicUserDetail.user.lastName}</h2>
-            <h4>{TechnicUserDetail.user.name}</h4>
-            <img src={TechnicUserDetail.image} alt="" />
-            <h4>{TechnicUserDetail.score}</h4>
-            <p>{TechnicUserDetail.phone}</p>
+            <h1>Usuario: {TechnicUserDetail.user.userName}</h1>
+            <img src={TechnicUserDetail.user.image} alt="" />
+            <h4>Puntaje: {TechnicUserDetail.score}</h4>
+
             <p>Zonas de trabajo:</p>
             <ul>
               {TechnicUserDetail.workZones &&
@@ -54,18 +52,16 @@ export default function TechnicUserDetails(props) {
                   return <li key={idx}>{zone}</li>;
                 })}
             </ul>
-            <p>Calificaciones :</p>
-            <ul>
-              {TechnicUserDetail.qualification &&
-                TechnicUserDetail.qualification.map((zone, idx) => {
-                  return <li key={idx}>{zone}</li>;
-                })}
-            </ul>
           </div>
         )}
 
         {user ? (
-          <h4>Soy la info completa</h4>
+          <div>
+            <h2>Apellido: {TechnicUserDetail.user.lastName}</h2>
+            <h4>Nombre: {TechnicUserDetail.user.name}</h4>
+            <p>Telefono: {TechnicUserDetail.user.phone}</p>
+            <p>Mail: {TechnicUserDetail.user.mail}</p>
+          </div>
         ) : (
           <span onClick={handleClick}>Inicia sesión para ver mas info</span>
         )}
