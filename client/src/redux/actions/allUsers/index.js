@@ -43,14 +43,6 @@ export const orderByPrice = () => {
     },
   };
 };
-export const orderByRelevant = () => {
-  return {
-    type: ORDER_BY_RELEVANT,
-    payload: function (a, b) {
-      return (a.add === true) - (b.add === true);
-    },
-  };
-};
 
 export const loginGoogle = (response) => {
   return {

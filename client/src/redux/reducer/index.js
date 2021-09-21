@@ -22,7 +22,6 @@ import {
   //  GET_ALL_JOB_REQUESTS,
   ORDER_BY_PRICE,
   ORDER_BY_SCORE,
-  ORDER_BY_RELEVANT,
   LOGIN_GOOGLE,
 } from "../actions/allUsers/constantsAllUsers";
 
@@ -40,6 +39,7 @@ var initialState = {
   requestsByUser: [],
   responseGoogle: {},
   requestDetails: {},
+  promoted: []
 };
 
 function capitalize(str) {
@@ -59,6 +59,7 @@ function reducer(state = initialState, action) {
       return {
         ...state,
         techUsers: payload,
+        promoted: payload.filter(e => (e.user.promoted))
       };
     case GET_TECH_USERS_BY_ID:
       return {
@@ -69,6 +70,8 @@ function reducer(state = initialState, action) {
       return {
         ...state,
         techUsers: payload,
+        promoted: payload.filter(e => (e.user.promoted))
+
       };
     case GET_STATES:
       return {
@@ -112,12 +115,6 @@ function reducer(state = initialState, action) {
         techUsers: [...state.techUsers].sort(payload),
       };
     case ORDER_BY_PRICE:
-      return {
-        ...state,
-        allRequests: [...state.allRequests].sort(payload),
-        techUsers: [...state.techUsers].sort(payload),
-      };
-    case ORDER_BY_RELEVANT:
       return {
         ...state,
         allRequests: [...state.allRequests].sort(payload),
