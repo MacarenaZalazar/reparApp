@@ -10,7 +10,7 @@ const TechnicUsers = () => {
 
   return (
     <StyledDiv>
-      {techUsers.length > 1 ? (
+      {techUsers.length > 0 ? (
         <Carousel className="carousel" itemsToShow={1} outerSpacing={50}>
           {techUsers &&
             techUsers.map((t, idx) => {

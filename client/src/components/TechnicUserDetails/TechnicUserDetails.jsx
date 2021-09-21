@@ -1,13 +1,13 @@
-import React, { useEffect, useMemo } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { getTechUsersById } from "../../redux/actions/techUsers";
 import { StyledDiv } from "./Styled";
 import { useHistory } from "react-router-dom";
 import  Button  from 'react-bootstrap/Button';
-import { Link } from 'react-router-dom';
 import ReportUser from '../ReportUser/ReportUser';
 
 export default function TechnicUserDetails(props) {
+  const [flag, setFlag] = useState(false)
   const history = useHistory();
   const userString = window.sessionStorage.getItem("user");
   const user = JSON.parse(userString);
@@ -24,10 +24,11 @@ export default function TechnicUserDetails(props) {
 
   useEffect(() => {
     dispatch(getTechUsersById(technicUserID, config));
+    setFlag(true)
   }, [dispatch]);
 
   const TechnicUserDetail = useSelector((state) => state.technicUserDetail);
-
+  console.log(TechnicUserDetail.user)
   function handleClick() {
     history.push("/login");
   }
@@ -35,7 +36,8 @@ export default function TechnicUserDetails(props) {
   return (
     <StyledDiv className="container">
       <div className="detContainer">
-        {TechnicUserDetail && TechnicUserDetail.user ? 
+        {!flag ? <span>Cargando...</span> :
+        <>{TechnicUserDetail && TechnicUserDetail.user ? 
           <>
           <div>
             <h1>Usuario: {TechnicUserDetail.user.userName}</h1>
@@ -58,7 +60,7 @@ export default function TechnicUserDetails(props) {
             </ul>
           </div>
 
-        {user.roles ? (
+        {user ? (
           <div>
             <h2>Apellido: {TechnicUserDetail.user.lastName}</h2>
             <h4>Nombre: {TechnicUserDetail.user.name}</h4>
@@ -70,8 +72,8 @@ export default function TechnicUserDetails(props) {
         ) : (
           <span onClick={handleClick}>Inicia sesión para ver mas info</span>
         )}
-        </> : <span>Cargando...</span>
-        }
+        </> : null
+        } </>}
       </div>
     </StyledDiv>
   );

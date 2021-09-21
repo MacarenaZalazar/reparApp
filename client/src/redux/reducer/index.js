@@ -136,7 +136,19 @@ function reducer(state = initialState, action) {
       return {
         ...state,
         techUsers: [],
+        technicUserDetail: {},
+        finalUser: [],
+        finalUserDetail: {},
+        allStates: [],
+        allCities: [],
+        allUsers: [],
         allRequests: [],
+        requestsByUserTech: [],
+        requestsByUser: [],
+        responseGoogle: {},
+        requestDetails: {},
+        promoted: []
+
       };
     case GET_REQUEST_DETAILS:
       return {
