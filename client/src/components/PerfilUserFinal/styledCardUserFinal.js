@@ -22,6 +22,7 @@ export const CardDiv = styled.div`
 export const ImgDiv = styled.div`
   img {
     width: 15rem;
+    height: 15rem;
     border-radius: 50%;
     border: 0.3rem solid #f06449ff;
   }
