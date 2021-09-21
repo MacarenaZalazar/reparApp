@@ -1,39 +1,63 @@
 import styled from "styled-components";
 
 export const StyledDiv = styled.div`
-  /* box-shadow: rgba(181, 129, 108, 0.8) 0px 8px 34px -25px;
-  border-radius: 15px;
-  padding: 30px 50px;
-  height: 100%;
-  margin: 50px; */
-  height: calc(100vh - 15rem);
+  height: calc(100vh - 11.75rem);
+  /* background-color: #0a122a; */
   width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+
   button {
-    border: none;
-    padding: 0.6rem;
-    font-family: "Montserrat", sans-serif;
-    color: rgb(248, 248, 248);
-    background-color: #194350;
-    cursor: pointer;
+    padding: 0.5rem 3rem;
     border-radius: 1rem;
+    background-color: #e7decdff;
+    border: none;
+    font-family: "Montserrat", sans-serif;
     transition: 0.5s ease;
 
+    p {
+      font-weight: bold;
+      color: #0a122aff;
+      display: inline;
+      width: 100%;
+    }
+
     :hover {
-      background-color: #ff8882;
+      transform: scale(1.1);
+      cursor: pointer;
+      background-color: #f06449;
     }
   }
 `;
 
 export const Form = styled.div`
+  .title {
+    position: relative;
+    text-transform: uppercase;
+    h4 {
+      &:after {
+        position: absolute;
+        top: 110%;
+        left: 0;
+        width: 100%;
+        height: 0.5rem;
+        background-color: #f06449ff;
+        content: " ";
+      }
+    }
+  }
+
+  color: #e7decdff;
+  background-color: #0a122aff;
   display: flex;
+  border-radius: 1rem;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
+  justify-content: space-between;
+  gap: 2rem;
+  padding: 5rem 1.3rem;
   span {
     padding: 10px 0;
   }
@@ -51,15 +75,18 @@ export const Input = styled.div`
   gap: 1rem;
 
   input {
+    color: #e7decdff;
+    background-color: #0a122aff;
     padding: 0.3rem;
     text-align: center;
     font-family: "Montserrat", sans-serif;
-    color: ${({ error }) => (error ? "rgb(248, 248, 248)" : "#194350")};
-    border-radius: 2rem;
-    width: 20rem;
-    border: 1px solid #194350;
-    background-color: ${({ error }) => (error ? "#ff8882" : "")};
-    outline: none;
+    color: ${({ error }) => (error ? "rgb(248, 248, 248)" : "#e7decdff")};
+    width: 25rem;
+    outline: 0;
+    border: 0;
+    border-bottom: 1px solid #e7decdff;
+    border-bottom: ${({ error }) =>
+      error ? " 1px solid #f06449ff" : "1px solid #e7decdff"};
   }
 
   label {
@@ -68,9 +95,13 @@ export const Input = styled.div`
   }
 
   select {
-    width: 20rem;
+    color: #e7decdff;
+    background-color: #0a122aff;
+    width: 25rem;
     padding: 0.3rem;
-    border-radius: 2rem;
+    outline: 0;
+    border: 0;
+    border-bottom: 1px solid #e7decdff;
   }
 
   .flexZones {
@@ -97,6 +128,17 @@ export const Input = styled.div`
         padding: 0.1rem 0.4rem;
         border-radius: 50%;
       }
+    }
+  }
+
+  .flex__confirm {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    &--span {
+      align-self: flex-end;
     }
   }
 `;

@@ -2,7 +2,7 @@ const JobTypes = require("../../models/JobTypes");
 
 const jobTypeDelete = async (req, res, next) => {
   const { newJob } = req.body;
-
+  
   try {
     JobTypes.find({})
       .then((doc) => {

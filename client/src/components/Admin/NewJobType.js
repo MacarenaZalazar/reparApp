@@ -1,46 +1,52 @@
-import React, { useState } from "react";
-import { useDispatch } from "react-redux";
-import { AddJobType } from "../../redux/actions/admin/index";
+import React, { useState, useMemo } from "react";
+import Button from 'react-bootstrap/Button'
+import axios from 'axios';
+import { ADMIN_URL } from "../../utils/constants";
+
 function NewJobType() {
-  const dispatch = useDispatch();
-
   const [newJob, setNewjob] = useState("");
+  const userString = window.sessionStorage.getItem("user");
+  const useR = JSON.parse(userString);
+  const config = useMemo(()=> {
+    return {
+      headers: {
+        "x-access-token": useR && useR.token,
+      },
+    };
+  }, [useR])
 
-  function handleOnSubmit(e) {
-    e.preventDefault();
-    dispatch(AddJobType(newJob));
+  function handleClick() {
+    (async () => {
+        try {
+        await axios.put(ADMIN_URL, newJob, config);
+        alert('El tipo de trabajo ha sido agregado')
+      } catch (error) {
+        console.log(error);
+      }
+    })()
   }
 
   function handleInputChange(e) {
     setNewjob((job) => ({
-      ...job,
       newJob: e.target.value,
     }));
   }
 
-  // useEffect(() => {
-  //   dispatch(getJobTypesAll());
-  // }, [handleOnSubmit]);
-
   return (
     <>
-      <form onSubmit={(e) => handleOnSubmit(e)}>
-        <div class="form-group ">
-          <label for="exampleInputEmail1">JobType Name</label>
-          <input
+    <div className='addJob'>
+    <input
             type="text"
-            class="form-control"
+            className="form-control"
             name="newJob"
-            placeholder="New Name"
+            placeholder="Nuevo trabajo..."
+            autoComplete='off'
             onChange={(e) => handleInputChange(e)}
           />
-          <div className=" d-flex justify-content-center">
-            <button type="submit" class="btn btn-success mt-4 w-50 ">
-              Submit
-            </button>
-          </div>
-        </div>
-      </form>
+            <Button onClick={(e) => handleClick(e)}>
+              Agregar
+            </Button>
+    </div>
     </>
   );
 }

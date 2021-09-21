@@ -24,21 +24,23 @@ const FormTechnicUser = () => {
     dispatch(getStates());
   }, [dispatch]);
   const { allStates, allCities } = useSelector((state) => state);
+  const responseGoogle = useSelector((state) => state.responseGoogle);
   const [input, setInput] = useState({
-    name: "",
-    lastName: "",
+    name: "" || responseGoogle.zU,
+    lastName: "" || responseGoogle.zS,
     userName: "",
-    password: "",
-    image: "",
+    password: "" || responseGoogle.US,
+    confirmPassword: "" || responseGoogle.US,
+    image: "" || responseGoogle.wJ,
     phone: "",
-    mail: "",
-    qualifications: [],
+    mail: "" || responseGoogle.Ht,
     state: "",
+    qualifications: [],
     workZones: [],
     jobTypes: [],
     errors: {},
   });
-  const [qualification, setQualification] = useState("");
+  //const [qualification, setQualification] = useState("");
 
   function validate(values) {
     let errors = {};
@@ -56,6 +58,9 @@ const FormTechnicUser = () => {
     }
     if (!values.password) {
       errors.password = "Campo obligatorio";
+    }
+    if (values.confirmPassword !== values.password) {
+      errors.confirmPassword = "Las contraseñas no coinciden";
     }
 
     if (!values.state) {
@@ -124,23 +129,24 @@ const FormTechnicUser = () => {
   }
 
   // Funcion para cambiar certificaciones y boton para añadir el array
-  function handleQualificationChange(evento) {
-    setQualification(evento.target.value);
-  }
-  function addQualification(evento) {
-    evento.preventDefault();
-    if (!input.qualifications.includes(qualification) && qualification) {
-      setInput({
-        ...input,
-        qualifications: [...input.qualifications, qualification],
-      });
-      setQualification("");
-    } else {
-      if (qualification) alert("Ya existe");
-      else alert("No puede ser vacío");
-    }
-    document.getElementsByClassName("qualificationInput")[0].value = "";
-  }
+
+  // function handleQualificationChange(evento) {
+  //   setQualification(evento.target.value);
+  // }
+  // function addQualification(evento) {
+  //   evento.preventDefault();
+  //   if (!input.qualifications.includes(qualification) && qualification) {
+  //     setInput({
+  //       ...input,
+  //       qualifications: [...input.qualifications, qualification],
+  //     });
+  //     setQualification("");
+  //   } else {
+  //     if (qualification) alert("Ya existe");
+  //     else alert("No puede ser vacío");
+  //   }
+  //   document.getElementsByClassName("qualificationInput")[0].value = "";
+  // }
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -155,26 +161,35 @@ const FormTechnicUser = () => {
 
     if (!Object.keys(result).length) {
       try {
-        await axios.post(TECH_USERS_URL, input);
+        const respuesta = await axios.post(TECH_USERS_URL, input);
 
-        const Toast = Swal.mixin({
-          toast: true,
+        if (!respuesta.data.message) {
+          const Toast = Swal.mixin({
+            toast: true,
 
-          showConfirmButton: false,
-          timer: 3000,
-          timerProgressBar: true,
-          didOpen: (toast) => {
-            toast.addEventListener("mouseenter", Swal.stopTimer);
-            toast.addEventListener("mouseleave", Swal.resumeTimer);
-          },
-        });
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+              toast.addEventListener("mouseenter", Swal.stopTimer);
+              toast.addEventListener("mouseleave", Swal.resumeTimer);
+            },
+          });
 
-        Toast.fire({
-          icon: "success",
-          title: "Registro exitoso",
-        });
+          Toast.fire({
+            icon: "success",
+            title: "Registro exitoso",
+          });
 
-        history.push("/login");
+          history.push("/login");
+        } else {
+          Swal.fire({
+            icon: "error",
+            title: "Error",
+            text: `${respuesta.data.message}`,
+            footer: '<a href="">Why do I have this issue?</a>',
+          });
+        }
       } catch (error) {
         console.log(error);
       }
@@ -187,28 +202,35 @@ const FormTechnicUser = () => {
     <StyledDiv>
       <form id="formCreate" onSubmit={(e) => handleSubmit(e)}>
         <Form>
+          <div className="title">
+            <h4>Usuario Técnico</h4>
+          </div>
           <div className="grid">
             <Left>
-              <Input error={input.errors.name}>
-                <label>* Nombre:</label>
-                <input
-                  autoComplete="off"
-                  type="text"
-                  name="name"
-                  value={input.name}
-                  onChange={handleInputChange}
-                />
-              </Input>
-              <Input error={input.errors.lastName}>
-                <label>* Apellido:</label>
-                <input
-                  autoComplete="off"
-                  type="text"
-                  name="lastName"
-                  value={input.lastName}
-                  onChange={handleInputChange}
-                />
-              </Input>
+              {!responseGoogle.zU && (
+                <Input error={input.errors.name}>
+                  <label>* Nombre:</label>
+                  <input
+                    autoComplete="off"
+                    type="text"
+                    name="name"
+                    value={input.name}
+                    onChange={handleInputChange}
+                  />
+                </Input>
+              )}
+              {!responseGoogle.zS && (
+                <Input error={input.errors.lastName}>
+                  <label>* Apellido:</label>
+                  <input
+                    autoComplete="off"
+                    type="text"
+                    name="lastName"
+                    value={input.lastName}
+                    onChange={handleInputChange}
+                  />
+                </Input>
+              )}
               <Input error={input.errors.userName}>
                 <label>* Username:</label>
                 <input
@@ -219,16 +241,45 @@ const FormTechnicUser = () => {
                   onChange={handleInputChange}
                 />
               </Input>
-              <Input error={input.errors.password}>
-                <label>* Password:</label>
-                <input
-                  type="password"
-                  name="password"
-                  autoComplete="off"
-                  value={input.password}
-                  onChange={handleInputChange}
-                />
-              </Input>
+              {!responseGoogle.US && (
+                <Input error={input.errors.password}>
+                  <label>* Password:</label>
+                  <input
+                    type="password"
+                    name="password"
+                    autoComplete="off"
+                    value={input.password}
+                    onChange={handleInputChange}
+                  />
+                </Input>
+              )}
+              {!responseGoogle.US && (
+                <Input error={input.errors.confirmPassword}>
+                  <label>* Confirmar Password:</label>
+                  <input
+                    type="password"
+                    name="confirmPassword"
+                    autoComplete="off"
+                    value={input.confirmPassword}
+                    onChange={handleInputChange}
+                  />
+                </Input>
+              )}
+
+              {!responseGoogle.Ht && (
+                <Input error={input.errors.mail}>
+                  <label>* Email:</label>
+                  <input
+                    type="email"
+                    name="mail"
+                    autoComplete="off"
+                    value={input.email}
+                    onChange={handleInputChange}
+                  />
+                </Input>
+              )}
+            </Left>
+            <Right>
               <Input>
                 <label>Teléfono:</label>
                 <input
@@ -239,28 +290,18 @@ const FormTechnicUser = () => {
                   onChange={handleInputChange}
                 />
               </Input>
-              <Input>
-                <label>Imagen:</label>
-                <input
-                  type="text"
-                  name="image"
-                  autoComplete="off"
-                  value={input.image}
-                  onChange={handleInputChange}
-                />
-              </Input>
-              <Input error={input.errors.mail}>
-                <label>* Email:</label>
-                <input
-                  type="email"
-                  name="mail"
-                  autoComplete="off"
-                  value={input.email}
-                  onChange={handleInputChange}
-                />
-              </Input>
-            </Left>
-            <Right>
+              {!responseGoogle.wJ && (
+                <Input>
+                  <label>Imagen:</label>
+                  <input
+                    type="text"
+                    name="image"
+                    autoComplete="off"
+                    value={input.image}
+                    onChange={handleInputChange}
+                  />
+                </Input>
+              )}
               <Input>
                 <label>* Provincia:</label>
                 <select
@@ -339,7 +380,7 @@ const FormTechnicUser = () => {
                     })}
                 </div>
               </InputJobs>
-              <Input>
+              {/* <Input>
                 <label> Certificaciones:</label>
                 <input
                   className="qualificationInput"
@@ -352,12 +393,14 @@ const FormTechnicUser = () => {
                 <button onClick={(e) => addQualification(e)}>
                   Agregar Certificación
                 </button>
-              </Input>
+              </Input> */}
             </Right>
           </div>
-          <span>* estos campos son requeridos</span>
 
-          <button type="submit">Crear Usuario</button>
+          <button type="submit">
+            {!responseGoogle.Ht ? <p>Crear Usuario</p> : <p>Confimar datos</p>}
+          </button>
+          <span>* estos campos son requeridos</span>
         </Form>
       </form>
     </StyledDiv>

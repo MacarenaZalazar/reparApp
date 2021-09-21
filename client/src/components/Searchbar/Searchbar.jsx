@@ -49,7 +49,7 @@ const Searchbar = () => {
   };
 
   return (
-    <StyledDiv>
+    <StyledDiv data-aos="fade-right">
       <SearchBarDiv>
         <ItemDiv>
           <p>¿Qué necesitas?</p>
@@ -57,7 +57,7 @@ const Searchbar = () => {
             className="form-select"
             aria-label="Default select example"
             name="jobTypesInput"
-            onChange={handleJobTypes}
+            onChange={(e) => handleJobTypes(e)}
           >
             <option value=""></option>
             {jobTypes &&
@@ -75,12 +75,13 @@ const Searchbar = () => {
           <select
             className="form-select"
             aria-label="Default select example"
-            onChange={handleChangeState}
+            onChange={(e) => handleChangeState(e)}
             name="state"
             id=""
           >
             <option value=""></option>
             {allStates &&
+              allStates.length > 0 &&
               allStates.map((c, idx) => {
                 return (
                   <option key={idx} value={c}>
@@ -96,7 +97,7 @@ const Searchbar = () => {
               aria-label="Default select example"
               name="departments"
               id=""
-              onChange={handleChangeCitie}
+              onChange={(e) => handleChangeCitie(e)}
             >
               <option value=""></option>
               {allCities.map((d, idx) => {
@@ -109,8 +110,8 @@ const Searchbar = () => {
             </select>
           )}
 
-          <Link className="link" to="/home">
-            <p onClick={handleClick}>Buscá!</p>
+          <Link onClick={(e) => handleClick(e)} className="link" to="/home">
+            <p>¡Buscá!</p>
           </Link>
         </ItemDiv>
       </SearchBarDiv>

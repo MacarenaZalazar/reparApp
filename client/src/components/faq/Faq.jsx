@@ -1,63 +1,69 @@
 import React from "react";
-
+import Accordion from "@mui/material/Accordion";
+import AccordionSummary from "@mui/material/AccordionSummary";
+import AccordionDetails from "@mui/material/AccordionDetails";
+import Typography from "@mui/material/Typography";
+// import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 function Faq(props) {
   return (
-    <>
-      <p>
-        <a
-          class="btn btn-primary"
-          data-toggle="collapse"
-          href="#multiCollapseExample1"
-          role="button"
-          aria-expanded="false"
-          aria-controls="multiCollapseExample1"
+    <div>
+      <Accordion>
+        <AccordionSummary
+        //   expandIcon={<ExpandMoreIcon />}
+          aria-controls="panel1a-content"
+          id="panel1a-header"
         >
-          Toggle first element
-        </a>
-        <button
-          class="btn btn-primary"
-          type="button"
-          data-toggle="collapse"
-          data-target="#multiCollapseExample2"
-          aria-expanded="false"
-          aria-controls="multiCollapseExample2"
+          <Typography>{props.title1}</Typography>
+        </AccordionSummary>
+        <AccordionDetails>
+          <Typography>
+          {props.text1}
+          </Typography>
+        </AccordionDetails>
+      </Accordion>
+      <Accordion>
+        <AccordionSummary
+        //   expandIcon={<ExpandMoreIcon />}
+          aria-controls="panel2a-content"
+          id="panel2a-header"
         >
-          Toggle second element
-        </button>
-        <button
-          class="btn btn-primary"
-          type="button"
-          data-toggle="collapse"
-          data-target=".multi-collapse"
-          aria-expanded="false"
-          aria-controls="multiCollapseExample1 multiCollapseExample2"
+          <Typography>{props.title2}</Typography>
+        </AccordionSummary>
+        <AccordionDetails>
+          <Typography>
+          {props.text2}
+          </Typography>
+        </AccordionDetails>
+      </Accordion>
+      <Accordion>
+        <AccordionSummary
+        //   expandIcon={<ExpandMoreIcon />}
+          aria-controls="panel3a-content"
+          id="panel3a-header"
         >
-          Toggle both elements
-        </button>
-      </p>
-      <div class="row">
-        <div class="col">
-          <div class="collapse multi-collapse" id="multiCollapseExample1">
-            <div class="card card-body">
-              Anim pariatur cliche reprehenderit, enim eiusmod high life
-              accusamus terry richardson ad squid. Nihil anim keffiyeh
-              helvetica, craft beer labore wes anderson cred nesciunt sapiente
-              ea proident.
-            </div>
-          </div>
-        </div>
-        <div class="col">
-          <div class="collapse multi-collapse" id="multiCollapseExample2">
-            <div class="card card-body">
-              Anim pariatur cliche reprehenderit, enim eiusmod high life
-              accusamus terry richardson ad squid. Nihil anim keffiyeh
-              helvetica, craft beer labore wes anderson cred nesciunt sapiente
-              ea proident.
-            </div>
-          </div>
-        </div>
-      </div>
-    </>
+          <Typography>{props.title3}</Typography>
+        </AccordionSummary>
+        <AccordionDetails>
+          <Typography>
+          {props.text3}
+          </Typography>
+        </AccordionDetails>
+      </Accordion>
+      <Accordion>
+        <AccordionSummary
+        //   expandIcon={<ExpandMoreIcon />}
+          aria-controls="panel4a-content"
+          id="panel4a-header"
+        >
+          <Typography>{props.title4}</Typography>
+        </AccordionSummary>
+        <AccordionDetails>
+          <Typography>
+          {props.text4}
+          </Typography>
+        </AccordionDetails>
+      </Accordion>
+    </div>
   );
 }
 

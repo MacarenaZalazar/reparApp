@@ -1,6 +1,7 @@
 const { Router } = require("express");
 
 //requerimos los controller
+const { reportUser } = require("../controllers/Users");
 
 const {
   filteredTechByZoneAndJobType,
@@ -26,5 +27,6 @@ router.get("/:id", techUsersDetails);
 router.put("/:id", [verifyToken, isuserTech], techUserModifier);
 router.post("/", checkDuplicateUsernameOrEmail, techUserCreate);
 router.delete("/:id", [verifyToken, isuserTech], deleteUserT);
+router.post("/report/:id", [verifyToken], reportUser);
 
 module.exports = router;

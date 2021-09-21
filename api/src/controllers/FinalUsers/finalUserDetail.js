@@ -3,14 +3,14 @@ const finalUsersDetails = async (req, res, next) => {
   const { id } = req.params;
   if (id) {
     try {
-      const gettechUserDetail = await UserF.findById(id).populate({
+      const getFinalUserDetail = await UserF.findById(id).populate({
         path: "user",
       });
-      res.status(200).send(gettechUserDetail);
+      res.status(200).send(getFinalUserDetail);
     } catch (error) {
       next(error);
     }
-  }else{
+  } else {
     res.status(400).send("Id Undefine");
   }
 };

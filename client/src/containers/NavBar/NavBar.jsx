@@ -1,45 +1,83 @@
-import { UserName, StyledDiv, LogoDiv, NavBarDiv } from "./styledNavBar";
-import Logo from "../../utils/wrench.png";
+import {
+  UserName,
+  StyledDiv,
+  LogoDiv,
+  NavBarDiv,
+  ButtonsDiv,
+  Button,
+} from "./styledNavBar";
+import Logo from "../../utils/logo.png";
 import { Link } from "react-router-dom";
-
+import { useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { getTechUsersAll } from "../../redux/actions/techUsers/index";
-
-import DropdownMenu from "../../components/Dropdown/DropdownMenu";
+//import { getTechUsersAll } from "../../redux/actions/techUsers/index";
+import Swal from "sweetalert2";
+// import DropdownMenu from "../../components/Dropdown/DropdownMenu";
 import { RiMapPinUserFill } from "react-icons/ri";
+import { restoreState } from "../../redux/actions/allUsers/index";
 
 const NavBar = () => {
+  const history = useHistory();
   const userString = window.sessionStorage.getItem("user");
   const user = JSON.parse(userString);
 
   const dispatch = useDispatch();
-  // const showAlert = async (e) => {
-  //   e.preventDefault();
-  //   MySwal.fire({
-  //     title: "Elige un tipo de usuario",
-  //     showDenyButton: true,
-  //     confirmButtonText:
-  //       '<a style=”color:white” href="/signinTech">Técnico</a> ',
-  //     denyButtonText: '<a className="enlace"  href="/signinFinal">Final</a> ',
-  //   });
-  // };
 
-  // const dispatch = useDispatch();
+  const showAlert = async (e) => {
+    e.preventDefault();
 
-  function onClick() {
-    dispatch(getTechUsersAll());
-  }
+    // const { value: fruit } = 
+    await Swal.fire({
+      input: "select",
+      inputOptions: {
+        Tipo: {
+          tech: "Técnico",
+          final: "Final",
+        },
+      },
+      inputPlaceholder: "Selecciona tipo",
+      showCancelButton: true,
+      inputValidator: (value) => {
+        return new Promise((resolve) => {
+          if (value === "tech") {
+            history.push("/signinTech");
+            resolve();
+          } else {
+            history.push("/signinFinal");
+            resolve();
+          }
+        });
+      },
+    });
+  };
+
+  const logoutAlert = () => {
+    window.sessionStorage.removeItem("user");
+    Swal.fire({
+      icon: "success",
+      title: "Sesion cerrada",
+      showConfirmButton: false,
+      timer: 2000,
+    });
+    dispatch(restoreState());
+    history.push("/");
+  };
 
   return (
-    <StyledDiv>
+    <StyledDiv data-aos="fade-down">
       <NavBarDiv className="container">
-        <Link to="/" className="link">
+   
+        { user && user.roles[0].name === 'admin' ?
+        <Link to="/admin">
+        <LogoDiv>
+          <img src={Logo} alt="logo" />
+        </LogoDiv>
+      </Link> :      <Link to="/" onClick={() => dispatch(restoreState())}>
           <LogoDiv>
             <img src={Logo} alt="logo" />
-            <h4>ReparApp</h4>
           </LogoDiv>
         </Link>
-
+      }
         <UserName>
           {user && user.userName && (
             <div>
@@ -68,10 +106,33 @@ const NavBar = () => {
             </div>
           )}
         </UserName>
-        <div className="navButtons">
-          <DropdownMenu onClick={onClick} />
 
-          {/* { techUsers.length > 1 && <Link  onClick={onClick} to='/home' className='linkLogin'>
+        <ButtonsDiv>
+          {!user && (
+            <Button onClick={showAlert}>
+              <p>Registrarse</p>
+            </Button>
+          )}
+          {!user && (
+            <Link className="linkLogin" to="/login">
+              <Button>
+                <p>Ingresar</p>
+              </Button>
+            </Link>
+          )}
+          {user && (
+            <Link className="linkLogin" to="/login">
+              <Button onClick={logoutAlert}>
+                <p>Cerrar Sesión</p>
+              </Button>
+            </Link>
+          )}
+        </ButtonsDiv>
+
+        {/* <div className="navButtons"> */}
+        {/* <DropdownMenu onClick={onClick} /> */}
+
+        {/* { techUsers.length > 1 && <Link  onClick={onClick} to='/home' className='linkLogin'>
             <span>Inicio</span>
           </Link>}
 
@@ -88,7 +149,7 @@ const NavBar = () => {
           <button onClick={showAlert} className="linkSignin" to="/signin">
             <span>SignIn</span>
           </button> */}
-        </div>
+        {/* </div> */}
       </NavBarDiv>
     </StyledDiv>
   );

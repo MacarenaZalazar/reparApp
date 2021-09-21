@@ -2,61 +2,69 @@ import styled from "styled-components";
 
 export const StyledDiv = styled.div`
   width: 100%;
-  height: calc(100vh - 6rem);
+  height: calc(100vh - 10.75rem);
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: #f9f6f4;
+  gap: 2rem;
 `;
 
 export const LoginDiv = styled.div`
-  background-color: white;
-  padding: 4rem;
+  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  padding: 4rem;
   gap: 2rem;
-  border-radius: 3rem;
-  box-shadow: rgba(181, 129, 108, 0.8) 0px 8px 34px -25px;
-  span.register{
+  border-radius: 1rem;
+  /* box-shadow: #f06449ff 0px 8px 34px -25px; */
+  span.register {
     cursor: pointer;
-    :hover{
+    :hover {
       font-weight: bold;
     }
   }
 `;
 
+export const OptionsDiv = styled.div`
+  justify-self: right;
+`;
 export const TitleDiv = styled.div``;
 export const InputDiv = styled.div`
+  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 2rem;
-  width: 100%;
   .icon {
-    font-size: 3rem;
+    color: #0a122aff;
+    font-size: 3.5rem;
   }
   input {
-    border: 1px solid;
-    padding: 1rem;
-    border-radius: 3px;
-    background-color: rgb(248, 248, 248);
+    width: 100%;
+    outline: 0;
+    border: 0;
+    border-bottom: 1px solid #0a122aff;
+    padding: 0.3rem;
   }
 `;
 
 export const ButtonDiv = styled.div`
-  .link {
-    text-decoration: none;
+  button {
     font-weight: bold;
-    color: black;
     border-radius: 1rem;
-    border: 1px solid black;
-    padding: 1rem 2rem;
-    transition: 0.6s ease;
+    border: 1px solid #0a122aff;
+    padding: 0.5rem 3rem;
+    transition: 0.5s ease;
+    text-decoration: none;
+    color: #000003;
+
     :hover {
-      background-color: #ff8882;
+      transform: scale(1.1);
       cursor: pointer;
+      background-color: #f06449;
     }
   }
 `;

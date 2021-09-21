@@ -14,6 +14,16 @@ const workOrderSchema = new Schema(
       type: Schema.ObjectId,
       ref: "UsersF",
     },
+    userTech: {
+      type: Schema.ObjectId,
+      ref: "UsersT",
+    },
+    scoreFinal: {
+      type: String,
+    },
+    scoreTech: {
+      type: String,
+    },
     ban: {
       type: Boolean,
       default: false,
@@ -27,6 +37,18 @@ const workOrderSchema = new Schema(
       type: Boolean,
       default: false,
     },
+    completeFinal: {
+      type: Boolean,
+      default: false,
+    },
+    completeTech: {
+      type: Boolean,
+      default: false,
+    },
+    reported: {
+      type: Boolean,
+      default: false,
+    },
     state: {
       type: String,
       required: true,
@@ -34,6 +56,14 @@ const workOrderSchema = new Schema(
     zone: {
       type: String,
       required: true,
+    },
+    solicited: {
+      type: Boolean,
+      default: false,
+    },
+    acepted: {
+      type: Boolean,
+      default: false,
     },
   },
   {

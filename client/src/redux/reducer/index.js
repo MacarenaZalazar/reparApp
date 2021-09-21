@@ -6,16 +6,24 @@ import {
   GET_CITIES,
 } from "../actions/techUsers/constantsTechUsers";
 
-import { GET_ALL_REQUEST } from "../actions/request/constantsRequest";
+import {
+  GET_ALL_REQUEST,
+  GET_REQUEST_BY_USER,
+  GET_REQUEST_DETAILS,
+  GET_REQUEST_BY_USER_TECH,
+} from "../actions/request/constantsRequest";
 
 import { GET_JOB_TYPES } from "../actions/jobTypes/constantsJobTypes";
 import {
   GET_FINAL_USERS_ALL,
   GET_FINAL_USERS_BY_ID,
 } from "../actions/finalUser/constantsFinalUser";
-import { ADD_JOBTYPE, DELETE_JOBTYPE } from "../actions/admin/constantJobTypes";
-import { GET_ALL_USERS } from "../actions/admin/constantsAdmin";
-import { GET_ALL_JOB_REQUESTS } from "../actions/allUsers/constantsAllUsers";
+import {
+  //  GET_ALL_JOB_REQUESTS,
+  ORDER_BY_PRICE,
+  ORDER_BY_SCORE,
+  LOGIN_GOOGLE,
+} from "../actions/allUsers/constantsAllUsers";
 
 var initialState = {
   techUsers: [],
@@ -27,6 +35,11 @@ var initialState = {
   allCities: [],
   allUsers: [],
   allRequests: [],
+  requestsByUserTech: [],
+  requestsByUser: [],
+  responseGoogle: {},
+  requestDetails: {},
+  promoted: []
 };
 
 function capitalize(str) {
@@ -46,6 +59,7 @@ function reducer(state = initialState, action) {
       return {
         ...state,
         techUsers: payload,
+        promoted: payload.filter(e => (e.user.promoted))
       };
     case GET_TECH_USERS_BY_ID:
       return {
@@ -53,44 +67,29 @@ function reducer(state = initialState, action) {
         technicUserDetail: payload,
       };
     case GET_TECH_USERS_BY_JOB_ZONE:
-      console.log(payload);
       return {
         ...state,
         techUsers: payload,
+        promoted: payload.filter(e => (e.user.promoted))
+
       };
     case GET_STATES:
       return {
         ...state,
-        allStates: payload,
+        allStates: payload.sort(),
       };
     case GET_CITIES:
       let payloadCapitalize = payload.map((pay) => capitalize(pay));
 
       return {
         ...state,
-        allCities: payloadCapitalize,
-      };
-    case ADD_JOBTYPE:
-      return {
-        ...state,
-        jobTypes: payload,
-      };
-    case DELETE_JOBTYPE:
-      return {
-        ...state,
-        jobTypes: payload,
+        allCities: payloadCapitalize.sort(),
       };
     case GET_JOB_TYPES:
       return {
         ...state,
-        jobTypes: payload,
+        jobTypes: payload.sort(),
       };
-    case GET_ALL_USERS:
-      return {
-        ...state,
-        allUsers: payload,
-      };
-
     case GET_FINAL_USERS_ALL:
       return {
         ...state,
@@ -105,10 +104,50 @@ function reducer(state = initialState, action) {
 
     //WorkOrders -- Request
     case GET_ALL_REQUEST:
-      console.log("payload:  ", payload);
       return {
         ...state,
         allRequests: payload,
+      };
+    case ORDER_BY_SCORE:
+      return {
+        ...state,
+        allRequests: [...state.allRequests].sort(payload),
+        techUsers: [...state.techUsers].sort(payload),
+      };
+    case ORDER_BY_PRICE:
+      return {
+        ...state,
+        allRequests: [...state.allRequests].sort(payload),
+        techUsers: [...state.techUsers].sort(payload),
+      };
+    case GET_REQUEST_BY_USER:
+      return {
+        ...state,
+        requestsByUser: payload,
+      };
+    //JOB REQUEST BY USER TECH
+
+    case GET_REQUEST_BY_USER_TECH:
+      return {
+        ...state,
+        requestsByUserTech: payload,
+      };
+    case "Restore":
+      return {
+        ...state,
+        techUsers: [],
+        allRequests: [],
+      };
+    case GET_REQUEST_DETAILS:
+      return {
+        ...state,
+        requestDetails: payload,
+      };
+    //Google Login
+    case LOGIN_GOOGLE:
+      return {
+        ...state,
+        responseGoogle: payload,
       };
 
     default:
