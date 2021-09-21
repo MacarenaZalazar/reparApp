@@ -83,9 +83,15 @@ const SolicitedWorkTech = (props) => {
           <p>{requestDetails.state}</p>
           <p>{requestDetails.zone}</p>
           <p>{requestDetails.workType}</p>
-          <h2>Usuario: {finalUser.user.userName}</h2>
-          <h4>Mail: {finalUser.user.mail}</h4>
-          <p>Telefono: {finalUser.user.phone}</p>
+          {finalUser && finalUser.user && finalUser.user.userName ? (
+            <div>
+              <h2>Usuario: {finalUser.user.userName}</h2>
+              <h4>Mail: {finalUser.user.mail}</h4>
+              <p>Telefono: {finalUser.user.phone}</p>
+            </div>
+          ) : (
+            <div />
+          )}
         </div>
       )}
 
