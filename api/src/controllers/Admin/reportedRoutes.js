@@ -25,7 +25,7 @@ const changeReportedUser = async (req, res, next) => {
   let { id } = req.params;
   let reported = false;
   try {
-    User.findByIdAndUpdate(id, { reported });
+    await User.findByIdAndUpdate(id, { reported });
     res.status(200).send("User not reported anymore");
   } catch (error) {
     next(error);
@@ -33,9 +33,10 @@ const changeReportedUser = async (req, res, next) => {
 };
 const changeReportedWorkOrder = async (req, res, next) => {
   let { id } = req.params;
+  console.log(req.params)
   let reported = false;
   try {
-    WorkOrder.findByIdAndUpdate(id, { reported });
+    await WorkOrder.findByIdAndUpdate(id, { reported });
     res.status(200).send("Work Order not reported anymore");
   } catch (error) {
     next(error);

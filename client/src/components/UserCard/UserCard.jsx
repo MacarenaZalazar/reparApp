@@ -6,8 +6,6 @@ import Button  from 'react-bootstrap/Button';
 
 
 const UserCard = ({promoted, userId, name, lastName, image, userName, id, score, state, ban}) => {
-
-        
     const[banned, setBanned] = useState(ban)
     const userString = window.sessionStorage.getItem("user");
     const useR = JSON.parse(userString);
