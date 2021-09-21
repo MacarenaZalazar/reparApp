@@ -1,13 +1,13 @@
-import React from "react";
+import React from 'react'
 import Accordion from "@mui/material/Accordion";
 import AccordionSummary from "@mui/material/AccordionSummary";
 import AccordionDetails from "@mui/material/AccordionDetails";
 import Typography from "@mui/material/Typography";
 // import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-function Faq(props) {
-  return (
-    <div>
-      <Accordion>
+function FaqPregFrecuentes(props) {
+    return (
+        <div>
+             <Accordion>
         <AccordionSummary
         //   expandIcon={<ExpandMoreIcon />}
           aria-controls="panel1a-content"
@@ -63,8 +63,8 @@ function Faq(props) {
           </Typography>
         </AccordionDetails>
       </Accordion>
-    </div>
-  );
+        </div>
+    )
 }
 
-export default Faq;
+export default FaqPregFrecuentes
