@@ -6,6 +6,7 @@ import Carousel from "react-elastic-carousel";
 
 const TechnicUsers = () => {
   const techUsers = useSelector((state) => state.techUsers);
+  console.log(techUsers)
 
   return (
     <StyledDiv>

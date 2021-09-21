@@ -11,7 +11,7 @@ const ReportUser = ({workOrderId, userId}) => {
     const [comment, setComment] = useState('')
     const motives = ['Infringe las normas del sitio', 'Publicación engañosa', 'Posible estafa', 'Otro']
     console.log(userId) 
-    console.log(workOrderId) 
+
     const userString = window.sessionStorage.getItem("user");
     const user = JSON.parse(userString);
     let config = useMemo(()=>{
@@ -30,7 +30,7 @@ const ReportUser = ({workOrderId, userId}) => {
         }).then((result)=>{
              if(result.isConfirmed){
                  if(workOrderId){
-                    axios.post(`${REQUEST_URL}/report?_id=${workOrderId}`, config)
+                    axios.put(`${REQUEST_URL}/report?_id=${workOrderId}`)
                     .then((response)=> {
                         console.log('Confirmed')
                         Swal.fire({
@@ -46,7 +46,7 @@ const ReportUser = ({workOrderId, userId}) => {
                      
 
                 }else{
-                    axios.put(`${TECH_USERS_URL}/report?_id=${userId}`, config)
+                    axios.put(`${TECH_USERS_URL}/report?_id=${userId}`)
                     .then((response) => {
                         Swal.fire({
                             title: 'Usuari@ reportad@'
@@ -74,7 +74,6 @@ const ReportUser = ({workOrderId, userId}) => {
     } 
     return (
         <div>
-            <span>Soy ReportUser</span> 
              <h1>Reportar</h1>
              <label>Selecciona un motivo</label>
              <select name="motivo" onChange={handleChange}>
