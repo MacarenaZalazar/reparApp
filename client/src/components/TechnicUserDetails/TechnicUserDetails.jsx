@@ -5,6 +5,7 @@ import { StyledDiv } from "./Styled";
 import { useHistory } from "react-router-dom";
 import  Button  from 'react-bootstrap/Button';
 import { Link } from 'react-router-dom';
+import ReportUser from '../ReportUser/ReportUser';
 
 export default function TechnicUserDetails(props) {
   const history = useHistory();
@@ -26,6 +27,7 @@ export default function TechnicUserDetails(props) {
   }, [dispatch]);
 
   const TechnicUserDetail = useSelector((state) => state.technicUserDetail);
+  console.log(TechnicUserDetail)
 
   function handleClick() {
     history.push("/login");
@@ -34,7 +36,8 @@ export default function TechnicUserDetails(props) {
   return (
     <StyledDiv className="container">
       <div className="detContainer">
-        {TechnicUserDetail.user && (
+        {TechnicUserDetail && TechnicUserDetail.user ? 
+          <>
           <div>
             <h1>Usuario: {TechnicUserDetail.user.userName}</h1>
             <img src={TechnicUserDetail.user.image} alt="" />
@@ -55,21 +58,21 @@ export default function TechnicUserDetails(props) {
                 })}
             </ul>
           </div>
-        )}
 
-        {user ? (
+        {user.roles ? (
           <div>
             <h2>Apellido: {TechnicUserDetail.user.lastName}</h2>
             <h4>Nombre: {TechnicUserDetail.user.name}</h4>
             <p>Telefono: {TechnicUserDetail.user.phone}</p>
             <p>Mail: {TechnicUserDetail.user.mail}</p>
-            <Link to='/reported'>
             <Button>Reportar</Button>
-            </Link>
+            <ReportUser userId={TechnicUserDetail.user._id} />
           </div>
         ) : (
           <span onClick={handleClick}>Inicia sesión para ver mas info</span>
         )}
+        </> : <span>Cargando...</span>
+        }
       </div>
     </StyledDiv>
   );
