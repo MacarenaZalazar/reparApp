@@ -22,7 +22,6 @@ import {
   //  GET_ALL_JOB_REQUESTS,
   ORDER_BY_PRICE,
   ORDER_BY_SCORE,
-  ORDER_BY_RELEVANT,
   LOGIN_GOOGLE,
 } from "../actions/allUsers/constantsAllUsers";
 
@@ -116,12 +115,6 @@ function reducer(state = initialState, action) {
         techUsers: [...state.techUsers].sort(payload),
       };
     case ORDER_BY_PRICE:
-      return {
-        ...state,
-        allRequests: [...state.allRequests].sort(payload),
-        techUsers: [...state.techUsers].sort(payload),
-      };
-    case ORDER_BY_RELEVANT:
       return {
         ...state,
         allRequests: [...state.allRequests].sort(payload),
