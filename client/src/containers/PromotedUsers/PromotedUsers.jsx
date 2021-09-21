@@ -7,9 +7,12 @@ import TechnicUser from '../../components/TechnicUser/TechnicUser';
 
 const PromotedUsers = () => {
     const {promoted} = useSelector(state => state)
+    console.log(promoted)
     return (
         <StyledDiv> 
             {promoted.length > 0 ? (
+                <>
+                <h1>PROMOCIONADOS</h1>
                 <Carousel className="carousel" itemsToShow={1} outerSpacing={50}>
                 {promoted &&
                     promoted.map((t, idx) => {
@@ -28,6 +31,7 @@ const PromotedUsers = () => {
                     );
                     })}
                 </Carousel>
+                </>
             ) : (
                 null
             )}

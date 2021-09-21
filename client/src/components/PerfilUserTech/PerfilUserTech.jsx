@@ -39,7 +39,6 @@ const PerfilUserTech = () => {
 
   const user = useSelector((state) => state.technicUserDetail);
   const requestsByUserTech = useSelector((state) => state.requestsByUserTech);
-  console.log(user.user.promoted)
   console.log(user);
   return (
     <div>
