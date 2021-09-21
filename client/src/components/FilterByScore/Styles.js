@@ -5,7 +5,7 @@ export const StyledDiv = styled.div`
 `;
 
 export const FilterDiv = styled.div`
-  width: 30rem;
+  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -31,6 +31,7 @@ export const FilterDiv = styled.div`
     font-size: 5rem;
     border-radius: 50%;
     padding: 1rem;
+    transform: translateX(150%);
   }
 `;
 
@@ -41,7 +42,7 @@ export const ContentFilter = styled.div`
 
   p {
     width: 100%;
-    transition: 1s ease;
+    transition: 0.5s ease;
     color: #0a122aff;
     opacity: 0;
     font-size: 1.5rem;

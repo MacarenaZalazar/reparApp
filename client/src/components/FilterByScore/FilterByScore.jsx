@@ -28,9 +28,8 @@ export default function FilterByScore() {
     <StyledDiv>
       <FilterDiv>
         <RiArrowUpDownLine className="icon" />
-
         <ContentFilter>
-          <p>Filtrar</p>
+          <p>Ordenar</p>
           <select onChange={(e) => handleFilterScore(e)}>
             <option value="all">Todos</option>
             <option value="más reelevantes">más relevantes</option>
