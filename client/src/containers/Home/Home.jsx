@@ -2,7 +2,7 @@ import React from "react";
 import DisplayFilters from "../DisplayFilters/DisplayFilters";
 import TechnicUsers from "../TechnicUsers/TechnicUsers";
 import WorkOrders from "../WorkOrders/WorkOrders";
-import { StyledDiv, SinUser } from "./Styles";
+import { StyledDiv, SinUser, HomeDiv } from "./Styles";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { getStates, getCities } from "../../redux/actions/techUsers";
@@ -21,7 +21,7 @@ const Home = () => {
   }, [dispatch]);
 
   return (
-    <StyledDiv>
+    <StyledDiv className="container">
       {user &&
         user.hasOwnProperty("roles") &&
         user.roles[0].name === "userFinal" && (
@@ -44,17 +44,17 @@ const Home = () => {
           <WorkOrders />
         </>
       ) : (
-        <>
+        <HomeDiv>
           <DisplayFilters />
           <SinUser>
-            <div className='cardsDisplay'>
+            <div className="cardsDisplay">
               <h2>Usuarios Tecnicos</h2>
               <TechnicUsers />
               <h2>Pedidos de trabajo</h2>
               <WorkOrders />
             </div>
           </SinUser>
-          </>
+        </HomeDiv>
       )}
     </StyledDiv>
   );
