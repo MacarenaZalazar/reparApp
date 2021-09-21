@@ -17,7 +17,7 @@ export const FilterDiv = styled.div`
 
   &:hover {
     .front {
-      transform: translateX(-350%);
+      transform: translateX(-400%);
       p {
         opacity: 0;
       }
@@ -93,5 +93,6 @@ export const ContentFilter = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
+    gap: 0.3rem;
   }
 `;
