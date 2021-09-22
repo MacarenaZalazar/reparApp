@@ -16,14 +16,14 @@ const Checkout = () => {
     const handleChange = (e) => {
         setOrder({   
             title: `Promoción ${e.target.value}D`,
-            unit_price: (1.50 * e.target.value),
+            unit_price: (15 * e.target.value),
             quantity: 1})
             setData('')
             setFlag(false)
     }
     const handleClick = async () =>{
                 try {
-                    const mp = await axios.get(`${MERCADOPAGO_URL}?userId=${userId}`, order)
+                    const mp = await axios.post(`${MERCADOPAGO_URL}?userId=${userId}`, order)
                     setFlag(true)
                     setData(mp.data.init_point)
                 } catch (error) {

@@ -2,8 +2,8 @@ const { Router } = require("express");
 const router = Router();
 const {pagos, preferenceMP} = require('../controllers/MercadoPago/index')
 
-router.get('/', preferenceMP)
+router.post('/', preferenceMP)
 
-router.get('/pagos', pagos)
+router.post('/pagos', pagos)
 
 module.exports = router;
