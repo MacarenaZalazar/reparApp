@@ -8,7 +8,7 @@ import { useDispatch } from "react-redux";
 import { getStates, getCities } from "../../redux/actions/techUsers";
 import { Link } from "react-router-dom";
 //import { getTechUsersAll } from "../../redux/actions/techUsers/index";
-import PromotedUsers from '../PromotedUsers/PromotedUsers';
+import PromotedUsers from "../PromotedUsers/PromotedUsers";
 
 const Home = () => {
   const userString = window.sessionStorage.getItem("user");
@@ -24,18 +24,12 @@ const Home = () => {
   return (
     <StyledDiv className="container">
       {user &&
-        user.hasOwnProperty("roles") &&
-        user.roles[0].name === "userFinal" && (
-          <Link className="link" to="/newWorkOrder">
-            Nueva solicitud de trabajo
-          </Link>
-        )}
-      {user &&
       user.hasOwnProperty("roles") &&
       user.roles[0].name === "userFinal" ? (
         <>
           <DisplayFilters />
-          <PromotedUsers/>
+
+          <PromotedUsers />
           <TechnicUsers />
         </>
       ) : user &&
@@ -51,7 +45,7 @@ const Home = () => {
           <SinUser>
             <div className="cardsDisplay">
               <h2>Usuarios Tecnicos</h2>
-              <PromotedUsers/>
+              <PromotedUsers />
               <TechnicUsers />
               <h2>Pedidos de trabajo</h2>
               <WorkOrders />

@@ -70,12 +70,19 @@ function LoginGoogle() {
         // const { value: fruit } =
         await Swal.fire({
           input: "select",
+          title: "Registrarse como:",
+          backdrop: "rgba(10,18,42,0.6)",
+          icon: "question",
+          iconColor: "#f06449ff",
           inputOptions: {
             Tipo: {
-              tech: "Técnico",
-              final: "Final",
+              tech: "Técnico - Profesional",
+              final: "Usuario Final",
             },
           },
+          confirmButtonColor: "#0a122aff",
+          cancelButtonColor: "#f06449ff",
+          background: "#e7decdff",
           inputPlaceholder: "Selecciona tipo",
           showCancelButton: true,
           inputValidator: (value) => {

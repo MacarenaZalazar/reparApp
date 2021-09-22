@@ -26,15 +26,22 @@ const NavBar = () => {
   const showAlert = async (e) => {
     e.preventDefault();
 
-    // const { value: fruit } = 
+    // const { value: fruit } =
     await Swal.fire({
       input: "select",
+      title: "Registrarse como:",
+      backdrop: "rgba(10,18,42,0.6)",
+      icon: "question",
+      iconColor: "#f06449ff",
       inputOptions: {
         Tipo: {
-          tech: "Técnico",
-          final: "Final",
+          tech: "Técnico - Profesional",
+          final: "Usuario Final",
         },
       },
+      confirmButtonColor: "#0a122aff",
+      cancelButtonColor: "#f06449ff",
+      background: "#e7decdff",
       inputPlaceholder: "Selecciona tipo",
       showCancelButton: true,
       inputValidator: (value) => {
@@ -66,18 +73,19 @@ const NavBar = () => {
   return (
     <StyledDiv data-aos="fade-down">
       <NavBarDiv className="container">
-   
-        { user && user.roles[0].name === 'admin' ?
-        <Link to="/admin">
-        <LogoDiv>
-          <img src={Logo} alt="logo" />
-        </LogoDiv>
-      </Link> :      <Link to="/" onClick={() => dispatch(restoreState())}>
-          <LogoDiv>
-            <img src={Logo} alt="logo" />
-          </LogoDiv>
-        </Link>
-      }
+        {user && user.roles[0].name === "admin" ? (
+          <Link to="/admin">
+            <LogoDiv>
+              <img src={Logo} alt="logo" />
+            </LogoDiv>
+          </Link>
+        ) : (
+          <Link to="/" onClick={() => dispatch(restoreState())}>
+            <LogoDiv>
+              <img src={Logo} alt="logo" />
+            </LogoDiv>
+          </Link>
+        )}
         <UserName>
           {user && user.userName && (
             <div>
@@ -108,6 +116,16 @@ const NavBar = () => {
         </UserName>
 
         <ButtonsDiv>
+          {user &&
+            user.hasOwnProperty("roles") &&
+            user.roles[0].name === "userFinal" && (
+              <Link to="/newWorkOrder">
+                <Button>
+                  <p>Nueva Solicitud</p>
+                </Button>
+              </Link>
+            )}
+
           {!user && (
             <Button onClick={showAlert}>
               <p>Registrarse</p>
@@ -128,28 +146,6 @@ const NavBar = () => {
             </Link>
           )}
         </ButtonsDiv>
-
-        {/* <div className="navButtons"> */}
-        {/* <DropdownMenu onClick={onClick} /> */}
-
-        {/* { techUsers.length > 1 && <Link  onClick={onClick} to='/home' className='linkLogin'>
-            <span>Inicio</span>
-          </Link>}
-
-        <div className="navButtons">
-          {techUsers.length > 1 && (
-            <Link onClick={onClick} to="/home" className="linkLogin">
-              <span>Inicio</span>
-            </Link>
-          )}
-
-          <Link className="linkLogin" to="/login">
-            <span>Login</span>
-          </Link>
-          <button onClick={showAlert} className="linkSignin" to="/signin">
-            <span>SignIn</span>
-          </button> */}
-        {/* </div> */}
       </NavBarDiv>
     </StyledDiv>
   );

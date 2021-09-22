@@ -4,7 +4,13 @@ export const StyledDiv = styled.div`
   width: 100%;
   height: calc(100vh - 10.75rem);
   background-color: #fbfaf8ff;
-  padding: 0.5rem;
+  padding: 0.5rem 0;
+
+  .flexNewOrder {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 
   .link {
     padding: 1rem;
