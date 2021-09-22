@@ -3,6 +3,7 @@ import axios from "axios";
 import { useSelector, useDispatch } from "react-redux";
 import { REQUEST_URL } from "../../utils/constants";
 import { getFinalUsersById } from "../../redux/actions/finalUser";
+
 import { Link } from "react-router-dom";
 import {
   StyledDiv,
@@ -21,6 +22,7 @@ import { useHistory } from "react-router-dom";
 import { GoReport } from "react-icons/go";
 import { HiUserAdd } from "react-icons/hi";
 import Swal from "sweetalert2";
+
 
 const WorkOrderDetails = () => {
   const history = useHistory();
@@ -75,6 +77,7 @@ const WorkOrderDetails = () => {
   }
 
   return (
+
     <StyledDiv className="container">
       {user && user.roles[0].name === "userTech" && (
         <ReportedDiv flag={flagReported}>
@@ -161,6 +164,7 @@ const WorkOrderDetails = () => {
         </Login>
       )}
     </StyledDiv>
+
   );
 };
 export default WorkOrderDetails;

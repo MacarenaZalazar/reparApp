@@ -19,6 +19,8 @@ router.delete("/:id", [verifyToken, isuserFinal], deleteRequest);
 router.post("/", [verifyToken, isuserFinal], postNewRequest);
 
 // router.put("/:id", [verifyToken, isuserFinal, isuserTech], requestModifier);
+router.put("/report", reportWork);
+
 router.put("/:id", requestModifier);
 
 router.get("/", getRequest);
@@ -32,6 +34,5 @@ router.get("/allTech/:id", getRequestsByIDTech);
 
 router.get("/details/:id", getDetailsRequest);
 
-router.post("/report", reportWork);
 
 module.exports = router;

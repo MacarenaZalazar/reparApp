@@ -6,10 +6,11 @@ import Carousel from "react-elastic-carousel";
 
 const TechnicUsers = () => {
   const techUsers = useSelector((state) => state.techUsers);
+  console.log(techUsers)
 
   return (
     <StyledDiv>
-      {techUsers.length > 1 ? (
+      {techUsers.length > 0 ? (
         <Carousel className="carousel" itemsToShow={1} outerSpacing={50}>
           {techUsers &&
             techUsers.map((t, idx) => {

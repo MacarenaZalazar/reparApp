@@ -14,7 +14,7 @@ export function getTechUsersAll() {
       let techUsers = await axios.get(TECH_USERS_URL);
       return dispatch({
         type: GET_TECH_USERS_ALL,
-        payload: techUsers.data,
+        payload: techUsers.data.filter(u => (!u.user.ban)),
       });
     } catch (error) {
       console.log(error);
@@ -45,7 +45,7 @@ export function getTechUsersByJobAndZone(jobType, state, workZones) {
       );
       return dispatch({
         type: GET_TECH_USERS_BY_JOB_ZONE,
-        payload: techUsers.data,
+        payload: techUsers.data.filter(u => (!u.user.ban)),
       });
     } catch (error) {
       console.log(error);

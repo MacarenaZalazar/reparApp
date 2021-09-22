@@ -22,11 +22,11 @@ const {
 
 //creamos las rutas
 router.get("/filter", filteredTechByZoneAndJobType);
-router.get("/", techUserAll);
+router.get("/", [verifyToken], techUserAll);
 router.get("/:id", techUsersDetails);
+router.put("/report", reportUser);
 router.put("/:id", [verifyToken, isuserTech], techUserModifier);
 router.post("/", checkDuplicateUsernameOrEmail, techUserCreate);
 router.delete("/:id", [verifyToken, isuserTech], deleteUserT);
-router.post("/report", [verifyToken], reportUser);
 
 module.exports = router;

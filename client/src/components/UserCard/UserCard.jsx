@@ -6,8 +6,6 @@ import Button  from 'react-bootstrap/Button';
 
 
 const UserCard = ({promoted, userId, name, lastName, image, userName, id, score, state, ban}) => {
-
-        
     const[banned, setBanned] = useState(ban)
     const userString = window.sessionStorage.getItem("user");
     const useR = JSON.parse(userString);
@@ -51,7 +49,7 @@ const UserCard = ({promoted, userId, name, lastName, image, userName, id, score,
             {(banned)? <Button onClick={() => handleUnban(id) }>Desbanear</Button> : 
                 <Button onClick={() => handleBan(id)}>Banear</Button>
             }
-              <Link to={`/workOrders/${userId}`} ><Button>Ver pedidos de trabajo</Button></Link>
+           { userId && <Link to={`/workOrders/${userId}`} ><Button>Ver pedidos de trabajo</Button></Link> }
          
         </div>
     );

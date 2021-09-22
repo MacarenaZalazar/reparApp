@@ -6,6 +6,7 @@ import { REQUEST_URL, TECH_USERS_URL } from "../../utils/constants";
 import { useHistory } from "react-router";
 import { StyledDiv, ItemDiv, Button } from "./styledReportUser";
 
+
 const ReportUser = ({ workOrderId, userId }) => {
   const [motive, setMotive] = useState("");
   const [comment, setComment] = useState("");
@@ -15,8 +16,7 @@ const ReportUser = ({ workOrderId, userId }) => {
     "Posible estafa",
     "Otro",
   ];
-  console.log(userId);
-  console.log(workOrderId);
+  
   const userString = window.sessionStorage.getItem("user");
   const user = JSON.parse(userString);
   let config = useMemo(() => {
@@ -105,6 +105,7 @@ const ReportUser = ({ workOrderId, userId }) => {
       </ItemDiv>
     </StyledDiv>
   );
+
 };
 
 export default ReportUser;

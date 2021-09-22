@@ -3,6 +3,7 @@ import Accordion from "@mui/material/Accordion";
 import AccordionSummary from "@mui/material/AccordionSummary";
 import AccordionDetails from "@mui/material/AccordionDetails";
 import Typography from "@mui/material/Typography";
+import './Faqs.css'
 // import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 function FaqPregFrecuentes(props) {
     return (
@@ -13,7 +14,7 @@ function FaqPregFrecuentes(props) {
           aria-controls="panel1a-content"
           id="panel1a-header"
         >
-          <Typography>{props.title1}</Typography>
+          <Typography className='typographyTitle'>{props.title1}</Typography>
         </AccordionSummary>
         <AccordionDetails>
           <Typography>
@@ -27,7 +28,7 @@ function FaqPregFrecuentes(props) {
           aria-controls="panel2a-content"
           id="panel2a-header"
         >
-          <Typography>{props.title2}</Typography>
+          <Typography className='typographyTitle'>{props.title2}</Typography>
         </AccordionSummary>
         <AccordionDetails>
           <Typography>
@@ -41,7 +42,7 @@ function FaqPregFrecuentes(props) {
           aria-controls="panel3a-content"
           id="panel3a-header"
         >
-          <Typography>{props.title3}</Typography>
+          <Typography className='typographyTitle'>{props.title3}</Typography>
         </AccordionSummary>
         <AccordionDetails>
           <Typography>
@@ -55,7 +56,7 @@ function FaqPregFrecuentes(props) {
           aria-controls="panel4a-content"
           id="panel4a-header"
         >
-          <Typography>{props.title4}</Typography>
+          <Typography className='typographyTitle'>{props.title4}</Typography>
         </AccordionSummary>
         <AccordionDetails>
           <Typography>
