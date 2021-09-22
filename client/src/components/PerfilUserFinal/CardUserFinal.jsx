@@ -23,9 +23,10 @@ function CardUserFinal({
   tell,
   mail,
   username,
-  password,
+
   zone,
   state,
+  score,
 }) {
   const userString = window.sessionStorage.getItem("user");
   const user = JSON.parse(userString);
@@ -64,12 +65,17 @@ function CardUserFinal({
             <h4>{tell ? tell : "Sin Datos"}</h4>
           </ItemCard>
           <ItemCard>
+            <p>Provincia</p>
+            <h4>{state}</h4>
+          </ItemCard>
+          <ItemCard>
             <p>Zona</p>
             <h4>{zone}</h4>
           </ItemCard>
+
           <ItemCard>
-            <p>Provincia</p>
-            <h4>{state}</h4>
+            <p>Calificación Promedio</p>
+            <h4>{score}</h4>
           </ItemCard>
         </ContentCardDiv>
       </CardDiv>
