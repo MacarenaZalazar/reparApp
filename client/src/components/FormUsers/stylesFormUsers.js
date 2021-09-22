@@ -68,6 +68,11 @@ export const Form = styled.div`
   }
 `;
 export const Input = styled.div`
+  input[type=number]::-webkit-inner-spin-button, 
+  input[type=number]::-webkit-outer-spin-button { 
+    -webkit-appearance: none; 
+    margin: 0; 
+  }
   width: 100%;
   display: flex;
   align-items: center;
