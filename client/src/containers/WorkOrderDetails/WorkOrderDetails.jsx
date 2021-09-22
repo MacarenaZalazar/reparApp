@@ -23,7 +23,6 @@ import { GoReport } from "react-icons/go";
 import { HiUserAdd } from "react-icons/hi";
 import Swal from "sweetalert2";
 
-
 const WorkOrderDetails = () => {
   const history = useHistory();
   const userString = window.sessionStorage.getItem("user");
@@ -42,10 +41,9 @@ const WorkOrderDetails = () => {
 
   const workDetails = useSelector((state) => state.requestDetails);
 
-  useEffect(
-    () => dispatch(getFinalUsersById(workDetails.userFinal, config)),
-    [dispatch]
-  );
+  useEffect(() => {
+    dispatch(getFinalUsersById(workDetails.userFinal, config));
+  }, [workDetails]);
 
   const changeFlagReported = () => {
     setFlagReported(!flagReported);
@@ -77,7 +75,6 @@ const WorkOrderDetails = () => {
   }
 
   return (
-
     <StyledDiv className="container">
       {user && user.roles[0].name === "userTech" && (
         <ReportedDiv flag={flagReported}>
@@ -164,7 +161,6 @@ const WorkOrderDetails = () => {
         </Login>
       )}
     </StyledDiv>
-
   );
 };
 export default WorkOrderDetails;
