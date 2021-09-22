@@ -11,12 +11,12 @@ const FormFinalUser = () => {
   const history = useHistory();
   const responseGoogle = useSelector((state) => state.responseGoogle);
   const [input, setInput] = useState({
-    name: "" || responseGoogle.zU,
-    lastName: "" || responseGoogle.zS,
-    password: "" || responseGoogle.US,
-    confirmPassword: "" || responseGoogle.US,
-    image: "" || responseGoogle.wJ,
-    mail: "" || responseGoogle.Ht,
+    name: "" || responseGoogle.givenName,
+    lastName: "" || responseGoogle.familyName,
+    password: "" || responseGoogle.googleId,
+    confirmPassword: "" || responseGoogle.googleId,
+    image: "" || responseGoogle.imageUrl,
+    mail: "" || responseGoogle.email,
     userName: "",
     phone: "",
     state: "",
@@ -143,7 +143,7 @@ const FormFinalUser = () => {
           </div>
           <div className="grid">
             <Left>
-              {!responseGoogle.zU && (
+              {!responseGoogle.givenName && (
                 <Input error={input.errors.name}>
                   <label>* Nombre:</label>
                   <input
@@ -155,7 +155,7 @@ const FormFinalUser = () => {
                   />
                 </Input>
               )}
-              {!responseGoogle.zS && (
+              {!responseGoogle.familyName && (
                 <Input error={input.errors.lastName}>
                   <label>* Apellido:</label>
                   <input
@@ -177,7 +177,7 @@ const FormFinalUser = () => {
                   onChange={handleInputChange}
                 />
               </Input>
-              {!responseGoogle.US && (
+              {!responseGoogle.googleId && (
                 <Input error={input.errors.password}>
                   <label>* Password:</label>
                   <input
@@ -189,7 +189,7 @@ const FormFinalUser = () => {
                   />
                 </Input>
               )}
-              {!responseGoogle.US && (
+              {!responseGoogle.googleId && (
                 <Input error={input.errors.confirmPassword}>
                   <label>* Confirmar Password: </label>
                   <input
@@ -203,7 +203,7 @@ const FormFinalUser = () => {
               )}
             </Left>
             <Right>
-              {!responseGoogle.wJ && (
+              {!responseGoogle.imageUrl && (
                 <Input>
                   <label>Imagen:</label>
                   <input
@@ -225,7 +225,7 @@ const FormFinalUser = () => {
                   onChange={handleInputChange}
                 />
               </Input>
-              {!responseGoogle.Ht && (
+              {!responseGoogle.email && (
                 <Input error={input.errors.mail}>
                   <label>* Email:</label>
                   <input

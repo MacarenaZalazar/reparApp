@@ -47,6 +47,6 @@ export const orderByPrice = () => {
 export const loginGoogle = (response) => {
   return {
     type: LOGIN_GOOGLE,
-    payload: response.Ws,
+    payload: response.profileObj,
   };
 };

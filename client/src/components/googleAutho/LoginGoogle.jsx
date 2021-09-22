@@ -15,11 +15,16 @@ function LoginGoogle() {
   const history = useHistory();
   const dispatch = useDispatch();
 
-  const responseGoogle = async (response) => {
-    const mailGoogle = response.Ws.Ht;
-    //const mailVictor = "victor@victor.com";
+  const alertFail = () => {
+    alert("Error de google");
+  };
 
+  const responseGoogle = async (response) => {
+    console.log(response);
     try {
+      const mailGoogle = response.profileObj.email;
+      //const mailVictor = "victor@victor.com";
+
       let existed = await axios.get(`${LOGIN_URL}?mail=${mailGoogle}`);
 
       console.log(existed);
@@ -62,7 +67,7 @@ function LoginGoogle() {
         }
       } else {
         dispatch(loginGoogle(response));
-        // const { value: fruit } = 
+        // const { value: fruit } =
         await Swal.fire({
           input: "select",
           inputOptions: {
@@ -87,6 +92,7 @@ function LoginGoogle() {
         });
       }
     } catch (error) {
+      console.log("aca esta el error");
       console.log(error);
     }
   };
@@ -99,7 +105,7 @@ function LoginGoogle() {
         clientId={url}
         buttonText="Iniciar Sesion"
         onSuccess={responseGoogle}
-        onFailure={responseGoogle}
+        onFailure={alertFail}
         cookiePolicy={"single_host_origin"}
         theme="dark"
       />
