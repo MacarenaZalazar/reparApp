@@ -26,14 +26,14 @@ const FormTechnicUser = () => {
   const { allStates, allCities } = useSelector((state) => state);
   const responseGoogle = useSelector((state) => state.responseGoogle);
   const [input, setInput] = useState({
-    name: "" || responseGoogle.zU,
-    lastName: "" || responseGoogle.zS,
+    name: "" || responseGoogle.givenName,
+    lastName: "" || responseGoogle.familyName,
     userName: "",
-    password: "" || responseGoogle.US,
-    confirmPassword: "" || responseGoogle.US,
-    image: "" || responseGoogle.wJ,
+    password: "" || responseGoogle.googleId,
+    confirmPassword: "" || responseGoogle.googleId,
+    image: "" || responseGoogle.imageUrl,
     phone: "",
-    mail: "" || responseGoogle.Ht,
+    mail: "" || responseGoogle.email,
     state: "",
     qualifications: [],
     workZones: [],
@@ -207,7 +207,7 @@ const FormTechnicUser = () => {
           </div>
           <div className="grid">
             <Left>
-              {!responseGoogle.zU && (
+              {!responseGoogle.givenName && (
                 <Input error={input.errors.name}>
                   <label>* Nombre:</label>
                   <input
@@ -219,7 +219,7 @@ const FormTechnicUser = () => {
                   />
                 </Input>
               )}
-              {!responseGoogle.zS && (
+              {!responseGoogle.familyName && (
                 <Input error={input.errors.lastName}>
                   <label>* Apellido:</label>
                   <input
@@ -241,7 +241,7 @@ const FormTechnicUser = () => {
                   onChange={handleInputChange}
                 />
               </Input>
-              {!responseGoogle.US && (
+              {!responseGoogle.googleId && (
                 <Input error={input.errors.password}>
                   <label>* Password:</label>
                   <input
@@ -253,7 +253,7 @@ const FormTechnicUser = () => {
                   />
                 </Input>
               )}
-              {!responseGoogle.US && (
+              {!responseGoogle.googleId && (
                 <Input error={input.errors.confirmPassword}>
                   <label>* Confirmar Password:</label>
                   <input
@@ -266,7 +266,7 @@ const FormTechnicUser = () => {
                 </Input>
               )}
 
-              {!responseGoogle.Ht && (
+              {!responseGoogle.email && (
                 <Input error={input.errors.mail}>
                   <label>* Email:</label>
                   <input
@@ -290,7 +290,7 @@ const FormTechnicUser = () => {
                   onChange={handleInputChange}
                 />
               </Input>
-              {!responseGoogle.wJ && (
+              {!responseGoogle.imageUrl && (
                 <Input>
                   <label>Imagen:</label>
                   <input

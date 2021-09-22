@@ -1,15 +1,31 @@
-import React from "react";
+import React, { useEffect, useState, useMemo } from "react";
 import axios from "axios";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { REQUEST_URL } from "../../utils/constants";
-import { useEffect, useMemo } from "react";
-import { useDispatch } from "react-redux";
 import { getFinalUsersById } from "../../redux/actions/finalUser";
-import Button from "react-bootstrap/Button";
+
 import { Link } from "react-router-dom";
+import {
+  StyledDiv,
+  WorkOrderDiv,
+  UserTechDiv,
+  ReportedDiv,
+  ImgWork,
+  ItemWork,
+  ItemUserTech,
+  Button,
+  Login,
+} from "./styledWorkOrderDetails";
 import ReportUser from "../../components/ReportUser/ReportUser";
+import { useHistory } from "react-router-dom";
+
+import { GoReport } from "react-icons/go";
+import { HiUserAdd } from "react-icons/hi";
+import Swal from "sweetalert2";
+
 
 const WorkOrderDetails = () => {
+  const history = useHistory();
   const userString = window.sessionStorage.getItem("user");
   const user = JSON.parse(userString);
   const dispatch = useDispatch();
@@ -21,6 +37,9 @@ const WorkOrderDetails = () => {
     };
   }, [user]);
 
+  const [flagReported, setFlagReported] = useState(false);
+  const [flagLogin, setFlagLogin] = useState(false);
+
   const workDetails = useSelector((state) => state.requestDetails);
 
   useEffect(
@@ -28,50 +47,124 @@ const WorkOrderDetails = () => {
     [dispatch]
   );
 
+  const changeFlagReported = () => {
+    setFlagReported(!flagReported);
+  };
+
+  const changeFlagLogin = () => {
+    setFlagLogin(!flagLogin);
+  };
+
   const finalUser = useSelector((state) => state.finalUserDetail);
   async function postulacion(id) {
-    await axios.put(`${REQUEST_URL}/${id}`, {
-      userTech: user.idTech,
-      solicited: true,
-    });
+    try {
+      await axios.put(`${REQUEST_URL}/${id}`, {
+        userTech: user.idTech,
+        solicited: true,
+      });
+      Swal.fire({
+        icon: "success",
+        title: "Postulación exitosa",
+      });
+      history.push("/usuarioTech");
+    } catch (error) {
+      console.log(error);
+      Swal.fire({
+        icon: "error",
+        title: "Error en la postulación",
+      });
+    }
   }
-  console.log(workDetails);
+
   return (
-    <div>
-      {workDetails && workDetails.title && (
-        <div>
-          <h2>Titulo: {workDetails.title}</h2>
-          <h6>Descripcion: {workDetails.description}</h6>
-          <p>Provincia: {workDetails.state}</p>
-          <p>Ciudad: {workDetails.zone}</p>
-          <p>Tipo de servicio: {workDetails.workType}</p>
-          <img src={workDetails.workImage} alt="" />
-        </div>
+
+    <StyledDiv className="container">
+      {user && user.roles[0].name === "userTech" && (
+        <ReportedDiv flag={flagReported}>
+          <div className="content" onClick={changeFlagReported}>
+            <GoReport className="icon" />
+            <p>Reportar</p>
+          </div>
+          <div className="reported">
+            <ReportUser workOrderId={workDetails._id} />
+          </div>
+        </ReportedDiv>
       )}
-      {user && user.roles[0].name === "userTech" ? (
-        <div>
+      <WorkOrderDiv>
+        <ImgWork>
+          <img src={workDetails.workImage} alt="" />
+        </ImgWork>
+        <div className="items">
+          <ItemWork>
+            <p>Título</p>
+            <h4>{workDetails.title}</h4>
+          </ItemWork>
+          <ItemWork>
+            <p>Descripcion</p>
+            <h4> {workDetails.description}</h4>
+          </ItemWork>
+          <ItemWork>
+            <p>Provincia</p>
+            <h4> {workDetails.state}</h4>
+          </ItemWork>
+          <ItemWork>
+            <p>Ciudad</p>
+            <h4> {workDetails.zone}</h4>
+          </ItemWork>
+          <ItemWork>
+            <p>Tipo de servicio</p>
+            <h4> {workDetails.workType}</h4>
+          </ItemWork>
+        </div>
+      </WorkOrderDiv>
+
+      {user && user.roles[0].name === "userTech" && (
+        <UserTechDiv>
           {finalUser && finalUser.user && finalUser.user.mail && (
             <div>
-              <h1>Usuario solicitante : {finalUser.user.userName}</h1>
-              <p>Mail: {finalUser.user.mail}</p>
-              <p>Telefono: {finalUser.user.phone}</p>
-              <p>Puntaje usuario: {finalUser.score}</p>
+              <ItemUserTech>
+                <p>Solicitante</p>
+                <h4>
+                  {finalUser.user.name} {finalUser.user.lastName}
+                </h4>
+              </ItemUserTech>
+              <ItemUserTech>
+                <p>Mail</p>
+                <h4>{finalUser.user.mail}</h4>
+              </ItemUserTech>
+              <ItemUserTech>
+                <p>Telefono</p>
+                <h4>
+                  {finalUser.user.phone ? finalUser.user.phone : "Sin Datos"}
+                </h4>
+              </ItemUserTech>
             </div>
           )}
-          <Button onClick={() => postulacion(workDetails._id)}>
-            {" "}
-            Postularse{" "}
-          </Button>
-          <Button>Reportar</Button>
-          <ReportUser workOrderId={workDetails._id} />
-        </div>
-      ) : (
-        <div />
+
+          {user && user.roles[0].name === "userTech" && (
+            <div className="flexButton">
+              <Button onClick={() => postulacion(workDetails._id)}>
+                Postularse
+              </Button>
+            </div>
+          )}
+        </UserTechDiv>
       )}
-      <span>
-        Querés postularte?<Link to="/login">Ingresá</Link>
-      </span>
-    </div>
+      {!user && (
+        <Login flag={flagLogin}>
+          <div className="login" onClick={changeFlagLogin}>
+            <HiUserAdd className="icon" />
+            <p> ¿Querés postularte?</p>
+          </div>
+          <div className="enter">
+            <Link to="/login" className="enterLink">
+              <Button>¡Ingresá!</Button>
+            </Link>
+          </div>
+        </Login>
+      )}
+    </StyledDiv>
+
   );
 };
 export default WorkOrderDetails;

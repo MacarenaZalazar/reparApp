@@ -6,10 +6,6 @@ export const StyledDiv = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  /* 
-  background-position: center left;
-  background-size: 28%;
-  background-repeat: no-repeat; */
 `;
 
 export const ProfileDiv = styled.div`
