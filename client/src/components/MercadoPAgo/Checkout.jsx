@@ -2,36 +2,53 @@ import React, {useEffect, useState} from 'react';
 import axios from 'axios';
 import { MERCADOPAGO_URL } from '../../utils/constants';
 import PagoPromocion from './PagoPromocion';
-import { useMemo } from 'react';
+import  Button from 'react-bootstrap/Button'
 
 const Checkout = () => {
     const userString = window.sessionStorage.getItem("user");
     const user = JSON.parse(userString);
     const userId = user.id
     const [data, setData] = useState('')
-    const order = useMemo(() => {
-     return {
-            title: "Promoción 7D",
-            unit_price: 10,
-            quantity: 1
-        }
-    }, [])
-    useEffect(()=> {
-        (async () => {
-            try {
-                const mp = await axios.get(`${MERCADOPAGO_URL}?userId=${userId}`, order)
-                setData(mp.data.init_point)
-            } catch (error) {
-                console.log(error)
-            }
-        })()
+    const [flag, setFlag] = useState(false)
+    const days = [7, 15,30]
+    const [order, setOrder] = useState({})
 
-    }, [order, userId])
+    const handleChange = (e) => {
+        setOrder({   
+            title: `Promoción ${e.target.value}D`,
+            unit_price: (1.50 * e.target.value),
+            quantity: 1})
+            setData('')
+            setFlag(false)
+    }
+    const handleClick = async () =>{
+                try {
+                    const mp = await axios.get(`${MERCADOPAGO_URL}?userId=${userId}`, order)
+                    setFlag(true)
+                    setData(mp.data.init_point)
+                } catch (error) {
+                    console.log(error)
+                }
+    } 
     return (
         <div>
-            {!data ? <span>Aguarde un momento...</span> :
-            <PagoPromocion order={order} data={data} />
+            
+            <>
+            <h1>Promocioná tu perfil!</h1>
+            <h4>Seleccioná por cuánto tiempo</h4>
+            <select onChange={(e)=>handleChange(e)} name="" id="">
+                <option value=""></option>
+                {days.map((d, id)=> {
+                    return <><option value={d} key={id}>{d}</option></>
+                })}
+            </select><span>días</span>
+            <Button onClick={handleClick}>Seleccionar</Button>
+            { flag ? (data ?
+            <PagoPromocion order={order} data={data} /> : 
+            <span>Aguarda unos momentos...</span>) : null
             }
+            </>
+            
         </div>
     );
 };
