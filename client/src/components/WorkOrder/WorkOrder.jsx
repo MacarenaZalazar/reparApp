@@ -3,8 +3,17 @@ import { StyledDiv } from "./styledWorkOrder";
 import { Link } from "react-router-dom";
 import { getRequestDetailsbyID } from "../../redux/actions/request";
 import { useDispatch } from "react-redux";
+import { getFinalUsersById } from "../../redux/actions/finalUser";
 
-const WorkOrder = ({ title, description, state, zone, workImage, _id }) => {
+const WorkOrder = ({
+  title,
+  description,
+  state,
+  zone,
+  workImage,
+  _id,
+  userFinal,
+}) => {
   const dispatch = useDispatch();
   return (
     <StyledDiv>
@@ -19,7 +28,12 @@ const WorkOrder = ({ title, description, state, zone, workImage, _id }) => {
         <div className="subtitle">
           <p>{description}</p>
           <Link to="/workOrdersDetails">
-            <button onClick={() => dispatch(getRequestDetailsbyID(_id))}>
+            <button
+              onClick={() => {
+                dispatch(getRequestDetailsbyID(_id));
+                dispatch(getFinalUsersById(userFinal));
+              }}
+            >
               Detalles
             </button>
           </Link>

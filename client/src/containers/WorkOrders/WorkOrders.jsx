@@ -23,6 +23,7 @@ const WorkOrders = () => {
                       zone={e.zone}
                       workImage={e.workImage}
                       _id={e._id}
+                      userFinal={e.userFinal}
                     />
                   </>
                 )

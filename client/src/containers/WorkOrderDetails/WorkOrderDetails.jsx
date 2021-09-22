@@ -1,8 +1,7 @@
-import React, { useEffect, useState, useMemo } from "react";
+import React, { useState, useMemo } from "react";
 import axios from "axios";
 import { useSelector, useDispatch } from "react-redux";
 import { REQUEST_URL } from "../../utils/constants";
-import { getFinalUsersById } from "../../redux/actions/finalUser";
 
 import { Link } from "react-router-dom";
 import {
@@ -27,7 +26,7 @@ const WorkOrderDetails = () => {
   const history = useHistory();
   const userString = window.sessionStorage.getItem("user");
   const user = JSON.parse(userString);
-  const dispatch = useDispatch();
+
   let config = useMemo(() => {
     return {
       headers: {
@@ -39,11 +38,8 @@ const WorkOrderDetails = () => {
   const [flagReported, setFlagReported] = useState(false);
   const [flagLogin, setFlagLogin] = useState(false);
 
+  const finalUser = useSelector((state) => state.finalUserDetail);
   const workDetails = useSelector((state) => state.requestDetails);
-
-  useEffect(() => {
-    dispatch(getFinalUsersById(workDetails.userFinal, config));
-  }, [workDetails]);
 
   const changeFlagReported = () => {
     setFlagReported(!flagReported);
@@ -53,7 +49,6 @@ const WorkOrderDetails = () => {
     setFlagLogin(!flagLogin);
   };
 
-  const finalUser = useSelector((state) => state.finalUserDetail);
   async function postulacion(id) {
     try {
       await axios.put(`${REQUEST_URL}/${id}`, {
