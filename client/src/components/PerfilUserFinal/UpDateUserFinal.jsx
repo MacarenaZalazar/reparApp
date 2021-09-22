@@ -14,11 +14,10 @@ import { useHistory } from "react-router-dom";
 import Swal from "sweetalert2";
 import { getCities, getStates } from "../../redux/actions/techUsers";
 import { useEffect } from "react";
-import { TECH_USERS_URL } from "../../utils/constants";
+import { FINAL_USER_URL } from "../../utils/constants";
 
 const UpDateUserFinal = () => {
   const history = useHistory();
-  const jobTypesRedux = useSelector((state) => state.jobTypes);
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getStates());
@@ -26,30 +25,24 @@ const UpDateUserFinal = () => {
   const { allStates, allCities } = useSelector((state) => state);
   const userString = window.sessionStorage.getItem("user");
   const user = JSON.parse(userString);
-
+  console.log(user);
   let config = {
     headers: {
       "x-access-token": user && user.token,
     },
   };
 
-  console.log(user);
   const [input, setInput] = useState({
     name: "",
     lastName: "",
-    userName: "",
     password: "",
     confirmPassword: "",
     image: "",
     phone: "",
-    mail: "",
     state: "",
-    qualifications: [],
-    workZones: [],
-    jobTypes: [],
+    zone: "",
     errors: {},
   });
-  const [qualification, setQualification] = useState("");
 
   function validate(values) {
     let errors = {};
@@ -77,65 +70,15 @@ const UpDateUserFinal = () => {
     setInput((input) => ({
       ...input,
       state: evento.target.value,
-      workZones: [],
+      zone: "",
     }));
   }
 
   function handleZoneChange(evento) {
-    if (!input.workZones.includes(evento.target.value)) {
-      setInput((input) => ({
-        ...input,
-        workZones: [...input.workZones, evento.target.value],
-      }));
-    }
-  }
-
-  function deleteZone(evento) {
-    evento.preventDefault();
-
     setInput((input) => ({
       ...input,
-      workZones: input.workZones.filter((c) => c !== evento.target.value),
+      zone: evento.target.value,
     }));
-  }
-
-  // Funcion para cambiar job y boton para añadir el array
-  // function handleJobChange(evento) {
-  //   setJob(evento.target.value);
-  // }
-
-  function addJob(job) {
-    if (input.jobTypes.includes(job)) {
-      const newFilter = input.jobTypes.filter((e) => e !== job);
-      setInput({
-        ...input,
-        jobTypes: newFilter,
-      });
-    } else {
-      setInput({
-        ...input,
-        jobTypes: [...input.jobTypes, job],
-      });
-    }
-  }
-
-  // Funcion para cambiar certificaciones y boton para añadir el array
-  function handleQualificationChange(evento) {
-    setQualification(evento.target.value);
-  }
-  function addQualification(evento) {
-    evento.preventDefault();
-    if (!input.qualifications.includes(qualification) && qualification) {
-      setInput({
-        ...input,
-        qualifications: [...input.qualifications, qualification],
-      });
-      setQualification("");
-    } else {
-      if (qualification) alert("Ya existe");
-      else alert("No puede ser vacío");
-    }
-    document.getElementsByClassName("qualificationInput")[0].value = "";
   }
 
   const handleSubmit = async (e) => {
@@ -170,17 +113,12 @@ const UpDateUserFinal = () => {
         if (input.state) {
           objToSend.state = input.state;
         }
-        if (input.workZones.length > 0) {
-          objToSend.workZones = input.workZones;
+        if (input.zone) {
+          objToSend.zone = input.zone;
         }
-        if (input.qualifications.length > 0) {
-          objToSend.qualifications = input.qualifications;
-        }
-        if (input.jobTypes.jobTypes > 0) {
-          objToSend.jobTypes = input.jobTypes;
-        }
+        console.log(objToSend);
         const respuesta = await axios.put(
-          `${TECH_USERS_URL}/${user.idTech}`,
+          `${FINAL_USER_URL}/${user.idUserFinal}`,
           objToSend,
           config
         );
@@ -327,13 +265,13 @@ const UpDateUserFinal = () => {
                 </select>
               </Input>
               <Input>
-                {allCities.length > 1 && (
+                {allCities.length > 0 && (
                   <div className="flexZones">
                     <div>
                       <label>* Zonas:</label>
                       <select
                         aria-label="Default select example"
-                        name="departments"
+                        name="zone"
                         id=""
                         onChange={handleZoneChange}
                       >
@@ -346,58 +284,8 @@ const UpDateUserFinal = () => {
                         })}
                       </select>
                     </div>
-                    <div>
-                      <div className="flexZones__ul">
-                        {input.workZones &&
-                          input.workZones.map((zone) => {
-                            return (
-                              <div className="flexZones__ul--item">
-                                <p>{zone}</p>
-                                <button
-                                  className="btn-zone"
-                                  value={zone}
-                                  onClick={deleteZone}
-                                >
-                                  x
-                                </button>
-                              </div>
-                            );
-                          })}
-                      </div>
-                    </div>
                   </div>
                 )}
-              </Input>
-              <InputJobs>
-                <label>* Tipos de Trabajo:</label>
-                <div className="gridJobs">
-                  {jobTypesRedux &&
-                    jobTypesRedux.map((j, idx) => {
-                      return (
-                        <div>
-                          <Checkbox
-                            key={idx}
-                            label={j}
-                            onChange={() => addJob(j)}
-                          />
-                        </div>
-                      );
-                    })}
-                </div>
-              </InputJobs>
-              <Input>
-                <label> Certificaciones:</label>
-                <input
-                  className="qualificationInput"
-                  type="text"
-                  name="certification"
-                  autoComplete="off"
-                  onChange={handleQualificationChange}
-                />
-
-                <button onClick={(e) => addQualification(e)}>
-                  Agregar Certificación
-                </button>
               </Input>
             </Right>
           </div>
