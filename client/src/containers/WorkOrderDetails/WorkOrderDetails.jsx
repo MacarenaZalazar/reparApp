@@ -64,7 +64,7 @@ const WorkOrderDetails = () => {
         icon: "success",
         title: "Postulación exitosa",
       });
-      history.push("/home");
+      history.push("/usuarioTech");
     } catch (error) {
       console.log(error);
       Swal.fire({
