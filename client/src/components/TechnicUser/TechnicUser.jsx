@@ -1,5 +1,5 @@
 import React from "react";
-import { StyledDiv } from "./Styles";
+import { StyledDiv, ImgDiv, ContentDiv, ItemCard, Button } from "./Styles";
 import { AiFillStar } from "react-icons/ai";
 import { Link } from "react-router-dom";
 
@@ -15,39 +15,58 @@ export default function TechnicUser({
 }) {
   return (
     <StyledDiv>
-      <img src={`${image}`} alt="img" />
-      <div className="infoContainer">
-        <div className="name">
-          <h3>
+      <ImgDiv>
+        <img src={`${image}`} alt="img" />
+      </ImgDiv>
+      <ContentDiv>
+        <ItemCard>
+          <p>Nombre y Apellido</p>
+          <h4>
             {name} {lastName}
-          </h3>
-        </div>
-        <span>{user}</span>
-        <div className="subtitle">
-          <ul>
+          </h4>
+        </ItemCard>
+        <ItemCard>
+          <p>Usuario</p>
+          <h4>{user}</h4>
+        </ItemCard>
+        <ItemCard>
+          <p>Tipos de Trabajos</p>
+          <div className="flexJobTypes">
             {jobTypes &&
               jobTypes.map((type, idx) => {
-                return <li key={idx}>{type}</li>;
+                return (
+                  <p className="jobp" key={idx}>
+                    {type}
+                  </p>
+                );
               })}
-          </ul>
-          <p>
+          </div>
+        </ItemCard>
+      </ContentDiv>
+      <ContentDiv>
+        <ItemCard>
+          <p>Calificación Promedio</p>
+          <h4>
             <AiFillStar /> {score}
-          </p>
-        </div>
-      </div>
-
-      <div className="infoContainer">
-        <label>Trabaja en:</label>
-        <ul>
-          {workZones &&
-            workZones.map((zone, idx) => {
-              return <li key={idx}>{zone}</li>;
-            })}
-        </ul>
-      </div>
-      <Link to={`/technicUserDetails/${id}`}>
-        <button>Ver perfil</button>
-      </Link>
+          </h4>
+        </ItemCard>
+        <ItemCard>
+          <p>Zona de Trabajos</p>
+          <div className="flexJobTypes">
+            {workZones &&
+              workZones.map((zone, idx) => {
+                return (
+                  <p className="jobp" key={idx}>
+                    {zone}
+                  </p>
+                );
+              })}
+          </div>
+        </ItemCard>
+        <Link to={`/technicUserDetails/${id}`}>
+          <Button>Ver perfil</Button>
+        </Link>
+      </ContentDiv>
     </StyledDiv>
   );
 }
