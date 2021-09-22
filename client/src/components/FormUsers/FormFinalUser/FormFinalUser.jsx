@@ -218,7 +218,7 @@ const FormFinalUser = () => {
               <Input>
                 <label>Teléfono:</label>
                 <input
-                  type="text"
+                  type="number"
                   name="phone"
                   autoComplete="off"
                   value={input.phone}

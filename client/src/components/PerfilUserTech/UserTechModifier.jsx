@@ -290,7 +290,7 @@ const FormTechnicUserModifier = () => {
               <Input>
                 <label>Teléfono:</label>
                 <input
-                  type="text"
+                  type="number"
                   name="phone"
                   autoComplete="off"
                   value={input.phone}
@@ -315,7 +315,7 @@ const FormTechnicUserModifier = () => {
               <Input>
                   <label>Precio Base:</label>
                   <input
-                    type="text"
+                    type="number"
                     name="price"
                     autoComplete="off"
                     value={input.price}
