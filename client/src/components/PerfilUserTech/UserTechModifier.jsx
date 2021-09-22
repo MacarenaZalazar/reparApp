@@ -44,6 +44,7 @@ const FormTechnicUserModifier = () => {
     phone: "",
     mail: "",
     state: "",
+    price: "",
     qualifications: [],
     workZones: [],
     jobTypes: [],
@@ -169,6 +170,9 @@ const FormTechnicUserModifier = () => {
         }
         if (input.state) {
           objToSend.state = input.state;
+        }
+        if (input.price) {
+          objToSend.price = input.price;
         }
         if (input.workZones.length > 0) {
           objToSend.workZones = input.workZones;
@@ -306,7 +310,18 @@ const FormTechnicUserModifier = () => {
                     onChange={handleInputChange}
                   />
                 </Input>
+                
               }
+              <Input>
+                  <label>Precio Base:</label>
+                  <input
+                    type="text"
+                    name="price"
+                    autoComplete="off"
+                    value={input.price}
+                    onChange={handleInputChange}
+                  />
+                </Input>
               <Input>
                 <label>* Provincia:</label>
                 <select

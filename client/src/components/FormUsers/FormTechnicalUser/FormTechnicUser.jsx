@@ -35,6 +35,7 @@ const FormTechnicUser = () => {
     phone: "",
     mail: "" || responseGoogle.email,
     state: "",
+    price: "",
     qualifications: [],
     workZones: [],
     jobTypes: [],
@@ -287,6 +288,16 @@ const FormTechnicUser = () => {
                   name="phone"
                   autoComplete="off"
                   value={input.phone}
+                  onChange={handleInputChange}
+                />
+              </Input>
+              <Input>
+                <label>Precio Base:</label>
+                <input
+                  type="text"
+                  name="price"
+                  autoComplete="off"
+                  value={input.price}
                   onChange={handleInputChange}
                 />
               </Input>
