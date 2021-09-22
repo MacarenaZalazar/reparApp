@@ -26,19 +26,22 @@ const Home = () => {
       {user &&
       user.hasOwnProperty("roles") &&
       user.roles[0].name === "userFinal" ? (
-        <>
-          <DisplayFilters />
-
+        <div className="flexHome">
+          <div className="display">
+            <DisplayFilters />
+          </div>
           <PromotedUsers />
           <TechnicUsers />
-        </>
+        </div>
       ) : user &&
         user.hasOwnProperty("roles") &&
         user.roles[0].name === "userTech" ? (
-        <>
-          <DisplayFilters />
+        <div className="flexHome">
+          <div className="display">
+            <DisplayFilters />
+          </div>
           <WorkOrders />
-        </>
+        </div>
       ) : (
         <HomeDiv>
           <DisplayFilters />

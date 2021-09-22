@@ -5,6 +5,19 @@ export const StyledDiv = styled.div`
   height: calc(100vh - 10.75rem);
   background-color: #fbfaf8ff;
   padding: 0.5rem 0;
+  gap: 2rem;
+
+  .flexHome {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 2rem;
+
+    .display {
+      width: 100%;
+    }
+  }
 
   .flexNewOrder {
     display: flex;

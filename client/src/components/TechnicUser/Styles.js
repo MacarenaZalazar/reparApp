@@ -1,33 +1,17 @@
 import styled from "styled-components";
 
 export const StyledDiv = styled.div`
+  width: 100%;
+  height: 15rem;
   display: flex;
-  flex-direction: row;
-  align-items: center;
   justify-content: center;
-  margin: 15px;
-  height: 150px;
-  width: 600px;
-  border-radius: 15px;
-  box-shadow: rgba(181, 129, 108, 0.8) 0px 8px 34px -25px;
-  background-color: white;
-  button {
-    transition: 0.6s ease;
-    padding: 1rem 2rem;
-    color: rgb(248, 248, 248);
-    font-weight: bold;
-    background-color: #ff8882;
-    border: 1px solid #ffffff;
-    border-radius: 1rem;
+  align-items: center;
+  background-color: #0a122aff;
+  gap: 2rem;
+  padding: 0rem 5rem;
 
-    :hover {
-      background-color: #194350;
-      cursor: pointer;
-    }
-  }
-  span {
-    font-size: 15px;
-  }
+  color: #e7decdff;
+
   .infoContainer {
     display: flex;
     flex-direction: column;
@@ -45,25 +29,65 @@ export const StyledDiv = styled.div`
     label {
       font-size: 15px;
     }
-    .subtitle {
-      display: flex;
-      align-items: center;
-      ul {
-        padding: 5px;
-      }
-      p {
-        padding: 5px;
-      }
-    }
   }
 
   ul {
     font-size: 15px;
     list-style: none;
   }
+`;
+
+export const ContentDiv = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+`;
+
+export const ImgDiv = styled.div`
   img {
-    margin: 10px;
-    max-width: 100px;
-    border-radius: 10px;
+    width: 13rem;
+    height: 11rem;
+    border-radius: 50%;
+    border: 0.3rem solid #f06449ff;
+  }
+`;
+export const ItemCard = styled.div`
+  width: 100%;
+  p {
+    font-size: 1.2rem;
+    background-color: #f06449ff;
+    color: #0a122aff;
+    padding: 0 1rem;
+  }
+  h4 {
+    font-size: 1.5rem;
+  }
+
+  .flexJobTypes {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    .jobp {
+      background-color: #0a122aff;
+      color: #e7decdff;
+    }
+  }
+`;
+
+export const Button = styled.button`
+  padding: 0.5rem 3rem;
+  border-radius: 1rem;
+  background-color: #e7decdff;
+  border: none;
+  font-family: "Montserrat", sans-serif;
+  transition: 0.5s ease;
+
+  font-weight: bold;
+  color: #0a122aff;
+
+  :hover {
+    transform: scale(1.1);
+    cursor: pointer;
+    background-color: #f06449;
   }
 `;
