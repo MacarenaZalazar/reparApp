@@ -1,14 +1,14 @@
 import React, { useState } from "react";
-import SocialLinks from "../../components/SocialLinks/SocialLinks";
-import { socialMedia } from "../../utils/reparAppInfo";
-import Form from "react-bootstrap/Form";
-import Button from "react-bootstrap/Button";
-import { StyledForm, ContactUsContainer } from "./stylesContactUs";
+// import SocialLinks from "../../components/SocialLinks/SocialLinks";
+// import { socialMedia } from "../../utils/reparAppInfo";
+// import Form from "react-bootstrap/Form";
+// import Button from "react-bootstrap/Button";
+import { StyledDiv, Form, Input, Button } from "./stylesContactUs";
 import axios from "axios";
 import { CONTACT_URL } from "../../utils/constants";
 
 const ContactUs = () => {
-  const { instagram, facebook, linkedin, github } = socialMedia;
+  // const { instagram, facebook, linkedin, github } = socialMedia;
   const [input, setInput] = useState({
     mail: "",
     user: "",
@@ -31,10 +31,10 @@ const ContactUs = () => {
     return errors;
   }
 
-  function handleChange(e) {
+  function handleInputChange(evento) {
     setInput((input) => ({
       ...input,
-      [e.target.name]: e.target.value,
+      [evento.target.name]: evento.target.value,
     }));
   }
 
@@ -62,62 +62,37 @@ const ContactUs = () => {
   };
 
   return (
-    <>
-      <ContactUsContainer>
-        <h1>Seguinos en nuestras redes sociales!</h1>
-        <div className="socialContact">
-          <SocialLinks
-            instagram={instagram}
-            facebook={facebook}
-            linkedin={linkedin}
-            github={github}
-          />
-        </div>
-        <Form onChange={handleChange} onSubmit={handleSubmit}>
-          <StyledForm>
-            <h3>Envianos un mensaje</h3>
-            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-              <Form.Label>* E-mail </Form.Label>
-              <Form.Control
-                name="mail"
-                value={input.mail}
-                type="email"
-                placeholder="Tu email"
-                onChange={handleChange}
-              />
-              {input.errors.mail && <span>Hay error</span>}
-            </Form.Group>
-            <Form.Group>
-              <Form.Label>* Nombre</Form.Label>
-              <Form.Control
-                name="user"
-                value={input.user}
-                type="user"
-                placeholder="Tu nombre"
-                onChange={handleChange}
-              />
-              {input.errors.user && <span>Hay error</span>}
-            </Form.Group>
-            <Form.Group
-              className="mb-3"
-              controlId="exampleForm.ControlTextarea1"
-            >
-              <Form.Label>* Mensaje </Form.Label>
-              <Form.Control
-                name="description"
-                value={input.description}
-                as="textarea"
-                rows={3}
-                onChange={handleChange}
-              />
-              {input.errors.description && <span>Hay error</span>}
-            </Form.Group>
-            <Form.Label>* Estos campos son obligatorios </Form.Label>
-            <Button type="submit">Enviar</Button>
-          </StyledForm>
+    <StyledDiv>
+      <form id="formContact" onSubmit={handleSubmit}>
+        <Form>
+          <div className="title">
+            <h4>Envianos un mensaje</h4>
+          </div>
+          <Input error={input.errors.mail}>
+            <label>* Email:</label>
+            <input
+              type="email"
+              name="mail"
+              autoComplete="off"
+              value={input.mail}
+              onChange={handleInputChange}
+            />
+          </Input>
+          <Input error={input.errors.mail}>
+            <label>* Mensaje:</label>
+            <textarea
+              name="description"
+              autoComplete="off"
+              value={input.description}
+              onChange={handleInputChange}
+            />
+          </Input>
+          <Button type="submit">
+            <p>Enviar</p>
+          </Button>
         </Form>
-      </ContactUsContainer>
-    </>
+      </form>
+    </StyledDiv>
   );
 };
 
