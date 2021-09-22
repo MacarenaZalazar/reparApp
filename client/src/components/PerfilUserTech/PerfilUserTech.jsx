@@ -18,6 +18,7 @@ import {
   ContentCardDiv,
   ImgDiv,
   ItemCard,
+  
 } from "./styledPerfilUserTech";
 import { TiArrowBack, TiEdit, TiStarFullOutline } from "react-icons/ti";
 import { Link } from "react-router-dom";

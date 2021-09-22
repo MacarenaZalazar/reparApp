@@ -6,6 +6,8 @@ import {
   InputDiv,
   ButtonDiv,
   OptionsDiv,
+  LinksDiv,
+  GoogleDiv,
 } from "./styledLogin";
 import axios from "axios";
 
@@ -13,8 +15,12 @@ import { useDispatch } from "react-redux";
 import { getTechUsersByJobAndZone } from "../../redux/actions/techUsers";
 import { getRequestAllFiltered } from "../../redux/actions/request/index";
 import { MdAccountCircle, MdVpnKey } from "react-icons/md";
+import { TiArrowBack } from "react-icons/ti";
+import { GiPadlockOpen } from "react-icons/gi";
+import { FaUserPlus } from "react-icons/fa";
+import { AiFillGoogleCircle } from "react-icons/ai";
 import { useState } from "react";
-import { useHistory } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
 import { LOGIN_URL } from "../../utils/constants";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
@@ -23,8 +29,8 @@ const MySwal = withReactContent(Swal);
 const Login = () => {
   const dispatch = useDispatch();
   const history = useHistory();
-  const [input, setInput] = useState({ mail: "", password: "" });
-
+  const [input, setInput] = useState({ mail: "", password: "", errors: {} });
+  const [flagGoogle, setFlagGoogle] = useState(false);
   function validate(values) {
     let errors = {};
 
@@ -41,6 +47,10 @@ const Login = () => {
 
     return errors;
   }
+
+  const changeFlagGoogle = () => {
+    setFlagGoogle(!flagGoogle);
+  };
 
   function handleInputChange(evento) {
     setInput((input) => ({
@@ -100,7 +110,7 @@ const Login = () => {
   const showAlert = async (e) => {
     e.preventDefault();
 
-    // const { value: fruit } = 
+    // const { value: fruit } =
     await Swal.fire({
       input: "select",
       inputOptions: {
@@ -127,12 +137,27 @@ const Login = () => {
 
   return (
     <StyledDiv>
+      <LinksDiv>
+        <Link className="link" to="/home">
+          <TiArrowBack className="icon" />
+          <p>Volver a Home</p>
+        </Link>
+
+        <Link onClick={(e) => forgotPassword(e)} className="link" to="/login">
+          <GiPadlockOpen className="icon" />
+          <p>Recuperar Contraseña</p>
+        </Link>
+        <Link onClick={showAlert} className="link" to="/#">
+          <FaUserPlus className="icon" />
+          <p>Registrarse</p>
+        </Link>
+      </LinksDiv>
       <form onSubmit={(e) => handleSubmit(e)}>
         <LoginDiv>
           <TitleDiv>
-            <h4>¡Hola! Ingresá tus datos</h4>
+            <h4>¡Ingresá tus datos!</h4>
           </TitleDiv>
-          <InputDiv>
+          <InputDiv error={input.errors.mail}>
             <MdAccountCircle className="icon" />
 
             <input
@@ -143,7 +168,7 @@ const Login = () => {
               autoComplete="off"
             />
           </InputDiv>
-          <InputDiv>
+          <InputDiv error={input.errors.password}>
             <MdVpnKey className="icon" />
 
             <input
@@ -153,32 +178,23 @@ const Login = () => {
               onChange={handleInputChange}
             />
           </InputDiv>
-          {input.errors && input.errors.password && (
-            <p>{input.errors.password}</p>
-          )}
 
           <ButtonDiv>
             <button className="link" type="submit">
-              ¡Ingresá!
+              Confirmar
             </button>
           </ButtonDiv>
         </LoginDiv>
       </form>
-      <LoginGoogle />
-      <OptionsDiv>
-        <span>
-          O{" "}
-          <span className="register" onClick={showAlert}>
-            registrate
-          </span>
-        </span>
-        <span>
-          O{" "}
-          <span className="register" onClick={(e) => forgotPassword(e)}>
-            Olvidaste tu contraseña?
-          </span>
-        </span>
-      </OptionsDiv>
+      <GoogleDiv flag={flagGoogle}>
+        <div className="login" onClick={changeFlagGoogle}>
+          <AiFillGoogleCircle className="icon" />
+          <p> ¡Ingresá con Google!</p>
+          <div className="enter">
+            <LoginGoogle />
+          </div>
+        </div>
+      </GoogleDiv>
     </StyledDiv>
   );
 };

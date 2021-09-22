@@ -108,6 +108,7 @@ function LoginGoogle() {
         onFailure={alertFail}
         cookiePolicy={"single_host_origin"}
         theme="dark"
+        icon={false}
       />
     </>
   );
