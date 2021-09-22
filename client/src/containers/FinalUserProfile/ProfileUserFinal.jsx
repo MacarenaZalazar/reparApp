@@ -56,6 +56,7 @@ function ProfileUserFinal() {
             zone={user.zone}
             state={user.user.state}
             img={user.user.image}
+            score={user.score}
           />
         ) : (
           <p>Cargando...</p>

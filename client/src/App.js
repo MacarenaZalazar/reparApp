@@ -1,4 +1,7 @@
 import { Route, Switch } from "react-router-dom";
+import { useEffect } from "react";
+import { getJobTypesAll } from "./redux/actions/jobTypes";
+import { useDispatch, useSelector } from "react-redux";
 
 import TechnicUserDetails from "./components/TechnicUserDetails/TechnicUserDetails";
 import FinalUserDetails from "./components/FinalUserDetail/FinalUserDetail";
@@ -22,20 +25,16 @@ import CreateWorkOrder from "./containers/CreateWorkOrder/CreateWorkOrder";
 import SolicitedWork from "./containers/SolicitedWork/SolicitedWork";
 import SolicitedWorkTech from "./containers/SolicitedWorkTech/SolicitedWorkTech";
 import Dashboard from "./containers/UserAdmin/Dashboard";
-
 import PrivateRoute from "./components/PrivateRoute/PrivateRoute";
-import { useEffect } from "react";
-import { getJobTypesAll } from "./redux/actions/jobTypes";
-import { useDispatch, useSelector } from "react-redux";
 import Reported from "./containers/Reported/Reported";
 import ModifyUserFinal from "./containers/FinalUserProfile/ModifyUserFinal";
 import BanJobRequest from "./components/Admin/BanJobRequest";
+import Checkout from "./components/MercadoPAgo/Checkout";
+import PagoPromocion from "./components/MercadoPAgo/PagoPromocion";
 
 import Aos from "aos";
 import "aos/dist/aos.css";
-import Checkout from './components/MercadoPAgo/Checkout';
-import PagoPromocion from './components/MercadoPAgo/PagoPromocion';
-import ReportUser from './components/ReportUser/ReportUser';
+import ReportUser from "./components/ReportUser/ReportUser";
 // jose estuvo aquí
 
 function App() {
@@ -112,8 +111,18 @@ function App() {
           allow="userFinal"
         />
 
-    <PrivateRoute exact path="/checkout" component={Checkout} allow="userTech" />
-    <PrivateRoute exact path="/pago" component={PagoPromocion} allow="userTech" />
+        <PrivateRoute
+          exact
+          path="/checkout"
+          component={Checkout}
+          allow="userTech"
+        />
+        <PrivateRoute
+          exact
+          path="/pago"
+          component={PagoPromocion}
+          allow="userTech"
+        />
 
         <PrivateRoute
           exact
@@ -123,7 +132,7 @@ function App() {
         />
         <Route
           exact
-          path="/usuarioFinal/modifier"
+          path="/usuarioTech/modifier"
           component={FormTechnicUserModifier}
         />
         <Route exact path="/workOrdersDetails" component={WorkOrderDetails} />
