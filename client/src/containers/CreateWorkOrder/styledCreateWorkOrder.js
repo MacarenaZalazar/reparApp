@@ -8,6 +8,10 @@ export const StyledDiv = styled.div`
   justify-content: center;
   align-items: center;
 
+  @media screen and (max-width: 768px) {
+    height: 100vh;
+  }
+
   h3 {
     text-align: center;
   }
