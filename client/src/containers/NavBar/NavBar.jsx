@@ -70,6 +70,8 @@ const NavBar = () => {
     Swal.fire({
       icon: "success",
       title: "Sesion cerrada",
+      background: "#e7decdff",
+      backdrop: "rgba(10,18,42,0.6)",
       showConfirmButton: false,
       timer: 2000,
     });

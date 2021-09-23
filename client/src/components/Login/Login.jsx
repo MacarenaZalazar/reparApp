@@ -89,11 +89,17 @@ const Login = () => {
         }
         MySwal.fire({
           title: "Bienvenido",
+          confirmButtonColor: "#0a122aff",
+          background: "#e7decdff",
+          backdrop: "rgba(10,18,42,0.6)",
         });
         history.push("/home");
       } catch (error) {
         MySwal.fire({
           title: "Error en el logueo",
+          confirmButtonColor: "#0a122aff",
+          background: "#e7decdff",
+          backdrop: "rgba(10,18,42,0.6)",
         });
       }
     } else {
