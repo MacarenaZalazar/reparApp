@@ -25,7 +25,7 @@ const NavBar = () => {
   const userString = window.sessionStorage.getItem("user");
   const user = JSON.parse(userString);
 
-  const [clickRes, setClickRes] = useState(true);
+  const [clickRes, setClickRes] = useState(false);
 
   const handleClick = () => {
     setClickRes(!clickRes);
