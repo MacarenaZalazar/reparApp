@@ -348,7 +348,7 @@ const FormTechnicUser = () => {
               <Input error={input.errors.workZones}>
                 {allCities.length > 1 && (
                   <div className="flexZones">
-                    <div>
+                    <div className="flexZonesNew">
                       <label>* Zonas:</label>
                       <select
                         aria-label="Default select example"

@@ -62,6 +62,7 @@ export const Form = styled.div`
   .grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
 
     @media screen and (max-width: 768px) {
       grid-template-columns: 1fr;
@@ -81,7 +82,7 @@ export const Input = styled.div`
   width: 100%;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-end;
   gap: 1rem;
 
   @media screen and (max-width: 768px) {
@@ -108,13 +109,13 @@ export const Input = styled.div`
   }
 
   label {
-    max-width: 10rem;
+    max-width: 7rem;
     text-align: end;
   }
   select {
     color: #e7decdff;
     background-color: #0a122aff;
-    max-width: 100%;
+    min-width: 15rem;
     padding: 0.3rem;
     outline: 0;
     border: 0;
@@ -129,6 +130,16 @@ export const Input = styled.div`
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
+
+    .flexZonesNew {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      @media screen and (max-width: 768px) {
+        flex-direction: column;
+      }
+    }
 
     &__ul {
       display: grid;
