@@ -10,6 +10,9 @@ const WorkOrders = () => {
     <>
       {allRequest.length > 0 ? (
         <StyledDiv>
+          <div className="title">
+            <p>Solicitudes de Trabajo</p>
+          </div>
           <Carousel className="carousel" itemsToShow={1} outerSpacing={50}>
             {allRequest &&
               allRequest.map((e, idx) => {
