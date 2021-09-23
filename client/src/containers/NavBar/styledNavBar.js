@@ -41,9 +41,6 @@ export const LogoDiv = styled.div`
   img {
     width: 10rem;
   }
-  @media screen and (max-width: 768px) {
-    display: none;
-  }
 `;
 
 export const UserName = styled.div`
