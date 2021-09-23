@@ -3,11 +3,7 @@ import React from "react";
 
 import { StyledDiv, FilterDiv, ContentFilter, Icon } from "./Styles";
 import { useDispatch } from "react-redux";
-import {
-  orderByScore,
-
-  orderByPrice,
-} from "../../redux/actions/allUsers/index";
+import { orderByScore, orderByPrice} from "../../redux/actions/allUsers/index";
 
 
 import { RiArrowUpDownLine } from "react-icons/ri";

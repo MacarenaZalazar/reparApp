@@ -5,6 +5,8 @@ import { ADMIN_URL } from "../../utils/constants";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { getJobTypesAll } from "../../redux/actions/jobTypes";
+import  Swal  from 'sweetalert2';
+
 
 function NewJobType() {
   const [newJob, setNewjob] = useState("");
@@ -24,18 +26,12 @@ function NewJobType() {
       try {
         if (newJob) {
           await axios.put(ADMIN_URL, newJob, config);
-          alert("El tipo de trabajo ha sido agregado");
-          if (flag) {
-            setFlag(false);
-          } else {
-            setFlag(true);
-          }
+          Swal.fire({title:"El tipo de trabajo ha sido agregado"});
+          setFlag(!flag)
           document.getElementsByClassName("form-control")[0].value = "";
           setNewjob("");
         } else {
-          alert(
-            "Ingresar un texto valido para poder cargar un nuevo tipo de trabajo"
-          );
+          Swal.fire({title: "Ingresar un texto valido para poder cargar un nuevo tipo de trabajo"});
         }
       } catch (error) {
         console.log(error);

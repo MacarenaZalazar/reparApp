@@ -10,14 +10,6 @@ const DropdownMenu = ({ onClick }) => {
   const user = JSON.parse(userString);
   const showAlert = async (e) => {
     e.preventDefault();
-    // MySwal.fire({
-    //   title: "Elige un tipo de usuario",
-    //   showDenyButton: true,
-    //   confirmButtonText:
-    //     '<a style=”color:white” href="/signinTech">Técnico</a> ',
-    //   denyButtonText: '<a className="enlace"  href="/signinFinal">Final</a> ',
-    // });
-
     const { value: fruit } = await Swal.fire({
       input: "select",
       inputOptions: {
