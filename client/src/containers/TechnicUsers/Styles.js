@@ -4,10 +4,10 @@ export const StyledDiv = styled.div`
   width: 100%;
   padding: 0.5rem 0;
   .title {
-    
+    background-color: #f06449ff;
+    border-radius: 1.5rem;
     p {
       text-align: center;
-      background-color: #f06449ff;
       padding: 0.5rem;
       font-weight: bold;
     }
