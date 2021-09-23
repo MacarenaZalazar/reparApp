@@ -11,8 +11,6 @@ export const StyledDiv = styled.div`
   }
 
   .notFound {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    text-align: center;
   }
 `;

@@ -8,8 +8,6 @@ export const StyledDiv = styled.div`
     height: 100%;
   }
   .notFound {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    text-align: center;
   }
 `;

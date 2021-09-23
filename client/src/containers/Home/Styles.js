@@ -5,7 +5,7 @@ export const StyledDiv = styled.div`
   min-height: calc(100vh - 10.75rem);
   background-color: #fbfaf8ff;
   padding: 0.5rem 0;
-  gap: 2rem;
+  gap: 2rem 0;
 
   .flexHome {
     width: 100%;
