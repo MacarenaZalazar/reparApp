@@ -6,7 +6,7 @@ import { StyledDiv, SinUser, HomeDiv } from "./Styles";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { getStates, getCities } from "../../redux/actions/techUsers";
-import { Link } from "react-router-dom";
+
 //import { getTechUsersAll } from "../../redux/actions/techUsers/index";
 import PromotedUsers from "../PromotedUsers/PromotedUsers";
 
@@ -27,9 +27,7 @@ const Home = () => {
       user.hasOwnProperty("roles") &&
       user.roles[0].name === "userFinal" ? (
         <div className="flexHome">
-          <div className="display">
-            <DisplayFilters />
-          </div>
+          <DisplayFilters />
           <PromotedUsers />
           <TechnicUsers />
         </div>
@@ -37,9 +35,7 @@ const Home = () => {
         user.hasOwnProperty("roles") &&
         user.roles[0].name === "userTech" ? (
         <div className="flexHome">
-          <div className="display">
-            <DisplayFilters />
-          </div>
+          <DisplayFilters />
           <WorkOrders />
         </div>
       ) : (
@@ -47,10 +43,8 @@ const Home = () => {
           <DisplayFilters />
           <SinUser>
             <div className="cardsDisplay">
-              <h2>Usuarios Tecnicos</h2>
               <PromotedUsers />
               <TechnicUsers />
-              <h2>Pedidos de trabajo</h2>
               <WorkOrders />
             </div>
           </SinUser>

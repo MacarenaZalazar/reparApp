@@ -7,33 +7,39 @@ const WorkOrders = () => {
   const allRequest = useSelector((state) => state.allRequests);
 
   return (
-    <StyledDiv>
+    <>
       {allRequest.length > 0 ? (
-        <Carousel className="carousel" itemsToShow={1} outerSpacing={50}>
-          {allRequest &&
-            allRequest.map((e, idx) => {
-              return (
-                !e.solicited && (
-                  <>
-                    <WorkOrder
-                      key={idx}
-                      title={e.title}
-                      description={e.description}
-                      state={e.state}
-                      zone={e.zone}
-                      workImage={e.workImage}
-                      _id={e._id}
-                      userFinal={e.userFinal}
-                    />
-                  </>
-                )
-              );
-            })}
-        </Carousel>
+        <StyledDiv>
+          <Carousel className="carousel" itemsToShow={1} outerSpacing={50}>
+            {allRequest &&
+              allRequest.map((e, idx) => {
+                return (
+                  !e.solicited && (
+                    <>
+                      <WorkOrder
+                        key={idx}
+                        title={e.title}
+                        description={e.description}
+                        state={e.state}
+                        zone={e.zone}
+                        workImage={e.workImage}
+                        _id={e._id}
+                        userFinal={e.userFinal}
+                      />
+                    </>
+                  )
+                );
+              })}
+          </Carousel>
+        </StyledDiv>
       ) : (
-        <span>No se han encontrado pedidos de trabajo</span>
+        <StyledDiv>
+          <div className="notFound">
+            <h4>No se han encontrado pedidos de trabajo</h4>
+          </div>
+        </StyledDiv>
       )}
-    </StyledDiv>
+    </>
   );
 };
 

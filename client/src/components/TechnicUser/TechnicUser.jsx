@@ -29,6 +29,15 @@ export default function TechnicUser({
           <p>Usuario</p>
           <h4>{user}</h4>
         </ItemCard>
+
+        <ItemCard>
+          <p>Calificación Promedio</p>
+          <h4>
+            <AiFillStar /> {score}
+          </h4>
+        </ItemCard>
+      </ContentDiv>
+      <ContentDiv>
         <ItemCard>
           <p>Tipos de Trabajos</p>
           <div className="flexJobTypes">
@@ -41,14 +50,6 @@ export default function TechnicUser({
                 );
               })}
           </div>
-        </ItemCard>
-      </ContentDiv>
-      <ContentDiv>
-        <ItemCard>
-          <p>Calificación Promedio</p>
-          <h4>
-            <AiFillStar /> {score}
-          </h4>
         </ItemCard>
         <ItemCard>
           <p>Zona de Trabajos</p>

@@ -5,43 +5,11 @@ export const StyledDiv = styled.div`
   height: 15rem;
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
   background-color: #0a122aff;
   gap: 2rem;
-  padding: 0rem 5rem;
-
+  padding: 0.7rem 5rem;
   color: #e7decdff;
-
-  .infoContainer {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-between;
-    margin: 5px;
-    .name {
-      display: flex;
-      flex-direction: row;
-      align-items: center;
-      justify-content: center;
-      border-bottom: 1px solid #ced4da;
-      margin: 5px;
-    }
-    label {
-      font-size: 15px;
-    }
-  }
-
-  ul {
-    font-size: 15px;
-    list-style: none;
-  }
-`;
-
-export const ContentDiv = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
 `;
 
 export const ImgDiv = styled.div`
@@ -51,6 +19,13 @@ export const ImgDiv = styled.div`
     border-radius: 50%;
     border: 0.3rem solid #f06449ff;
   }
+`;
+export const ContentDiv = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 0.5rem;
 `;
 export const ItemCard = styled.div`
   width: 100%;
@@ -75,7 +50,7 @@ export const ItemCard = styled.div`
 `;
 
 export const Button = styled.button`
-  padding: 0.5rem 3rem;
+  padding: 0.2rem 1.5rem;
   border-radius: 1rem;
   background-color: #e7decdff;
   border: none;
