@@ -21,6 +21,8 @@ import { useHistory } from "react-router-dom";
 import { GoReport } from "react-icons/go";
 import { HiUserAdd } from "react-icons/hi";
 import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
+const MySwal = withReactContent(Swal);
 
 const WorkOrderDetails = () => {
   const history = useHistory();
@@ -55,16 +57,20 @@ const WorkOrderDetails = () => {
         userTech: user.idTech,
         solicited: true,
       });
-      Swal.fire({
-        icon: "success",
+      MySwal.fire({
         title: "Postulación exitosa",
+        confirmButtonColor: "#0a122aff",
+        background: "#e7decdff",
+        backdrop: "rgba(10,18,42,0.6)",
       });
       history.push("/usuarioTech");
     } catch (error) {
       console.log(error);
-      Swal.fire({
-        icon: "error",
+      MySwal.fire({
         title: "Error en la postulación",
+        confirmButtonColor: "#0a122aff",
+        background: "#e7decdff",
+        backdrop: "rgba(10,18,42,0.6)",
       });
     }
   }

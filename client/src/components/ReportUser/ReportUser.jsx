@@ -28,8 +28,11 @@ const ReportUser = ({ workOrderId, userId }) => {
   const history = useHistory();
   const showAlert = async () => {
     await Swal.fire({
-      title: "Estás segur@?",
+      title: "Estás seguro?",
       showCancelButton: true,
+      confirmButtonColor: "#0a122aff",
+      background: "#e7decdff",
+      backdrop: "rgba(10,18,42,0.6)",
     }).then((result) => {
       if (result.isConfirmed) {
         if (workOrderId) {
@@ -39,6 +42,9 @@ const ReportUser = ({ workOrderId, userId }) => {
               console.log("Confirmed");
               Swal.fire({
                 title: "El pedido ha sido reportado",
+                confirmButtonColor: "#0a122aff",
+                background: "#e7decdff",
+                backdrop: "rgba(10,18,42,0.6)",
               });
               history.push("/home");
             })
@@ -46,6 +52,9 @@ const ReportUser = ({ workOrderId, userId }) => {
               console.log(error);
               Swal.fire({
                 title: "No se ha podido reportar",
+                confirmButtonColor: "#0a122aff",
+                background: "#e7decdff",
+                backdrop: "rgba(10,18,42,0.6)",
               });
             });
         } else {
@@ -53,7 +62,10 @@ const ReportUser = ({ workOrderId, userId }) => {
             .put(`${TECH_USERS_URL}/report?_id=${userId}`, config)
             .then((response) => {
               Swal.fire({
-                title: "Usuari@ reportad@",
+                title: "Usuario reportado",
+                confirmButtonColor: "#0a122aff",
+                background: "#e7decdff",
+                backdrop: "rgba(10,18,42,0.6)",
               });
               history.push("/home");
             })
@@ -61,6 +73,9 @@ const ReportUser = ({ workOrderId, userId }) => {
               console.log(error);
               Swal.fire({
                 title: "No se ha podido reportar",
+                confirmButtonColor: "#0a122aff",
+                background: "#e7decdff",
+                backdrop: "rgba(10,18,42,0.6)",
               });
             });
         }
