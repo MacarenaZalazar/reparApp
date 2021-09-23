@@ -3,6 +3,9 @@ import React, { useMemo } from "react";
 import { useSelector } from "react-redux";
 import JobRequestCard from "../JobRequestCard/JobRequestCard";
 import { ADMIN_URL } from "../../utils/constants";
+import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
+const MySwal = withReactContent(Swal);
 
 const BanJobRequest = (props) => {
   const { requestsByUser } = useSelector((state) => state);
@@ -20,18 +23,38 @@ const BanJobRequest = (props) => {
   const handleBan = async (id) => {
     try {
       await axios.put(`${ADMIN_URL}/ban/work`, { ban: true, id }, config);
-      alert("El pedido ha sido baneado");
+      MySwal.fire({
+        title: "El pedido ha sido baneado",
+        confirmButtonColor: "#0a122aff",
+        background: "#e7decdff",
+        backdrop: "rgba(10,18,42,0.6)",
+      });
     } catch (error) {
-      alert("No se ha podido banear el pedido");
+      MySwal.fire({
+        title: "No se ha podido banear el pedido",
+        confirmButtonColor: "#0a122aff",
+        background: "#e7decdff",
+        backdrop: "rgba(10,18,42,0.6)",
+      });
     }
   };
 
   const handleUnbanned = async (id) => {
     try {
       await axios.put(`${ADMIN_URL}/ban/work`, { ban: false, id }, config);
-      alert("El pedido ha sido baneado");
+      MySwal.fire({
+        title: "El pedido ha sido desbaneado",
+        confirmButtonColor: "#0a122aff",
+        background: "#e7decdff",
+        backdrop: "rgba(10,18,42,0.6)",
+      });
     } catch (error) {
-      alert("No se ha podido banear el pedido");
+      MySwal.fire({
+        title: "No se ha podido desbanear el pedido",
+        confirmButtonColor: "#0a122aff",
+        background: "#e7decdff",
+        backdrop: "rgba(10,18,42,0.6)",
+      });
     }
   };
   // console.log(requestsByUser);

@@ -5,8 +5,10 @@ import axios from "axios";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { getJobTypesAll } from "../../redux/actions/jobTypes";
-import Swal from 'sweetalert2';
 import {Button, ContainerDiv, TitleDiv} from './Styles'
+import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
+const MySwal = withReactContent(Swal);
 
 
 const DeleteJobType = () => {
@@ -16,7 +18,12 @@ const DeleteJobType = () => {
   const handleClick = async (e) => {
     try {
       await axios.put(`${ADMIN_URL}/put`, newJob, config);
-      Swal.fire({title: "El tipo de trabajo ha sido eliminado"});
+      MySwal.fire({
+        title: "El tipo de trabajo ha sido eliminado",
+        confirmButtonColor: "#0a122aff",
+        background: "#e7decdff",
+        backdrop: "rgba(10,18,42,0.6)",
+      });
       setFlag(!flag)
       setNewJob("");
     } catch (error) {
