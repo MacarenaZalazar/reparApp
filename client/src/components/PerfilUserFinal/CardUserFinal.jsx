@@ -14,6 +14,7 @@ import {
   CardDiv,
   ItemCard,
   ContentCardDiv,
+  Button,
 } from "./styledCardUserFinal";
 
 function CardUserFinal({
@@ -38,6 +39,36 @@ function CardUserFinal({
   useEffect(() => {
     dispatch(getRequestByUser(user.idUserFinal));
   }, [dispatch]);
+
+  let creadas = 0;
+  requestsByUser.forEach((req) => {
+    if (!req.complete && !req.solicited) {
+      creadas++;
+    }
+  });
+  let atencion = 0;
+  requestsByUser.forEach((req) => {
+    if (!req.complete && req.solicited && !req.acepted) {
+      atencion++;
+    }
+    if (!req.complete && req.solicited && req.completeTech) {
+      atencion++;
+    }
+  });
+
+  let proceso = 0;
+  requestsByUser.forEach((req) => {
+    if (!req.complete && req.acepted && !req.completeTech) {
+      proceso++;
+    }
+  });
+
+  let completas = 0;
+  requestsByUser.forEach((req) => {
+    if (req.complete) {
+      completas++;
+    }
+  });
 
   return (
     <StyledDiv>
@@ -80,17 +111,23 @@ function CardUserFinal({
         </ContentCardDiv>
       </CardDiv>
       <WorksOrdersDiv>
+        <h3>Solicitudes</h3>
         <WorksSolicited>
-          <h5>Solicitudes en proceso</h5>
+          <div className="title">
+            <p>Creadas: {creadas} </p>
+          </div>
+
           {requestsByUser &&
             requestsByUser.map((req) => {
               return (
                 !req.complete &&
                 !req.solicited && (
-                  <div>
-                    <p>{req.title}</p>
+                  <div className="flexBtn">
+                    <p> ~ {req.title} </p>
                     <Link className="link" to={`/solicitedWork/${req._id}`}>
-                      Ver Detalle
+                      <Button>
+                        <p>Ver Detalle</p>
+                      </Button>
                     </Link>
                   </div>
                 )
@@ -98,17 +135,22 @@ function CardUserFinal({
             })}
         </WorksSolicited>
         <WorksAtention>
-          <h5>Solicitudes que requieren atencion</h5>
+          <div className="title">
+            <p>Requieren Atención: {atencion} </p>
+          </div>
+
           {requestsByUser &&
             requestsByUser.map((req) => {
               return (
                 !req.complete &&
                 req.solicited &&
                 !req.acepted && (
-                  <div>
+                  <div className="flexBtn">
                     <p>{req.title}</p>
                     <Link className="link" to={`/solicitedWork/${req._id}`}>
-                      Ver postulación
+                      <Button>
+                        <p>Ver postulación</p>
+                      </Button>
                     </Link>
                   </div>
                 )
@@ -120,10 +162,12 @@ function CardUserFinal({
                 !req.complete &&
                 req.solicited &&
                 req.completeTech && (
-                  <div>
+                  <div className="flexBtn">
                     <p>{req.title}</p>
                     <Link className="link" to={`/solicitedWork/${req._id}`}>
-                      Finalizar
+                      <Button>
+                        <p> Finalizar</p>
+                      </Button>
                     </Link>
                   </div>
                 )
@@ -131,17 +175,26 @@ function CardUserFinal({
             })}
         </WorksAtention>
         <WorksProcess>
-          <h5>Solicitudes en proceso</h5>
+          <div className="title">
+            <p>En proceso: {proceso} </p>
+          </div>
+
           {requestsByUser &&
             requestsByUser.map((req) => {
               return (
                 !req.complete &&
                 req.acepted &&
                 !req.completeTech && (
-                  <div>
+                  <div className="flexBtn">
                     <p>{req.title}</p>
                     <Link className="link" to={`/solicitedWork/${req._id}`}>
-                      Finalizar
+                      <Button>
+                        {req.completeFinal ? (
+                          <p>Recalificar</p>
+                        ) : (
+                          <p>Finalizar</p>
+                        )}
+                      </Button>
                     </Link>
                   </div>
                 )
@@ -149,16 +202,21 @@ function CardUserFinal({
             })}
         </WorksProcess>
         <WorksFinished>
-          <h5>Historial de solicitudes</h5>
+          <div className="title">
+            <p>Finalizadas: {completas} </p>
+          </div>
+
           {requestsByUser &&
             requestsByUser.map((req) => {
               return (
                 req.complete && (
-                  <div>
+                  <div className="flexBtn">
                     <p>{req.title}</p>
 
                     <Link className="link" to={`/solicitedWork/${req._id}`}>
-                      Ver Detalle
+                      <Button>
+                        <p> Ver Detalle</p>
+                      </Button>
                     </Link>
                   </div>
                 )

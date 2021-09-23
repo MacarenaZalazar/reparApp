@@ -18,12 +18,12 @@ import {
   ContentCardDiv,
   ImgDiv,
   ItemCard,
-  
+  WorksOrdersDiv,
+  Button,
 } from "./styledPerfilUserTech";
 import { TiArrowBack, TiEdit, TiStarFullOutline } from "react-icons/ti";
 import { Link } from "react-router-dom";
 import { useHistory } from "react-router-dom";
-import Button from "react-bootstrap/Button";
 
 const PerfilUserTech = () => {
   const history = useHistory();
@@ -49,6 +49,35 @@ const PerfilUserTech = () => {
 
   const user = useSelector((state) => state.technicUserDetail);
   const requestsByUserTech = useSelector((state) => state.requestsByUserTech);
+
+  let solicitados = 0;
+  requestsByUserTech.forEach((req) => {
+    if (req.solicited && !req.acepted) {
+      solicitados++;
+    }
+  });
+
+  let proceso = 0;
+  requestsByUserTech.forEach((req) => {
+    if (req.acepted && !req.completeFinal && !req.complete) {
+      proceso++;
+    }
+  });
+
+  let espera = 0;
+  requestsByUserTech.forEach((req) => {
+    if (req.acepted && req.completeFinal && !req.complete) {
+      espera++;
+    }
+  });
+
+  let finalizada = 0;
+  requestsByUserTech.forEach((req) => {
+    if (req.complete) {
+      finalizada++;
+    }
+  });
+
   return (
     <StyledDiv className="container">
       <ButtonsDiv>
@@ -133,21 +162,26 @@ const PerfilUserTech = () => {
               </ContentCardDiv>
             </CardDiv>
 
-            <div>
+            <WorksOrdersDiv>
+              <h3>Mis Trabajos</h3>
               <WorksSolicited>
-                <h5>Trabajos postulados</h5>
+                <div className="title">
+                  <p>Solicitados: {solicitados} </p>
+                </div>
                 {requestsByUserTech &&
                   requestsByUserTech.map((req, key) => {
                     return (
                       req.solicited &&
                       !req.acepted && (
-                        <div key={key}>
+                        <div key={key} className="flexBtn">
                           <p>{req.title}</p>
                           <Link
                             className="link"
                             to={`/solicitedWorkTech/${req._id}`}
                           >
-                            Ver Detalle
+                            <Button>
+                              <p> Ver Detalle</p>
+                            </Button>
                           </Link>
                         </div>
                       )
@@ -155,19 +189,29 @@ const PerfilUserTech = () => {
                   })}
               </WorksSolicited>
               <WorksProcess>
-                <h5>Trabajos en proceso/aceptado</h5>
+                <div className="title">
+                  <p>En Proceso: {proceso} </p>
+                </div>
+
                 {requestsByUserTech &&
-                  requestsByUserTech.map((req) => {
+                  requestsByUserTech.map((req, key) => {
                     return (
                       req.acepted &&
-                      !req.completeTech && (
-                        <div>
+                      !req.completeFinal &&
+                      !req.complete && (
+                        <div key={key} className="flexBtn">
                           <p>{req.title}</p>
                           <Link
                             className="link"
                             to={`/solicitedWorkTech/${req._id}`}
                           >
-                            Finalizar
+                            <Button>
+                              {req.completeTech ? (
+                                <p>Recalificar</p>
+                              ) : (
+                                <p>Finalizar</p>
+                              )}
+                            </Button>
                           </Link>
                         </div>
                       )
@@ -175,21 +219,25 @@ const PerfilUserTech = () => {
                   })}
               </WorksProcess>
               <WorksAwait>
-                <h5>En espera de finalizacion</h5>
+                <div className="title">
+                  <p>Para Finalizar: {espera} </p>
+                </div>
+
                 {requestsByUserTech &&
                   requestsByUserTech.map((req, key) => {
                     return (
-                      req.solicited &&
                       req.acepted &&
-                      req.completeTech &&
+                      req.completeFinal &&
                       !req.complete && (
-                        <div key={key}>
+                        <div key={key} className="flexBtn">
                           <p>{req.title}</p>
                           <Link
                             className="link"
                             to={`/solicitedWorkTech/${req._id}`}
                           >
-                            Finalizar
+                            <Button>
+                              <p> Finalizar</p>
+                            </Button>
                           </Link>
                         </div>
                       )
@@ -197,25 +245,30 @@ const PerfilUserTech = () => {
                   })}
               </WorksAwait>
               <WorksFinished>
-                <h5>Historial de trabajos</h5>
+                <div className="title">
+                  <p>Finalizadas: {finalizada} </p>
+                </div>
+
                 {requestsByUserTech &&
-                  requestsByUserTech.map((req) => {
+                  requestsByUserTech.map((req, key) => {
                     return (
                       req.complete && (
-                        <div>
+                        <div key={key} className="flexBtn">
                           <p>{req.title}</p>
                           <Link
                             className="link"
                             to={`/solicitedWorkTech/${req._id}`}
                           >
-                            Finalizar
+                            <Button>
+                              <p> Ver detalles</p>
+                            </Button>
                           </Link>
                         </div>
                       )
                     );
                   })}
               </WorksFinished>
-            </div>
+            </WorksOrdersDiv>
           </CardUserTech>
         ) : (
           <p>Cargando...</p>

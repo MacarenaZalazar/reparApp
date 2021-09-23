@@ -2,10 +2,12 @@ import styled from "styled-components";
 
 export const StyledDiv = styled.div`
   width: 100%;
-  height: calc(100vh - 10.75rem);
+  min-height: calc(100vh - 10.9rem);
+  padding: 2rem;
   display: flex;
   justify-content: center;
   align-items: center;
+
   color: #e7decdff;
 `;
 export const ProfileDiv = styled.div``;
@@ -15,6 +17,7 @@ export const CardUserTech = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  gap: 2rem;
 `;
 
 export const CardDiv = styled.div`
@@ -38,10 +41,8 @@ export const ImgDiv = styled.div`
 
 export const ContentCardDiv = styled.div`
   display: flex;
- 
-  gap: 0.8rem;
 
-  .left
+  gap: 0.8rem;
 `;
 
 export const ButtonsDiv = styled.div`
@@ -93,27 +94,91 @@ export const ItemCard = styled.div`
     padding: 0 2rem;
   }
 `;
-export const WorksSolicited = styled.div`
-  background-color: green;
-  .link {
-    background-color: black;
+
+export const WorksOrdersDiv = styled.div`
+  background-color: #0a122aff;
+  padding: 1rem;
+  h3 {
+    font-size: 1.5rem;
+    text-align: center;
+    padding: 0.3rem;
   }
+
+  .title {
+    padding: 0.3rem;
+    background-color: #f06449ff;
+    p {
+      color: #0a122aff;
+    }
+  }
+
+  .flexBtn {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.3rem;
+
+    p {
+      font-size: 1.1rem;
+    }
+  }
+
+  .link {
+    padding: 0.5rem;
+  }
+
+  .work {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+
+    p {
+      transition: 1s ease;
+      color: #0a122aff;
+      opacity: 100;
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
+    .icon {
+      transition: 1s ease;
+      color: #0a122aff;
+      background-color: #f06449ff;
+      font-size: 5rem;
+      border-radius: 50%;
+      padding: 1.5rem;
+    }
+  }
+`;
+export const WorksSolicited = styled.div`
+  background-color: #0a122aff;
 `;
 export const WorksFinished = styled.div`
   background-color: red;
-  .link {
-    background-color: black;
-  }
+  background-color: #0a122aff;
 `;
 export const WorksAwait = styled.div`
-  background-color: yellow;
-  .link {
-    background-color: black;
-  }
+  background-color: #0a122aff;
 `;
 export const WorksProcess = styled.div`
-  background-color: pink;
-  .link {
-    background-color: black;
+  background-color: #0a122aff;
+`;
+
+export const Button = styled.div`
+  border-radius: 1rem;
+  padding: 0.5rem 1rem;
+  transition: 0.5s ease;
+  background-color: #e7decdff;
+  p {
+    font-weight: bold;
+    color: #0a122aff;
+    font-size: 1.2rem;
+    width: 100%;
+  }
+
+  :hover {
+    transform: scale(1.1);
+    cursor: pointer;
+    background-color: #f06449;
   }
 `;
