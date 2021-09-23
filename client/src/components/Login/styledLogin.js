@@ -2,18 +2,23 @@ import styled from "styled-components";
 
 export const StyledDiv = styled.div`
   width: 100%;
-  height: calc(100vh - 4.4rem);
-  padding-top: 6.5rem;
+  min-height: calc(100vh - 4.4rem);
+  padding-top: 10rem;
 
   display: flex;
-
   justify-content: center;
   align-items: center;
   gap: 2rem;
+
+  @media screen and (max-width: 768px) {
+    flex-direction: column;
+    padding-bottom: 3rem;
+  }
 `;
 
 export const LoginDiv = styled.div`
   width: 100%;
+  height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -103,7 +108,6 @@ export const ButtonDiv = styled.div`
 
 export const LinksDiv = styled.div`
   width: 15.5rem;
-
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -111,12 +115,17 @@ export const LinksDiv = styled.div`
   gap: 3rem;
 
   .link {
+    width: 20rem;
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
+
     &:hover {
       .icon {
         transform: translateX(-2rem);
+        @media screen and (max-width: 768px) {
+          transform: translateY(-2rem);
+        }
       }
       p {
         opacity: 100;
@@ -124,22 +133,32 @@ export const LinksDiv = styled.div`
     }
 
     p {
+      width: 10rem;
       transition: 1s ease;
       color: #0a122aff;
       opacity: 0;
       font-size: 1.5rem;
     }
+
     .icon {
       transition: 1s ease;
-      bottom: 0;
-      left: 0;
       color: #0a122aff;
       background-color: #f06449ff;
       font-size: 5rem;
       border-radius: 50%;
       padding: 1rem;
       transform: translateX(+2rem);
+      @media screen and (max-width: 768px) {
+        transform: translateX(0);
+      }
     }
+    @media screen and (max-width: 768px) {
+      flex-direction: column;
+    }
+  }
+
+  @media screen and (max-width: 768px) {
+    flex-direction: row;
   }
 `;
 
@@ -170,5 +189,8 @@ export const GoogleDiv = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
+  }
+  @media screen and (max-width: 768px) {
+    padding-top: 3rem;
   }
 `;
