@@ -6,6 +6,8 @@ import { useHistory } from "react-router-dom";
 import { getCities, getStates } from "../../../redux/actions/techUsers/index";
 import { useDispatch, useSelector } from "react-redux";
 import { FINAL_USER_URL } from "../../../utils/constants";
+import withReactContent from "sweetalert2-react-content";
+const MySwal = withReactContent(Swal);
 
 const FormFinalUser = () => {
   const history = useHistory();
@@ -129,8 +131,12 @@ const FormFinalUser = () => {
         console.log(error);
       }
     } else {
-      console.log(input);
-      alert("Se encontraron errores");
+      MySwal.fire({
+        title: "Se encontraron errores",
+        confirmButtonColor: "#0a122aff",
+        background: "#e7decdff",
+        backdrop: "rgba(10,18,42,0.6)",
+      });
     }
   };
 

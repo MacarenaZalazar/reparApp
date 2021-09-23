@@ -6,21 +6,20 @@ import React, { useState } from "react";
 import { StyledDiv, Form, Input, Button } from "./stylesContactUs";
 import axios from "axios";
 import { CONTACT_URL } from "../../utils/constants";
+import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
+const MySwal = withReactContent(Swal);
 
 const ContactUs = () => {
   // const { instagram, facebook, linkedin, github } = socialMedia;
   const [input, setInput] = useState({
     mail: "",
-    user: "",
     description: "",
     errors: {},
   });
 
   function validate(values) {
     let errors = {};
-    if (!values.user) {
-      errors.user = "Campo obligatorio";
-    }
     if (!values.mail) {
       errors.mail = "Campo obligatorio";
     }
@@ -52,12 +51,22 @@ const ContactUs = () => {
     if (!Object.keys(result).length) {
       try {
         await axios.post(CONTACT_URL, input);
-        alert("Su mensaje ha sido enviado");
+        MySwal.fire({
+          title: "Su mensaje ha sido enviado!",
+          confirmButtonColor: "#0a122aff",
+          background: "#e7decdff",
+          backdrop: "rgba(10,18,42,0.6)",
+        });
       } catch (error) {
         console.log(error);
       }
     } else {
-      alert("Hay errores");
+      MySwal.fire({
+        title: "Datos Incompletos",
+        confirmButtonColor: "#0a122aff",
+        background: "#e7decdff",
+        backdrop: "rgba(10,18,42,0.6)",
+      });
     }
   };
 

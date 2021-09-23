@@ -7,6 +7,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { getJobTypesAll } from "../../redux/actions/jobTypes";
 import { getCities, getStates } from "../../redux/actions/techUsers/index";
 import { REQUEST_URL } from "../../utils/constants";
+import withReactContent from "sweetalert2-react-content";
+const MySwal = withReactContent(Swal);
 
 const FormWorkOrder = () => {
   const userString = window.sessionStorage.getItem("user");
@@ -127,7 +129,12 @@ const FormWorkOrder = () => {
         console.log(error);
       }
     } else {
-      alert("Se encontraron errores");
+      MySwal.fire({
+        title: "Se encontraron errores",
+        confirmButtonColor: "#0a122aff",
+        background: "#e7decdff",
+        backdrop: "rgba(10,18,42,0.6)",
+      });
     }
   };
 
