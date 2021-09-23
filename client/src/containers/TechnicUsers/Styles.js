@@ -2,9 +2,9 @@ import styled from "styled-components";
 
 export const StyledDiv = styled.div`
   width: 100%;
-
   padding: 0.5rem 0;
   .title {
+    
     p {
       text-align: center;
       background-color: #f06449ff;

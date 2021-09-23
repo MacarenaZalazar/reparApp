@@ -13,7 +13,7 @@ const PromotedUsers = () => {
           <div className="title">
             <p>Usuarios Promocionados</p>
           </div>
-          <Carousel className="carousel" itemsToShow={1} outerSpacing={50} enableAutoPlay autoPlaySpeed={3000}>
+          <Carousel className="carousel" itemsToShow={1} outerSpacing={50} enableAutoPlay autoPlaySpeed={3000} itemPadding={[0,50]}>
             {promoted &&
               promoted.map((t, idx) => {
                 return (

@@ -10,6 +10,7 @@ export const StyledDiv = styled.div`
   gap: 2rem;
   padding: 0.7rem 5rem;
   color: #e7decdff;
+  border-radius: 1.5rem;
 `;
 
 export const ImgDiv = styled.div`
