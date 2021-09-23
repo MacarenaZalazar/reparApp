@@ -9,7 +9,7 @@ const techUserModifier = async (req, res, next) => {
   try {
     await session.withTransaction(async () => {
 
-      const {user} = await UsersT.findByIdAndUpdate(id, { workZones, jobTypes, price});
+      const {user} = await UsersT.findByIdAndUpdate(id, { workZones, jobTypes, price: "$ " + price});
       await User.findByIdAndUpdate(user, {
         name,
         lastName,

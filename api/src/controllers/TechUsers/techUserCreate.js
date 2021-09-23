@@ -17,7 +17,7 @@ const techUserCreate = async (req, res, next) => {
         workZones,
         jobTypes,
         qualification,
-        price,
+        price: "$ " + price
       });
       const token = jwt.sign({ id: newUser._id }, SECRET, {
         expiresIn: 86400, // 24 hours
