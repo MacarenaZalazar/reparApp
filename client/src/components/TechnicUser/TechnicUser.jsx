@@ -2,6 +2,8 @@ import React from "react";
 import { StyledDiv, ImgDiv, ContentDiv, ItemCard, Button } from "./Styles";
 import { AiFillStar } from "react-icons/ai";
 import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { getTechUsersById } from "../../redux/actions/techUsers";
 
 export default function TechnicUser({
   id,
@@ -13,6 +15,16 @@ export default function TechnicUser({
   workZones,
   jobTypes,
 }) {
+  const dispatch = useDispatch();
+  const userString = window.sessionStorage.getItem("user");
+  const useR = JSON.parse(userString);
+
+  let config = {
+    headers: {
+      "x-access-token": useR && useR.token,
+    },
+  };
+
   return (
     <StyledDiv>
       <ImgDiv>
@@ -64,8 +76,10 @@ export default function TechnicUser({
               })}
           </div>
         </ItemCard>
-        <Link to={`/technicUserDetails/${id}`}>
-          <Button>Ver perfil</Button>
+        <Link to={`/technicUserDetails`}>
+          <Button onClick={() => dispatch(getTechUsersById(id, config))}>
+            Ver perfil
+          </Button>
         </Link>
       </ContentDiv>
     </StyledDiv>

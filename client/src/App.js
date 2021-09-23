@@ -76,7 +76,7 @@ function App() {
           allow="userFinal"
         />
 
-        <Route exact path="/workOrders/:id" component={BanJobRequest} />
+        <Route exact path="/workOrders" component={BanJobRequest} />
 
         <Route exact path="/modificarPerfilC" component={ModifyUserFinal} />
 
@@ -84,15 +84,11 @@ function App() {
 
         <Route exact path="/home" component={Home} />
 
-        <Route
-          exact
-          path="/finalUserDetails/:id"
-          component={FinalUserDetails}
-        />
+        <Route exact path="/finalUserDetails" component={FinalUserDetails} />
 
         <Route
           exact
-          path="/technicUserDetails/:Id"
+          path="/technicUserDetails"
           component={TechnicUserDetails}
         />
 
@@ -117,7 +113,6 @@ function App() {
           component={Checkout}
           allow="userTech"
         />
-
         <PrivateRoute
           exact
           path="/pago"

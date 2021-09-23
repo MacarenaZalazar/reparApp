@@ -1,37 +1,24 @@
-import React, {useMemo} from "react";
-import { useEffect } from "react";
-import { getFinalUsersById } from "../../redux/actions/finalUser/index";
-import { useDispatch, useSelector } from "react-redux";
+import React from "react";
 
-function FinalUserDetails(props) {
-  const dispatch = useDispatch();
-  const finalUserID = props.match.params.id;
-  const userString = window.sessionStorage.getItem("user");
-  const user = JSON.parse(userString);
-  let config = useMemo(()=>{
-    return {
-      headers: {
-        "x-access-token": user && user.token,
-      },
-    };
-  }, [user]) 
+import { useSelector } from "react-redux";
 
-  useEffect(() => {
-    dispatch(getFinalUsersById(finalUserID));
-  }, [dispatch]);
-
+function FinalUserDetails() {
   const FinalUser = useSelector((state) => state.finalUserDetail);
 
   return (
     <div>
-      <h1>{FinalUser.user.userName}</h1>
-      <h2>{FinalUser.user.lastName}</h2>
-      <h4>{FinalUser.user.name}</h4>
-      <img src={FinalUser.user.image} alt="imagen_no_encontrada" />
-      <p>{FinalUser.zone}</p>
-      <h4>{FinalUser.score}</h4>
-      <p>{FinalUser.user.phone}</p>
-      <p>{FinalUser.user.mail}</p>
+      {FinalUser && FinalUser.user && FinalUser.user.userName && (
+        <div>
+          <h1>{FinalUser.user.userName}</h1>
+          <h2>{FinalUser.user.lastName}</h2>
+          <h4>{FinalUser.user.name}</h4>
+          <img src={FinalUser.user.image} alt="imagen_no_encontrada" />
+          <p>{FinalUser.zone}</p>
+          <h4>{FinalUser.score}</h4>
+          <p>{FinalUser.user.phone}</p>
+          <p>{FinalUser.user.mail}</p>
+        </div>
+      )}
     </div>
   );
 }

@@ -1,14 +1,10 @@
 import axios from "axios";
-import React, { useEffect, useMemo } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React, { useMemo } from "react";
+import { useSelector } from "react-redux";
 import JobRequestCard from "../JobRequestCard/JobRequestCard";
 import { ADMIN_URL } from "../../utils/constants";
-import { getRequestByUser } from "../../redux/actions/request/index";
-import Swal  from 'sweetalert2';
 
 const BanJobRequest = (props) => {
-  const userID = props.match.params.id;
-  const dispatch = useDispatch();
   const { requestsByUser } = useSelector((state) => state);
   const userString = window.sessionStorage.getItem("user");
   const useR = JSON.parse(userString);
@@ -21,27 +17,24 @@ const BanJobRequest = (props) => {
     };
   }, [useR]);
 
-  useEffect(() => {
-    dispatch(getRequestByUser(userID, config));
-  }, [dispatch]);
-
   const handleBan = async (id) => {
     try {
       await axios.put(`${ADMIN_URL}/ban/work`, { ban: true, id }, config);
-      Swal.fire( {title: "El pedido ha sido baneado"});
+      alert("El pedido ha sido baneado");
     } catch (error) {
-      Swal.fire({title: "No se ha podido banear el pedido"});
+      alert("No se ha podido banear el pedido");
     }
   };
 
   const handleUnbanned = async (id) => {
     try {
       await axios.put(`${ADMIN_URL}/ban/work`, { ban: false, id }, config);
-      Swal.fire({title: "El pedido ha sido baneado"} );
+      alert("El pedido ha sido baneado");
     } catch (error) {
-      Swal.fire({title:"No se ha podido banear el pedido"});
+      alert("No se ha podido banear el pedido");
     }
   };
+  // console.log(requestsByUser);
   return (
     <div>
       {requestsByUser.length > 0 &&
