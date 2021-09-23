@@ -63,35 +63,37 @@ const ContactUs = () => {
 
   return (
     <StyledDiv>
-      <form id="formContact" onSubmit={handleSubmit}>
-        <Form>
-          <div className="title">
-            <h4>Envianos un mensaje</h4>
-          </div>
-          <Input error={input.errors.mail}>
-            <label>* Email:</label>
-            <input
-              type="email"
-              name="mail"
-              autoComplete="off"
-              value={input.mail}
-              onChange={handleInputChange}
-            />
-          </Input>
-          <Input error={input.errors.mail}>
-            <label>* Mensaje:</label>
-            <textarea
-              name="description"
-              autoComplete="off"
-              value={input.description}
-              onChange={handleInputChange}
-            />
-          </Input>
-          <Button type="submit">
-            <p>Enviar</p>
-          </Button>
-        </Form>
-      </form>
+      <div className="container">
+        <form id="formContact" onSubmit={handleSubmit}>
+          <Form>
+            <div className="title">
+              <h4>¡Envianos un mensaje!</h4>
+            </div>
+            <Input error={input.errors.mail}>
+              <label>* Email:</label>
+              <input
+                type="email"
+                name="mail"
+                autoComplete="off"
+                value={input.mail}
+                onChange={handleInputChange}
+              />
+            </Input>
+            <Input error={input.errors.mail}>
+              <label>* Mensaje:</label>
+              <textarea
+                name="description"
+                autoComplete="off"
+                value={input.description}
+                onChange={handleInputChange}
+              />
+            </Input>
+            <Button type="submit">
+              <p>Enviar</p>
+            </Button>
+          </Form>
+        </form>
+      </div>
     </StyledDiv>
   );
 };

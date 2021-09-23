@@ -2,12 +2,15 @@ import styled from "styled-components";
 
 export const StyledDiv = styled.div`
   width: 100%;
-  min-height: calc(100vh - 10.75rem);
+  min-height: calc(100vh - 4.4rem);
 
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 1.2rem;
+  @media screen and (max-width: 768px) {
+    padding: 0rem 2rem;
+  }
 `;
 
 export const Form = styled.div`
@@ -48,6 +51,10 @@ export const Input = styled.div`
   justify-content: center;
   gap: 1rem;
 
+  @media screen and (max-width: 768px) {
+    flex-direction: column;
+  }
+
   input,
   textarea {
     color: #e7decdff;
@@ -67,6 +74,14 @@ export const Input = styled.div`
   label {
     width: 7rem;
     text-align: end;
+    font-size: 1.2rem;
+
+    @media screen and (max-width: 768px) {
+      background-color: #f06449ff;
+      color: #0a122aff;
+      width: 100%;
+      text-align: center;
+    }
   }
 `;
 
