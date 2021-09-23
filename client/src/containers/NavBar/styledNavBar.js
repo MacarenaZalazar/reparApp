@@ -1,9 +1,9 @@
 import styled from "styled-components";
 
 export const StyledDiv = styled.div`
-  position: fixed;
-  z-index: 99;
   width: 100%;
+  position: sticky;
+  z-index: 99;
   height: 6.5rem;
   background-color: #0a122a;
 
@@ -25,11 +25,10 @@ export const NavBarDiv = styled.div`
   transition: 0.8s ease;
 
   @media screen and (max-width: 768px) {
-    width: 100%;
     height: 100vh;
     position: absolute;
     top: 5rem;
-    left: ${({ click }) => (click ? 0 : "-100%")};
+    left: ${({ click }) => (click ? 0 : "-200%")};
     flex-direction: column;
     justify-content: center;
     align-items: center;

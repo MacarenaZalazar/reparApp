@@ -9,30 +9,28 @@ const Footer = () => {
 
   return (
     <StyledDiv>
-      <div className="container">
-        <FooterDiv>
-          <LinksDiv>
-            <Link className="link" to="/contacto">
-              Contacto
-            </Link>
-            <Link className="link" to="/about">
-              Sobre Nosotrxs
-            </Link>
-            <Link className="link" to="/faq">
-              FAQ
-            </Link>
-          </LinksDiv>
-          <SocialDiv>
-            <SocialLinks
-              instagram={instagram}
-              facebook={facebook}
-              linkedin={linkedin}
-              github={github}
-            />
-          </SocialDiv>
-          <p> @2021 All Rights Reserved</p>
-        </FooterDiv>
-      </div>
+      <FooterDiv>
+        <LinksDiv>
+          <Link className="link" to="/contacto">
+            Contacto
+          </Link>
+          <Link className="link" to="/about">
+            Sobre Nosotrxs
+          </Link>
+          <Link className="link" to="/faq">
+            FAQ
+          </Link>
+        </LinksDiv>
+        <SocialDiv>
+          <SocialLinks
+            instagram={instagram}
+            facebook={facebook}
+            linkedin={linkedin}
+            github={github}
+          />
+        </SocialDiv>
+        <p> @2021 All Rights Reserved</p>
+      </FooterDiv>
     </StyledDiv>
   );
 };

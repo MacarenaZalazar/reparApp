@@ -4,9 +4,9 @@ import FormFinalUser from "../../components/FormUsers/FormFinalUser/FormFinalUse
 const SigninFinal = () => {
   return (
     <StyledDiv>
-      <SigninDiv>
+      <div className="container">
         <FormFinalUser />
-      </SigninDiv>
+      </div>
     </StyledDiv>
   );
 };
