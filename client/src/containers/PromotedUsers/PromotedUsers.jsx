@@ -9,6 +9,9 @@ const PromotedUsers = () => {
   console.log(promoted);
   return (
     <StyledDiv>
+      <div className="title">
+        <p>Usuarios Promocionados</p>
+      </div>
       {promoted.length > 0 ? (
         <>
           <Carousel className="carousel" itemsToShow={1} outerSpacing={50}>
