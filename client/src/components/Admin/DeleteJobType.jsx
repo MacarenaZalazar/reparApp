@@ -1,12 +1,12 @@
 import React, { useState, useMemo } from "react";
 import { useSelector } from "react-redux";
-import Button from "react-bootstrap/Button";
 import { ADMIN_URL } from "../../utils/constants";
 import axios from "axios";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { getJobTypesAll } from "../../redux/actions/jobTypes";
 import Swal from 'sweetalert2';
+import {Button, ContainerDiv} from './Styles'
 
 const DeleteJobType = () => {
   const [newJob, setNewJob] = useState("");
@@ -46,7 +46,9 @@ const DeleteJobType = () => {
 
   return (
     <div>
-      <div>
+      <ContainerDiv>
+        <p>Eliminar tipo de trabajo</p>
+        <div className='littleContainer'>
         {jobTypes && (
           <select onChange={handleChange} name="jobtypes">
             <option value="">Seleccioná para eliminar</option>
@@ -59,8 +61,11 @@ const DeleteJobType = () => {
             })}
           </select>
         )}
-        <Button onClick={(e) => handleClick(e)}>Eliminar</Button>
-      </div>
+        <Button onClick={(e) => handleClick(e)}>
+          <p>Eliminar</p>
+          </Button>
+        </div>
+      </ContainerDiv>
     </div>
   );
 };
