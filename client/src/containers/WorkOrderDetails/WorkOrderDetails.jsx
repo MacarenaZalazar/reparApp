@@ -2,22 +2,10 @@ import React, { useState, useMemo } from "react";
 import axios from "axios";
 import { useSelector, useDispatch } from "react-redux";
 import { REQUEST_URL } from "../../utils/constants";
-
 import { Link } from "react-router-dom";
-import {
-  StyledDiv,
-  WorkOrderDiv,
-  UserTechDiv,
-  ReportedDiv,
-  ImgWork,
-  ItemWork,
-  ItemUserTech,
-  Button,
-  Login,
-} from "./styledWorkOrderDetails";
+import {  StyledDiv,  WorkOrderDiv, UserTechDiv,  ReportedDiv, ImgWork, ItemWork, ItemUserTech, Button, Login } from "./styledWorkOrderDetails";
 import ReportUser from "../../components/ReportUser/ReportUser";
 import { useHistory } from "react-router-dom";
-
 import { GoReport } from "react-icons/go";
 import { HiUserAdd } from "react-icons/hi";
 import Swal from "sweetalert2";

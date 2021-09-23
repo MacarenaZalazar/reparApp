@@ -1,25 +1,51 @@
-import React from "react";
+import React, {useState, useMemo} from "react";
 import { useSelector } from "react-redux";
-
-import { StyledDiv } from "./Styled";
+import { StyledDiv, ReportedDiv , ImgTech, Button, UserTechDiv, UserInfoDiv, ItemInfo, ItemTech } from "./Styled";
 import { useHistory } from "react-router-dom";
-import Button from "react-bootstrap/Button";
 import ReportUser from "../ReportUser/ReportUser";
+import { GoReport } from "react-icons/go";
 
 export default function TechnicUserDetails() {
   const history = useHistory();
   const userString = window.sessionStorage.getItem("user");
   const user = JSON.parse(userString);
+  let config = useMemo(() => {
+    return {
+      headers: {
+        "x-access-token": user && user.token,
+      },
+    };
+  }, [user]);
+
+  const [flagReported, setFlagReported] = useState(false);
+  const [flagLogin, setFlagLogin] = useState(false);
+  const changeFlagReported = () => {
+    setFlagReported(!flagReported);
+  };
+  const changeFlagLogin = () => {
+    setFlagLogin(!flagLogin);
+  };
 
   const TechnicUserDetail = useSelector((state) => state.technicUserDetail);
 
   function handleClick() {
     history.push("/login");
   }
-  console.log(TechnicUserDetail);
+
   return (
     <StyledDiv className="container">
-      <div className="detContainer">
+       {user && user.roles[0].name === 'userFinal' && (
+         <ReportedDiv flag={flagReported}>
+        <div className='content' onClick={changeFlagReported}>
+          <GoReport className="icon" />
+          <p>Reportar</p>
+        </div>
+        <div className='reported'>
+          <ReportUser userId={TechnicUserDetail.user._id} />
+        </div>
+          </ReportedDiv>
+         )} 
+  
         {TechnicUserDetail &&
         TechnicUserDetail.user &&
         TechnicUserDetail.user.userName ? (
@@ -28,48 +54,80 @@ export default function TechnicUserDetails() {
             TechnicUserDetail.user &&
             TechnicUserDetail.user.userName ? (
               <>
-                <div>
-                  <h1>Usuario: {TechnicUserDetail.user.userName}</h1>
+                  <UserTechDiv>
+                <ImgTech>
                   <img src={TechnicUserDetail.user.image} alt="" />
-                  <h4>Puntaje: {TechnicUserDetail.score}</h4>
-
-                  <p>Zonas de trabajo:</p>
-                  <ul>
-                    {TechnicUserDetail.workZones &&
-                      TechnicUserDetail.workZones.map((zone, idx) => {
-                        return <li key={idx}>{zone}</li>;
+                </ImgTech>
+                <div className='items'>
+                 <ItemTech>
+                  <p>Usuario</p>
+                  <h4>{TechnicUserDetail.user.userName}</h4>
+                  {TechnicUserDetail.score && 
+                  <>
+                  <p>Puntaje</p>
+                  <h4>{TechnicUserDetail.score}</h4>
+                  </>
+                  }
+                  </ItemTech>
+                    <ItemTech>
+                    {TechnicUserDetail.workZones && <>
+                    <p>Zonas de trabajo</p>
+                    {TechnicUserDetail.workZones.map((zone, idx) => {
+                        return <h4 key={idx}>{zone}</h4>;
+                  
                       })}
-                  </ul>
-                  <p>Especializado en:</p>
+                      </>
+                      }
+                  </ItemTech>
+                  <ItemTech>
+                  <p>Especialidades</p>
                   <ul>
                     {TechnicUserDetail.jobTypes &&
                       TechnicUserDetail.jobTypes.map((zone, idx) => {
-                        return <li key={idx}>{zone}</li>;
+                        return <h4 key={idx}>{zone}</h4>;
                       })}
                   </ul>
+                      </ItemTech>
                 </div>
+                </UserTechDiv>
 
                 {user ? (
-                  <div>
-                    <h2>Apellido: {TechnicUserDetail.user.lastName}</h2>
-                    <h4>Nombre: {TechnicUserDetail.user.name}</h4>
-                    <p>Telefono: {TechnicUserDetail.user.phone}</p>
-                    <p>Mail: {TechnicUserDetail.user.mail}</p>
-                    <Button>Reportar</Button>
-                    <ReportUser userId={TechnicUserDetail.user._id} />
+                  <UserInfoDiv>
+                    <div className='items'>
+                    <ItemInfo>
+                    <p>Apellido</p> 
+                    <h4>{TechnicUserDetail.user.lastName}</h4>
+                    </ItemInfo>
+                    <ItemInfo>
+                    <p>Nombre</p>
+                    <h4>{TechnicUserDetail.user.name}</h4>
+                    </ItemInfo>
+                    <ItemInfo>
+                    <p>Telefono</p>
+                      <h4>{TechnicUserDetail.user.phone}</h4>
+                    </ItemInfo>
+                    <ItemInfo>
+                    <p>Mail</p>
+                    <h4>{TechnicUserDetail.user.mail}</h4>
+                    </ItemInfo>
+           
                   </div>
+                  </UserInfoDiv>
                 ) : (
-                  <span onClick={handleClick}>
+                  <Button onClick={handleClick}>
                     Inicia sesión para ver mas info
-                  </span>
+                  </Button>
                 )}
+                
               </>
             ) : null}{" "}
           </>
         ) : (
-          <span>Cargando...</span>
+          <p>Cargando...</p>
         )}
-      </div>
+            
+ 
+ 
     </StyledDiv>
   );
 }
