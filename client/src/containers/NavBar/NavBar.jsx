@@ -5,6 +5,7 @@ import {
   NavBarDiv,
   ButtonsDiv,
   Button,
+  IconMenu,
 } from "./styledNavBar";
 import Logo from "../../utils/logo.png";
 import { Link } from "react-router-dom";
@@ -14,15 +15,21 @@ import { useDispatch } from "react-redux";
 import Swal from "sweetalert2";
 // import DropdownMenu from "../../components/Dropdown/DropdownMenu";
 import { RiMapPinUserFill } from "react-icons/ri";
+import { HiMenu } from "react-icons/hi";
 import { restoreState } from "../../redux/actions/allUsers/index";
+import { useState } from "react";
 
 const NavBar = () => {
+  const dispatch = useDispatch();
   const history = useHistory();
   const userString = window.sessionStorage.getItem("user");
   const user = JSON.parse(userString);
 
-  const dispatch = useDispatch();
+  const [clickRes, setClickRes] = useState(true);
 
+  const handleClick = () => {
+    setClickRes(!clickRes);
+  };
   const showAlert = async (e) => {
     e.preventDefault();
 
@@ -71,82 +78,112 @@ const NavBar = () => {
   };
 
   return (
-    <StyledDiv data-aos="fade-down">
-      <NavBarDiv className="container">
-        {user && user.roles[0].name === "admin" ? (
-          <Link to="/admin">
-            <LogoDiv>
-              <img src={Logo} alt="logo" />
-            </LogoDiv>
-          </Link>
-        ) : (
-          <Link to="/" onClick={() => dispatch(restoreState())}>
-            <LogoDiv>
-              <img src={Logo} alt="logo" />
-            </LogoDiv>
-          </Link>
-        )}
-        <UserName>
-          {user && user.userName && (
-            <div>
-              {user.roles[0].name === "userFinal" ? (
-                <Link to="/usuarioFinal" className="link">
-                  <div className="flex">
-                    <RiMapPinUserFill />
-                    <p> Hola, {user.userName} </p>
-                  </div>
-                </Link>
-              ) : user.roles[0].name === "userTech" ? (
-                <Link to="/usuarioTech" className="link">
-                  <div className="flex">
-                    <RiMapPinUserFill />
-                    <p> Hola, {user.userName} </p>
-                  </div>
-                </Link>
-              ) : (
-                <Link to="/admin">
-                  <div className="flex link">
-                    <RiMapPinUserFill />
-                    <p> Hola, {user.userName} </p>
-                  </div>
+    <StyledDiv>
+      <div className="container">
+        <IconMenu onClick={() => handleClick()}>
+          <HiMenu size={"5em"} />
+        </IconMenu>
+        <NavBarDiv click={clickRes}>
+          {user && user.roles[0].name === "admin" ? (
+            <Link to="/admin">
+              <LogoDiv>
+                <img src={Logo} alt="logo" />
+              </LogoDiv>
+            </Link>
+          ) : (
+            <Link
+              to="/"
+              onClick={() => {
+                dispatch(restoreState());
+                handleClick();
+              }}
+            >
+              <LogoDiv>
+                <img src={Logo} alt="logo" />
+              </LogoDiv>
+            </Link>
+          )}
+
+          <UserName>
+            {user && user.userName && (
+              <div>
+                {user.roles[0].name === "userFinal" ? (
+                  <Link to="/usuarioFinal" className="link">
+                    <div className="flex">
+                      <RiMapPinUserFill />
+                      <p> Hola, {user.userName} </p>
+                    </div>
+                  </Link>
+                ) : user.roles[0].name === "userTech" ? (
+                  <Link to="/usuarioTech" className="link">
+                    <div className="flex">
+                      <RiMapPinUserFill />
+                      <p> Hola, {user.userName} </p>
+                    </div>
+                  </Link>
+                ) : (
+                  <Link to="/admin">
+                    <div className="flex link">
+                      <RiMapPinUserFill />
+                      <p> Hola, {user.userName} </p>
+                    </div>
+                  </Link>
+                )}
+              </div>
+            )}
+          </UserName>
+
+          <ButtonsDiv>
+            {user &&
+              user.hasOwnProperty("roles") &&
+              user.roles[0].name === "userFinal" && (
+                <Link to="/newWorkOrder" onClick={() => handleClick()}>
+                  <Button>
+                    <p>Nueva Solicitud</p>
+                  </Button>
                 </Link>
               )}
-            </div>
-          )}
-        </UserName>
 
-        <ButtonsDiv>
-          {user &&
-            user.hasOwnProperty("roles") &&
-            user.roles[0].name === "userFinal" && (
-              <Link to="/newWorkOrder">
+            {!user && (
+              <Button
+                onClick={(e) => {
+                  showAlert(e);
+                  handleClick();
+                }}
+              >
+                <p>Registrarse</p>
+              </Button>
+            )}
+            {!user && (
+              <Link
+                className="linkLogin"
+                to="/login"
+                onClick={() => handleClick()}
+              >
                 <Button>
-                  <p>Nueva Solicitud</p>
+                  <p>Ingresar</p>
                 </Button>
               </Link>
             )}
-
-          {!user && (
-            <Button onClick={showAlert}>
-              <p>Registrarse</p>
-            </Button>
-          )}
-          {!user && (
-            <Link className="linkLogin" to="/login">
-              <Button>
-                <p>Ingresar</p>
-              </Button>
-            </Link>
-          )}
-          {user && (
-            <Link className="linkLogin" to="/login">
-              <Button onClick={logoutAlert}>
-                <p>Cerrar Sesión</p>
-              </Button>
-            </Link>
-          )}
-        </ButtonsDiv>
-      </NavBarDiv>
+            {user && (
+              <Link
+                className="linkLogin"
+                to="/login"
+                onClick={() => handleClick()}
+              >
+                <Button
+                  onClick={() => {
+                    logoutAlert();
+                    handleClick();
+                  }}
+                >
+                  <p>Cerrar Sesión</p>
+                </Button>
+              </Link>
+            )}
+          </ButtonsDiv>
+        </NavBarDiv>
+      </div>
     </StyledDiv>
   );
 };
