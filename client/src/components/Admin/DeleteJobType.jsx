@@ -6,7 +6,8 @@ import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { getJobTypesAll } from "../../redux/actions/jobTypes";
 import Swal from 'sweetalert2';
-import {Button, ContainerDiv} from './Styles'
+import {Button, ContainerDiv, TitleDiv} from './Styles'
+
 
 const DeleteJobType = () => {
   const [newJob, setNewJob] = useState("");
@@ -47,7 +48,9 @@ const DeleteJobType = () => {
   return (
     <div>
       <ContainerDiv>
-        <p>Eliminar tipo de trabajo</p>
+        <TitleDiv>
+          <h4>Eliminar tipo de trabajo</h4>
+        </TitleDiv>
         <div className='littleContainer'>
         {jobTypes && (
           <select onChange={handleChange} name="jobtypes">

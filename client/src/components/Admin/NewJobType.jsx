@@ -1,5 +1,5 @@
 import React, { useState, useMemo } from "react";
-import {Button, ContainerDiv} from './Styles'
+import {Button, ContainerDiv, TitleDiv} from './Styles'
 import axios from "axios";
 import { ADMIN_URL } from "../../utils/constants";
 import { useEffect } from "react";
@@ -53,7 +53,9 @@ function NewJobType() {
   return (
     <>
       <ContainerDiv>
-        <p>Agregar nuevo trabajo</p>
+        <TitleDiv>
+            <h4>Crear nuevo tipo de trabajo</h4>
+        </TitleDiv>
         <div className='littleContainer'>
           <input
             type="text"
