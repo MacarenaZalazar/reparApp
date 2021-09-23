@@ -63,12 +63,16 @@ export const Input = styled.div`
     text-align: center;
     font-family: "Montserrat", sans-serif;
     color: ${({ error }) => (error ? "rgb(248, 248, 248)" : "#e7decdff")};
-    width: 40rem;
+    min-width: 40rem;
     outline: 0;
     border: 0;
     border-bottom: 1px solid #e7decdff;
     border-bottom: ${({ error }) =>
       error ? " 1px solid #f06449ff" : "1px solid #e7decdff"};
+      @media screen and (max-width: 768px) {
+        max-width: 100%;
+        min-width: 20rem;
+      }
   }
 
   label {

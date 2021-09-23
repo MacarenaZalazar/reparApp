@@ -12,7 +12,7 @@ const AboutUs = () => {
       <h4>Conocé nuestro equipo!</h4>
       <div className='cardsContainer'>
         {infoAbout.map((e, idx) => {
-          return<CardsAbout 
+          return<CardsAbout key={idx}
           name={e.name} 
           img={e.img} 
           gitHub={e.gitHub} 
