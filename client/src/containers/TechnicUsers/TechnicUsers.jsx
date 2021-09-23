@@ -14,7 +14,8 @@ const TechnicUsers = () => {
           <div className="title">
             <p>Usuarios Técnicos</p>
           </div>
-          <Carousel className="carousel" itemsToShow={1} outerSpacing={50}>
+          <Carousel className="carousel" itemsToShow={1} outerSpacing={50}
+          >
             {techUsers &&
               techUsers.map((t, idx) => {
                 return (

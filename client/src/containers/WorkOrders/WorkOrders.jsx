@@ -14,7 +14,8 @@ const WorkOrders = () => {
           <div className="title">
             <p>Solicitudes de Trabajo</p>
           </div>
-          <Carousel className="carousel" itemsToShow={1} outerSpacing={50}>
+          <Carousel className="carousel" itemsToShow={1} outerSpacing={50}
+          >
             {allRequests.map((e, idx) => {
                 return (
                     <>
