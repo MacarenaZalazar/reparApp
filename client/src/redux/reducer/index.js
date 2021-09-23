@@ -39,7 +39,7 @@ var initialState = {
   requestsByUser: [],
   responseGoogle: {},
   requestDetails: {},
-  promoted: []
+  promoted: [],
 };
 
 function capitalize(str) {
@@ -59,7 +59,7 @@ function reducer(state = initialState, action) {
       return {
         ...state,
         techUsers: payload,
-        promoted: payload.filter(e => (e.user.promoted))
+        promoted: payload.filter((e) => e.user.promoted),
       };
     case GET_TECH_USERS_BY_ID:
       return {
@@ -70,13 +70,20 @@ function reducer(state = initialState, action) {
       return {
         ...state,
         techUsers: payload,
-        promoted: payload.filter(e => (e.user.promoted))
-
+        promoted: payload.filter((e) => e.user.promoted),
       };
     case GET_STATES:
+      let pay = payload.map((element) => {
+        if (element === "Tierra del Fuego, Antártida e Islas del Atlántico Sur")
+          return (element = "Tierra del Fuego");
+        if (element === "Ciudad Autónoma de Buenos Aires")
+          return (element = "CABA");
+        return element;
+      });
+
       return {
         ...state,
-        allStates: payload.sort(),
+        allStates: pay.sort(),
       };
     case GET_CITIES:
       let payloadCapitalize = payload.map((pay) => capitalize(pay));
@@ -136,7 +143,17 @@ function reducer(state = initialState, action) {
       return {
         ...state,
         techUsers: [],
+        technicUserDetail: {},
+        finalUser: [],
+        finalUserDetail: {},
+        allCities: [],
+        allUsers: [],
         allRequests: [],
+        requestsByUserTech: [],
+        requestsByUser: [],
+        responseGoogle: {},
+        requestDetails: {},
+        promoted: [],
       };
     case GET_REQUEST_DETAILS:
       return {

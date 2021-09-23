@@ -18,7 +18,7 @@ export function getRequestAllFiltered(workType, state, workZones) {
 
       return dispatch({
         type: GET_ALL_REQUEST,
-        payload: allRequest.data,
+        payload: allRequest.data.filter(r => (!r.ban)),
       });
     } catch (error) {
       console.log(error);
@@ -32,7 +32,7 @@ export function getAllRequests() {
       const allRequests = await axios.delete(GET_ALL_REQUEST);
       return dispatch({
         type: GET_ALL_REQUEST,
-        payload: allRequests.data,
+        payload: allRequests.data.filter(r => (!r.ban)),
       });
     } catch (error) {
       console.log(error);

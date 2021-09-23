@@ -1,12 +1,11 @@
-import React, { useEffect, useMemo } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { getTechUsersById } from "../../redux/actions/techUsers";
-import { StyledDiv } from "./Styled";
+import React, {useState, useMemo} from "react";
+import { useSelector } from "react-redux";
+import { StyledDiv, ReportedDiv , ImgTech, Button, UserTechDiv, UserInfoDiv, ItemInfo, ItemTech } from "./Styled";
 import { useHistory } from "react-router-dom";
-import  Button  from 'react-bootstrap/Button';
-import { Link } from 'react-router-dom';
+import ReportUser from "../ReportUser/ReportUser";
+import { GoReport } from "react-icons/go";
 
-export default function TechnicUserDetails(props) {
+export default function TechnicUserDetails() {
   const history = useHistory();
   const userString = window.sessionStorage.getItem("user");
   const user = JSON.parse(userString);
@@ -18,12 +17,14 @@ export default function TechnicUserDetails(props) {
     };
   }, [user]);
 
-  const technicUserID = props.match.params.Id;
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(getTechUsersById(technicUserID, config));
-  }, [dispatch]);
+  const [flagReported, setFlagReported] = useState(false);
+  const [flagLogin, setFlagLogin] = useState(false);
+  const changeFlagReported = () => {
+    setFlagReported(!flagReported);
+  };
+  const changeFlagLogin = () => {
+    setFlagLogin(!flagLogin);
+  };
 
   const TechnicUserDetail = useSelector((state) => state.technicUserDetail);
 
@@ -33,44 +34,100 @@ export default function TechnicUserDetails(props) {
 
   return (
     <StyledDiv className="container">
-      <div className="detContainer">
-        {TechnicUserDetail.user && (
-          <div>
-            <h1>Usuario: {TechnicUserDetail.user.userName}</h1>
-            <img src={TechnicUserDetail.user.image} alt="" />
-            <h4>Puntaje: {TechnicUserDetail.score}</h4>
+       {user && user.roles[0].name === 'userFinal' && (
+         <ReportedDiv flag={flagReported}>
+        <div className='content' onClick={changeFlagReported}>
+          <GoReport className="icon" />
+          <p>Reportar</p>
+        </div>
+        <div className='reported'>
+          <ReportUser userId={TechnicUserDetail.user._id} />
+        </div>
+          </ReportedDiv>
+         )} 
+  
+        {TechnicUserDetail &&
+        TechnicUserDetail.user &&
+        TechnicUserDetail.user.userName ? (
+          <>
+            {TechnicUserDetail &&
+            TechnicUserDetail.user &&
+            TechnicUserDetail.user.userName ? (
+              <>
+                  <UserTechDiv>
+                <ImgTech>
+                  <img src={TechnicUserDetail.user.image} alt="" />
+                </ImgTech>
+                <div className='items'>
+                 <ItemTech>
+                  <p>Usuario</p>
+                  <h4>{TechnicUserDetail.user.userName}</h4>
+                  {TechnicUserDetail.score && 
+                  <>
+                  <p>Puntaje</p>
+                  <h4>{TechnicUserDetail.score}</h4>
+                  </>
+                  }
+                  </ItemTech>
+                    <ItemTech>
+                    {TechnicUserDetail.workZones && <>
+                    <p>Zonas de trabajo</p>
+                    {TechnicUserDetail.workZones.map((zone, idx) => {
+                        return <h4 key={idx}>{zone}</h4>;
+                  
+                      })}
+                      </>
+                      }
+                  </ItemTech>
+                  <ItemTech>
+                  <p>Especialidades</p>
+                  <ul>
+                    {TechnicUserDetail.jobTypes &&
+                      TechnicUserDetail.jobTypes.map((zone, idx) => {
+                        return <h4 key={idx}>{zone}</h4>;
+                      })}
+                  </ul>
+                      </ItemTech>
+                </div>
+                </UserTechDiv>
 
-            <p>Zonas de trabajo:</p>
-            <ul>
-              {TechnicUserDetail.workZones &&
-                TechnicUserDetail.workZones.map((zone, idx) => {
-                  return <li key={idx}>{zone}</li>;
-                })}
-            </ul>
-            <p>Especializado en:</p>
-            <ul>
-              {TechnicUserDetail.jobTypes &&
-                TechnicUserDetail.jobTypes.map((zone, idx) => {
-                  return <li key={idx}>{zone}</li>;
-                })}
-            </ul>
-          </div>
-        )}
-
-        {user ? (
-          <div>
-            <h2>Apellido: {TechnicUserDetail.user.lastName}</h2>
-            <h4>Nombre: {TechnicUserDetail.user.name}</h4>
-            <p>Telefono: {TechnicUserDetail.user.phone}</p>
-            <p>Mail: {TechnicUserDetail.user.mail}</p>
-            <Link to='/reported'>
-            <Button>Reportar</Button>
-            </Link>
-          </div>
+                {user ? (
+                  <UserInfoDiv>
+                    <div className='items'>
+                    <ItemInfo>
+                    <p>Apellido</p> 
+                    <h4>{TechnicUserDetail.user.lastName}</h4>
+                    </ItemInfo>
+                    <ItemInfo>
+                    <p>Nombre</p>
+                    <h4>{TechnicUserDetail.user.name}</h4>
+                    </ItemInfo>
+                    <ItemInfo>
+                    <p>Telefono</p>
+                      <h4>{TechnicUserDetail.user.phone}</h4>
+                    </ItemInfo>
+                    <ItemInfo>
+                    <p>Mail</p>
+                    <h4>{TechnicUserDetail.user.mail}</h4>
+                    </ItemInfo>
+           
+                  </div>
+                  </UserInfoDiv>
+                ) : (
+                  <Button onClick={handleClick}>
+                    <p>Inicia sesión para ver mas info</p>
+                  </Button>
+                )}
+                
+              </>
+            ) : null}{" "}
+          </>
         ) : (
-          <span onClick={handleClick}>Inicia sesión para ver mas info</span>
+          <p>Cargando...</p>
         )}
-      </div>
+            
+ 
+ 
     </StyledDiv>
   );
 }

@@ -15,6 +15,8 @@ import Swal from "sweetalert2";
 import { getCities, getStates } from "../../../redux/actions/techUsers";
 import { useEffect } from "react";
 import { TECH_USERS_URL } from "../../../utils/constants";
+import withReactContent from "sweetalert2-react-content";
+const MySwal = withReactContent(Swal);
 
 const FormTechnicUser = () => {
   const history = useHistory();
@@ -26,15 +28,16 @@ const FormTechnicUser = () => {
   const { allStates, allCities } = useSelector((state) => state);
   const responseGoogle = useSelector((state) => state.responseGoogle);
   const [input, setInput] = useState({
-    name: "" || responseGoogle.zU,
-    lastName: "" || responseGoogle.zS,
+    name: "" || responseGoogle.givenName,
+    lastName: "" || responseGoogle.familyName,
     userName: "",
-    password: "" || responseGoogle.US,
-    confirmPassword: "" || responseGoogle.US,
-    image: "" || responseGoogle.wJ,
+    password: "" || responseGoogle.googleId,
+    confirmPassword: "" || responseGoogle.googleId,
+    image: "" || responseGoogle.imageUrl,
     phone: "",
-    mail: "" || responseGoogle.Ht,
+    mail: "" || responseGoogle.email,
     state: "",
+    price: "",
     qualifications: [],
     workZones: [],
     jobTypes: [],
@@ -176,9 +179,13 @@ const FormTechnicUser = () => {
             },
           });
 
-          Toast.fire({
+          Swal.fire({
             icon: "success",
             title: "Registro exitoso",
+            background: "#e7decdff",
+            backdrop: "rgba(10,18,42,0.6)",
+            showConfirmButton: false,
+            timer: 2000,
           });
 
           history.push("/login");
@@ -188,13 +195,20 @@ const FormTechnicUser = () => {
             title: "Error",
             text: `${respuesta.data.message}`,
             footer: '<a href="">Why do I have this issue?</a>',
+            background: "#e7decdff",
+            backdrop: "rgba(10,18,42,0.6)",
           });
         }
       } catch (error) {
         console.log(error);
       }
     } else {
-      alert("Se encontraron errores");
+      MySwal.fire({
+        title: "Se encontraron errores",
+        confirmButtonColor: "#0a122aff",
+        background: "#e7decdff",
+        backdrop: "rgba(10,18,42,0.6)",
+      });
     }
   };
 
@@ -207,7 +221,7 @@ const FormTechnicUser = () => {
           </div>
           <div className="grid">
             <Left>
-              {!responseGoogle.zU && (
+              {!responseGoogle.givenName && (
                 <Input error={input.errors.name}>
                   <label>* Nombre:</label>
                   <input
@@ -219,7 +233,7 @@ const FormTechnicUser = () => {
                   />
                 </Input>
               )}
-              {!responseGoogle.zS && (
+              {!responseGoogle.familyName && (
                 <Input error={input.errors.lastName}>
                   <label>* Apellido:</label>
                   <input
@@ -241,7 +255,7 @@ const FormTechnicUser = () => {
                   onChange={handleInputChange}
                 />
               </Input>
-              {!responseGoogle.US && (
+              {!responseGoogle.googleId && (
                 <Input error={input.errors.password}>
                   <label>* Password:</label>
                   <input
@@ -253,7 +267,7 @@ const FormTechnicUser = () => {
                   />
                 </Input>
               )}
-              {!responseGoogle.US && (
+              {!responseGoogle.googleId && (
                 <Input error={input.errors.confirmPassword}>
                   <label>* Confirmar Password:</label>
                   <input
@@ -266,7 +280,7 @@ const FormTechnicUser = () => {
                 </Input>
               )}
 
-              {!responseGoogle.Ht && (
+              {!responseGoogle.email && (
                 <Input error={input.errors.mail}>
                   <label>* Email:</label>
                   <input
@@ -283,14 +297,24 @@ const FormTechnicUser = () => {
               <Input>
                 <label>Teléfono:</label>
                 <input
-                  type="text"
+                  type="number"
                   name="phone"
                   autoComplete="off"
                   value={input.phone}
                   onChange={handleInputChange}
                 />
               </Input>
-              {!responseGoogle.wJ && (
+              <Input>
+                <label>Precio Base:</label>
+                <input
+                  type="number"
+                  name="price"
+                  autoComplete="off"
+                  value={input.price}
+                  onChange={handleInputChange}
+                />
+              </Input>
+              {!responseGoogle.imageUrl && (
                 <Input>
                   <label>Imagen:</label>
                   <input
@@ -324,7 +348,7 @@ const FormTechnicUser = () => {
               <Input error={input.errors.workZones}>
                 {allCities.length > 1 && (
                   <div className="flexZones">
-                    <div>
+                    <div className="flexZonesNew">
                       <label>* Zonas:</label>
                       <select
                         aria-label="Default select example"
@@ -380,20 +404,6 @@ const FormTechnicUser = () => {
                     })}
                 </div>
               </InputJobs>
-              {/* <Input>
-                <label> Certificaciones:</label>
-                <input
-                  className="qualificationInput"
-                  type="text"
-                  name="certification"
-                  autoComplete="off"
-                  onChange={handleQualificationChange}
-                />
-
-                <button onClick={(e) => addQualification(e)}>
-                  Agregar Certificación
-                </button>
-              </Input> */}
             </Right>
           </div>
 

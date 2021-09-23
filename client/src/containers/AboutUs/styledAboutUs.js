@@ -11,6 +11,6 @@ export const StyledDiv = styled.div`
     display: flex;
     flex-flow: row wrap;
     justify-content: space-around;
-    aling-items: center;
+    /* aling-items: center; */
   }
 `;

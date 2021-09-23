@@ -15,11 +15,19 @@ function LoginGoogle() {
   const history = useHistory();
   const dispatch = useDispatch();
 
-  const responseGoogle = async (response) => {
-    const mailGoogle = response.Ws.Ht;
-    //const mailVictor = "victor@victor.com";
+  const alertFail = () => {
+    MySwal.fire({
+      title: "Error de google",
+      confirmButtonColor: "#0a122aff",
+      background: "#e7decdff",
+      backdrop: "rgba(10,18,42,0.6)",
+    });
+  };
 
+  const responseGoogle = async (response) => {
     try {
+      const mailGoogle = response.profileObj.email;
+
       let existed = await axios.get(`${LOGIN_URL}?mail=${mailGoogle}`);
 
       console.log(existed);
@@ -53,24 +61,37 @@ function LoginGoogle() {
           }
           MySwal.fire({
             title: "Bienvenido",
+            confirmButtonColor: "#0a122aff",
+            background: "#e7decdff",
+            backdrop: "rgba(10,18,42,0.6)",
           });
           history.push("/home");
         } catch (error) {
           MySwal.fire({
             title: "Error en el logueo",
+            confirmButtonColor: "#0a122aff",
+            background: "#e7decdff",
+            backdrop: "rgba(10,18,42,0.6)",
           });
         }
       } else {
         dispatch(loginGoogle(response));
-        // const { value: fruit } = 
+
         await Swal.fire({
           input: "select",
+          title: "Registrarse como:",
+          backdrop: "rgba(10,18,42,0.6)",
+          icon: "question",
+          iconColor: "#f06449ff",
           inputOptions: {
             Tipo: {
-              tech: "Técnico",
-              final: "Final",
+              tech: "Técnico - Profesional",
+              final: "Usuario Final",
             },
           },
+          confirmButtonColor: "#0a122aff",
+          cancelButtonColor: "#f06449ff",
+          background: "#e7decdff",
           inputPlaceholder: "Selecciona tipo",
           showCancelButton: true,
           inputValidator: (value) => {
@@ -99,9 +120,10 @@ function LoginGoogle() {
         clientId={url}
         buttonText="Iniciar Sesion"
         onSuccess={responseGoogle}
-        onFailure={responseGoogle}
+        onFailure={alertFail}
         cookiePolicy={"single_host_origin"}
         theme="dark"
+        icon={false}
       />
     </>
   );

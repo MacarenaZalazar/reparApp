@@ -1,26 +1,25 @@
 import React, { useState } from "react";
-import SocialLinks from "../../components/SocialLinks/SocialLinks";
-import { socialMedia } from "../../utils/reparAppInfo";
-import Form from "react-bootstrap/Form";
-import Button from "react-bootstrap/Button";
-import { StyledForm, ContactUsContainer } from "./stylesContactUs";
+// import SocialLinks from "../../components/SocialLinks/SocialLinks";
+// import { socialMedia } from "../../utils/reparAppInfo";
+// import Form from "react-bootstrap/Form";
+// import Button from "react-bootstrap/Button";
+import { StyledDiv, Form, Input, Button } from "./stylesContactUs";
 import axios from "axios";
 import { CONTACT_URL } from "../../utils/constants";
+import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
+const MySwal = withReactContent(Swal);
 
 const ContactUs = () => {
-  const { instagram, facebook, linkedin, github } = socialMedia;
+  // const { instagram, facebook, linkedin, github } = socialMedia;
   const [input, setInput] = useState({
     mail: "",
-    user: "",
     description: "",
     errors: {},
   });
 
   function validate(values) {
     let errors = {};
-    if (!values.user) {
-      errors.user = "Campo obligatorio";
-    }
     if (!values.mail) {
       errors.mail = "Campo obligatorio";
     }
@@ -31,10 +30,10 @@ const ContactUs = () => {
     return errors;
   }
 
-  function handleChange(e) {
+  function handleInputChange(evento) {
     setInput((input) => ({
       ...input,
-      [e.target.name]: e.target.value,
+      [evento.target.name]: evento.target.value,
     }));
   }
 
@@ -52,72 +51,59 @@ const ContactUs = () => {
     if (!Object.keys(result).length) {
       try {
         await axios.post(CONTACT_URL, input);
-        alert("Su mensaje ha sido enviado");
+        MySwal.fire({
+          title: "Su mensaje ha sido enviado!",
+          confirmButtonColor: "#0a122aff",
+          background: "#e7decdff",
+          backdrop: "rgba(10,18,42,0.6)",
+        });
       } catch (error) {
         console.log(error);
       }
     } else {
-      alert("Hay errores");
+      MySwal.fire({
+        title: "Datos Incompletos",
+        confirmButtonColor: "#0a122aff",
+        background: "#e7decdff",
+        backdrop: "rgba(10,18,42,0.6)",
+      });
     }
   };
 
   return (
-    <>
-      <ContactUsContainer>
-        <h1>Seguinos en nuestras redes sociales!</h1>
-        <div className="socialContact">
-          <SocialLinks
-            instagram={instagram}
-            facebook={facebook}
-            linkedin={linkedin}
-            github={github}
-          />
-        </div>
-        <Form onChange={handleChange} onSubmit={handleSubmit}>
-          <StyledForm>
-            <h3>Envianos un mensaje</h3>
-            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-              <Form.Label>* E-mail </Form.Label>
-              <Form.Control
-                name="mail"
-                value={input.mail}
+    <StyledDiv>
+      <div className="container">
+        <form id="formContact" onSubmit={handleSubmit}>
+          <Form>
+            <div className="title">
+              <h4>¡Envianos un mensaje!</h4>
+            </div>
+            <Input error={input.errors.mail}>
+              <label>* Email:</label>
+              <input
                 type="email"
-                placeholder="Tu email"
-                onChange={handleChange}
+                name="mail"
+                autoComplete="off"
+                value={input.mail}
+                onChange={handleInputChange}
               />
-              {input.errors.mail && <span>Hay error</span>}
-            </Form.Group>
-            <Form.Group>
-              <Form.Label>* Nombre</Form.Label>
-              <Form.Control
-                name="user"
-                value={input.user}
-                type="user"
-                placeholder="Tu nombre"
-                onChange={handleChange}
-              />
-              {input.errors.user && <span>Hay error</span>}
-            </Form.Group>
-            <Form.Group
-              className="mb-3"
-              controlId="exampleForm.ControlTextarea1"
-            >
-              <Form.Label>* Mensaje </Form.Label>
-              <Form.Control
+            </Input>
+            <Input error={input.errors.mail}>
+              <label>* Mensaje:</label>
+              <textarea
                 name="description"
+                autoComplete="off"
                 value={input.description}
-                as="textarea"
-                rows={3}
-                onChange={handleChange}
+                onChange={handleInputChange}
               />
-              {input.errors.description && <span>Hay error</span>}
-            </Form.Group>
-            <Form.Label>* Estos campos son obligatorios </Form.Label>
-            <Button type="submit">Enviar</Button>
-          </StyledForm>
-        </Form>
-      </ContactUsContainer>
-    </>
+            </Input>
+            <Button type="submit">
+              <p>Enviar</p>
+            </Button>
+          </Form>
+        </form>
+      </div>
+    </StyledDiv>
   );
 };
 

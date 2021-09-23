@@ -7,6 +7,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { getJobTypesAll } from "../../redux/actions/jobTypes";
 import { getCities, getStates } from "../../redux/actions/techUsers/index";
 import { REQUEST_URL } from "../../utils/constants";
+import withReactContent from "sweetalert2-react-content";
+const MySwal = withReactContent(Swal);
 
 const FormWorkOrder = () => {
   const userString = window.sessionStorage.getItem("user");
@@ -127,7 +129,12 @@ const FormWorkOrder = () => {
         console.log(error);
       }
     } else {
-      alert("Se encontraron errores");
+      MySwal.fire({
+        title: "Se encontraron errores",
+        confirmButtonColor: "#0a122aff",
+        background: "#e7decdff",
+        backdrop: "rgba(10,18,42,0.6)",
+      });
     }
   };
 
@@ -135,92 +142,95 @@ const FormWorkOrder = () => {
     <StyledDiv>
       <form id="formCreate" onSubmit={(e) => handleSubmit(e)}>
         <Form>
-          <Input error={input.errors.title}>
-            <label>* Titulo:</label>
-            <input
-              autoComplete="off"
-              type="text"
-              name="title"
-              value={input.title}
-              onChange={handleInputChange}
-            />
-          </Input>
-          <Input error={input.errors.description}>
-            <label>* Descripcion:</label>
-            <input
-              autoComplete="off"
-              type="text"
-              name="description"
-              value={input.description}
-              onChange={handleInputChange}
-            />
-          </Input>
-          <Input error={input.errors.workType}>
-            <label>* Tipo de trabajo:</label>
-            <select
-              className="form-select"
-              aria-label="Default select example"
-              name="workType"
-              onChange={handleInputChange}
-            >
-              <option value=""></option>
-              {jobTypes &&
-                jobTypes.map((j, idx) => {
-                  return (
-                    <option value={j} key={idx}>
-                      {j}
-                    </option>
-                  );
-                })}
-            </select>
-          </Input>
-          <Input>
-            <label>Imagen:</label>
-            <input
-              type="text"
-              autoComplete="off"
-              name="workImage"
-              value={input.workImage}
-              onChange={handleInputChange}
-            />
-          </Input>
-          <Input error={input.errors.state}>
-            <label>* Provincia:</label>
-            <select onChange={handleStateChange} name="state" id="">
-              <option value=""></option>
-              {allStates &&
-                allStates.map((c, idx) => {
-                  return (
-                    <option key={idx} value={c}>
-                      {c}
-                    </option>
-                  );
-                })}
-            </select>
-          </Input>
-          <Input error={input.errors.zone}>
-            {allCities.length > 1 && (
-              <div className="flexZones">
-                <div>
-                  <label>* Zonas:</label>
-                  <select
-                    aria-label="Default select example"
-                    name="departments"
-                    id=""
-                    onChange={handleZoneChange}
-                  >
-                    {allCities.map((d, idx) => {
+          <div className="title">
+            <h4>Nueva solicitud de trabajo</h4>
+          </div>
+          <div className="flexWorks">
+            <div className="left">
+              <Input error={input.errors.title}>
+                <label>* Titulo:</label>
+                <input
+                  autoComplete="off"
+                  type="text"
+                  name="title"
+                  value={input.title}
+                  onChange={handleInputChange}
+                />
+              </Input>
+              <Input error={input.errors.description}>
+                <label>* Descripcion:</label>
+                <textarea
+                  autoComplete="off"
+                  name="description"
+                  value={input.description}
+                  onChange={handleInputChange}
+                />
+              </Input>
+            </div>
+            <div className="right">
+              <Input error={input.errors.workType}>
+                <label>* Tipo de trabajo:</label>
+                <select name="workType" onChange={handleInputChange}>
+                  <option value=""></option>
+                  {jobTypes &&
+                    jobTypes.map((j, idx) => {
                       return (
-                        <option key={idx} value={d}>
-                          {d}
+                        <option value={j} key={idx}>
+                          {j}
                         </option>
                       );
                     })}
-                  </select>
-                </div>
-              </div>
-            )}
-          </Input>
+                </select>
+              </Input>
+              <Input>
+                <label>Imagen:</label>
+                <input
+                  type="text"
+                  autoComplete="off"
+                  name="workImage"
+                  value={input.workImage}
+                  onChange={handleInputChange}
+                />
+              </Input>
+              <Input error={input.errors.state}>
+                <label>* Provincia:</label>
+                <select onChange={handleStateChange} name="state" id="">
+                  <option value=""></option>
+                  {allStates &&
+                    allStates.map((c, idx) => {
+                      return (
+                        <option key={idx} value={c}>
+                          {c}
+                        </option>
+                      );
+                    })}
+                </select>
+              </Input>
+              <Input error={input.errors.zone}>
+                {allCities.length > 1 && (
+                  <div className="flexZones">
+                    <div className="flexZonesNew">
+                      <label>* Zonas:</label>
+                      <select
+                        aria-label="Default select example"
+                        name="departments"
+                        id=""
+                        onChange={handleZoneChange}
+                      >
+                        {allCities.map((d, idx) => {
+                          return (
+                            <option key={idx} value={d}>
+                              {d}
+                            </option>
+                          );
+                        })}
+                      </select>
+                    </div>
+                  </div>
+                )}
+              </Input>
+            </div>
+          </div>
           * estos campos son obligatorios
           <button type="submit">Crear Pedido de Trabajo</button>
         </Form>

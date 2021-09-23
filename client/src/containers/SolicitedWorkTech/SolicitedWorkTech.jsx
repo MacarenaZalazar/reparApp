@@ -38,6 +38,7 @@ const SolicitedWorkTech = (props) => {
     const { value: scoreTech } = await Swal.fire({
       title: "Califica al usuario final",
       input: "number",
+      allowOutsideClick: false,
       inputLabel: "tu calificacion",
       inputPlaceholder: "Calificación de 1 a 5",
       inputAttributes: {
@@ -83,9 +84,15 @@ const SolicitedWorkTech = (props) => {
           <p>{requestDetails.state}</p>
           <p>{requestDetails.zone}</p>
           <p>{requestDetails.workType}</p>
-          <h2>Usuario: {finalUser.user.userName}</h2>
-          <h4>Mail: {finalUser.user.mail}</h4>
-          <p>Telefono: {finalUser.user.phone}</p>
+          {finalUser && finalUser.user && finalUser.user.userName ? (
+            <div>
+              <h2>Usuario: {finalUser.user.userName}</h2>
+              <h4>Mail: {finalUser.user.mail}</h4>
+              <p>Telefono: {finalUser.user.phone}</p>
+            </div>
+          ) : (
+            <div />
+          )}
         </div>
       )}
 

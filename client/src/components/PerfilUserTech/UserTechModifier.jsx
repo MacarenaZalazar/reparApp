@@ -11,10 +11,12 @@ import { useSelector, useDispatch } from "react-redux";
 import axios from "axios";
 import Checkbox from "../Checkbox/Checkbox";
 import { useHistory } from "react-router-dom";
-import Swal from "sweetalert2";
 import { getCities, getStates } from "../../redux/actions/techUsers";
 import { useEffect } from "react";
 import { TECH_USERS_URL } from "../../utils/constants";
+import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
+const MySwal = withReactContent(Swal);
 
 const FormTechnicUserModifier = () => {
   const history = useHistory();
@@ -44,6 +46,7 @@ const FormTechnicUserModifier = () => {
     phone: "",
     mail: "",
     state: "",
+    price: "",
     qualifications: [],
     workZones: [],
     jobTypes: [],
@@ -170,6 +173,9 @@ const FormTechnicUserModifier = () => {
         if (input.state) {
           objToSend.state = input.state;
         }
+        if (input.price) {
+          objToSend.price = input.price;
+        }
         if (input.workZones.length > 0) {
           objToSend.workZones = input.workZones;
         }
@@ -216,7 +222,12 @@ const FormTechnicUserModifier = () => {
         console.log(error);
       }
     } else {
-      alert("Se encontraron errores");
+      MySwal.fire({
+        title: "Se encontraron errores",
+        confirmButtonColor: "#0a122aff",
+        background: "#e7decdff",
+        backdrop: "rgba(10,18,42,0.6)",
+      });
     }
   };
 
@@ -286,7 +297,7 @@ const FormTechnicUserModifier = () => {
               <Input>
                 <label>Teléfono:</label>
                 <input
-                  type="text"
+                  type="number"
                   name="phone"
                   autoComplete="off"
                   value={input.phone}
@@ -306,7 +317,18 @@ const FormTechnicUserModifier = () => {
                     onChange={handleInputChange}
                   />
                 </Input>
+                
               }
+              <Input>
+                  <label>Precio Base:</label>
+                  <input
+                    type="number"
+                    name="price"
+                    autoComplete="off"
+                    value={input.price}
+                    onChange={handleInputChange}
+                  />
+                </Input>
               <Input>
                 <label>* Provincia:</label>
                 <select

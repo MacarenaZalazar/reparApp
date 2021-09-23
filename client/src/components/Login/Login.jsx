@@ -6,6 +6,8 @@ import {
   InputDiv,
   ButtonDiv,
   OptionsDiv,
+  LinksDiv,
+  GoogleDiv,
 } from "./styledLogin";
 import axios from "axios";
 
@@ -13,8 +15,12 @@ import { useDispatch } from "react-redux";
 import { getTechUsersByJobAndZone } from "../../redux/actions/techUsers";
 import { getRequestAllFiltered } from "../../redux/actions/request/index";
 import { MdAccountCircle, MdVpnKey } from "react-icons/md";
+import { TiArrowBack, TiUserAdd } from "react-icons/ti";
+import { GiPadlockOpen } from "react-icons/gi";
+import { FaUserPlus, FaArrowLeft } from "react-icons/fa";
+import { AiFillGoogleCircle } from "react-icons/ai";
 import { useState } from "react";
-import { useHistory } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
 import { LOGIN_URL } from "../../utils/constants";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
@@ -23,8 +29,8 @@ const MySwal = withReactContent(Swal);
 const Login = () => {
   const dispatch = useDispatch();
   const history = useHistory();
-  const [input, setInput] = useState({ mail: "", password: "" });
-
+  const [input, setInput] = useState({ mail: "", password: "", errors: {} });
+  const [flagGoogle, setFlagGoogle] = useState(false);
   function validate(values) {
     let errors = {};
 
@@ -41,6 +47,10 @@ const Login = () => {
 
     return errors;
   }
+
+  const changeFlagGoogle = () => {
+    setFlagGoogle(!flagGoogle);
+  };
 
   function handleInputChange(evento) {
     setInput((input) => ({
@@ -79,36 +89,58 @@ const Login = () => {
         }
         MySwal.fire({
           title: "Bienvenido",
+          confirmButtonColor: "#0a122aff",
+          background: "#e7decdff",
+          backdrop: "rgba(10,18,42,0.6)",
         });
         history.push("/home");
       } catch (error) {
         MySwal.fire({
           title: "Error en el logueo",
+          confirmButtonColor: "#0a122aff",
+          background: "#e7decdff",
+          backdrop: "rgba(10,18,42,0.6)",
         });
       }
     } else {
-      alert("Se encontraron errores");
+      MySwal.fire({
+        title: "Se encontraron errores",
+        confirmButtonColor: "#0a122aff",
+        background: "#e7decdff",
+        backdrop: "rgba(10,18,42,0.6)",
+      });
     }
   };
   const forgotPassword = async (e) => {
     e.preventDefault();
     let passInput = { mail: input.mail, password: "forgot your password" };
     await axios.post(LOGIN_URL, passInput);
-    alert("Enviamos un email con tu nueva contraseña");
+    MySwal.fire({
+      title: "Enviamos un email con tu nueva contraseña",
+      confirmButtonColor: "#0a122aff",
+      background: "#e7decdff",
+      backdrop: "rgba(10,18,42,0.6)",
+    });
   };
 
   const showAlert = async (e) => {
     e.preventDefault();
-
-    // const { value: fruit } = 
+    
     await Swal.fire({
       input: "select",
+      title: "Registrarse como:",
+      backdrop: "rgba(10,18,42,0.6)",
+      icon: "question",
+      iconColor: "#f06449ff",
       inputOptions: {
         Tipo: {
-          tech: "Técnico",
-          final: "Final",
+          tech: "Técnico - Profesional",
+          final: "Usuario Final",
         },
       },
+      confirmButtonColor: "#0a122aff",
+      cancelButtonColor: "#f06449ff",
+      background: "#e7decdff",
       inputPlaceholder: "Selecciona tipo",
       showCancelButton: true,
       inputValidator: (value) => {
@@ -127,12 +159,26 @@ const Login = () => {
 
   return (
     <StyledDiv>
+      <LinksDiv>
+        <Link className="link" to="/home">
+          <TiArrowBack className="icon" />
+          <p>Volver a Home</p>
+        </Link>
+        <Link onClick={(e) => forgotPassword(e)} className="link" to="/login">
+          <GiPadlockOpen className="icon" />
+          <p>Recuperar Contraseña</p>
+        </Link>
+        <Link onClick={showAlert} className="link" to="/#">
+          <TiUserAdd className="icon" />
+          <p>Registrarse</p>
+        </Link>
+      </LinksDiv>
       <form onSubmit={(e) => handleSubmit(e)}>
         <LoginDiv>
           <TitleDiv>
-            <h4>¡Hola! Ingresá tus datos</h4>
+            <h4>¡Ingresá tus datos!</h4>
           </TitleDiv>
-          <InputDiv>
+          <InputDiv error={input.errors.mail}>
             <MdAccountCircle className="icon" />
 
             <input
@@ -143,7 +189,7 @@ const Login = () => {
               autoComplete="off"
             />
           </InputDiv>
-          <InputDiv>
+          <InputDiv error={input.errors.password}>
             <MdVpnKey className="icon" />
 
             <input
@@ -153,32 +199,23 @@ const Login = () => {
               onChange={handleInputChange}
             />
           </InputDiv>
-          {input.errors && input.errors.password && (
-            <p>{input.errors.password}</p>
-          )}
 
           <ButtonDiv>
             <button className="link" type="submit">
-              ¡Ingresá!
+              Confirmar
             </button>
           </ButtonDiv>
         </LoginDiv>
       </form>
-      <LoginGoogle />
-      <OptionsDiv>
-        <span>
-          O{" "}
-          <span className="register" onClick={showAlert}>
-            registrate
-          </span>
-        </span>
-        <span>
-          O{" "}
-          <span className="register" onClick={(e) => forgotPassword(e)}>
-            Olvidaste tu contraseña?
-          </span>
-        </span>
-      </OptionsDiv>
+      <GoogleDiv flag={flagGoogle}>
+        <div className="login" onClick={changeFlagGoogle}>
+          <AiFillGoogleCircle className="icon" />
+          <p> ¡Ingresá con Google!</p>
+          <div className="enter">
+            <LoginGoogle />
+          </div>
+        </div>
+      </GoogleDiv>
     </StyledDiv>
   );
 };

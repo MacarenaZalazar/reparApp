@@ -1,40 +1,43 @@
 import styled from "styled-components";
 
 export const StyledDiv = styled.div`
-  display: flex;
-  justify-content:  center;
-  flex-direction: row;
-  background-color: #f9f6f4;
-  height: 100%;
+  width: 100%;
+  min-height: calc(100vh - 4.4rem);
 
-  .link {
-    padding: 1rem;
-    margin: 0.5rem;
-    height: 50%;
-    border-radius: 50%;
-    background-color: #de6b48;
-    text-align: center;
+  background-color: #fbfaf8ff;
 
-    text-decoration: none;
-  }
-  .cardsDisplay{
-    width: 75%;
-    display:flex;
+  padding: 0.5rem 0;
+  gap: 2rem 0;
+
+  .flexHome {
+    padding-top: 5rem;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     flex-direction: column;
+    gap: 2rem;
+  }
 
+  .cardsDisplay {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
   }
 `;
 export const SinUser = styled.div`
   display: flex;
-  flex-direction:row;
-  padding: 4rem;
+  width: 100%;
+
   h2 {
     text-align: center;
   }
-  .cardsDisplay{
-    width: 75%;
-    display:flex;
+  .cardsDisplay {
+    display: flex;
     flex-direction: column;
-
   }
+`;
+
+export const HomeDiv = styled.div`
+  padding-top: 5rem;
 `;

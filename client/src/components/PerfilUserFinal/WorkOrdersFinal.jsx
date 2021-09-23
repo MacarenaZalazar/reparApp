@@ -4,6 +4,9 @@ import { getRequestByUser } from '../../redux/actions/request/index';
 import { Button } from 'react-bootstrap/Button';
 import JobRequestCard from '../JobRequestCard/JobRequestCard';
 import { REQUEST_URL } from '../../utils/constants';
+import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
+const MySwal = withReactContent(Swal);
 
 const WorkOrdersFinalUser = () => {
     /* const [flag, setFlag] = useState(true) */
@@ -24,10 +27,20 @@ const WorkOrdersFinalUser = () => {
     const handleDelete= async (id) => {
         try {
           await axios.delete(`${REQUEST_URL}/${id}`, config)
-          alert('El pedido ha sido eliminado')
+          MySwal.fire({
+            title: "El pedido ha sido eliminado",
+            confirmButtonColor: "#0a122aff",
+            background: "#e7decdff",
+            backdrop: "rgba(10,18,42,0.6)",
+          });
           /* setFlag(!flag) */
         } catch (error) {
-          alert('No se ha podido eliminar el pedido')
+          MySwal.fire({
+            title: "No se ha podido eliminar el pedido",
+            confirmButtonColor: "#0a122aff",
+            background: "#e7decdff",
+            backdrop: "rgba(10,18,42,0.6)",
+          });
         }
     }  
   

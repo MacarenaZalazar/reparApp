@@ -1,0 +1,22 @@
+.cardAbout{
+    margin: 10px;
+    box-shadow: 0px 0px 15px 5px #000;
+    cursor: pointer;
+    transition: transform 1s;
+}
+.cardAbout:hover {
+    /* transform: scale(1.3); */
+    /* transform: translate(20px, 20px); */
+    transform:  scale(1.3)
+    
+}
+.linksAProfiles{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.link-github,.link-linkedin{
+    margin-right: 10px;
+    margin-top: 10px;
+    width: auto;
+}

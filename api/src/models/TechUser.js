@@ -16,7 +16,7 @@ const tecnicosSchema = new Schema(
     },
     qualification: [],
     price: {
-      type: Number
+      type: String
     },
     score: {
       type: Number,

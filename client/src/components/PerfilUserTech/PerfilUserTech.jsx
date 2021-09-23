@@ -10,22 +10,32 @@ import {
   WorksFinished,
   WorksProcess,
   WorksSolicited,
+  StyledDiv,
+  ButtonsDiv,
+  ProfileDiv,
+  CardUserTech,
+  CardDiv,
+  ContentCardDiv,
+  ImgDiv,
+  ItemCard,
+  
 } from "./styledPerfilUserTech";
+import { TiArrowBack, TiEdit, TiStarFullOutline } from "react-icons/ti";
 import { Link } from "react-router-dom";
 import { useHistory } from "react-router-dom";
-import Button from 'react-bootstrap/Button';
+import Button from "react-bootstrap/Button";
 
 const PerfilUserTech = () => {
   const history = useHistory();
   const userString = window.sessionStorage.getItem("user");
   const userSession = JSON.parse(userString);
-  let config = useMemo(()=>{
+  let config = useMemo(() => {
     return {
       headers: {
         "x-access-token": userSession && userSession.token,
       },
-    }
-  },[userSession])
+    };
+  }, [userSession]);
 
   const dispatch = useDispatch();
 
@@ -39,120 +49,179 @@ const PerfilUserTech = () => {
 
   const user = useSelector((state) => state.technicUserDetail);
   const requestsByUserTech = useSelector((state) => state.requestsByUserTech);
-  console.log(user);
   return (
-    <div>
-      {user.user ? (
-        <div>
-          <Link to="/home">Home</Link>
-          <button onClick={() => history.push("/usuarioFinal/modifier")}>
-            Modificar perfil
-          </button>
-          <h2>{user.user.userName}</h2>
-          <h4>{user.user.lastName}</h4>
-          <h5>{user.user.name}</h5>
-          <p>{user.user.mail}</p>
-          <p>{user.user.phone}</p>
-          <p>{user.user.state}</p>
-          <img src={`${user.user.image}`} alt="image_perfil" />
-          <ul>
-            {user &&
-              user.workZones &&
-              user.workZones.map((zone, idx) => {
-                return <li key={idx}>{zone}</li>;
-              })}
-          </ul>
-          <ul>
-            {user &&
-              user.jobTypes &&
-              user.jobTypes.map((job, idx) => {
-                return <li key={idx}>{job}</li>;
-              })}
-          </ul>
-          <ul>
-            {user &&
-              user.qualification &&
-              user.qualification.map((qualification, idx) => {
-                return <li key={idx}>{qualification}</li>;
-              })}
-          </ul>
-          <p>{user.price}</p>
-          <p>{user.score}</p>
-          {(!user.user.promoted) ? <><Link to='/checkout'><Button>Promocionar</Button></Link></>
-          : <span>Promocionado</span>}
+    <StyledDiv className="container">
+      <ButtonsDiv>
+        <Link className="link" to="/home">
+          <TiArrowBack className="icon" />
+          <p>Volver a Home</p>
+        </Link>
 
-          <div>
-            <WorksSolicited>
-              <h5>Trabajos postulados</h5>
-              {requestsByUserTech &&
-                requestsByUserTech.map((req) => {
-                 return (req.solicited) && (!req.acepted) &&
-                      <div>
-                        <p>{req.title}</p>
-                        <Link
-                          className="link"
-                          to={`/solicitedWorkTech/${req._id}`}
-                        >
-                          Ver Detalle
-                        </Link>
-                      </div>
+        <Link className="link" to="/usuarioTech/modifier">
+          <TiEdit className="icon" />
+          <p>Editar Perfil</p>
+        </Link>
 
-                })}
-            </WorksSolicited>
-            <WorksProcess>
-              <h5>Trabajos en proceso/aceptado</h5>
-              {requestsByUserTech &&
-                requestsByUserTech.map((req) => {
-                return (req.acepted) && (!req.completeTech) &&
-                      <div>
-                        <p>{req.title}</p>
-                        <Link
-                          className="link"
-                          to={`/solicitedWorkTech/${req._id}`}
-                        >
-                          Finalizar
-                        </Link>
-                      </div>
-                })}
-            </WorksProcess>
-            <WorksAwait>
-              <h5>En espera de finalizacion</h5>
-              {requestsByUserTech &&
-                requestsByUserTech.map((req, key) => {
-                 return (req.solicited) && (req.acepted) && (req.completeTech) && (!req.complete) &&
-                      <div key={key}>
-                        <p>{req.title}</p>
-                        <Link
-                          className="link"
-                          to={`/solicitedWorkTech/${req._id}`}
-                        >
-                          Finalizar
-                        </Link>
-                      </div>
-                })}
-            </WorksAwait>
-            <WorksFinished>
-              <h5>Historial de trabajos</h5>
-              {requestsByUserTech &&
-                requestsByUserTech.map((req) => {
-                  return (req.complete) &&
-                      <div>
-                        <p>{req.title}</p>
-                        <Link
-                          className="link"
-                          to={`/solicitedWorkTech/${req._id}`}
-                        >
-                          Finalizar
-                        </Link>
-                      </div>
-                })}
-            </WorksFinished>
-          </div>
-        </div>
-      ) : (
-        <p>Cargando...</p>
-      )}
-    </div>
+        {user && user.user && !user.user.promoted ? (
+          <Link className="link" to="/checkout">
+            <TiStarFullOutline className="icon" />
+            <p>Promocionar Perfil</p>
+          </Link>
+        ) : (
+          <span>Promocionado</span>
+        )}
+      </ButtonsDiv>
+      <ProfileDiv>
+        {user.user ? (
+          <CardUserTech>
+            <CardDiv>
+              <ImgDiv>
+                <img src={`${user.user.image}`} alt="image_perfil" />
+              </ImgDiv>
+              <ContentCardDiv>
+                <div className="left">
+                  <ItemCard>
+                    <p>Nombre y Apellido</p>
+                    <h4>
+                      {user.user.name} {user.user.lastName}
+                    </h4>
+                  </ItemCard>
+                  <ItemCard>
+                    <p>Usuario</p>
+                    <h4>{user.user.userName}</h4>
+                  </ItemCard>
+                  <ItemCard>
+                    <p>E-mail</p>
+                    <h4>{user.user.mail}</h4>
+                  </ItemCard>
+                  <ItemCard>
+                    <p>Teléfono</p>
+                    <h4>{user.user.phone ? user.user.phone : "Sin Datos"}</h4>
+                  </ItemCard>
+                  <ItemCard>
+                    <p>Provincia</p>
+                    <h4>{user.user.state}</h4>
+                  </ItemCard>
+                  <ItemCard>
+                    <p>Zonas</p>
+
+                    {user &&
+                      user.workZones &&
+                      user.workZones.map((zone, idx) => {
+                        return <h4 key={idx}>{zone}</h4>;
+                      })}
+                  </ItemCard>
+                </div>
+                <div className="right">
+                  <ItemCard>
+                    <p>Tipos de Trabajos</p>
+                    {user &&
+                      user.jobTypes &&
+                      user.jobTypes.map((job, idx) => {
+                        return <h4 key={idx}>{job}</h4>;
+                      })}
+                  </ItemCard>
+                  <ItemCard>
+                    <p>Precio Base</p>
+                    <h4>{user.price}</h4>
+                  </ItemCard>
+                  <ItemCard>
+                    <p>Calificación Promedio</p>
+                    <h4>{user.score}</h4>
+                  </ItemCard>
+                </div>
+              </ContentCardDiv>
+            </CardDiv>
+
+            <div>
+              <WorksSolicited>
+                <h5>Trabajos postulados</h5>
+                {requestsByUserTech &&
+                  requestsByUserTech.map((req, key) => {
+                    return (
+                      req.solicited &&
+                      !req.acepted && (
+                        <div key={key}>
+                          <p>{req.title}</p>
+                          <Link
+                            className="link"
+                            to={`/solicitedWorkTech/${req._id}`}
+                          >
+                            Ver Detalle
+                          </Link>
+                        </div>
+                      )
+                    );
+                  })}
+              </WorksSolicited>
+              <WorksProcess>
+                <h5>Trabajos en proceso/aceptado</h5>
+                {requestsByUserTech &&
+                  requestsByUserTech.map((req) => {
+                    return (
+                      req.acepted &&
+                      !req.completeTech && (
+                        <div>
+                          <p>{req.title}</p>
+                          <Link
+                            className="link"
+                            to={`/solicitedWorkTech/${req._id}`}
+                          >
+                            Finalizar
+                          </Link>
+                        </div>
+                      )
+                    );
+                  })}
+              </WorksProcess>
+              <WorksAwait>
+                <h5>En espera de finalizacion</h5>
+                {requestsByUserTech &&
+                  requestsByUserTech.map((req, key) => {
+                    return (
+                      req.solicited &&
+                      req.acepted &&
+                      req.completeTech &&
+                      !req.complete && (
+                        <div key={key}>
+                          <p>{req.title}</p>
+                          <Link
+                            className="link"
+                            to={`/solicitedWorkTech/${req._id}`}
+                          >
+                            Finalizar
+                          </Link>
+                        </div>
+                      )
+                    );
+                  })}
+              </WorksAwait>
+              <WorksFinished>
+                <h5>Historial de trabajos</h5>
+                {requestsByUserTech &&
+                  requestsByUserTech.map((req) => {
+                    return (
+                      req.complete && (
+                        <div>
+                          <p>{req.title}</p>
+                          <Link
+                            className="link"
+                            to={`/solicitedWorkTech/${req._id}`}
+                          >
+                            Finalizar
+                          </Link>
+                        </div>
+                      )
+                    );
+                  })}
+              </WorksFinished>
+            </div>
+          </CardUserTech>
+        ) : (
+          <p>Cargando...</p>
+        )}
+      </ProfileDiv>
+    </StyledDiv>
   );
 };
 

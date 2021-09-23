@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { StyledDiv, FooterDiv, LinksDiv, SocialDiv } from "./styledFooter";
 import SocialLinks from "../SocialLinks/SocialLinks";
 import { socialMedia } from "../../utils/reparAppInfo";
@@ -9,7 +9,7 @@ const Footer = () => {
 
   return (
     <StyledDiv>
-      <FooterDiv className="container">
+      <FooterDiv>
         <LinksDiv>
           <Link className="link" to="/contacto">
             Contacto

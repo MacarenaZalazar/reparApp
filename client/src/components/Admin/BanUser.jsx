@@ -1,13 +1,14 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import UserCard from "../UserCard/UserCard";
 import axios from "axios";
 import { ADMIN_URL } from "../../utils/constants";
-import  Button from 'react-bootstrap/Button';
+import {Button, ContainerDiv, TitleDiv, UserDiv} from './Styles'
+
 
 const BanUser = () => {
-  const [user, setUser] = useState([])
-  const [input, setInput] = useState('')
-  
+  const [user, setUser] = useState([]);
+  const [input, setInput] = useState("");
+
   const userString = window.sessionStorage.getItem("user");
   const useR = JSON.parse(userString);
 
@@ -18,27 +19,43 @@ const BanUser = () => {
   };
 
   const handleChange = (e) => {
-    setInput(e.target.value)
+    setInput(e.target.value);
   };
 
   const handleClick = async () => {
     try {
-      const usersByUsername = await axios.get(`${ADMIN_URL}/userbyuserName?userName=${input}`, config)
-      setUser(usersByUsername.data)
+      const usersByUsername = await axios.get(
+        `${ADMIN_URL}/userbyuserName?userName=${input}`,
+        config
+      );
+      setUser(usersByUsername.data);
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
-  } 
-console.log(user)
+  };
+  console.log(user);
   return (
-    <div>
-      <label>Buscar Usuari@</label>
+    <>
+    <UserDiv>
+    <ContainerDiv>
+      <TitleDiv>
+        <h4>Buscar Usuario</h4>
+      </TitleDiv>
+
+      <div className='littleContainer'>
+
       <input
         onChange={(e) => handleChange(e)}
         type="text"
         placeholder="nombre de usuario..."
-      />
-      <Button onClick={handleClick} >Buscar</Button>
+        />
+      <Button onClick={handleClick}>
+        <p>Buscar</p>
+        </Button>
+      </div>
+      </ContainerDiv>
+      
+      <>
       {user.length > 0 &&
         user.map((u, idx) => {
           return (
@@ -54,12 +71,15 @@ console.log(user)
                 userName={u.userName}
                 score={u.score}
                 promoted={u.promoted}
-                userId={u.finalUserId}
-              />              
+                idTech={u.techUserId || null}
+                idFinal={u.finalUserId || null}
+              />
             </>
           );
         })}
-    </div>
+        </>
+      </UserDiv>
+  </>
   );
 };
 

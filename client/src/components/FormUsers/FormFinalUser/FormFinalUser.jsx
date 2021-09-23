@@ -6,17 +6,19 @@ import { useHistory } from "react-router-dom";
 import { getCities, getStates } from "../../../redux/actions/techUsers/index";
 import { useDispatch, useSelector } from "react-redux";
 import { FINAL_USER_URL } from "../../../utils/constants";
+import withReactContent from "sweetalert2-react-content";
+const MySwal = withReactContent(Swal);
 
 const FormFinalUser = () => {
   const history = useHistory();
   const responseGoogle = useSelector((state) => state.responseGoogle);
   const [input, setInput] = useState({
-    name: "" || responseGoogle.zU,
-    lastName: "" || responseGoogle.zS,
-    password: "" || responseGoogle.US,
-    confirmPassword: "" || responseGoogle.US,
-    image: "" || responseGoogle.wJ,
-    mail: "" || responseGoogle.Ht,
+    name: "" || responseGoogle.givenName,
+    lastName: "" || responseGoogle.familyName,
+    password: "" || responseGoogle.googleId,
+    confirmPassword: "" || responseGoogle.googleId,
+    image: "" || responseGoogle.imageUrl,
+    mail: "" || responseGoogle.email,
     userName: "",
     phone: "",
     state: "",
@@ -111,9 +113,13 @@ const FormFinalUser = () => {
             },
           });
 
-          Toast.fire({
+          Swal.fire({
             icon: "success",
             title: "Registro exitoso",
+            background: "#e7decdff",
+            backdrop: "rgba(10,18,42,0.6)",
+            showConfirmButton: false,
+            timer: 2000,
           });
 
           history.push("/login");
@@ -123,14 +129,20 @@ const FormFinalUser = () => {
             title: "Error",
             text: `${respuesta.data.message}`,
             footer: '<a href="">Why do I have this issue?</a>',
+            background: "#e7decdff",
+            backdrop: "rgba(10,18,42,0.6)",
           });
         }
       } catch (error) {
         console.log(error);
       }
     } else {
-      console.log(input);
-      alert("Se encontraron errores");
+      MySwal.fire({
+        title: "Se encontraron errores",
+        confirmButtonColor: "#0a122aff",
+        background: "#e7decdff",
+        backdrop: "rgba(10,18,42,0.6)",
+      });
     }
   };
 
@@ -143,7 +155,7 @@ const FormFinalUser = () => {
           </div>
           <div className="grid">
             <Left>
-              {!responseGoogle.zU && (
+              {!responseGoogle.givenName && (
                 <Input error={input.errors.name}>
                   <label>* Nombre:</label>
                   <input
@@ -155,7 +167,7 @@ const FormFinalUser = () => {
                   />
                 </Input>
               )}
-              {!responseGoogle.zS && (
+              {!responseGoogle.familyName && (
                 <Input error={input.errors.lastName}>
                   <label>* Apellido:</label>
                   <input
@@ -177,7 +189,7 @@ const FormFinalUser = () => {
                   onChange={handleInputChange}
                 />
               </Input>
-              {!responseGoogle.US && (
+              {!responseGoogle.googleId && (
                 <Input error={input.errors.password}>
                   <label>* Password:</label>
                   <input
@@ -189,7 +201,7 @@ const FormFinalUser = () => {
                   />
                 </Input>
               )}
-              {!responseGoogle.US && (
+              {!responseGoogle.googleId && (
                 <Input error={input.errors.confirmPassword}>
                   <label>* Confirmar Password: </label>
                   <input
@@ -203,7 +215,7 @@ const FormFinalUser = () => {
               )}
             </Left>
             <Right>
-              {!responseGoogle.wJ && (
+              {!responseGoogle.imageUrl && (
                 <Input>
                   <label>Imagen:</label>
                   <input
@@ -218,14 +230,14 @@ const FormFinalUser = () => {
               <Input>
                 <label>Teléfono:</label>
                 <input
-                  type="text"
+                  type="number"
                   name="phone"
                   autoComplete="off"
                   value={input.phone}
                   onChange={handleInputChange}
                 />
               </Input>
-              {!responseGoogle.Ht && (
+              {!responseGoogle.email && (
                 <Input error={input.errors.mail}>
                   <label>* Email:</label>
                   <input

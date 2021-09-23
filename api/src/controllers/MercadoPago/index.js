@@ -6,13 +6,8 @@ const { PROD_ACCESS_TOKEN } = process.env;
 
 const preferenceMP = async (req, res, next) => {
     const { userId } = req.query
-    //const { order } = req.body
+    const order = [req.body]
 
-    const order = [{
-        title: "Promoción 7D",
-         unit_price: 10,
-         quantity: 1
-    }]
     //Agrego credenciales
     mercadopago.configure({
         access_token: PROD_ACCESS_TOKEN

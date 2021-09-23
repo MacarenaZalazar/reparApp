@@ -1,13 +1,13 @@
 import axios from "axios";
-import React, { useEffect, useMemo } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React, { useMemo } from "react";
+import { useSelector } from "react-redux";
 import JobRequestCard from "../JobRequestCard/JobRequestCard";
 import { ADMIN_URL } from "../../utils/constants";
-import { getRequestByUser } from "../../redux/actions/request/index";
+import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
+const MySwal = withReactContent(Swal);
 
 const BanJobRequest = (props) => {
-  const userID = props.match.params.id;
-  const dispatch = useDispatch();
   const { requestsByUser } = useSelector((state) => state);
   const userString = window.sessionStorage.getItem("user");
   const useR = JSON.parse(userString);
@@ -20,28 +20,44 @@ const BanJobRequest = (props) => {
     };
   }, [useR]);
 
-  useEffect(() => {
-    dispatch(getRequestByUser(userID, config));
-  }, [dispatch]);
-
   const handleBan = async (id) => {
     try {
       await axios.put(`${ADMIN_URL}/ban/work`, { ban: true, id }, config);
-      alert("El pedido ha sido baneado");
+      MySwal.fire({
+        title: "El pedido ha sido baneado",
+        confirmButtonColor: "#0a122aff",
+        background: "#e7decdff",
+        backdrop: "rgba(10,18,42,0.6)",
+      });
     } catch (error) {
-      alert("No se ha podido banear el pedido");
+      MySwal.fire({
+        title: "No se ha podido banear el pedido",
+        confirmButtonColor: "#0a122aff",
+        background: "#e7decdff",
+        backdrop: "rgba(10,18,42,0.6)",
+      });
     }
   };
 
   const handleUnbanned = async (id) => {
     try {
       await axios.put(`${ADMIN_URL}/ban/work`, { ban: false, id }, config);
-      alert("El pedido ha sido baneado");
+      MySwal.fire({
+        title: "El pedido ha sido desbaneado",
+        confirmButtonColor: "#0a122aff",
+        background: "#e7decdff",
+        backdrop: "rgba(10,18,42,0.6)",
+      });
     } catch (error) {
-      alert("No se ha podido banear el pedido");
+      MySwal.fire({
+        title: "No se ha podido desbanear el pedido",
+        confirmButtonColor: "#0a122aff",
+        background: "#e7decdff",
+        backdrop: "rgba(10,18,42,0.6)",
+      });
     }
   };
-  console.log(requestsByUser);
+  // console.log(requestsByUser);
   return (
     <div>
       {requestsByUser.length > 0 &&

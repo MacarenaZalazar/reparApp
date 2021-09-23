@@ -4,7 +4,7 @@ import {
   ORDER_BY_SCORE,
   LOGIN_GOOGLE,
 } from "./constantsAllUsers";
-import { ORDER_BY_RELEVANT } from "./constantsAllUsers";
+
 
 export const postScore = (score) => {};
 
@@ -47,6 +47,6 @@ export const orderByPrice = () => {
 export const loginGoogle = (response) => {
   return {
     type: LOGIN_GOOGLE,
-    payload: response.Ws,
+    payload: response.profileObj,
   };
 };

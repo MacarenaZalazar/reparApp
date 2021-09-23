@@ -5,6 +5,9 @@ export const StyledDiv = styled.div`
   display: flex;
   align-content: center;
   justify-content: center;
+  /* @media (max-width: 480px) {
+      width: 90%;
+  } */
 `;
 
 export const SearchBarDiv = styled.div`
@@ -18,6 +21,9 @@ export const SearchBarDiv = styled.div`
   gap: 2rem;
   padding: 1.5rem;
   border-radius: 2rem;
+  @media (max-width: 480px) {
+    flex-direction: column;
+  }
 `;
 
 export const ItemDiv = styled.div`

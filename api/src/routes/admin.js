@@ -14,22 +14,21 @@ const {
 } = require("../controllers/Admin/reportedRoutes");
 const { getByUserName } = require("../controllers/Users/index");
 
+router.put(
+  "/reported/workOrders/:id",
+   changeReportedWorkOrder
+);
+router.put("/reported/users/:id", changeReportedUser);
 router.put("/", [verifyToken, isAdmin], jobTypeModifier);
-router.put("/put",[verifyToken, isAdmin], jobTypeDelete);
+router.put("/put", [verifyToken, isAdmin], jobTypeDelete);
 router.put("/ban/work", [verifyToken, isAdmin], banUserorWorkOrder);
 router.put("/ban/user", [verifyToken, isAdmin], banUser);
 router.get("/allUsers", [verifyToken, isAdmin], allUsers);
-router.get("reported/users", [verifyToken, isAdmin], getReportedUsers);
+router.get("/reported/users", [verifyToken, isAdmin], getReportedUsers);
 router.get(
-  "reported/workOrders",
+  "/reported/workOrders",
   [verifyToken, isAdmin],
   getReportedWorkOrders
-);
-router.post("reported/users:id", [verifyToken, isAdmin], changeReportedUser);
-router.post(
-  "reported/workOrders/:id",
-  [verifyToken, isAdmin],
-  changeReportedWorkOrder
 );
 router.get("/userbyuserName", getByUserName);
 
