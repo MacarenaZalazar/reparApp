@@ -391,20 +391,6 @@ const FormTechnicUser = () => {
                     })}
                 </div>
               </InputJobs>
-              {/* <Input>
-                <label> Certificaciones:</label>
-                <input
-                  className="qualificationInput"
-                  type="text"
-                  name="certification"
-                  autoComplete="off"
-                  onChange={handleQualificationChange}
-                />
-
-                <button onClick={(e) => addQualification(e)}>
-                  Agregar Certificación
-                </button>
-              </Input> */}
             </Right>
           </div>
 

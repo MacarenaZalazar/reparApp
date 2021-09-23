@@ -1,14 +1,13 @@
 import styled from "styled-components";
 
 export const StyledDiv = styled.div`
-  height: calc(100vh - 11.75rem);
   /* background-color: #0a122a; */
   width: 100%;
+
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-
   button {
     padding: 0.5rem 3rem;
     border-radius: 1rem;
@@ -20,8 +19,6 @@ export const StyledDiv = styled.div`
     p {
       font-weight: bold;
       color: #0a122aff;
-      display: inline;
-      width: 100%;
     }
 
     :hover {
@@ -33,6 +30,19 @@ export const StyledDiv = styled.div`
 `;
 
 export const Form = styled.div`
+  width: 100%;
+  color: #e7decdff;
+  background-color: #0a122aff;
+  display: flex;
+  border-radius: 1rem;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+  padding: 5rem 1.3rem;
+  span {
+    padding: 10px 0;
+  }
   .title {
     position: relative;
     text-transform: uppercase;
@@ -49,35 +59,34 @@ export const Form = styled.div`
     }
   }
 
-  color: #e7decdff;
-  background-color: #0a122aff;
-  display: flex;
-  border-radius: 1rem;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
-  gap: 2rem;
-  padding: 5rem 1.3rem;
-  span {
-    padding: 10px 0;
-  }
-
   .grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
+
+    @media screen and (max-width: 768px) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media screen and (max-width: 768px) {
+    margin: 1rem 0rem;
   }
 `;
 export const Input = styled.div`
-  input[type=number]::-webkit-inner-spin-button, 
-  input[type=number]::-webkit-outer-spin-button { 
-    -webkit-appearance: none; 
-    margin: 0; 
+  input[type="number"]::-webkit-inner-spin-button,
+  input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
   }
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 1rem;
+
+  @media screen and (max-width: 768px) {
+    flex-direction: column;
+  }
 
   input {
     color: #e7decdff;
@@ -86,26 +95,34 @@ export const Input = styled.div`
     text-align: center;
     font-family: "Montserrat", sans-serif;
     color: ${({ error }) => (error ? "rgb(248, 248, 248)" : "#e7decdff")};
-    width: 25rem;
+    min-width: 15rem;
     outline: 0;
     border: 0;
     border-bottom: 1px solid #e7decdff;
     border-bottom: ${({ error }) =>
       error ? " 1px solid #f06449ff" : "1px solid #e7decdff"};
+    @media screen and (max-width: 768px) {
+      max-width: 100%;
+      min-width: 15rem;
+    }
   }
 
   label {
-    width: 10rem;
+    max-width: 10rem;
     text-align: end;
   }
   select {
     color: #e7decdff;
     background-color: #0a122aff;
-    width: 25rem;
+    max-width: 100%;
     padding: 0.3rem;
     outline: 0;
     border: 0;
     border-bottom: 1px solid #e7decdff;
+    @media screen and (max-width: 768px) {
+      max-width: 100%;
+      min-width: 15rem;
+    }
   }
 
   .flexZones {

@@ -3,7 +3,7 @@ import gifSignin from "../../utils/gif/signin.gif";
 
 export const StyledDiv = styled.div`
   width: 100%;
-  height: calc(100vh - 10.753rem);
+  min-height: calc(100vh - 4.4rem);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -16,5 +16,3 @@ export const StyledDiv = styled.div`
     text-align: center;
   }
 `;
-
-export const SigninDiv = styled.div``;

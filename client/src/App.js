@@ -52,7 +52,7 @@ function App() {
   }, [jobTypes.length, dispatch]);
 
   return (
-    <div className="appContainer">
+    <div>
       <Route path="/" component={NavBar} />
 
       <Switch>
