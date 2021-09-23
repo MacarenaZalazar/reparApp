@@ -1,15 +1,40 @@
 import styled from "styled-components";
 
 export const StyledDiv = styled.div`
+  position: fixed;
+  z-index: 99;
+  width: 100%;
+  height: 6.5rem;
   background-color: #0a122a;
-  padding: 0.5rem;
+
+  @media screen and (max-width: 768px) {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+  }
 `;
 
 export const NavBarDiv = styled.div`
-  color: #d2d0ff;
+  width: 100%;
+  height: 100%;
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  gap: 2rem;
+  padding: 0.5rem;
+  position: relative;
+  transition: 0.8s ease;
+
+  @media screen and (max-width: 768px) {
+    width: 100%;
+    height: 100vh;
+    position: absolute;
+    top: 5rem;
+    left: ${({ click }) => (click ? 0 : "-100%")};
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #0a122aff;
+  }
 `;
 
 export const LogoDiv = styled.div`
@@ -40,6 +65,9 @@ export const ButtonsDiv = styled.div`
   justify-content: center;
   align-items: center;
   gap: 1rem;
+  @media screen and (max-width: 768px) {
+    flex-direction: column;
+  }
 `;
 
 export const Button = styled.div`
@@ -58,5 +86,20 @@ export const Button = styled.div`
     transform: scale(1.1);
     cursor: pointer;
     background-color: #f06449;
+  }
+`;
+
+export const IconMenu = styled.div`
+  color: #f06449;
+  display: none;
+
+  :hover {
+    cursor: pointer;
+  }
+  @media screen and (max-width: 768px) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0.5rem;
   }
 `;

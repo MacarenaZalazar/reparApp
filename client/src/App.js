@@ -117,6 +117,7 @@ function App() {
           component={Checkout}
           allow="userTech"
         />
+
         <PrivateRoute
           exact
           path="/pago"
