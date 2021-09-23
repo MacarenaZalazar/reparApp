@@ -1,6 +1,5 @@
 import React, { useState, useMemo } from "react";
 import Swal from "sweetalert2";
-
 import axios from "axios";
 import { REQUEST_URL, TECH_USERS_URL } from "../../utils/constants";
 import { useHistory } from "react-router";
