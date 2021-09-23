@@ -28,7 +28,6 @@ function ProfileUserFinal() {
 
   const user = useSelector((state) => state.finalUserDetail);
 
-  console.log(user);
   return (
     <StyledDiv className="container">
       <ButtonsDiv>

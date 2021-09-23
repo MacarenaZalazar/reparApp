@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 export const StyledDiv = styled.div`
   width: 100%;
+  min-height: calc(100vh - 10.9rem);
   padding: 2rem;
   display: flex;
   justify-content: space-between;
