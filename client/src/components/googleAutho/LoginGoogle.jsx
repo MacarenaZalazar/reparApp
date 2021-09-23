@@ -124,6 +124,7 @@ function LoginGoogle() {
         cookiePolicy={"single_host_origin"}
         theme="dark"
         icon={false}
+        redirectUri={"https://webclient-pf-050921.herokuapp.com"}
       />
     </>
   );

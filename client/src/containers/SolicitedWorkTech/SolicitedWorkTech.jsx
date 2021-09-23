@@ -6,8 +6,10 @@ import { REQUEST_URL } from "../../utils/constants";
 import { Link, useHistory } from "react-router-dom";
 import axios from "axios";
 import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
 
 const SolicitedWorkTech = (props) => {
+  const MySwal = withReactContent(Swal);
   const userString = window.sessionStorage.getItem("user");
   const user = JSON.parse(userString);
 
@@ -46,6 +48,9 @@ const SolicitedWorkTech = (props) => {
         max: 5,
         step: 1,
       },
+      confirmButtonColor: "#0a122aff",
+      background: "#e7decdff",
+      backdrop: "rgba(10,18,42,0.6)",
     });
 
     if (scoreTech) {
@@ -64,10 +69,26 @@ const SolicitedWorkTech = (props) => {
         scoreTech: scoreTechInput,
       };
     }
-
-    await axios.put(`${REQUEST_URL}/${idWork}`, obj);
-    Swal.fire(`¡Gracias!`);
-    history.push("/usuarioTech");
+    try {
+      await axios.put(`${REQUEST_URL}/${idWork}`, obj);
+      MySwal.fire({
+        title: "¡Gracias por calificar!",
+        icon: "success",
+        confirmButtonColor: "#0a122aff",
+        background: "#e7decdff",
+        backdrop: "rgba(10,18,42,0.6)",
+      });
+      history.push("/usuarioTech");
+    } catch (error) {
+      console.log(error);
+      MySwal.fire({
+        title: "Hubo un error.",
+        icon: "error",
+        confirmButtonColor: "#0a122aff",
+        background: "#e7decdff",
+        backdrop: "rgba(10,18,42,0.6)",
+      });
+    }
   }
 
   return (
@@ -105,9 +126,16 @@ const SolicitedWorkTech = (props) => {
       )}
 
     <button onClick={() => refuseUserTech()}>Rechazar Solicitud</button> */}
-      {requestDetails.acepted && !requestDetails.complete && (
-        <button onClick={() => finishedWork()}>Finalizar Trabajo</button>
-      )}
+      {requestDetails.acepted &&
+        !requestDetails.complete &&
+        !requestDetails.completeTech && (
+          <button onClick={() => finishedWork()}>Finalizar Trabajo</button>
+        )}
+      {requestDetails.acepted &&
+        !requestDetails.complete &&
+        requestDetails.completeTech && (
+          <button onClick={() => finishedWork()}>Recalificar</button>
+        )}
       {requestDetails.acepted && <Link to="/contacto"> Reportar problema</Link>}
     </StyledDiv>
   );

@@ -7,8 +7,10 @@ import { REQUEST_URL } from "../../utils/constants";
 import { Link, useHistory } from "react-router-dom";
 import axios from "axios";
 import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
 
 const SolicitedWork = (props) => {
+  const MySwal = withReactContent(Swal);
   const history = useHistory();
   const dispatch = useDispatch();
 
@@ -23,37 +25,78 @@ const SolicitedWork = (props) => {
   }, [dispatch]);
 
   async function aceptUserTech() {
-    await axios.put(`${REQUEST_URL}/${idWork}`, {
-      acepted: true,
-    });
-    alert("¡Aceptaste al Tecnico!");
-    history.push("/usuarioFinal");
+    try {
+      await axios.put(`${REQUEST_URL}/${idWork}`, {
+        acepted: true,
+      });
+
+      MySwal.fire({
+        title: "Se aceptó la postulación con éxito",
+        icon: "success",
+        confirmButtonColor: "#0a122aff",
+        background: "#e7decdff",
+        backdrop: "rgba(10,18,42,0.6)",
+      });
+
+      history.push("/usuarioFinal");
+    } catch (error) {
+      MySwal.fire({
+        title: "Hubo un error.",
+        icon: "error",
+        confirmButtonColor: "#0a122aff",
+        background: "#e7decdff",
+        backdrop: "rgba(10,18,42,0.6)",
+      });
+      console.log(error);
+    }
   }
 
   const technicUserDetail = useSelector((state) => state.technicUserDetail);
   async function refuseUserTech() {
-    const respuesta = await axios.put(`${REQUEST_URL}/${idWork}`, {
-      acepted: false,
-      solicited: false,
-      userTech: null,
-    });
-    console.log(respuesta);
+    try {
+      await axios.put(`${REQUEST_URL}/${idWork}`, {
+        acepted: false,
+        solicited: false,
+        userTech: null,
+      });
+
+      MySwal.fire({
+        title: "Se rechazó la postulación con éxito",
+        icon: "success",
+        confirmButtonColor: "#0a122aff",
+        background: "#e7decdff",
+        backdrop: "rgba(10,18,42,0.6)",
+      });
+
+      history.push("/usuarioFinal");
+    } catch (error) {
+      MySwal.fire({
+        title: "Hubo un error.",
+        icon: "error",
+        confirmButtonColor: "#0a122aff",
+        background: "#e7decdff",
+        backdrop: "rgba(10,18,42,0.6)",
+      });
+      console.log(error);
+    }
   }
 
   let scoreFinalInput = "";
   let obj = "";
   async function finishedWork() {
     const { value: scoreFinal } = await Swal.fire({
-      title: "Califica al tecnico",
+      title: "¡Calificá al Técnico - Profesional!",
       input: "number",
       allowOutsideClick: false,
-      inputLabel: "tu calificacion",
-      inputPlaceholder: "Calificación de 1 a 5",
+      inputLabel: "Calificación de 1 a 5",
       inputAttributes: {
         min: 1,
         max: 5,
         step: 1,
       },
+      confirmButtonColor: "#0a122aff",
+      background: "#e7decdff",
+      backdrop: "rgba(10,18,42,0.6)",
     });
 
     if (scoreFinal) {
@@ -66,7 +109,6 @@ const SolicitedWork = (props) => {
         scoreFinal: scoreFinalInput,
       };
     } else {
-      console.log("entre al else");
       obj = {
         complete: true,
         completeFinal: true,
@@ -74,9 +116,26 @@ const SolicitedWork = (props) => {
       };
     }
 
-    await axios.put(`${REQUEST_URL}/${idWork}`, obj);
-    Swal.fire(`¡Gracias!`);
-    history.push("/usuarioFinal");
+    try {
+      await axios.put(`${REQUEST_URL}/${idWork}`, obj);
+      MySwal.fire({
+        title: "¡Gracias por calificar!",
+        icon: "success",
+        confirmButtonColor: "#0a122aff",
+        background: "#e7decdff",
+        backdrop: "rgba(10,18,42,0.6)",
+      });
+      history.push("/usuarioFinal");
+    } catch (error) {
+      MySwal.fire({
+        title: "Hubo un error.",
+        icon: "error",
+        confirmButtonColor: "#0a122aff",
+        background: "#e7decdff",
+        backdrop: "rgba(10,18,42,0.6)",
+      });
+      console.log(error);
+    }
   }
 
   return (
@@ -114,9 +173,16 @@ const SolicitedWork = (props) => {
       {requestDetails.acepted && !requestDetails.complete && (
         <Link to="/contacto"> Reportar problema</Link>
       )}
-      {requestDetails.acepted && (
-        <button onClick={() => finishedWork()}>Finalizar Trabajo</button>
-      )}
+      {requestDetails.acepted &&
+        !requestDetails.complete &&
+        !requestDetails.completeFinal && (
+          <button onClick={() => finishedWork()}>Finalizar Trabajo</button>
+        )}
+      {requestDetails.acepted &&
+        !requestDetails.complete &&
+        requestDetails.completeFinal && (
+          <button onClick={() => finishedWork()}>Recalificar</button>
+        )}
     </StyledDiv>
   );
 };
