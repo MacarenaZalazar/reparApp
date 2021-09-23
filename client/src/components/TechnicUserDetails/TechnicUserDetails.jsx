@@ -115,7 +115,7 @@ export default function TechnicUserDetails() {
                   </UserInfoDiv>
                 ) : (
                   <Button onClick={handleClick}>
-                    Inicia sesión para ver mas info
+                    <p>Inicia sesión para ver mas info</p>
                   </Button>
                 )}
                 
