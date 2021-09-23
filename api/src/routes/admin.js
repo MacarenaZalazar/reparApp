@@ -16,8 +16,7 @@ const { getByUserName } = require("../controllers/Users/index");
 
 router.put(
   "/reported/workOrders/:id",
-  [verifyToken, isAdmin],
-  changeReportedWorkOrder
+   changeReportedWorkOrder
 );
 router.put("/reported/users/:id", changeReportedUser);
 router.put("/", [verifyToken, isAdmin], jobTypeModifier);

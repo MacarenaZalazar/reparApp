@@ -4,20 +4,18 @@ import Carousel from "react-elastic-carousel";
 import { StyledDiv } from "./styledWorkOrders";
 
 const WorkOrders = () => {
-  let allRequest = useSelector((state) => state.allRequests);
-  allRequest = allRequest.filter(e => !e.solicited)
-
+  let {allRequests} = useSelector((state) => state);
+  allRequests = allRequests.filter(e => !e.solicited)
 
   return (
     <>
-      {allRequest.length > 0 ? (
+      {allRequests.length > 0 ? (
         <StyledDiv>
           <div className="title">
             <p>Solicitudes de Trabajo</p>
           </div>
           <Carousel className="carousel" itemsToShow={1} outerSpacing={50}>
-            {allRequest &&
-              allRequest.map((e, idx) => {
+            {allRequests.map((e, idx) => {
                 return (
                     <>
                       <WorkOrder
