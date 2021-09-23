@@ -13,7 +13,6 @@ const SolicitedWork = (props) => {
   const dispatch = useDispatch();
 
   const requestDetails = useSelector((state) => state.requestDetails);
-  const technicUserDetail = useSelector((state) => state.technicUserDetail);
   const idWork = props.match.params.idWork;
 
   useEffect(() => {
@@ -31,6 +30,7 @@ const SolicitedWork = (props) => {
     history.push("/usuarioFinal");
   }
 
+  const technicUserDetail = useSelector((state) => state.technicUserDetail);
   async function refuseUserTech() {
     const respuesta = await axios.put(`${REQUEST_URL}/${idWork}`, {
       acepted: false,
@@ -81,8 +81,16 @@ const SolicitedWork = (props) => {
 
   return (
     <StyledDiv>
-      <p>Nombre del trabajo</p>
-      {requestDetails && <h4> {requestDetails.title}</h4>}
+      <p>Detalles del trabajo</p>
+      {requestDetails && (
+        <div>
+          <h4>{requestDetails.title}</h4>
+          <h5>{requestDetails.description}</h5>
+          <img src={requestDetails.workImage} />
+          <p>{requestDetails.state}</p>
+          <p>{requestDetails.zone}</p>
+        </div>
+      )}
 
       {technicUserDetail && technicUserDetail.user && (
         <p>Postulante para este trabajo</p>
@@ -91,7 +99,10 @@ const SolicitedWork = (props) => {
         <h4> {technicUserDetail.user.name} </h4>
       )}
       {technicUserDetail && technicUserDetail.user && (
-        <h4> {technicUserDetail.user.lastName} </h4>
+        <div>
+          <h4> {technicUserDetail.user.lastName} </h4>
+          <p>{technicUserDetail.user.mail}</p>
+        </div>
       )}
 
       {!requestDetails.acepted && requestDetails.solicited && (
