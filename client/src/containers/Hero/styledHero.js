@@ -4,7 +4,8 @@ import gifHero from "../../utils/gif/hero3.gif";
 
 export const StyledDiv = styled.div`
   width: 100%;
-  height: calc(100vh - 10.75rem);
+  height: calc(100vh - 4.4rem);
+  padding-top: 6.5rem;
   display: flex;
   justify-content: center;
   align-items: center;

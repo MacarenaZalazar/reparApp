@@ -2,7 +2,8 @@ import styled from "styled-components";
 
 export const StyledDiv = styled.div`
   width: 100%;
-  min-height: calc(100vh - 10.75rem);
+  height: calc(100vh - 4.4rem);
+  padding-top: 6.5rem;
   background-color: #fbfaf8ff;
   padding: 0.5rem 0;
   gap: 2rem 0;
