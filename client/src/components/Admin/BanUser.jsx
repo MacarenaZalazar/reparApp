@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import UserCard from "../UserCard/UserCard";
 import axios from "axios";
 import { ADMIN_URL } from "../../utils/constants";
-import Button from "react-bootstrap/Button";
+import {Button, ContainerDiv, TitleDiv, UserDiv} from './Styles'
+
 
 const BanUser = () => {
   const [user, setUser] = useState([]);
@@ -34,14 +35,26 @@ const BanUser = () => {
   };
   console.log(user);
   return (
-    <div>
-      <label>Buscar Usuari@</label>
+    <>
+    <UserDiv>
+    <ContainerDiv>
+      <TitleDiv>
+        <h4>Buscar Usuari@</h4>
+      </TitleDiv>
+
+      <div className='littleContainer'>
+
       <input
         onChange={(e) => handleChange(e)}
         type="text"
         placeholder="nombre de usuario..."
-      />
-      <Button onClick={handleClick}>Buscar</Button>
+        />
+      <Button onClick={handleClick}>
+        <p>Buscar</p>
+        </Button>
+      </div>
+      </ContainerDiv>
+      <>
       {user.length > 0 &&
         user.map((u, idx) => {
           return (
@@ -63,7 +76,9 @@ const BanUser = () => {
             </>
           );
         })}
-    </div>
+        </>
+      </UserDiv>
+  </>
   );
 };
 

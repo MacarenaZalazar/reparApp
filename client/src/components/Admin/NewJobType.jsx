@@ -1,5 +1,5 @@
 import React, { useState, useMemo } from "react";
-import Button from "react-bootstrap/Button";
+import {Button, ContainerDiv, TitleDiv} from './Styles'
 import axios from "axios";
 import { ADMIN_URL } from "../../utils/constants";
 import { useEffect } from "react";
@@ -52,17 +52,23 @@ function NewJobType() {
 
   return (
     <>
-      <div className="addJob">
-        <input
-          type="text"
-          className="form-control"
-          name="newJob"
-          placeholder="Nuevo trabajo..."
-          autoComplete="off"
-          onChange={(e) => handleInputChange(e)}
-        />
-        <Button onClick={(e) => handleClick(e)}>Agregar</Button>
-      </div>
+      <ContainerDiv>
+        <TitleDiv>
+            <h4>Crear nuevo tipo de trabajo</h4>
+        </TitleDiv>
+        <div className='littleContainer'>
+          <input
+            type="text"
+            className="form-control"
+            name="newJob"
+            placeholder="Nuevo trabajo..."
+            autoComplete="off"
+            onChange={(e) => handleInputChange(e)}
+            />
+          <Button onClick={(e) => handleClick(e)}>
+          <p>Agregar</p> </Button>
+          </div>
+      </ContainerDiv>
     </>
   );
 }

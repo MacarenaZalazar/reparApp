@@ -1,7 +1,7 @@
 import WorkOrder from "../../components/WorkOrder/WorkOrder";
 import { useSelector } from "react-redux";
 import Carousel from "react-elastic-carousel";
-import { StyledDiv } from "./styledWorkOrders";
+import { StyledDiv } from "../TechnicUsers/Styles";
 
 const WorkOrders = () => {
   let {allRequests} = useSelector((state) => state);

@@ -6,22 +6,8 @@ flex-direction: column;
 align-items: center;
 padding: 50px;
 height: 100%;
-.reported{
-    margin: 15px;
-    padding: 15px;
-    background-color:#194350;
-    border-radius: 15px;
-
-    :hover{
-        color: white;
-        font-weight: bold
-    }
-}
-.works{
-    padding: 15px;
-
-
     .workContainer{
+        margin: 2rem;
         display: flex;
         flex-direction: row;
         justify-content: space-around;
@@ -32,7 +18,31 @@ height: 100%;
             align-items: center;
         }
     }
+    .usersContainer{
+        display:flex;
+        align-items: flex-start;
+        justify-content: space-around;
+        
+    }        
+    
 }
+`
+export const Button = styled.div`
+  border-radius: 1rem;
+  padding: 0.5rem 3rem;
+  transition: 0.5s ease;
+  background-color: #e7decdff;
+  margin: 1rem;
+  p {
+    font-weight: bold;
+    color: #0a122aff;
+    display: inline;
+    width: 100%;
+  }
 
-
+  :hover {
+    transform: scale(1.1);
+    cursor: pointer;
+    background-color: #f06449;
+  }
 `

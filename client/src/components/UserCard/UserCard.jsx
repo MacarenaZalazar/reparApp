@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import { ADMIN_URL } from "../../utils/constants";
-import Button from "react-bootstrap/Button";
+import {Button, ImgDiv, ContentDiv, ButtonsDiv, ItemCard } from "./StyledCard";
 import { getFinalUsersById } from "../../redux/actions/finalUser";
 import { getTechUsersById } from "../../redux/actions/techUsers";
 import { useDispatch } from "react-redux";
@@ -52,40 +52,58 @@ const UserCard = ({
 
   return (
     <div>
-      <span>{`${name} ${lastName}`}</span>
-      <span>{userName}</span>
-      <img src={image} alt={userName} />
+      <ContentDiv>
+        <ImgDiv>
+          {image && <img src={image} alt={userName} />}
+        </ImgDiv>
+        <ItemCard>
+              <span>{`${name} ${lastName}`}</span>
+        </ItemCard>
+      <ItemCard>
+        <span>{userName}</span>
+      </ItemCard>
+      <ItemCard>
       <span>{state}</span>
-      <span>{ban} </span>
+      </ItemCard>
+      <ItemCard>
       <span>{score} </span>
+      </ItemCard>
+      <ItemCard>
       <span>{promoted && promoted} </span>
+      </ItemCard>
+      <ButtonsDiv>
+        {idFinal ? (
+          <Link to="/finalUserDetails">
+            <Button onClick={() => dispatch(getFinalUsersById(idFinal, config))}>
+              <p>Ver perfil</p>
+            </Button>
+          </Link>
+        ) : (
+          <Link to="/technicUserDetails">
+            <Button onClick={() => dispatch(getTechUsersById(idTech, config))}>
+              <p>Ver perfil</p>
+            </Button>
+          </Link>
+        )}
 
-      {idFinal ? (
-        <Link to="/finalUserDetails">
-          <Button onClick={() => dispatch(getFinalUsersById(idFinal, config))}>
-            Ver perfil
-          </Button>
-        </Link>
-      ) : (
-        <Link to="/technicUserDetails">
-          <Button onClick={() => dispatch(getTechUsersById(idTech, config))}>
-            Ver perfil
-          </Button>
-        </Link>
-      )}
-
-      {banned ? (
-        <Button onClick={() => handleUnban(id)}>Desbanear</Button>
-      ) : (
-        <Button onClick={() => handleBan(id)}>Banear</Button>
-      )}
-      {idFinal && (
-        <Link to={"/workOrders"}>
-          <Button onClick={() => dispatch(getRequestByUser(idFinal, config))}>
-            Ver pedidos de trabajo
-          </Button>
-        </Link>
-      )}
+        {banned ? (
+          <Button onClick={() => handleUnban(id)}>
+            <p>Desbanear</p>
+            </Button>
+          ) : (
+            <Button onClick={() => handleBan(id)}>
+              <p>Banear</p>
+              </Button>
+            )}
+        {idFinal && (
+          <Link to={"/workOrders"}>
+            <Button onClick={() => dispatch(getRequestByUser(idFinal, config))}>
+            <p>Ver pedidos de trabajo</p>
+            </Button>
+          </Link>
+        )}
+      </ButtonsDiv>
+      </ContentDiv>
     </div>
   );
 };
