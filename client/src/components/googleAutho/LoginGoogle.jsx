@@ -112,7 +112,7 @@ function LoginGoogle() {
     }
   };
   const url =
-    "497367320284-qb9liem9l8i7mdroc6ci4ujm2vsftnj9.apps.googleusercontent.com";
+    "497367320284-4nttqrdm45o2lded0stu5hq6mht8tlmf.apps.googleusercontent.com";
 
   return (
     <>
