@@ -15,9 +15,9 @@ import { useDispatch } from "react-redux";
 import { getTechUsersByJobAndZone } from "../../redux/actions/techUsers";
 import { getRequestAllFiltered } from "../../redux/actions/request/index";
 import { MdAccountCircle, MdVpnKey } from "react-icons/md";
-import { TiArrowBack } from "react-icons/ti";
+import { TiArrowBack, TiUserAdd } from "react-icons/ti";
 import { GiPadlockOpen } from "react-icons/gi";
-import { FaUserPlus } from "react-icons/fa";
+import { FaUserPlus, FaArrowLeft } from "react-icons/fa";
 import { AiFillGoogleCircle } from "react-icons/ai";
 import { useState } from "react";
 import { useHistory, Link } from "react-router-dom";
@@ -142,13 +142,12 @@ const Login = () => {
           <TiArrowBack className="icon" />
           <p>Volver a Home</p>
         </Link>
-
         <Link onClick={(e) => forgotPassword(e)} className="link" to="/login">
           <GiPadlockOpen className="icon" />
           <p>Recuperar Contraseña</p>
         </Link>
         <Link onClick={showAlert} className="link" to="/#">
-          <FaUserPlus className="icon" />
+          <TiUserAdd className="icon" />
           <p>Registrarse</p>
         </Link>
       </LinksDiv>
