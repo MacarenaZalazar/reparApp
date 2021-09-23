@@ -30,19 +30,6 @@ export const StyledDiv = styled.div`
 `;
 
 export const Form = styled.div`
-  width: 100%;
-  color: #e7decdff;
-  background-color: #0a122aff;
-  display: flex;
-  border-radius: 1rem;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
-  gap: 2rem;
-  padding: 5rem 1.3rem;
-  span {
-    padding: 10px 0;
-  }
   .title {
     position: relative;
     text-transform: uppercase;
@@ -57,6 +44,19 @@ export const Form = styled.div`
         content: " ";
       }
     }
+  }
+
+  color: #e7decdff;
+  background-color: #0a122aff;
+  display: flex;
+  border-radius: 1rem;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+  padding: 5rem 1.3rem;
+  span {
+    padding: 10px 0;
   }
 
   .grid {
