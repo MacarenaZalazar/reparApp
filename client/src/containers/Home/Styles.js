@@ -2,13 +2,15 @@ import styled from "styled-components";
 
 export const StyledDiv = styled.div`
   width: 100%;
-  height: calc(100vh - 4.4rem);
-  padding-top: 6.5rem;
+  min-height: 100vh;
+
   background-color: #fbfaf8ff;
+
   padding: 0.5rem 0;
   gap: 2rem 0;
 
   .flexHome {
+    padding-top: 5rem;
     width: 100%;
     display: flex;
     justify-content: center;
@@ -36,4 +38,6 @@ export const SinUser = styled.div`
   }
 `;
 
-export const HomeDiv = styled.div``;
+export const HomeDiv = styled.div`
+  padding-top: 5rem;
+`;
