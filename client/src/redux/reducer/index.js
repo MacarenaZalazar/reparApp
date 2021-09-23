@@ -139,7 +139,6 @@ function reducer(state = initialState, action) {
         technicUserDetail: {},
         finalUser: [],
         finalUserDetail: {},
-        allStates: [],
         allCities: [],
         allUsers: [],
         allRequests: [],
