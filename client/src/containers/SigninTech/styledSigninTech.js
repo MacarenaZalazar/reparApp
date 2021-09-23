@@ -4,6 +4,7 @@ import gifSignin from "../../utils/gif/signin.gif";
 export const StyledDiv = styled.div`
   width: 100%;
   min-height: calc(100vh - 4.4rem);
+  padding: 1.2rem;
   display: flex;
   justify-content: center;
   align-items: center;

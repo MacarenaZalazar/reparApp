@@ -209,7 +209,7 @@ const FormWorkOrder = () => {
               <Input error={input.errors.zone}>
                 {allCities.length > 1 && (
                   <div className="flexZones">
-                    <div>
+                    <div className="flexZonesNew">
                       <label>* Zonas:</label>
                       <select
                         aria-label="Default select example"
