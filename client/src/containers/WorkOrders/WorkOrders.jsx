@@ -4,7 +4,9 @@ import Carousel from "react-elastic-carousel";
 import { StyledDiv } from "./styledWorkOrders";
 
 const WorkOrders = () => {
-  const allRequest = useSelector((state) => state.allRequests);
+  let allRequest = useSelector((state) => state.allRequests);
+  allRequest = allRequest.filter(e => !e.solicited)
+
 
   return (
     <>
@@ -17,7 +19,6 @@ const WorkOrders = () => {
             {allRequest &&
               allRequest.map((e, idx) => {
                 return (
-                  !e.solicited && (
                     <>
                       <WorkOrder
                         key={idx}
@@ -30,7 +31,6 @@ const WorkOrders = () => {
                         userFinal={e.userFinal}
                       />
                     </>
-                  )
                 );
               })}
           </Carousel>
