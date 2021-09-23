@@ -9,11 +9,11 @@ const PromotedUsers = () => {
   console.log(promoted);
   return (
     <StyledDiv>
-      <div className="title">
-        <p>Usuarios Promocionados</p>
-      </div>
       {promoted.length > 0 ? (
         <>
+          <div className="title">
+            <p>Usuarios Promocionados</p>
+          </div>
           <Carousel className="carousel" itemsToShow={1} outerSpacing={50}>
             {promoted &&
               promoted.map((t, idx) => {
