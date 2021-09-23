@@ -6,6 +6,7 @@ import axios from "axios";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { getJobTypesAll } from "../../redux/actions/jobTypes";
+import Swal from 'sweetalert2';
 
 const DeleteJobType = () => {
   const [newJob, setNewJob] = useState("");
@@ -14,12 +15,8 @@ const DeleteJobType = () => {
   const handleClick = async (e) => {
     try {
       await axios.put(`${ADMIN_URL}/put`, newJob, config);
-      alert("El tipo de trabajo ha sido eliminado");
-      if (flag) {
-        setFlag(false);
-      } else {
-        setFlag(true);
-      }
+      Swal.fire({title: "El tipo de trabajo ha sido eliminado"});
+      setFlag(!flag)
       setNewJob("");
     } catch (error) {
       console.log(error);

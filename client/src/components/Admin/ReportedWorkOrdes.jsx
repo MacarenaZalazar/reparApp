@@ -3,6 +3,7 @@ import axios from 'axios';
 import { ADMIN_URL } from '../../utils/constants';
 import WorkOrder from '../WorkOrder/WorkOrder';
 import Button from 'react-bootstrap/Button';
+import  Swal  from 'sweetalert2';
 
 
 
@@ -28,29 +29,29 @@ const ReportedWorkOrdes = () => {
     const handleBan = async (id) => {
         try {
           await axios.put(`${ADMIN_URL}/ban/work`, {ban: true, id},config)
-          alert('El pedido ha sido baneado')
+          Swal.fire({title:'El pedido ha sido baneado'})
           setFlag(!flag)
         } catch (error) {
-          alert('No se ha podido banear el pedido')
+          Swal.fire({title:'No se ha podido banear el pedido'})
         }
       }
     
       const handleUnbanned = async (id) => {
         try {
           await axios.put(`${ADMIN_URL}/ban/work`, {ban: false, id},config)
-          alert('El pedido ha sido baneado')
+          Swal.fire({title:'El pedido ha sido desbaneado'})
           setFlag(!flag)
         } catch (error) {
-          alert('No se ha podido banear el pedido')
+          Swal.fire({title:'No se ha podido desbanear el pedido'})
         }
       }
       const handleUnreport = async (id) => {
         try {
           await axios.put(`${ADMIN_URL}/reported/workOrders/${id}`, config)
-          alert('El pedido ha sido desreportado')
+          Swal.fire({title:'El pedido ha sido desreportado'})
           setFlag(!flag)
         } catch (error) {
-          alert('No se ha podido desreportar el pedido')
+          Swal.fire({title:'No se ha podido desreportar el pedido'})
         }
       }
       
