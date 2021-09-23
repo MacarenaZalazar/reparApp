@@ -7,7 +7,6 @@ export const StyledDiv = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: rgb(248, 248, 248);
   background-image: url(${gifSignin});
   background-position: bottom left;
   background-size: 20%;

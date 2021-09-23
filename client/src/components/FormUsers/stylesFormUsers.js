@@ -93,6 +93,15 @@ export const Input = styled.div`
     width: 10rem;
     text-align: end;
   }
+  select {
+    color: #e7decdff;
+    background-color: #0a122aff;
+    width: 25rem;
+    padding: 0.3rem;
+    outline: 0;
+    border: 0;
+    border-bottom: 1px solid #e7decdff;
+  }
 
   .flexZones {
     display: flex;
