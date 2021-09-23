@@ -1,70 +1,66 @@
 import styled from "styled-components";
 
 export const StyledDiv = styled.div`
+  width: 100%;
+  height: 15rem;
   display: flex;
-  flex-direction: row;
-  align-items: center;
   justify-content: center;
-  margin: 15px;
-  height: 150px;
-  width: 600px;
-  border-radius: 15px;
-  box-shadow: rgba(181, 129, 108, 0.8) 0px 8px 34px -25px;
-  background-color: white;
-  button {
-    transition: 0.6s ease;
-    padding: 1rem 2rem;
-    color: rgb(248, 248, 248);
-    font-weight: bold;
-    background-color: #ff8882;
-    border: 1px solid #ffffff;
-    border-radius: 1rem;
+  align-items: flex-start;
+  background-color: #0a122aff;
+  gap: 2rem;
+  padding: 0.7rem 5rem;
+  color: #e7decdff;
+`;
 
-    :hover {
-      background-color: #194350;
-      cursor: pointer;
-    }
-  }
-  span {
-    font-size: 15px;
-  }
-  .infoContainer {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-between;
-    margin: 5px;
-    .name {
-      display: flex;
-      flex-direction: row;
-      align-items: center;
-      justify-content: center;
-      border-bottom: 1px solid #ced4da;
-      margin: 5px;
-    }
-    label {
-      font-size: 15px;
-    }
-    .subtitle {
-      display: flex;
-      align-items: center;
-      ul {
-        padding: 5px;
-      }
-      p {
-        padding: 5px;
-      }
-    }
-  }
-
-  ul {
-    font-size: 15px;
-    list-style: none;
-  }
+export const ImgDiv = styled.div`
   img {
-    margin: 10px;
-    max-width: 15rem;
-    max-height: 10rem;
-    border-radius: 1rem;
+    width: 13rem;
+    height: 11rem;
+    border-radius: 50%;
+    border: 0.3rem solid #f06449ff;
+  }
+`;
+
+export const ContentDiv = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 0.5rem;
+`;
+
+export const ItemCard = styled.div`
+  width: 100%;
+  p {
+    font-size: 1.2rem;
+    background-color: #f06449ff;
+    color: #0a122aff;
+    padding: 0 1rem;
+  }
+  h4 {
+    font-size: 1.5rem;
+  }
+
+  .pDesc {
+    text-align: start;
+    background-color: #0a122aff;
+    color: #e7decdff;
+  }
+`;
+
+export const Button = styled.button`
+  padding: 0.2rem 1.5rem;
+  border-radius: 1rem;
+  background-color: #e7decdff;
+  border: none;
+  font-family: "Montserrat", sans-serif;
+  transition: 0.5s ease;
+  font-weight: bold;
+  color: #0a122aff;
+
+  :hover {
+    transform: scale(1.1);
+    cursor: pointer;
+    background-color: #f06449;
   }
 `;

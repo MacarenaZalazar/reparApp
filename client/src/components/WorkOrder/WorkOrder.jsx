@@ -1,5 +1,11 @@
 import React from "react";
-import { StyledDiv } from "./styledWorkOrder";
+import {
+  StyledDiv,
+  ImgDiv,
+  ContentDiv,
+  ItemCard,
+  Button,
+} from "./styledWorkOrder";
 import { Link } from "react-router-dom";
 import { getRequestDetailsbyID } from "../../redux/actions/request";
 import { useDispatch } from "react-redux";
@@ -17,33 +23,39 @@ const WorkOrder = ({
   const dispatch = useDispatch();
   return (
     <StyledDiv>
-      <img src={`${workImage}`} alt="img" />
-
-      <div className="infoContainer">
-        <div className="name">
-          <h3>
-            <p>{title}</p>
-          </h3>
-        </div>
-        <div className="subtitle">
-          <p>{description}</p>
-          <Link to="/workOrdersDetails">
-            <button
-              onClick={() => {
-                dispatch(getRequestDetailsbyID(_id));
-                dispatch(getFinalUsersById(userFinal));
-              }}
-            >
-              Detalles
-            </button>
-          </Link>
-        </div>
-      </div>
-      <div className="infoContainer">
-        <label>Requerido en:</label>
-        <p>{state}</p>
-        <p>{zone}</p>
-      </div>
+      <ImgDiv>
+        <img src={`${workImage}`} alt="img" />
+      </ImgDiv>
+      <ContentDiv>
+        <ItemCard>
+          <p>Título</p>
+          <h4>{title}</h4>
+        </ItemCard>
+        <ItemCard>
+          <p>Descripción</p>
+          <p className="pDesc">{description}</p>
+        </ItemCard>
+      </ContentDiv>
+      <ContentDiv>
+        <ItemCard>
+          <p>Provincia</p>
+          <h4>{state}</h4>
+        </ItemCard>
+        <ItemCard>
+          <p>Zona</p>
+          <h4>{zone}</h4>
+        </ItemCard>
+        <Link to="/workOrdersDetails">
+          <Button
+            onClick={() => {
+              dispatch(getRequestDetailsbyID(_id));
+              dispatch(getFinalUsersById(userFinal));
+            }}
+          >
+            Detalles
+          </Button>
+        </Link>
+      </ContentDiv>
     </StyledDiv>
   );
 };
