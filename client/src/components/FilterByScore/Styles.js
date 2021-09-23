@@ -16,7 +16,8 @@ export const FilterDiv = styled.div`
 
   &:hover {
     .front {
-      transform: translateX(-100%);
+      transform: translateX(-50%);
+      opacity: 0;
       p {
         opacity: 0;
       }
