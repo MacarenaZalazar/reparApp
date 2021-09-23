@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const StyledDiv = styled.div`
   width: 100%;
   min-height: calc(100vh - 10.75rem);
-  /* background-color: #0a122a; */
+
   display: flex;
   justify-content: center;
   align-items: center;
