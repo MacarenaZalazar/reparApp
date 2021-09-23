@@ -113,9 +113,13 @@ const FormFinalUser = () => {
             },
           });
 
-          Toast.fire({
+          Swal.fire({
             icon: "success",
             title: "Registro exitoso",
+            background: "#e7decdff",
+            backdrop: "rgba(10,18,42,0.6)",
+            showConfirmButton: false,
+            timer: 2000,
           });
 
           history.push("/login");
@@ -125,6 +129,8 @@ const FormFinalUser = () => {
             title: "Error",
             text: `${respuesta.data.message}`,
             footer: '<a href="">Why do I have this issue?</a>',
+            background: "#e7decdff",
+            backdrop: "rgba(10,18,42,0.6)",
           });
         }
       } catch (error) {
