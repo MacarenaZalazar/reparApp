@@ -40,7 +40,7 @@ const Home = () => {
         </div>
       ) : (
         <HomeDiv>
-          <DisplayFilters />
+        <DisplayFilters />
           <SinUser>
             <div className="cardsDisplay">
               <PromotedUsers />

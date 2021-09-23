@@ -4,7 +4,6 @@ export const StyledDiv = styled.div`
   width: 100%;
   min-height: calc(100vh - 4.4rem);
   padding-top: 10rem;
-
   display: flex;
   justify-content: center;
   align-items: center;
