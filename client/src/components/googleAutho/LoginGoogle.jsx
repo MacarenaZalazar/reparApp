@@ -16,14 +16,17 @@ function LoginGoogle() {
   const dispatch = useDispatch();
 
   const alertFail = () => {
-    alert("Error de google");
+    MySwal.fire({
+      title: "Error de google",
+      confirmButtonColor: "#0a122aff",
+      background: "#e7decdff",
+      backdrop: "rgba(10,18,42,0.6)",
+    });
   };
 
   const responseGoogle = async (response) => {
-    console.log(response);
     try {
       const mailGoogle = response.profileObj.email;
-      //const mailVictor = "victor@victor.com";
 
       let existed = await axios.get(`${LOGIN_URL}?mail=${mailGoogle}`);
 
@@ -73,7 +76,7 @@ function LoginGoogle() {
         }
       } else {
         dispatch(loginGoogle(response));
-        // const { value: fruit } =
+
         await Swal.fire({
           input: "select",
           title: "Registrarse como:",
@@ -105,7 +108,6 @@ function LoginGoogle() {
         });
       }
     } catch (error) {
-      console.log("aca esta el error");
       console.log(error);
     }
   };

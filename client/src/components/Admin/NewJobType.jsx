@@ -5,7 +5,9 @@ import { ADMIN_URL } from "../../utils/constants";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { getJobTypesAll } from "../../redux/actions/jobTypes";
-import  Swal  from 'sweetalert2';
+import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
+const MySwal = withReactContent(Swal);
 
 
 function NewJobType() {
@@ -26,12 +28,22 @@ function NewJobType() {
       try {
         if (newJob) {
           await axios.put(ADMIN_URL, newJob, config);
-          Swal.fire({title:"El tipo de trabajo ha sido agregado"});
+          MySwal.fire({
+            title: "El tipo de trabajo ha sido agregado",
+            confirmButtonColor: "#0a122aff",
+            background: "#e7decdff",
+            backdrop: "rgba(10,18,42,0.6)",
+          });
           setFlag(!flag)
           document.getElementsByClassName("form-control")[0].value = "";
           setNewjob("");
         } else {
-          Swal.fire({title: "Ingresar un texto valido para poder cargar un nuevo tipo de trabajo"});
+          MySwal.fire({
+            title: "Ingresar un texto valido",
+            confirmButtonColor: "#0a122aff",
+            background: "#e7decdff",
+            backdrop: "rgba(10,18,42,0.6)",
+          });
         }
       } catch (error) {
         console.log(error);

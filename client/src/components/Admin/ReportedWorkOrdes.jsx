@@ -3,8 +3,9 @@ import axios from 'axios';
 import { ADMIN_URL } from '../../utils/constants';
 import WorkOrder from '../WorkOrder/WorkOrder';
 import Button from 'react-bootstrap/Button';
-import  Swal  from 'sweetalert2';
-
+import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
+const MySwal = withReactContent(Swal);
 
 
 const ReportedWorkOrdes = () => {
@@ -29,29 +30,59 @@ const ReportedWorkOrdes = () => {
     const handleBan = async (id) => {
         try {
           await axios.put(`${ADMIN_URL}/ban/work`, {ban: true, id},config)
-          Swal.fire({title:'El pedido ha sido baneado'})
+          MySwal.fire({
+            title: "El pedido ha sido baneado",
+            confirmButtonColor: "#0a122aff",
+            background: "#e7decdff",
+            backdrop: "rgba(10,18,42,0.6)",
+          });
           setFlag(!flag)
         } catch (error) {
-          Swal.fire({title:'No se ha podido banear el pedido'})
+          MySwal.fire({
+            title: "No se ha podido banear el pedido",
+            confirmButtonColor: "#0a122aff",
+            background: "#e7decdff",
+            backdrop: "rgba(10,18,42,0.6)",
+          });
         }
       }
     
       const handleUnbanned = async (id) => {
         try {
           await axios.put(`${ADMIN_URL}/ban/work`, {ban: false, id},config)
-          Swal.fire({title:'El pedido ha sido desbaneado'})
+          MySwal.fire({
+            title: "El pedido ha sido desbaneado",
+            confirmButtonColor: "#0a122aff",
+            background: "#e7decdff",
+            backdrop: "rgba(10,18,42,0.6)",
+          });
           setFlag(!flag)
         } catch (error) {
-          Swal.fire({title:'No se ha podido desbanear el pedido'})
+          MySwal.fire({
+            title: "No se ha podido desbanear el pedido",
+            confirmButtonColor: "#0a122aff",
+            background: "#e7decdff",
+            backdrop: "rgba(10,18,42,0.6)",
+          });
         }
       }
       const handleUnreport = async (id) => {
         try {
           await axios.put(`${ADMIN_URL}/reported/workOrders/${id}`, config)
-          Swal.fire({title:'El pedido ha sido desreportado'})
+          MySwal.fire({
+            title: "El pedido ha sido desreportado",
+            confirmButtonColor: "#0a122aff",
+            background: "#e7decdff",
+            backdrop: "rgba(10,18,42,0.6)",
+          });
           setFlag(!flag)
         } catch (error) {
-          Swal.fire({title:'No se ha podido desreportar el pedido'})
+          MySwal.fire({
+            title: "No se ha podido desreportar el pedido",
+            confirmButtonColor: "#0a122aff",
+            background: "#e7decdff",
+            backdrop: "rgba(10,18,42,0.6)",
+          });
         }
       }
       

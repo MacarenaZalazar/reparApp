@@ -39,7 +39,7 @@ const BanUser = () => {
     <UserDiv>
     <ContainerDiv>
       <TitleDiv>
-        <h4>Buscar Usuari@</h4>
+        <h4>Buscar Usuario</h4>
       </TitleDiv>
 
       <div className='littleContainer'>

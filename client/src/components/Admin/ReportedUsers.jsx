@@ -4,7 +4,9 @@ import { ADMIN_URL } from '../../utils/constants';
 import axios from 'axios';
 import UserCard from '../UserCard/UserCard';
 import  Button from 'react-bootstrap/Button';
-import  Swal  from 'sweetalert2';
+import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
+const MySwal = withReactContent(Swal);
 
 
 const ReportedUsers = () => {
@@ -35,14 +37,20 @@ const ReportedUsers = () => {
     const handleUnreport = async (id) => {
         try {
             await axios.put(`${ADMIN_URL}/reported/users/${id}`, config)
-            Swal.fire({
-                title: 'Usuari@ desreportad@'
-            })
+            MySwal.fire({
+                title: "Usuario desreportado",
+                confirmButtonColor: "#0a122aff",
+                background: "#e7decdff",
+                backdrop: "rgba(10,18,42,0.6)",
+              });
             setFlag(!flag)
         } catch (error) {
-            Swal.fire({
-                title: 'No se ha podido desreportar'
-            })
+            MySwal.fire({
+                title: "No se ha podido desreportar",
+                confirmButtonColor: "#0a122aff",
+                background: "#e7decdff",
+                backdrop: "rgba(10,18,42,0.6)",
+              });
         }
 
     }
@@ -71,7 +79,7 @@ const ReportedUsers = () => {
             }
             )}
 
-            </> : <span>No se han encontrado usuari@s reportad@s</span> }
+            </> : <span>No se han encontrado usuarios reportados</span> }
          </ContainerDiv>
     );
 };
