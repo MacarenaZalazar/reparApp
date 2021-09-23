@@ -54,6 +54,7 @@ const BanUser = () => {
         </Button>
       </div>
       </ContainerDiv>
+      
       <>
       {user.length > 0 &&
         user.map((u, idx) => {

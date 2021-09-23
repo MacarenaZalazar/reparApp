@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import { ADMIN_URL } from "../../utils/constants";
-import {Button, ImgDiv, ContentDiv, ButtonsDiv, ItemCard } from "./StyledCard";
+import {Button, ImgDiv, ContentDiv, ButtonsDiv, ItemCard, TitleDiv, InfoContainer } from "./StyledCard";
 import { getFinalUsersById } from "../../redux/actions/finalUser";
 import { getTechUsersById } from "../../redux/actions/techUsers";
 import { useDispatch } from "react-redux";
@@ -56,21 +56,17 @@ const UserCard = ({
         <ImgDiv>
           {image && <img src={image} alt={userName} />}
         </ImgDiv>
+        <InfoContainer>
+        <TitleDiv>
+          <h4>{`${name} ${lastName}`}</h4>
+        </TitleDiv>
         <ItemCard>
-              <span>{`${name} ${lastName}`}</span>
+              <p>{`Username: ${userName}`}</p>
+              <p>{`Provincia: ${state}`}</p>
+              {score && <p>{score} </p>}
+             {promoted && <p>Promocionadx</p>}
         </ItemCard>
-      <ItemCard>
-        <span>{userName}</span>
-      </ItemCard>
-      <ItemCard>
-      <span>{state}</span>
-      </ItemCard>
-      <ItemCard>
-      <span>{score} </span>
-      </ItemCard>
-      <ItemCard>
-      <span>{promoted && promoted} </span>
-      </ItemCard>
+      </InfoContainer>
       <ButtonsDiv>
         {idFinal ? (
           <Link to="/finalUserDetails">
