@@ -1,4 +1,3 @@
-import { StyledDiv } from "./styledSolicitedWork";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { getRequestDetailsbyID } from "../../redux/actions/request/index";
@@ -8,6 +7,17 @@ import { Link, useHistory } from "react-router-dom";
 import axios from "axios";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
+import {
+  StyledDiv,
+  ContentDiv,
+  WorkSolicited,
+  ImgDiv,
+  ContentWork,
+  ItemCard,
+  Button,
+  ButtonsDiv,
+  UserOwner,
+} from "./styledSolicitedWork";
 
 const SolicitedWork = (props) => {
   const MySwal = withReactContent(Swal);
@@ -140,49 +150,99 @@ const SolicitedWork = (props) => {
 
   return (
     <StyledDiv>
-      <p>Detalles del trabajo</p>
-      {requestDetails && (
-        <div>
-          <h4>{requestDetails.title}</h4>
-          <h5>{requestDetails.description}</h5>
-          <img src={requestDetails.workImage} />
-          <p>{requestDetails.state}</p>
-          <p>{requestDetails.zone}</p>
-        </div>
-      )}
+      <ContentDiv>
+        <div className="flexContent">
+          <WorkSolicited>
+            <div className="title">
+              <h4>Detalles del trabajo</h4>
+            </div>
+            {requestDetails && (
+              <div className="flexWorkSolicited">
+                <ImgDiv>
+                  <img src={requestDetails.workImage} alt="img" />
+                </ImgDiv>
+                <ContentWork>
+                  <ItemCard>
+                    <p>Título</p>
+                    <h4>{requestDetails.title}</h4>
+                  </ItemCard>
+                  <ItemCard>
+                    <p>Descripción</p>
+                    <p className="descriptionP">{requestDetails.description}</p>
+                  </ItemCard>
+                  <ItemCard>
+                    <p>Provincia</p>
+                    <h4>{requestDetails.state}</h4>
+                  </ItemCard>
+                  <ItemCard>
+                    <p>Zona</p>
+                    <h4>{requestDetails.zone}</h4>
+                  </ItemCard>
+                </ContentWork>
+              </div>
+            )}
+          </WorkSolicited>
+          <UserOwner>
+            <div className="flexUserOwner">
+              <div className="title">
+                {technicUserDetail && technicUserDetail.user && (
+                  <h4>Postulante para este trabajo</h4>
+                )}
+              </div>
 
-      {technicUserDetail && technicUserDetail.user && (
-        <p>Postulante para este trabajo</p>
-      )}
-      {technicUserDetail && technicUserDetail.user && (
-        <h4> {technicUserDetail.user.name} </h4>
-      )}
-      {technicUserDetail && technicUserDetail.user && (
-        <div>
-          <h4> {technicUserDetail.user.lastName} </h4>
-          <p>{technicUserDetail.user.mail}</p>
-        </div>
-      )}
+              {technicUserDetail && technicUserDetail.user && (
+                <div>
+                  <ItemCard>
+                    <p>Nombre y Apellido</p>
 
-      {!requestDetails.acepted && requestDetails.solicited && (
-        <button onClick={() => aceptUserTech()}>Aceptar solicitud</button>
-      )}
-      {!requestDetails.acepted && requestDetails.solicited && (
-        <button onClick={() => refuseUserTech()}>Rechazar Solicitud</button>
-      )}
-      {requestDetails.acepted && !requestDetails.complete && (
-        <Link to="/contacto"> Reportar problema</Link>
-      )}
-      {requestDetails.acepted &&
-        !requestDetails.complete &&
-        !requestDetails.completeFinal && (
-          <button onClick={() => finishedWork()}>Finalizar Trabajo</button>
-        )}
-      {requestDetails.acepted &&
-        !requestDetails.complete &&
-        requestDetails.completeFinal && (
-          <button onClick={() => finishedWork()}>Recalificar</button>
-        )}
+                    <h4>
+                      {technicUserDetail.user.name}
+                      {technicUserDetail.user.lastName}
+                    </h4>
+                  </ItemCard>
+                  <ItemCard>
+                    <p>E-Mail</p>
+                    <h4>{technicUserDetail.user.mail}</h4>
+                  </ItemCard>
+                </div>
+              )}
+            </div>
+          </UserOwner>
+        </div>
+        <ButtonsDiv>
+          {!requestDetails.acepted && requestDetails.solicited && (
+            <Button onClick={() => aceptUserTech()}>
+              <p>Aceptar solicitud</p>
+            </Button>
+          )}
+          {!requestDetails.acepted && requestDetails.solicited && (
+            <Button onClick={() => refuseUserTech()}>
+              <p>Rechazar Solicitud</p>
+            </Button>
+          )}
+          {requestDetails.acepted && !requestDetails.complete && (
+            <Link to="/contacto">
+              <Button>
+                <p>Reportar problema</p>
+              </Button>
+            </Link>
+          )}
+          {requestDetails.acepted &&
+            !requestDetails.complete &&
+            !requestDetails.completeFinal && (
+              <Button onClick={() => finishedWork()}>
+                <p>Finalizar Trabajo</p>
+              </Button>
+            )}
+          {requestDetails.acepted &&
+            !requestDetails.complete &&
+            requestDetails.completeFinal && (
+              <Button onClick={() => finishedWork()}>
+                <p>Recalificar</p>
+              </Button>
+            )}
+        </ButtonsDiv>
+      </ContentDiv>
     </StyledDiv>
   );
 };

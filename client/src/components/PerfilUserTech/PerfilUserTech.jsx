@@ -176,7 +176,10 @@ const PerfilUserTech = () => {
                       !req.acepted && (
                         <div key={key} className="flexBtn">
                           <p>{req.title}</p>
-                          <Link className="link" to={"/solicitedWorkTech"}>
+                          <Link
+                            className="link"
+                            to={`/solicitedWorkTech/${user._id}`}
+                          >
                             <Button
                               onClick={() => {
                                 dispatch(getRequestDetailsbyID(req._id));
@@ -204,7 +207,10 @@ const PerfilUserTech = () => {
                       !req.complete && (
                         <div key={key} className="flexBtn">
                           <p>{req.title}</p>
-                          <Link className="link" to={"/solicitedWorkTech"}>
+                          <Link
+                            className="link"
+                            to={`/solicitedWorkTech/${user._id}`}
+                          >
                             <Button
                               onClick={() => {
                                 dispatch(getRequestDetailsbyID(req._id));
@@ -236,7 +242,10 @@ const PerfilUserTech = () => {
                       !req.complete && (
                         <div key={key} className="flexBtn">
                           <p>{req.title}</p>
-                          <Link className="link" to={"/solicitedWorkTech"}>
+                          <Link
+                            className="link"
+                            to={`/solicitedWorkTech/${user._id}`}
+                          >
                             <Button
                               onClick={() => {
                                 dispatch(getRequestDetailsbyID(req._id));
@@ -262,7 +271,10 @@ const PerfilUserTech = () => {
                       req.complete && (
                         <div key={key} className="flexBtn">
                           <p>{req.title}</p>
-                          <Link className="link" to={"/solicitedWorkTech"}>
+                          <Link
+                            className="link"
+                            to={`/solicitedWorkTech/${user._id}`}
+                          >
                             <Button
                               onClick={() => {
                                 dispatch(getRequestDetailsbyID(req._id));

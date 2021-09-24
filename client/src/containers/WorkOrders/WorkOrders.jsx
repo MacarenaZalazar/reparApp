@@ -22,9 +22,8 @@ const WorkOrders = () => {
           >
             {allRequests.map((e, idx) => {
               return (
-                <>
+                <div key={idx}>
                   <WorkOrder
-                    key={idx}
                     title={e.title}
                     description={e.description}
                     state={e.state}
@@ -33,7 +32,7 @@ const WorkOrders = () => {
                     _id={e._id}
                     userFinal={e.userFinal}
                   />
-                </>
+                </div>
               );
             })}
           </Carousel>

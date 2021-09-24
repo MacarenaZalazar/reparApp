@@ -116,16 +116,32 @@ function reducer(state = initialState, action) {
         allRequests: payload,
       };
     case ORDER_BY_SCORE:
+      let techs = state.techUsers.sort(function (a, b) {
+        if (a.score > b.score) {
+          return 1;
+        }
+        if (a.score < b.score) {
+          return -1;
+        }
+        return 0;
+      });
       return {
         ...state,
-        allRequests: [...state.allRequests].sort(payload),
-        techUsers: [...state.techUsers].sort(payload),
+        techUsers: techs,
       };
     case ORDER_BY_PRICE:
+      let tech = state.techUsers.sort(function (a, b) {
+        if (a.score > b.score) {
+          return 1;
+        }
+        if (a.score < b.score) {
+          return -1;
+        }
+        return 0;
+      });
       return {
         ...state,
-        allRequests: [...state.allRequests].sort(payload),
-        techUsers: [...state.techUsers].sort(payload),
+        techUsers: tech,
       };
     case GET_REQUEST_BY_USER:
       return {
