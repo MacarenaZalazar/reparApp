@@ -14,10 +14,10 @@ const SolicitedWorkTech = (props) => {
   const user = JSON.parse(userString);
 
   const history = useHistory();
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
   const requestDetails = useSelector((state) => state.requestDetails);
-
-  const idWork = props.match.params.idWork;
+  console.log(requestDetails);
+  // const idWork = props.match.params.idWork;
 
   let config = useMemo(() => {
     return {
@@ -27,9 +27,9 @@ const SolicitedWorkTech = (props) => {
     };
   }, [user]);
 
-  useEffect(() => {
-    dispatch(getRequestDetailsbyID(idWork));
-  }, [dispatch]);
+  // useEffect(() => {
+  //   dispatch(getRequestDetailsbyID(idWork));
+  // }, [dispatch]);
 
   const finalUser = useSelector((state) => state.finalUserDetail);
 
@@ -70,7 +70,7 @@ const SolicitedWorkTech = (props) => {
       };
     }
     try {
-      await axios.put(`${REQUEST_URL}/${idWork}`, obj);
+      await axios.put(`${REQUEST_URL}/${requestDetails._id}`, obj);
       MySwal.fire({
         title: "¡Gracias por calificar!",
         icon: "success",
