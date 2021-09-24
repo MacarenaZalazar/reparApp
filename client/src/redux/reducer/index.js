@@ -127,7 +127,7 @@ function reducer(state = initialState, action) {
       });
       return {
         ...state,
-        techUsers: techs,
+        techUsers: techs.map((e) => e),
       };
     case ORDER_BY_PRICE:
       console.log(state.techUsers);
