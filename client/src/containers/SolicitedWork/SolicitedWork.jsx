@@ -199,17 +199,23 @@ const SolicitedWork = (props) => {
                   <h4>Postulante para este trabajo</h4>
                 )}
               </div>
-              <ItemCard>
-                <p>Nombre y Apellido</p>
-                <h4>
-                  {technicUserDetail.user.name}{" "}
-                  {technicUserDetail.user.lastName}
-                </h4>
-              </ItemCard>
-              <ItemCard>
-                <p>E-Mail</p>
-                <h4>{technicUserDetail.user.mail}</h4>
-              </ItemCard>
+
+              {technicUserDetail && technicUserDetail.user && (
+                <div>
+                  <ItemCard>
+                    <p>Nombre y Apellido</p>
+
+                    <h4>
+                      {technicUserDetail.user.name}
+                      {technicUserDetail.user.lastName}
+                    </h4>
+                  </ItemCard>
+                  <ItemCard>
+                    <p>E-Mail</p>
+                    <h4>{technicUserDetail.user.mail}</h4>
+                  </ItemCard>
+                </div>
+              )}
             </div>
           </UserOwner>
         </div>
