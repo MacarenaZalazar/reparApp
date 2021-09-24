@@ -10,26 +10,22 @@ import withReactContent from "sweetalert2-react-content";
 
 const SolicitedWorkTech = (props) => {
   const MySwal = withReactContent(Swal);
-  const userString = window.sessionStorage.getItem("user");
-  const user = JSON.parse(userString);
+  // const userString = window.sessionStorage.getItem("user");
+  // const user = JSON.parse(userString);
 
   const history = useHistory();
   // const dispatch = useDispatch();
   const requestDetails = useSelector((state) => state.requestDetails);
-  console.log(requestDetails);
-  // const idWork = props.match.params.idWork;
 
-  let config = useMemo(() => {
-    return {
-      headers: {
-        "x-access-token": user && user.token,
-      },
-    };
-  }, [user]);
+  const idWork = props.match.params.idWork;
 
-  // useEffect(() => {
-  //   dispatch(getRequestDetailsbyID(idWork));
-  // }, [dispatch]);
+  // let config = useMemo(() => {
+  //   return {
+  //     headers: {
+  //       "x-access-token": user && user.token,
+  //     },
+  //   };
+  // }, [user]);
 
   const finalUser = useSelector((state) => state.finalUserDetail);
 
@@ -70,7 +66,7 @@ const SolicitedWorkTech = (props) => {
       };
     }
     try {
-      await axios.put(`${REQUEST_URL}/${requestDetails._id}`, obj);
+      await axios.put(`${REQUEST_URL}/${idWork}`, obj);
       MySwal.fire({
         title: "¡Gracias por calificar!",
         icon: "success",
@@ -117,15 +113,6 @@ const SolicitedWorkTech = (props) => {
         </div>
       )}
 
-      {/* <p>Postulante para este trabajo</p>
-      {technicUserDetail && technicUserDetail.user && (
-        <h4> {technicUserDetail.user.name} </h4>
-      )}
-      {technicUserDetail && technicUserDetail.user && (
-        <h4> {technicUserDetail.user.lastName} </h4>
-      )}
-
-    <button onClick={() => refuseUserTech()}>Rechazar Solicitud</button> */}
       {requestDetails.acepted &&
         !requestDetails.complete &&
         !requestDetails.completeTech && (
