@@ -78,7 +78,7 @@ const PerfilUserTech = () => {
       finalizada++;
     }
   });
-
+  console.log(user);
   return (
     <StyledDiv className="container">
       <ButtonsDiv>
