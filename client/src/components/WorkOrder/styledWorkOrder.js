@@ -11,6 +11,12 @@ export const StyledDiv = styled.div`
   padding: 0.7rem 5rem;
   color: #e7decdff;
   border-radius: 1.5rem;
+  @media screen and (max-width: 678px) {
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+    padding: 0.7rem 0.1rem;
+  }
 `;
 
 export const ImgDiv = styled.div`
