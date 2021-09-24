@@ -8,11 +8,13 @@ import { getJobTypesAll } from "../../redux/actions/jobTypes";
 import { getCities, getStates } from "../../redux/actions/techUsers/index";
 import { REQUEST_URL } from "../../utils/constants";
 import withReactContent from "sweetalert2-react-content";
+import { getTechUsersByJobAndZone } from "../../redux/actions/techUsers/index";
 const MySwal = withReactContent(Swal);
 
 const FormWorkOrder = () => {
   const userString = window.sessionStorage.getItem("user");
   const user = JSON.parse(userString);
+  console.log(user.zone)
 
   let config = {
     headers: {
@@ -123,7 +125,7 @@ const FormWorkOrder = () => {
           icon: "success",
           title: "Orden de trabajo creada con exito",
         });
-
+        dispatch(getTechUsersByJobAndZone(null, user.state, user.zone))
         history.push("/home");
       } catch (error) {
         console.log(error);
