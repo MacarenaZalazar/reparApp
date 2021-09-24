@@ -63,4 +63,7 @@ export const ItemDiv = styled.div`
       background-color: #f06449;
     }
   }
+  @media (max-width: 480px) {
+    flex-direction: column;
+  }
 `;
