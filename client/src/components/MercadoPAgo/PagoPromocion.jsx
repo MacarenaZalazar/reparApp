@@ -1,19 +1,18 @@
-import React from 'react';
-import  Button from 'react-bootstrap/Button';
+import React from "react";
+import Button from "react-bootstrap/Button";
+import { Pago } from "./styledCheckout";
 
-
-const PagoPromocion = ({data, order}) => {
-    const handleClick = () =>{
-        window.location = data
-    }
-    return (
-            <div>
-                <span>{order.title}</span>
-                <span>Precio ${order.unit_price}</span>
-                <Button onClick={()=>handleClick()}>Pagar</Button>
-            </div>
-
-    );
+const PagoPromocion = ({ data, order }) => {
+  const handleClick = () => {
+    window.location = data;
+  };
+  return (
+    <Pago>
+      <p>{order.title}</p>
+      <p>Precio ${order.unit_price}</p>
+      <Button onClick={() => handleClick()}>Pagar</Button>
+    </Pago>
+  );
 };
 
 export default PagoPromocion;
