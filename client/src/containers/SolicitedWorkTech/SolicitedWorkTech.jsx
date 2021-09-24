@@ -1,7 +1,4 @@
-import { useDispatch, useSelector } from "react-redux";
-import { useEffect, useMemo } from "react";
-import { getRequestDetailsbyID } from "../../redux/actions/request/index";
-
+import { useSelector } from "react-redux";
 import { REQUEST_URL } from "../../utils/constants";
 import { Link, useHistory } from "react-router-dom";
 import axios from "axios";
@@ -21,22 +18,12 @@ import {
 
 const SolicitedWorkTech = (props) => {
   const MySwal = withReactContent(Swal);
-  // const userString = window.sessionStorage.getItem("user");
-  // const user = JSON.parse(userString);
 
   const history = useHistory();
-  // const dispatch = useDispatch();
+
   const requestDetails = useSelector((state) => state.requestDetails);
 
   const idWork = props.match.params.idWork;
-
-  // let config = useMemo(() => {
-  //   return {
-  //     headers: {
-  //       "x-access-token": user && user.token,
-  //     },
-  //   };
-  // }, [user]);
 
   const finalUser = useSelector((state) => state.finalUserDetail);
 

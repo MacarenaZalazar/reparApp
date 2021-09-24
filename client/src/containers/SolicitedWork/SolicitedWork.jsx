@@ -24,16 +24,6 @@ const SolicitedWork = (props) => {
   const history = useHistory();
   const dispatch = useDispatch();
 
-  // const userString = window.sessionStorage.getItem("user");
-  // const user = JSON.parse(userString);
-  // let config = useMemo(() => {
-  //   return {
-  //     headers: {
-  //       "x-access-token": user && user.token,
-  //     },
-  //   };
-  // }, [user]);
-
   const requestDetails = useSelector((state) => state.requestDetails);
   const idWork = props.match.params.idWork;
 
