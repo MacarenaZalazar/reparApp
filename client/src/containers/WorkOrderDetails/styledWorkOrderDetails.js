@@ -8,6 +8,12 @@ export const StyledDiv = styled.div`
   align-items: center;
   justify-content: space-between;
   gap: 2rem;
+
+  @media screen and (max-width: 768px) {
+    flex-direction: column;
+    height: 100%;
+    padding: 2rem 2rem;
+  }
 `;
 
 export const WorkOrderDiv = styled.div`
@@ -26,6 +32,9 @@ export const WorkOrderDiv = styled.div`
     flex-direction: column;
     gap: 0.8rem;
   }
+  @media screen and (max-width: 768px) {
+    flex-direction: column;
+  }
 `;
 
 export const ImgWork = styled.div`
@@ -35,6 +44,10 @@ export const ImgWork = styled.div`
     height: 30rem;
     border: 0.3rem solid #f06449ff;
     border-radius: 1rem;
+    @media screen and (max-width: 768px) {
+      width: 20rem;
+      height: 20rem;
+    }
   }
 `;
 export const ItemWork = styled.div`
@@ -74,7 +87,7 @@ export const ReportedDiv = styled.div`
 export const UserTechDiv = styled.div`
   padding: 3rem 1rem;
   border-radius: 1rem;
-  width: 50%;
+  width: 100%;
   color: #e7decdff;
   background-color: #0a122aff;
 
@@ -145,4 +158,3 @@ export const Login = styled.div`
     }
   }
 `;
-
