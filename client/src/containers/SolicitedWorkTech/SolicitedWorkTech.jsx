@@ -1,7 +1,7 @@
 import { StyledDiv } from "./styledSolicitedWorkTech";
-import { useDispatch, useSelector } from "react-redux";
-import { useEffect, useMemo } from "react";
-import { getRequestDetailsbyID } from "../../redux/actions/request/index";
+import { useSelector } from "react-redux";
+// import { useEffect, useMemo } from "react";
+// import { getRequestDetailsbyID } from "../../redux/actions/request/index";
 import { REQUEST_URL } from "../../utils/constants";
 import { Link, useHistory } from "react-router-dom";
 import axios from "axios";
