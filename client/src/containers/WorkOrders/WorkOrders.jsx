@@ -4,8 +4,8 @@ import Carousel from "react-elastic-carousel";
 import { StyledDiv } from "../TechnicUsers/Styles";
 
 const WorkOrders = () => {
-  let {allRequests} = useSelector((state) => state);
-  allRequests = allRequests.filter(e => !e.solicited)
+  let { allRequests } = useSelector((state) => state);
+  allRequests = allRequests.filter((e) => !e.solicited);
 
   return (
     <>
@@ -14,24 +14,28 @@ const WorkOrders = () => {
           <div className="title">
             <p>Solicitudes de Trabajo</p>
           </div>
-          <Carousel className="carousel" itemsToShow={1} outerSpacing={50}
-          itemPadding={[0,50]}>
+          <Carousel
+            className="carousel"
+            itemsToShow={1}
+            outerSpacing={50}
+            itemPadding={[0, 10]}
+          >
             {allRequests.map((e, idx) => {
-                return (
-                    <>
-                      <WorkOrder
-                        key={idx}
-                        title={e.title}
-                        description={e.description}
-                        state={e.state}
-                        zone={e.zone}
-                        workImage={e.workImage}
-                        _id={e._id}
-                        userFinal={e.userFinal}
-                      />
-                    </>
-                );
-              })}
+              return (
+                <>
+                  <WorkOrder
+                    key={idx}
+                    title={e.title}
+                    description={e.description}
+                    state={e.state}
+                    zone={e.zone}
+                    workImage={e.workImage}
+                    _id={e._id}
+                    userFinal={e.userFinal}
+                  />
+                </>
+              );
+            })}
           </Carousel>
         </StyledDiv>
       ) : (

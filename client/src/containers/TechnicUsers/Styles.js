@@ -18,23 +18,21 @@ export const StyledDiv = styled.div`
     height: 100%;
     .rec.rec-arrow:disabled {
       visibility: hidden;
-  }
+    }
     .rec.rec-arrow {
-    background-color: #e7decd;
-    color: #0a122a;
-    :hover{
+      background-color: #e7decd;
+      color: #0a122a;
+      :hover {
+        background-color: #f06449;
+      }
+    }
+    .rec.rec-dot {
+      box-shadow: 1px 1px 1px 1px #0a122a;
+      background-color: #e7decd;
+    }
+    .rec.rec-dot_active {
       background-color: #f06449;
-    } 
-  }
-  .rec.rec-dot{
-    box-shadow: 1px 1px 1px 1px #0a122a ;
-    background-color:#e7decd;
-
-  }
-  .rec.rec-dot_active{
-   background-color:#f06449;
-    
-  }
+    }
   }
 
   .notFound {
