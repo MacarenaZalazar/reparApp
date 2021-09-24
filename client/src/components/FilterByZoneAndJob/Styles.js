@@ -59,6 +59,11 @@ export const FilterDiv = styled.div`
     justify-content: space-between;
     align-items: center;
     gap: 3rem;
+
+    @media screen and (max-width: 678px) {
+      flex-direction: column;
+      justify-content: center;
+    }
   }
 `;
 
@@ -95,5 +100,9 @@ export const ContentFilter = styled.div`
     justify-content: center;
     align-items: center;
     gap: 0.3rem;
+
+    @media screen and (max-width: 678px) {
+      flex-direction: column;
+    }
   }
 `;
