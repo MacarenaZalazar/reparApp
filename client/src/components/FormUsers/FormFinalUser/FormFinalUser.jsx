@@ -99,7 +99,7 @@ const FormFinalUser = () => {
         const respuesta = await axios.post(FINAL_USER_URL, input);
 
         if (!respuesta.data.message) {
-          const Toast = Swal.mixin({
+           Swal.mixin({
             toast: true,
             showConfirmButton: false,
             timer: 3000,

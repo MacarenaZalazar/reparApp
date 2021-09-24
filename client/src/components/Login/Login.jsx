@@ -5,19 +5,16 @@ import {
   TitleDiv,
   InputDiv,
   ButtonDiv,
-  OptionsDiv,
   LinksDiv,
   GoogleDiv,
 } from "./styledLogin";
 import axios from "axios";
-
 import { useDispatch } from "react-redux";
 import { getTechUsersByJobAndZone } from "../../redux/actions/techUsers";
 import { getRequestAllFiltered } from "../../redux/actions/request/index";
 import { MdAccountCircle, MdVpnKey } from "react-icons/md";
 import { TiArrowBack, TiUserAdd } from "react-icons/ti";
 import { GiPadlockOpen } from "react-icons/gi";
-import { FaUserPlus, FaArrowLeft } from "react-icons/fa";
 import { AiFillGoogleCircle } from "react-icons/ai";
 import { useState } from "react";
 import { useHistory, Link } from "react-router-dom";

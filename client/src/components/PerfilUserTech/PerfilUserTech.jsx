@@ -23,11 +23,9 @@ import {
 } from "./styledPerfilUserTech";
 import { TiArrowBack, TiEdit, TiStarFullOutline } from "react-icons/ti";
 import { Link } from "react-router-dom";
-import { useHistory } from "react-router-dom";
 import { getFinalUsersById } from "../../redux/actions/finalUser";
 
 const PerfilUserTech = () => {
-  const history = useHistory();
   const userString = window.sessionStorage.getItem("user");
   const userSession = JSON.parse(userString);
   let config = useMemo(() => {

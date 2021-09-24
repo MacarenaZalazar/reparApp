@@ -9,7 +9,6 @@
 import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import axios from "axios";
-import Checkbox from "../Checkbox/Checkbox";
 import { useHistory } from "react-router-dom";
 import Swal from "sweetalert2";
 import { getCities, getStates } from "../../redux/actions/techUsers";
@@ -19,7 +18,6 @@ import {
   StyledDiv,
   Form,
   Input,
-  InputJobs,
   Left,
   Right,
 } from "./stylesFormUsers copy";

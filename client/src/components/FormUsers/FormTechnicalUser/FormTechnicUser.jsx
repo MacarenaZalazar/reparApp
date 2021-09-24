@@ -143,7 +143,7 @@ const FormTechnicUser = () => {
         const respuesta = await axios.post(TECH_USERS_URL, input);
 
         if (!respuesta.data.message) {
-          const Toast = Swal.mixin({
+           Swal.mixin({
             toast: true,
 
             showConfirmButton: false,

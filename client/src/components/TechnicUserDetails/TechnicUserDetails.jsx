@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from "react";
+import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import {
   StyledDiv,
@@ -18,22 +18,16 @@ export default function TechnicUserDetails() {
   const history = useHistory();
   const userString = window.sessionStorage.getItem("user");
   const user = JSON.parse(userString);
-  let config = useMemo(() => {
-    return {
-      headers: {
-        "x-access-token": user && user.token,
-      },
-    };
-  }, [user]);
+
 
   const [flagReported, setFlagReported] = useState(false);
-  const [flagLogin, setFlagLogin] = useState(false);
+  //const [flagLogin, setFlagLogin] = useState(false);
   const changeFlagReported = () => {
     setFlagReported(!flagReported);
   };
-  const changeFlagLogin = () => {
-    setFlagLogin(!flagLogin);
-  };
+  // const changeFlagLogin = () => {
+  //   setFlagLogin(!flagLogin);
+  // };
 
   const TechnicUserDetail = useSelector((state) => state.technicUserDetail);
 

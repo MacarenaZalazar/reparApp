@@ -1,5 +1,5 @@
 import React from "react";
-import { StyledDiv, FilterDiv, ContentFilter, Icon } from "./Styles";
+import { StyledDiv, FilterDiv, ContentFilter} from "./Styles";
 import { useDispatch } from "react-redux";
 import { orderByScore, orderByPrice } from "../../redux/actions/allUsers";
 import { RiArrowUpDownLine } from "react-icons/ri";
