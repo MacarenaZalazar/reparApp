@@ -3,6 +3,7 @@ import styled from "styled-components";
 export const StyledDiv = styled.div`
   width: 100%;
   min-height: calc(100vh - 10.9rem);
+  padding: 2rem;
 
   display: flex;
   justify-content: center;
@@ -16,6 +17,7 @@ export const ContentDiv = styled.div`
   align-items: center;
   gap: 2rem;
   .title {
+    text-align: center;
     position: relative;
     text-transform: uppercase;
     h4 {
@@ -35,11 +37,22 @@ export const ContentDiv = styled.div`
     justify-content: center;
     align-items: center;
     gap: 1.5rem;
+
+    @media screen and (max-width: 768px) {
+      flex-direction: column;
+    }
   }
 
   .flexWorkSolicited {
     display: flex;
     gap: 3rem;
+    @media screen and (max-width: 768px) {
+      flex-direction: column;
+    }
+  }
+
+  @media screen and (max-width: 768px) {
+    flex-direction: column;
   }
 `;
 
@@ -92,7 +105,13 @@ export const UserOwner = styled.div`
   padding: 5rem 1.3rem;
   border-radius: 1rem;
 `;
-export const ButtonsDiv = styled.div``;
+export const ButtonsDiv = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+`;
 
 export const Button = styled.button`
   padding: 0.2rem 1.5rem;
