@@ -19,7 +19,7 @@ const PromotedUsers = () => {
             outerSpacing={50}
             enableAutoPlay
             autoPlaySpeed={3000}
-            itemPadding={[0, 0]}
+            itemPadding={[0, 10]}
           >
             {promoted &&
               promoted.map((t, idx) => {
