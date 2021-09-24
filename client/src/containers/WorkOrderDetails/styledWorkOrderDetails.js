@@ -87,7 +87,7 @@ export const ReportedDiv = styled.div`
 export const UserTechDiv = styled.div`
   padding: 3rem 1rem;
   border-radius: 1rem;
-  width: 50%;
+  width: 100%;
   color: #e7decdff;
   background-color: #0a122aff;
 
