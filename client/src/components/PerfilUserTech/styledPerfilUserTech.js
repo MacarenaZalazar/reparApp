@@ -3,12 +3,16 @@ import styled from "styled-components";
 export const StyledDiv = styled.div`
   width: 100%;
   min-height: calc(100vh - 10.9rem);
-  padding: 2rem;
+
   display: flex;
   justify-content: center;
   align-items: center;
-
   color: #e7decdff;
+  @media screen and (max-width: 768px) {
+    padding-top: 1.5rem;
+    flex-direction: column;
+    min-height: calc(100vh - 15.7rem);
+  }
 `;
 export const ProfileDiv = styled.div``;
 
@@ -18,6 +22,9 @@ export const CardUserTech = styled.div`
   justify-content: center;
   align-items: center;
   gap: 2rem;
+  @media screen and (max-width: 768px) {
+    flex-direction: column;
+  }
 `;
 
 export const CardDiv = styled.div`
@@ -29,6 +36,9 @@ export const CardDiv = styled.div`
   justify-content: center;
   align-items: center;
   gap: 2.5rem;
+  @media screen and (max-width: 768px) {
+    flex-direction: column;
+  }
 `;
 export const ImgDiv = styled.div`
   img {
@@ -43,6 +53,9 @@ export const ContentCardDiv = styled.div`
   display: flex;
 
   gap: 0.8rem;
+  @media screen and (max-width: 768px) {
+    flex-direction: column;
+  }
 `;
 
 export const ButtonsDiv = styled.div`
@@ -60,6 +73,9 @@ export const ButtonsDiv = styled.div`
     &:hover {
       .icon {
         transform: translateX(-2rem);
+        @media screen and (max-width: 768px) {
+          transform: translateY(-2rem);
+        }
       }
       p {
         opacity: 100;
@@ -71,6 +87,9 @@ export const ButtonsDiv = styled.div`
       color: #0a122aff;
       opacity: 0;
       font-size: 1.5rem;
+      @media screen and (max-width: 768px) {
+        max-width: 5rem;
+      }
     }
     .icon {
       transition: 1s ease;
@@ -82,7 +101,16 @@ export const ButtonsDiv = styled.div`
       border-radius: 50%;
       padding: 1rem;
       transform: translateX(+2rem);
+      @media screen and (max-width: 768px) {
+        transform: translateX(0);
+      }
     }
+    @media screen and (max-width: 768px) {
+      flex-direction: column;
+    }
+  }
+  @media screen and (max-width: 768px) {
+    flex-direction: row;
   }
 `;
 
