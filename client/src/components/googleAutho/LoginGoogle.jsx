@@ -27,10 +27,7 @@ function LoginGoogle() {
   const responseGoogle = async (response) => {
     try {
       const mailGoogle = response.profileObj.email;
-
       let existed = await axios.get(`${LOGIN_URL}?mail=${mailGoogle}`);
-
-      console.log(existed);
       if (existed && existed.data && existed.data.userName) {
         const input = {
           mail: existed.data.mail,

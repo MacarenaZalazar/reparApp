@@ -19,8 +19,6 @@ const createRoles = async () => {
       new Role({ name: "userTech" }).save(),
       new Role({ name: "admin" }).save(),
     ]);
-
-    console.log(values);
   } catch (error) {
     console.error(error);
   }
@@ -38,8 +36,6 @@ const createjobTypes = async () => {
 
     const array = ["Electricista", "Plomero", "Albañil", "Gasista"];
     const values = await JobTypes.create({ name: array });
-
-    console.log(values);
   } catch (error) {
     console.error(error);
   }
@@ -65,7 +61,6 @@ const createAdmin = async () => {
     if (!exist) {
       // create a new admin user
       await UserController.createNewUser(user, idRole);
-      console.log("Admin User Created!");
     }
   } catch (error) {
     console.error(error);

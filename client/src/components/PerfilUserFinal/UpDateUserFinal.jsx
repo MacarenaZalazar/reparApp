@@ -33,7 +33,6 @@ const UpDateUserFinal = () => {
   const { allStates, allCities } = useSelector((state) => state);
   const userString = window.sessionStorage.getItem("user");
   const user = JSON.parse(userString);
-  console.log(user);
   let config = {
     headers: {
       "x-access-token": user && user.token,
@@ -124,7 +123,7 @@ const UpDateUserFinal = () => {
         if (input.zone) {
           objToSend.zone = input.zone;
         }
-        console.log(objToSend);
+
         const respuesta = await axios.put(
           `${FINAL_USER_URL}/${user.idUserFinal}`,
           objToSend,

@@ -26,7 +26,6 @@ const ReportedUsers = () => {
        (async () => {
             try{
                 const users = await axios.get(`${ADMIN_URL}/reported/users`, config)
-                console.log(users.data)
                 setReported(users.data)
             } catch(error){
                 console.log(error)

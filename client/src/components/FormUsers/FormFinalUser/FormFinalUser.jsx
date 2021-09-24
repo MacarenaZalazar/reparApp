@@ -94,8 +94,6 @@ const FormFinalUser = () => {
       };
     });
 
-    console.log(input);
-
     if (!Object.keys(result).length) {
       try {
         const respuesta = await axios.post(FINAL_USER_URL, input);
@@ -103,7 +101,6 @@ const FormFinalUser = () => {
         if (!respuesta.data.message) {
           const Toast = Swal.mixin({
             toast: true,
-
             showConfirmButton: false,
             timer: 3000,
             timerProgressBar: true,

@@ -1,10 +1,7 @@
 import React from "react";
-//import { getScore,filterByScore} from "../../actions/index";
-
 import { StyledDiv, FilterDiv, ContentFilter, Icon } from "./Styles";
 import { useDispatch } from "react-redux";
 import { orderByScore, orderByPrice } from "../../redux/actions/allUsers";
-
 import { RiArrowUpDownLine } from "react-icons/ri";
 
 export default function FilterByScore() {

@@ -7,7 +7,6 @@ const User = require("../../models/User");
 const nodemailer = require("nodemailer");
 
 const finalUserCreate = async (req, res, next) => {
-  console.log(req.body);
 
   const session = await FinalUser.startSession();
   // UserSession.startTransaction();

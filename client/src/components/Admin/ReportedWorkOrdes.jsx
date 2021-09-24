@@ -20,7 +20,7 @@ const ReportedWorkOrdes = () => {
         },
       };
     }, [useR])
-    console.log(orders)
+
     useEffect(  () => {
       (async () => {
         const workOrders = await axios.get(`${ADMIN_URL}/reported/workOrders`, config) 

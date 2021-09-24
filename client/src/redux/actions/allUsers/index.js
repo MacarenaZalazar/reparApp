@@ -5,21 +5,7 @@ import {
   LOGIN_GOOGLE,
 } from "./constantsAllUsers";
 
-export const postScore = (score) => {};
 
-// export const getAllJobRequests = () => {
-//     return async function (dispatch) {
-//         try {
-//           let allRequests = await axios.get('something');
-//           return dispatch({
-//             type: GET_ALL_JOB_REQUESTS,
-//             payload: allRequests.data,
-//           });
-//         } catch (error) {
-//           console.log(error);
-//         }
-//       };
-// }
 export const restoreState = () => {
   return {
     type: "Restore",

@@ -33,7 +33,7 @@ const BanUser = () => {
       console.log(error);
     }
   };
-  console.log(user);
+
   return (
     <>
     <UserDiv>

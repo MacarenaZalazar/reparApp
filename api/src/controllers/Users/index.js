@@ -21,7 +21,6 @@ const createNewUser = async (user, idRole, next) => {
 
     return newUser;
   } catch (error) {
-    console.log(error);
     next(error);
   }
 };
@@ -70,7 +69,7 @@ const verifyEmail = async (req, res, next) => {
 
 const reportUser = async (req, res, next) => {
   const { _id } = req.query;
-  console.log("id", _id);
+
   try {
     await User.findByIdAndUpdate(_id, { reported: true });
     res.sendStatus(200);

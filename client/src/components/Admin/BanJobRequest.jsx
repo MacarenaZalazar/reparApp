@@ -57,7 +57,7 @@ const BanJobRequest = (props) => {
       });
     }
   };
-  // console.log(requestsByUser);
+
   return (
     <div>
       {requestsByUser.length > 0 &&
