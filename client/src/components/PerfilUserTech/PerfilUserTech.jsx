@@ -3,7 +3,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getTechUsersById } from "../../redux/actions/techUsers/index";
 import { getRequestByUserTech } from "../../redux/actions/request/index";
-//import { getRequestDetailsbyID } from "../../redux/actions/request";
+import { getRequestDetailsbyID } from "../../redux/actions/request";
 
 import {
   WorksAwait,
@@ -24,6 +24,7 @@ import {
 import { TiArrowBack, TiEdit, TiStarFullOutline } from "react-icons/ti";
 import { Link } from "react-router-dom";
 import { useHistory } from "react-router-dom";
+import { getFinalUsersById } from "../../redux/actions/finalUser";
 
 const PerfilUserTech = () => {
   const history = useHistory();
@@ -175,11 +176,13 @@ const PerfilUserTech = () => {
                       !req.acepted && (
                         <div key={key} className="flexBtn">
                           <p>{req.title}</p>
-                          <Link
-                            className="link"
-                            to={`/solicitedWorkTech/${req._id}`}
-                          >
-                            <Button>
+                          <Link className="link" to={"/solicitedWorkTech"}>
+                            <Button
+                              onClick={() => {
+                                dispatch(getRequestDetailsbyID(req._id));
+                                dispatch(getFinalUsersById(req.userFinal));
+                              }}
+                            >
                               <p> Ver Detalle</p>
                             </Button>
                           </Link>
@@ -201,11 +204,13 @@ const PerfilUserTech = () => {
                       !req.complete && (
                         <div key={key} className="flexBtn">
                           <p>{req.title}</p>
-                          <Link
-                            className="link"
-                            to={`/solicitedWorkTech/${req._id}`}
-                          >
-                            <Button>
+                          <Link className="link" to={"/solicitedWorkTech"}>
+                            <Button
+                              onClick={() => {
+                                dispatch(getRequestDetailsbyID(req._id));
+                                dispatch(getFinalUsersById(req.userFinal));
+                              }}
+                            >
                               {req.completeTech ? (
                                 <p>Recalificar</p>
                               ) : (
@@ -231,11 +236,13 @@ const PerfilUserTech = () => {
                       !req.complete && (
                         <div key={key} className="flexBtn">
                           <p>{req.title}</p>
-                          <Link
-                            className="link"
-                            to={`/solicitedWorkTech/${req._id}`}
-                          >
-                            <Button>
+                          <Link className="link" to={"/solicitedWorkTech"}>
+                            <Button
+                              onClick={() => {
+                                dispatch(getRequestDetailsbyID(req._id));
+                                dispatch(getFinalUsersById(req.userFinal));
+                              }}
+                            >
                               <p> Finalizar</p>
                             </Button>
                           </Link>
@@ -255,11 +262,13 @@ const PerfilUserTech = () => {
                       req.complete && (
                         <div key={key} className="flexBtn">
                           <p>{req.title}</p>
-                          <Link
-                            className="link"
-                            to={`/solicitedWorkTech/${req._id}`}
-                          >
-                            <Button>
+                          <Link className="link" to={"/solicitedWorkTech"}>
+                            <Button
+                              onClick={() => {
+                                dispatch(getRequestDetailsbyID(req._id));
+                                dispatch(getFinalUsersById(req.userFinal));
+                              }}
+                            >
                               <p> Ver detalles</p>
                             </Button>
                           </Link>

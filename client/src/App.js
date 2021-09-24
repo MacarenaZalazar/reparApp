@@ -135,11 +135,7 @@ function App() {
 
         <Route exact path="/solicitedWork/:idWork" component={SolicitedWork} />
 
-        <Route
-          exact
-          path="/solicitedWorkTech/:idWork"
-          component={SolicitedWorkTech}
-        />
+        <Route exact path="/solicitedWorkTech" component={SolicitedWorkTech} />
 
         {/* <Route paht = '/report' component={ReportUser} /> */}
         <Route path="*" component={Error404} />
