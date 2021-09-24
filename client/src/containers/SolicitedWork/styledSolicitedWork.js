@@ -82,13 +82,13 @@ export const ContentWork = styled.div`
 `;
 
 export const UserOwner = styled.div`
+  background-color: #0a122aff;
   .flexUserOwner {
     display: flex;
     flex-direction: column;
     justify-content: center;
     gap: 1rem;
   }
-  background-color: #0a122aff;
   padding: 5rem 1.3rem;
   border-radius: 1rem;
 `;

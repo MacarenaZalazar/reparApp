@@ -1,10 +1,12 @@
-import  styled  from 'styled-components';
+import styled from "styled-components";
 
 export const ReportedDiv = styled.div`
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
+  @media screen and (max-width: 768px) {
+    flex-direction: column;
+  }
 
   .icon {
     color: #0a122aff;
@@ -25,15 +27,22 @@ export const ReportedDiv = styled.div`
 `;
 
 export const StyledDiv = styled.div`
-width: 100%;
-height: calc(100vh - 10.75rem);
-background-color: #fbfaf8ff;
-display: flex;
-align-items: center;
-justify-content: space-between;
-gap: 2rem;
-}
-`
+  width: 100%;
+  height: calc(100vh - 10.75rem);
+  background-color: #fbfaf8ff;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 2rem;
+
+  @media screen and (max-width: 768px) {
+    flex-direction: column;
+    height: 100%;
+    padding: 2rem 2rem;
+  }
+`;
 export const UserTechDiv = styled.div`
   width: 100%;
   color: #e7decdff;
@@ -49,18 +58,24 @@ export const UserTechDiv = styled.div`
     flex-direction: column;
     gap: 0.8rem;
   }
+  @media screen and (max-width: 768px) {
+    flex-direction: column;
+  }
 `;
 
-
 export const ImgTech = styled.div`
-width: 60%;
-img {
-  width: 40rem;
-  height: 30rem;
-  border: 0.3rem solid #f06449ff;
-  border-radius: 1rem;
-}
-`
+  width: 60%;
+  img {
+    width: 40rem;
+    height: 30rem;
+    border: 0.3rem solid #f06449ff;
+    border-radius: 1rem;
+    @media screen and (max-width: 768px) {
+      width: 20rem;
+      height: 20rem;
+    }
+  }
+`;
 
 export const Button = styled.button`
   border-radius: 1rem;
@@ -102,16 +117,16 @@ export const ItemInfo = styled.div`
 `;
 
 export const UserInfoDiv = styled.div`
-padding: 3rem 1rem;
-border-radius: 1rem;
-width: 50%;
-color: #e7decdff;
-background-color: #0a122aff;
+  padding: 3rem 1rem;
+  border-radius: 1rem;
+  width: 100%;
+  color: #e7decdff;
+  background-color: #0a122aff;
 
-.flexButton {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 0.5rem;
-}
-`
+  .flexButton {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0.5rem;
+  }
+`;
