@@ -133,7 +133,7 @@ function App() {
         />
         <Route exact path="/workOrdersDetails" component={WorkOrderDetails} />
 
-        <Route exact path="/solicitedWork" component={SolicitedWork} />
+        <Route exact path="/solicitedWork/:idWork" component={SolicitedWork} />
 
         <Route exact path="/solicitedWorkTech" component={SolicitedWorkTech} />
 
