@@ -14,7 +14,6 @@ const MySwal = withReactContent(Swal);
 const FormWorkOrder = () => {
   const userString = window.sessionStorage.getItem("user");
   const user = JSON.parse(userString);
-  console.log(user.zone)
 
   let config = {
     headers: {
