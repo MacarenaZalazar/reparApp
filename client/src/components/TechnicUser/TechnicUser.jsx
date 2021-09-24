@@ -53,7 +53,7 @@ export default function TechnicUser({
       <ContentDiv>
         <ItemCard>
           <p>Precio Base</p>
-          <h4>{price}</h4>
+          <h4>{price} ARS</h4>
         </ItemCard>
         <ItemCard>
           <p>Tipos de Trabajos</p>
