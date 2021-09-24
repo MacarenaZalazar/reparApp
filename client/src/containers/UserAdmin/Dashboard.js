@@ -17,7 +17,7 @@ function Dashboard() {
             </div>
           <div className='usersContainer'>
             <BanUser/>
-            <Link to='/reportados'><Button><p>Ver reportados</p></Button></Link>
+            {/* <Link to='/reportados'><Button><p>Ver reportados</p></Button></Link> */}
           </div>
     </StyledDashContainer>
   );
