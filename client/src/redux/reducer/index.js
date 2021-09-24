@@ -117,10 +117,10 @@ function reducer(state = initialState, action) {
       };
     case ORDER_BY_SCORE:
       let techs = state.techUsers.sort(function (a, b) {
-        if (a.score > b.score) {
+        if (a.score < b.score) {
           return 1;
         }
-        if (a.score < b.score) {
+        if (a.score > b.score) {
           return -1;
         }
         return 0;

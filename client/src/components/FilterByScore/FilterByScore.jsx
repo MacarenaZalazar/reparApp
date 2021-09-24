@@ -29,10 +29,8 @@ export default function FilterByScore() {
         <ContentFilter>
           <p>Según</p>
           <select onChange={(e) => handleFilterScore(e)}>
-            <option value="all">Todos</option>
-
-            <option value="mejor puntuados">mejor puntuados</option>
-            <option value="menor precio">menor precio</option>
+            <option value="mejor puntuados">Mejor puntuados</option>
+            <option value="menor precio">Menor precio</option>
           </select>
         </ContentFilter>
       </FilterDiv>
