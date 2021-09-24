@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useMemo } from "react";
+import React, { useEffect, useMemo } from "react";
 import CardUserFinal from "../../components/PerfilUserFinal/CardUserFinal";
 //import UpDateUserFinal from "../../components/PerfilUserFinal/UpDateUserFinal";
 import { useDispatch, useSelector } from "react-redux";

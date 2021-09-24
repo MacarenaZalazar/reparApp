@@ -33,7 +33,7 @@ const NavBar = () => {
   const showAlert = async (e) => {
     e.preventDefault();
 
-    // const { value: fruit } =
+
     await Swal.fire({
       input: "select",
       title: "Registrarse como:",

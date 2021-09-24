@@ -33,7 +33,6 @@ const changeReportedUser = async (req, res, next) => {
 };
 const changeReportedWorkOrder = async (req, res, next) => {
   let { id } = req.params;
-  console.log(req.params)
   let reported = false;
   try {
     await WorkOrder.findByIdAndUpdate(id, { reported });

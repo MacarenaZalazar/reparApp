@@ -55,9 +55,6 @@ const logIn = async (req, res) => {
 
     if (userFound.roles[0].name === "userFinal") {
       const userFinal = await UserF.find({ user: { $eq: userFound._id } });
-
-      console.log(userFinal);
-
       userFound.zone = userFinal[0].zone;
       userFound.idFinal = userFinal[0]._id;
     }

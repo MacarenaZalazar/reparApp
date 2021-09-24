@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { StyledDiv, FooterDiv, LinksDiv, SocialDiv } from "./styledFooter";
 import SocialLinks from "../SocialLinks/SocialLinks";
 import { socialMedia } from "../../utils/reparAppInfo";

@@ -9,7 +9,6 @@
 import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import axios from "axios";
-import Checkbox from "../Checkbox/Checkbox";
 import { useHistory } from "react-router-dom";
 import Swal from "sweetalert2";
 import { getCities, getStates } from "../../redux/actions/techUsers";
@@ -19,7 +18,6 @@ import {
   StyledDiv,
   Form,
   Input,
-  InputJobs,
   Left,
   Right,
 } from "./stylesFormUsers copy";
@@ -33,7 +31,6 @@ const UpDateUserFinal = () => {
   const { allStates, allCities } = useSelector((state) => state);
   const userString = window.sessionStorage.getItem("user");
   const user = JSON.parse(userString);
-  console.log(user);
   let config = {
     headers: {
       "x-access-token": user && user.token,
@@ -124,7 +121,7 @@ const UpDateUserFinal = () => {
         if (input.zone) {
           objToSend.zone = input.zone;
         }
-        console.log(objToSend);
+
         const respuesta = await axios.put(
           `${FINAL_USER_URL}/${user.idUserFinal}`,
           objToSend,

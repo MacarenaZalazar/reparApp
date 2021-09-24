@@ -31,10 +31,9 @@ import ModifyUserFinal from "./containers/FinalUserProfile/ModifyUserFinal";
 import BanJobRequest from "./components/Admin/BanJobRequest";
 import Checkout from "./components/MercadoPAgo/Checkout";
 import PagoPromocion from "./components/MercadoPAgo/PagoPromocion";
-
 import Aos from "aos";
 import "aos/dist/aos.css";
-import ReportUser from "./components/ReportUser/ReportUser";
+
 // jose estuvo aquí
 
 function App() {

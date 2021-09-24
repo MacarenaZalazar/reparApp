@@ -2,7 +2,7 @@ const nodemailer = require("nodemailer");
 
 const contact = async (req, res, next) => {
     try {
-        const {mail, user, description} = req.body;
+        const {mail, description} = req.body;
         
         const transporter = nodemailer.createTransport({
             service: "gmail",
@@ -17,9 +17,9 @@ const contact = async (req, res, next) => {
           var mailOptions = {
             from: `${mail}`,
             to: "reparapp.proyecto.final@gmail.com",
-            subject: `Mensaje de ${user}`,
+            subject: `Mensaje de ${mail}`,
             html: `<h2>ReparApp</h2>
-            <h3>Mail de consulta: ${mail} Nombre: ${user}</h3>
+            <h3>Mail de consulta: ${mail} </h3>
             <h3>${description}</h3>`,
           };
     

@@ -1,6 +1,6 @@
-import React, { useState, useMemo } from "react";
+import React, { useState } from "react";
 import axios from "axios";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import { REQUEST_URL } from "../../utils/constants";
 import { Link } from "react-router-dom";
 import {  StyledDiv,  WorkOrderDiv, UserTechDiv,  ReportedDiv, ImgWork, ItemWork, ItemUserTech, Button, Login } from "./styledWorkOrderDetails";
@@ -17,13 +17,6 @@ const WorkOrderDetails = () => {
   const userString = window.sessionStorage.getItem("user");
   const user = JSON.parse(userString);
 
-  let config = useMemo(() => {
-    return {
-      headers: {
-        "x-access-token": user && user.token,
-      },
-    };
-  }, [user]);
 
   const [flagReported, setFlagReported] = useState(false);
   const [flagLogin, setFlagLogin] = useState(false);

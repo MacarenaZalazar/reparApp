@@ -8,6 +8,7 @@ import { getJobTypesAll } from "../../redux/actions/jobTypes";
 import { getCities, getStates } from "../../redux/actions/techUsers/index";
 import { REQUEST_URL } from "../../utils/constants";
 import withReactContent from "sweetalert2-react-content";
+import { getTechUsersByJobAndZone } from "../../redux/actions/techUsers/index";
 const MySwal = withReactContent(Swal);
 
 const FormWorkOrder = () => {
@@ -106,24 +107,13 @@ const FormWorkOrder = () => {
           input,
           config
         );
-
-        const Toast = Swal.mixin({
-          toast: true,
-
-          showConfirmButton: false,
-          timer: 3000,
-          timerProgressBar: true,
-          didOpen: (toast) => {
-            toast.addEventListener("mouseenter", Swal.stopTimer);
-            toast.addEventListener("mouseleave", Swal.resumeTimer);
-          },
+        MySwal.fire({
+          title: "Orden creada con éxito!",
+          confirmButtonColor: "#0a122aff",
+          background: "#e7decdff",
+          backdrop: "rgba(10,18,42,0.6)",
         });
-
-        Toast.fire({
-          icon: "success",
-          title: "Orden de trabajo creada con exito",
-        });
-
+        dispatch(getTechUsersByJobAndZone(null, user.state, user.zone))
         history.push("/home");
       } catch (error) {
         console.log(error);

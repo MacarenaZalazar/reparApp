@@ -25,7 +25,7 @@ const connectDB = async () => {
       require(path.join(__dirname, '/models', file))
     });
     
-    console.log(`MongoDB connected: ${conn.connection.host}`);
+    //console.log(`MongoDB connected: ${conn.connection.host}`);
   } catch (error) {
     console.error(`Error: ${error.message}`);
     throw new Error(error?.message);

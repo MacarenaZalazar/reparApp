@@ -2,7 +2,7 @@ const JobTypes = require("../../models/JobTypes");
 
 const jobTypeModifier = async (req, res, next) => {
   const { newJob } = req.body;
-  console.log(newJob);
+
   try {
     JobTypes.find({})
       .then((doc) => {
