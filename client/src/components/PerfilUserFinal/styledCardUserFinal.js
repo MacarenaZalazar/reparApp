@@ -9,6 +9,9 @@ export const StyledDiv = styled.div`
   align-items: center;
   gap: 10rem;
   color: #e7decdff;
+  @media screen and (max-width: 768px) {
+    flex-direction: column;
+  }
 `;
 export const CardDiv = styled.div`
   background-color: #0a122aff;
@@ -19,6 +22,9 @@ export const CardDiv = styled.div`
   justify-content: center;
   align-items: center;
   gap: 2.5rem;
+  @media screen and (max-width: 768px) {
+    flex-direction: column;
+  }
 `;
 export const ImgDiv = styled.div`
   img {

@@ -110,21 +110,29 @@ const NavBar = () => {
             {user && user.userName && (
               <div>
                 {user.roles[0].name === "userFinal" ? (
-                  <Link to="/usuarioFinal" className="link">
+                  <Link
+                    to="/usuarioFinal"
+                    className="link"
+                    onClick={() => handleClick()}
+                  >
                     <div className="flex">
                       <RiMapPinUserFill />
                       <p> Hola, {user.userName} </p>
                     </div>
                   </Link>
                 ) : user.roles[0].name === "userTech" ? (
-                  <Link to="/usuarioTech" className="link">
+                  <Link
+                    to="/usuarioTech"
+                    className="link"
+                    onClick={() => handleClick()}
+                  >
                     <div className="flex">
                       <RiMapPinUserFill />
                       <p> Hola, {user.userName} </p>
                     </div>
                   </Link>
                 ) : (
-                  <Link to="/admin">
+                  <Link to="/admin" onClick={() => handleClick()}>
                     <div className="flex link">
                       <RiMapPinUserFill />
                       <p> Hola, {user.userName} </p>
