@@ -153,7 +153,7 @@ const PerfilUserTech = () => {
                   </ItemCard>
                   <ItemCard>
                     <p>Precio Base</p>
-                    <h4>{user.price}</h4>
+                    <h4>ARS:{user.price}</h4>
                   </ItemCard>
                   <ItemCard>
                     <p>Calificación Promedio</p>

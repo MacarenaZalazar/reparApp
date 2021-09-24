@@ -16,6 +16,7 @@ const createNewUser = async (user, idRole, next) => {
       image: user.image,
       roles: idRole,
       state: user.state,
+      phone: user.phone,
     });
 
     return newUser;
@@ -69,7 +70,7 @@ const verifyEmail = async (req, res, next) => {
 
 const reportUser = async (req, res, next) => {
   const { _id } = req.query;
-  console.log('id', _id)
+  console.log("id", _id);
   try {
     await User.findByIdAndUpdate(_id, { reported: true });
     res.sendStatus(200);
