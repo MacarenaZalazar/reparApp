@@ -33,6 +33,7 @@ const TechnicUsers = () => {
                     score={t.score}
                     workZones={t.workZones}
                     jobTypes={t.jobTypes}
+                    price={t.price}
                   />
                 );
               })}

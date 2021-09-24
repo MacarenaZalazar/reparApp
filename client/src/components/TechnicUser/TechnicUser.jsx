@@ -14,6 +14,7 @@ export default function TechnicUser({
   score,
   workZones,
   jobTypes,
+  price,
 }) {
   const dispatch = useDispatch();
   const userString = window.sessionStorage.getItem("user");
@@ -41,7 +42,10 @@ export default function TechnicUser({
           <p>Usuario</p>
           <h4>{user}</h4>
         </ItemCard>
-
+        <ItemCard>
+          <p>Precio Base</p>
+          <h4>{price}</h4>
+        </ItemCard>
         <ItemCard>
           <p>Calificación Promedio</p>
           <h4>
