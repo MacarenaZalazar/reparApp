@@ -17,8 +17,6 @@ const PromotedUsers = () => {
             className="carousel"
             itemsToShow={1}
             outerSpacing={50}
-            enableAutoPlay
-            autoPlaySpeed={3000}
             itemPadding={[0, 10]}
           >
             {promoted &&
