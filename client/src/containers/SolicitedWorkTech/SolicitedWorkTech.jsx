@@ -1,6 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useMemo } from "react";
 import { getRequestDetailsbyID } from "../../redux/actions/request/index";
+
 import { REQUEST_URL } from "../../utils/constants";
 import { Link, useHistory } from "react-router-dom";
 import axios from "axios";
@@ -20,26 +21,22 @@ import {
 
 const SolicitedWorkTech = (props) => {
   const MySwal = withReactContent(Swal);
-  const userString = window.sessionStorage.getItem("user");
-  const user = JSON.parse(userString);
+  // const userString = window.sessionStorage.getItem("user");
+  // const user = JSON.parse(userString);
 
   const history = useHistory();
   // const dispatch = useDispatch();
   const requestDetails = useSelector((state) => state.requestDetails);
-  console.log(requestDetails);
-  // const idWork = props.match.params.idWork;
 
-  let config = useMemo(() => {
-    return {
-      headers: {
-        "x-access-token": user && user.token,
-      },
-    };
-  }, [user]);
+  const idWork = props.match.params.idWork;
 
-  // useEffect(() => {
-  //   dispatch(getRequestDetailsbyID(idWork));
-  // }, [dispatch]);
+  // let config = useMemo(() => {
+  //   return {
+  //     headers: {
+  //       "x-access-token": user && user.token,
+  //     },
+  //   };
+  // }, [user]);
 
   const finalUser = useSelector((state) => state.finalUserDetail);
 
@@ -80,7 +77,7 @@ const SolicitedWorkTech = (props) => {
       };
     }
     try {
-      await axios.put(`${REQUEST_URL}/${requestDetails._id}`, obj);
+      await axios.put(`${REQUEST_URL}/${idWork}`, obj);
       MySwal.fire({
         title: "¡Gracias por calificar!",
         icon: "success",

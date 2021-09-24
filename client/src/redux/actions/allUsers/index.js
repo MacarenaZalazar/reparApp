@@ -5,7 +5,6 @@ import {
   LOGIN_GOOGLE,
 } from "./constantsAllUsers";
 
-
 export const postScore = (score) => {};
 
 // export const getAllJobRequests = () => {
@@ -30,17 +29,12 @@ export const restoreState = () => {
 export const orderByScore = () => {
   return {
     type: ORDER_BY_SCORE,
-    payload: function (a, b) {
-      return b.score - a.score;
-    },
   };
 };
+
 export const orderByPrice = () => {
   return {
     type: ORDER_BY_PRICE,
-    payload: function (a, b) {
-      return a.price - b.price;
-    },
   };
 };
 
