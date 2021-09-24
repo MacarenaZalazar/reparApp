@@ -44,7 +44,7 @@ export const ItemCard = styled.div`
     padding: 0 1rem;
   }
   h4 {
-    font-size: 1.5rem;
+    font-size: 1.2rem;
   }
 
   .flexJobTypes {

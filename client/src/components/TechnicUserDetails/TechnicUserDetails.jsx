@@ -89,6 +89,14 @@ export default function TechnicUserDetails() {
                     )}
                   </ItemTech>
                   <ItemTech>
+                    {TechnicUserDetail && TechnicUserDetail.price && (
+                      <>
+                        <p>Precio Base</p>
+                        <h4>{TechnicUserDetail.price}</h4>
+                      </>
+                    )}
+                  </ItemTech>
+                  <ItemTech>
                     <p>Especialidades</p>
                     <ul>
                       {TechnicUserDetail.jobTypes &&
