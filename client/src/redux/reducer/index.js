@@ -130,18 +130,19 @@ function reducer(state = initialState, action) {
         techUsers: techs,
       };
     case ORDER_BY_PRICE:
+      console.log(state.techUsers);
       let tech = state.techUsers.sort(function (a, b) {
-        if (a.score > b.score) {
+        if (a.price > b.price) {
           return 1;
         }
-        if (a.score < b.score) {
+        if (a.price < b.price) {
           return -1;
         }
         return 0;
       });
       return {
         ...state,
-        techUsers: tech,
+        techUsers: tech.map((e) => e),
       };
     case GET_REQUEST_BY_USER:
       return {

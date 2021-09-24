@@ -182,32 +182,34 @@ const SolicitedWork = (props) => {
               </div>
             )}
           </WorkSolicited>
-          <UserOwner>
-            <div className="flexUserOwner">
-              <div className="title">
+          {technicUserDetail && technicUserDetail.user && (
+            <UserOwner>
+              <div className="flexUserOwner">
+                <div className="title">
+                  {technicUserDetail && technicUserDetail.user && (
+                    <h4>Postulante para este trabajo</h4>
+                  )}
+                </div>
+
                 {technicUserDetail && technicUserDetail.user && (
-                  <h4>Postulante para este trabajo</h4>
+                  <div>
+                    <ItemCard>
+                      <p>Nombre y Apellido</p>
+
+                      <h4>
+                        {technicUserDetail.user.name}
+                        {technicUserDetail.user.lastName}
+                      </h4>
+                    </ItemCard>
+                    <ItemCard>
+                      <p>E-Mail</p>
+                      <h4>{technicUserDetail.user.mail}</h4>
+                    </ItemCard>
+                  </div>
                 )}
               </div>
-
-              {technicUserDetail && technicUserDetail.user && (
-                <div>
-                  <ItemCard>
-                    <p>Nombre y Apellido</p>
-
-                    <h4>
-                      {technicUserDetail.user.name}
-                      {technicUserDetail.user.lastName}
-                    </h4>
-                  </ItemCard>
-                  <ItemCard>
-                    <p>E-Mail</p>
-                    <h4>{technicUserDetail.user.mail}</h4>
-                  </ItemCard>
-                </div>
-              )}
-            </div>
-          </UserOwner>
+            </UserOwner>
+          )}
         </div>
         <ButtonsDiv>
           {!requestDetails.acepted && requestDetails.solicited && (
