@@ -10,6 +10,7 @@ export const StyledDiv = styled.div`
   @media screen and (max-width: 768px) {
     display: flex;
     align-items: center;
+
     flex-direction: column;
   }
 `;
@@ -27,11 +28,13 @@ export const NavBarDiv = styled.div`
 
   @media screen and (max-width: 768px) {
     height: 100vh;
+
     position: absolute;
     top: 5rem;
     left: ${({ click }) => (click ? 0 : "-200%")};
     flex-direction: column;
-    justify-content: center;
+    padding-top: 5rem;
+    justify-content: flex-start;
     align-items: center;
     background-color: #0a122aff;
   }
