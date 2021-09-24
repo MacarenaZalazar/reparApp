@@ -33,7 +33,7 @@ export default function TechnicUser({
       </ImgDiv>
       <ContentDiv>
         <ItemCard>
-          <p>Nombre y Apellido</p>
+          <p>Usuario</p>
           <h4>
             {name} {lastName}
           </h4>
@@ -42,18 +42,19 @@ export default function TechnicUser({
           <p>Usuario</p>
           <h4>{user}</h4>
         </ItemCard>
+
         <ItemCard>
-          <p>Precio Base</p>
-          <h4>{price}</h4>
-        </ItemCard>
-        <ItemCard>
-          <p>Calificación Promedio</p>
+          <p>Calificación</p>
           <h4>
             <AiFillStar /> {score}
           </h4>
         </ItemCard>
       </ContentDiv>
       <ContentDiv>
+        <ItemCard>
+          <p>Precio Base</p>
+          <h4>{price}</h4>
+        </ItemCard>
         <ItemCard>
           <p>Tipos de Trabajos</p>
           <div className="flexJobTypes">
