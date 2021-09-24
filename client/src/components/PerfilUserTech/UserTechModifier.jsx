@@ -5,7 +5,7 @@ import {
   InputJobs,
   Left,
   Right,
-} from "./stylesFormUsers";
+} from "./stylesFormUsers copy";
 import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import axios from "axios";
@@ -317,18 +317,17 @@ const FormTechnicUserModifier = () => {
                     onChange={handleInputChange}
                   />
                 </Input>
-                
               }
               <Input>
-                  <label>Precio Base:</label>
-                  <input
-                    type="number"
-                    name="price"
-                    autoComplete="off"
-                    value={input.price}
-                    onChange={handleInputChange}
-                  />
-                </Input>
+                <label>Precio Base:</label>
+                <input
+                  type="number"
+                  name="price"
+                  autoComplete="off"
+                  value={input.price}
+                  onChange={handleInputChange}
+                />
+              </Input>
               <Input>
                 <label>* Provincia:</label>
                 <select

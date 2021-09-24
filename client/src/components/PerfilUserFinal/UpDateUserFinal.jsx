@@ -1,11 +1,11 @@
-import {
-  StyledDiv,
-  Input,
-  Form,
-  InputJobs,
-  Left,
-  Right,
-} from "./stylesFormUsers";
+// import {
+//   StyledDiv,
+//   Input,
+//   Form,
+//   InputJobs,
+//   Left,
+//   Right,
+// } from "./stylesFormUsers";
 import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import axios from "axios";
@@ -15,6 +15,14 @@ import Swal from "sweetalert2";
 import { getCities, getStates } from "../../redux/actions/techUsers";
 import { useEffect } from "react";
 import { FINAL_USER_URL } from "../../utils/constants";
+import {
+  StyledDiv,
+  Form,
+  Input,
+  InputJobs,
+  Left,
+  Right,
+} from "./stylesFormUsers copy";
 
 const UpDateUserFinal = () => {
   const history = useHistory();
