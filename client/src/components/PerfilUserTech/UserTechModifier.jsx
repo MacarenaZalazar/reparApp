@@ -35,7 +35,6 @@ const FormTechnicUserModifier = () => {
     },
   };
 
-  console.log(user);
   const [input, setInput] = useState({
     name: "",
     lastName: "",
@@ -182,9 +181,13 @@ const FormTechnicUserModifier = () => {
         if (input.qualifications.length > 0) {
           objToSend.qualifications = input.qualifications;
         }
-        if (input.jobTypes.jobTypes > 0) {
+        if (input.jobTypes.length > 0) {
           objToSend.jobTypes = input.jobTypes;
         }
+        if (input.price) {
+          objToSend.price = input.price;
+        }
+
         const respuesta = await axios.put(
           `${TECH_USERS_URL}/${user.idTech}`,
           objToSend,
