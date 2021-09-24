@@ -107,22 +107,11 @@ const FormWorkOrder = () => {
           input,
           config
         );
-
-        const Toast = Swal.mixin({
-          toast: true,
-
-          showConfirmButton: false,
-          timer: 3000,
-          timerProgressBar: true,
-          didOpen: (toast) => {
-            toast.addEventListener("mouseenter", Swal.stopTimer);
-            toast.addEventListener("mouseleave", Swal.resumeTimer);
-          },
-        });
-
-        Toast.fire({
-          icon: "success",
-          title: "Orden de trabajo creada con exito",
+        MySwal.fire({
+          title: "Orden creada con éxito!",
+          confirmButtonColor: "#0a122aff",
+          background: "#e7decdff",
+          backdrop: "rgba(10,18,42,0.6)",
         });
         dispatch(getTechUsersByJobAndZone(null, user.state, user.zone))
         history.push("/home");
