@@ -124,6 +124,7 @@ export const ItemCard = styled.div`
 `;
 
 export const WorksOrdersDiv = styled.div`
+  border-radius: 1.3rem;
   background-color: #0a122aff;
   padding: 1rem;
   h3 {
