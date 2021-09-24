@@ -8,6 +8,7 @@ const Footer = () => {
   const { instagram, facebook, linkedin, github } = socialMedia;
 
   return (
+    
     <StyledDiv>
       <FooterDiv>
         <LinksDiv>
