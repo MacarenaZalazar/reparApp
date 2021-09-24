@@ -87,15 +87,21 @@ const SolicitedWorkTech = (props) => {
 
   return (
     <StyledDiv>
-      <ContentDiv>
+      <ContentDiv className="container">
         <div className="flexContent">
           <WorkSolicited>
-            <div className="title">
-              {requestDetails.solicited && !requestDetails.acepted && (
+            {requestDetails.solicited && !requestDetails.acepted && (
+              <div className="title">
                 <h4>Estas solicitando este trabajo</h4>
-              )}
-              {requestDetails.acepted && <p>Estas aceptado en este trabajo</p>}
-            </div>
+              </div>
+            )}
+
+            {requestDetails.acepted && (
+              <div className="title">
+                <h4>Estas aceptado en este trabajo</h4>
+              </div>
+            )}
+
             {requestDetails && (
               <div className="flexWorkSolicited">
                 <ImgDiv>
